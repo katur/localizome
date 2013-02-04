@@ -1,1 +1,57 @@
 /* Copyright (c) 2013 Katherine Erickson */
+/* ~~~~~~~~ Global ~~~~~~~~ */
+h1 {
+	font-size: 30px;
+	color: #118219;
+	font-weight: normal;
+}
+
+h2 {
+	font-style: small-caps;
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: normal;
+}
+
+a {
+	color: #140D14;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #624560;
+}
+
+body {
+	background: #5de967;
+	font-size: 16px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	color: #140D14;
+}
+
+div#content {
+	background: white;
+	width: 960px;
+	min-height: 500px;
+	margin: 0 auto;
+	padding: 20px;
+	overflow: auto;
+}
+
+/* ~~~~~~~~ Banner ~~~~~~~~ */
+hgroup#banner {
+}
+
+/* ~~~~~~~~ Navigation ~~~~~~~~ */
+div#menu ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+div#menu li {
+	display: inline;
+	padding: 0 20px 0 0;
+}
