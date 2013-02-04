@@ -6,5 +6,5 @@
 		header("location: /");
 	}*/
 	include("functions.php");
-	include($_SERVER["DOCUMENT_ROOT"] . "/backend/connect.php");
+	include($_SERVER["DOCUMENT_ROOT"] . "/includes/connect.php");
 ?>

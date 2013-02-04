@@ -7,7 +7,34 @@
 	<body id='index'>
 		<div id='content'>
 		    <?php include("includes/header.php"); ?>
-		    
+		    <h2>Protein List</h2>
+		    <table id='proteins'>
+		        <tr class='topRow'>
+	        		<td>Common Name</td>
+					<td>Canonical Name (WS180)</td>
+				</tr>    
+    		    <?php
+    		        $query = "SELECT common_name, canonical_name 
+    		            FROM protein 
+    		            ORDER BY common_name
+    		        ";
+    		        // Run the query
+					$result = mysql_query($query);
+					if (!$result) {
+						echo 'Could not run query: ' . mysql_error();
+						exit;
+					}
+    		        // Retrieve results
+					while ($row = mysql_fetch_assoc($result)) {
+					    $common_name = $row['common_name'];
+					    $canonical_name = $row['canonical_name'];
+					    echo "<tr>
+			    			<td><a href='/protein.php?protein=$common_name'>$common_name</a></td>
+							<td>$canonical_name</td>
+						</tr>";
+					}
+    		    ?>
+		    </table>
 		</div>
 	</body>
 </html>
