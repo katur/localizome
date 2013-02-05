@@ -9,9 +9,10 @@
 		    <?php include("includes/header.php"); ?>
 		    <h2>Protein List</h2>
 		    <table id='proteins'>
-		        <tr class='topRow'>
+		        <tr class='top-row'>
 	        		<td>Common Name</td>
-					<td>Canonical Name (WS180)</td>
+					<td>Canonical Name</td>
+					<!--<td>Wormbase Gene ID</td>-->
 				</tr>    
     		    <?php
     		        $query = "SELECT common_name, canonical_name 
@@ -29,8 +30,9 @@
 					    $common_name = $row['common_name'];
 					    $canonical_name = $row['canonical_name'];
 					    echo "<tr>
-			    			<td><a href='/protein.php?protein=$common_name'>$common_name</a></td>
+			    			<td><a href='/protein.php?protein=$common_name' class='all-caps'>$common_name</a></td>
 							<td>$canonical_name</td>
+							<!-- <td>$wormbase_id</td> -->
 						</tr>";
 					}
     		    ?>

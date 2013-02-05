@@ -12,7 +12,7 @@
 		        // get the strain name from the URL
 			    $protein = mysql_real_escape_string($_GET["protein"]);
 			?>
-		    <h2><?php echo $protein;?></h2>
+		    <h2 class='all-caps'><?php echo $protein;?></h2>
 		</div>
 	</body>
 </html>

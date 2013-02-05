@@ -4,9 +4,9 @@
 </hgroup>
 <div id='menu'>
     <ul>
-    <li id='home'><a href='index.php'>Home</a></li>
-    <li id='proteins'><a href='proteins.php'>Protein List</a></li>
-    <li id='spaciotemporal'><a href='spaciotemporal.php'>Spaciotemporal Search</a></li>
-    <li id='network'><a href='network.php'>Network</a></li>
+    <li><a href='index.php' class='<?php if ($_SERVER['PHP_SELF'] == '/index.php') { echo 'selected'; }?>'>Home</a></li>
+    <li><a href='proteins.php' class='<?php if ($_SERVER['PHP_SELF'] == '/proteins.php') { echo 'selected'; }?>'>Protein List</a></li>
+    <li><a href='spaciotemporal.php' class='<?php if ($_SERVER['PHP_SELF'] == '/spaciotemporal.php') { echo 'selected'; }?>'>Spaciotemporal Search</a></li>
+    <li><a href='network.php' class='<?php if ($_SERVER['PHP_SELF'] == '/network.php') { echo 'selected'; }?>'>Network</a></li>
     </ul>
 </div>
