@@ -4,6 +4,10 @@
 	text-transform: uppercase;
 }
 
+.big-image {
+	width: 100%;
+}
+
 h1 {
 	font-family: Georgia, Serif;
 	font-weight: normal;
