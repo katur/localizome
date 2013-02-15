@@ -1,5 +1,7 @@
 /includes/connect.php
 sql_backups
+/localizome/settings.py
+
 
 # Compiled source #
 ###################
@@ -9,6 +11,7 @@ sql_backups
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############

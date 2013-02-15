@@ -1,6 +1,0 @@
-$(function(){
-	menuActive();
-});
-
-function menuActive(){
-}
