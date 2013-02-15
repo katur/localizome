@@ -1,7 +1,7 @@
-/includes/connect.php
-sql_backups
-/localizome/settings.py
-
+# Connection files #
+####################
+localizome/settings.py
+*settings.py
 
 # Compiled source #
 ###################
@@ -31,6 +31,8 @@ sql_backups
 *.log
 *.sql
 *.sqlite
+*.csv
+sql_backups
 
 # OS generated files #
 ######################
@@ -42,3 +44,4 @@ sql_backups
 Icon?
 ehthumbs.db
 Thumbs.db
+Repo exclude
