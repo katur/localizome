@@ -7,7 +7,7 @@
 	<body id='index'>
 		<div id='content'>
 		    <?php include("includes/header.php"); ?>
-		    
+		    <img src='images/networkimage.jpg' class='big-image'>
 		</div>
 	</body>
 </html>
