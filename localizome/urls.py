@@ -6,7 +6,9 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'localizome.views.home', name='home'),
+    url(r'^$', 'website.views.home', name='home'),
+    url(r'^proteins$', 'website.views.proteins', name='proteins'),
+    url(r'^protein/(?P<protein_common_name>.+)$', 'website.views.protein'),
     #url(r'^localizome/', include('localizome.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

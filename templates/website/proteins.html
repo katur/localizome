@@ -1,0 +1,9 @@
+{% if protein_list %}
+	<ul>
+	{% for protein in protein_list %}
+		<li><a href="/protein/{{ protein.common_name }}">{{ protein.common_name }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No proteins are available.</p>
+{% endif %}
