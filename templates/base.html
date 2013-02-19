@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="css/style.css" />
+	<title>{% block site_title %}Early Embryo Localizome{% endblock %}</title>
+</head>
+
+<body>
+	<div id="menu">
+		{% block menu %}
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/proteins">Protein List</a></li>
+		</ul>
+		{% endblock %}
+	</div>
+	<h2>
+		{% block page_title %}
+		{% endblock %}
+	</h2>
+	<div>
+		{% block content %}{% endblock %}
+	</div>
+
+	<span>
+		Data copyright Miyeko Mana, 2013
+	</span>
+</body>
+</html>
