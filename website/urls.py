@@ -13,6 +13,10 @@ urlpatterns = patterns('',
 		    queryset = Protein.objects.order_by('common_name'),
 		    context_object_name='protein_list',
 		    template_name='protein_list.html')),
-    url(r'^protein/(?P<protein_common_name>.+)$', 'website.views.protein_detail'),
+#    url(r'^protein/(?P<pk>.+)$', 
+#	    DetailView.as_view(
+#		    model=Protein,
+#		    template_name='protein_detail.html')),
+    url(r'^protein/(?P<protein_common_name>.+)$', 'website.views.protein_detail'),    
     #url(r'^localizome/', include('localizome.foo.urls')),
 )
