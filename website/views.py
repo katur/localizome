@@ -2,6 +2,7 @@
 from website.models import Protein
 from django.http import Http404
 from django.shortcuts import render_to_response, get_object_or_404
+#from django.template import RequestContext
 # Note: render_to_response() is a shortcut to load a template, pass it a context,
 # and render it. See https://docs.djangoproject.com/en/1.4/intro/tutorial03/
 

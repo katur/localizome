@@ -8,7 +8,7 @@
 	{% if protein_list %}
 		<ul>
 		{% for protein in protein_list %}
-			<li><a href="/protein/{{ protein.common_name }}">{{ protein.common_name }}</a></li>
+			<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name }}</a></li>
 		{% endfor %}
 		</ul>
 	{% else %}
