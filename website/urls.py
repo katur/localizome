@@ -9,15 +9,15 @@ from website.models import Protein
 
 urlpatterns = patterns('website.views',
 	url(r'^$', 'home', name='home_url'),
-	url(r'^protein/(?P<protein_common_name>.+)$', 'protein_detail', name='protein_detail_url'),
+	url(r'^protein/(?P<common_name>.+)$', 'protein_detail', name='protein_detail_url'),
 	url(r'^proteins$', 
-		ListView.as_view(
+		ListView.as_view( # a generic display view
 			queryset = Protein.objects.order_by('common_name'),
 			context_object_name='protein_list',
 			template_name='protein_list.html'),
 		name='proteins_url'),
 #    url(r'^protein/(?P<pk>.+)$', 
-#	    DetailView.as_view(
+#	    DetailView.as_view( # a generic disply view
 #		    model=Protein,
 #		    template_name='protein_detail.html')),
 )

@@ -9,6 +9,6 @@ from django.shortcuts import render_to_response, get_object_or_404
 def home(request):
 	return render_to_response('home.html')
 
-def protein_detail(request, protein_common_name):
-	p = get_object_or_404(Protein, common_name=protein_common_name)
+def protein_detail(request, common_name):
+	p = get_object_or_404(Protein, common_name=common_name)
 	return render_to_response('protein_detail.html', {'protein': p})
