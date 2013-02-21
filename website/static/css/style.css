@@ -3,7 +3,7 @@ div#wrap_header, div#wrap_content, div#wrap_footer {
 	width: 100%;
 	clear: both;
 	float: left;
-	min-width: 1050px;
+	min-width: 1000px;
 }
 
 div#wrap_header {
@@ -22,7 +22,7 @@ div#wrap_footer {
 }
 
 div#header, div#content, div#footer {
-	width: 1030px;
+	width: 960px;
 	margin: 0 auto;
 }
 
@@ -80,6 +80,14 @@ div.menu_item a {
 	border-radius: 15px;
 }
 
+div.menu_item.active a, div.menu_item.active a:hover {
+	background: gray;
+}
+
+div.menu_item.active a:hover {
+	cursor: default;
+}
+
 div.menu_item a:hover {
 	background: #FF7373;
 }
@@ -94,6 +102,12 @@ div#footer {
 	padding: 20px 0;
 	font-size: 14px;
 	color: #aaa;
+}
+
+/* Specific to HOMEPAGE */
+img#network {
+	width: 100%;
+	margin: 0 auto;
 }
 
 /* Specific to PROTEIN_LIST */

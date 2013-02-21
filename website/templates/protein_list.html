@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-	Protein List
+	All proteins tested
 {% endblock %}
 
 {% block content %}
 	<ul id="protein_list">
-	{% for protein in protein_list  %}
+	{% for protein in proteins  %}
 		<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
 	{% empty %}
 		<li>Sorry, no proteins in the list.</li>

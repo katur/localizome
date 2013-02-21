@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="{{ STATIC_URL }}style.css" type="text/css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
 	<title>{% block site_title %}Early Embryo Localizome{% endblock %}</title>
 </head>
 
@@ -10,13 +11,25 @@
 		<div id="header">
 			<!-- Site Titla -->
 			<h1>Early Embryo Localizome</h1>
-
 			<!-- MENU -->
+			
 			<div id="menu">
-				{% block menu %}
-				<div class="menu_item"><a href="/">Home</a></div>
-				<div class="menu_item"><a href="/proteins">Protein List</a></div>
-				{% endblock %}
+				{% url website.views.home as url_home %}
+				{% url website.views.protein_list as url_protein_list %}
+				{% url website.views.spaciotemporal as url_spaciotemporal %}
+				{% url website.views.contact as url_contact %}
+				<div class="menu_item{% if request.path == url_home %} active{% endif %}">
+					<a href="{{ url_home }}">Home</a> 
+				</div>
+				<div class="menu_item{% if request.path == url_protein_list %} active{% endif %}">
+					<a href="{{ url_protein_list }}">Protein List</a>
+				</div>
+				<div class="menu_item{% if request.path == url_spaciotemporal %} active{% endif %}">
+					<a href="{{ url_spaciotemporal}}">Spaciotemporal Search</a>
+				</div>
+				<div class="menu_item{% if request.path == url_contact %} active{% endif %}">
+					<a href="{{ url_contact }}">Contact / Downloads</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -36,7 +49,8 @@
 	<div id="wrap_footer">
 		<!-- FOOTER -->
 		<div id="footer">
-			Data <a href="">Miyeko Mana</a> and <a href="http://biology.as.nyu.edu/object/FabioPiano.html">Fabio Piano</a>, 2009-2013. Website <a href="http://katherineerickson.com">Katherine Erickson</a>, 2013.
+			Data: <a href="">Miyeko Mana</a> and <a href="http://biology.as.nyu.edu/object/FabioPiano.html">Fabio Piano</a>, Center for Genomics and Systems Biology, NYU, 2009-2013. 
+			Website: <a href="http://katherineerickson.com">Katherine Erickson</a>, 2013.
 		</div>
 	</div>
 </body>
