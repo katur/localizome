@@ -6,30 +6,38 @@
 </head>
 
 <body>
-	<!-- MENU -->
-	<div id="menu">
-		{% block menu %}
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/proteins">Protein List</a></li>
-		</ul>
-		{% endblock %}
+	<div id="wrap_header">
+		<div id="header">
+			<!-- Site Titla -->
+			<h1>Early Embryo Localizome</h1>
+
+			<!-- MENU -->
+			<div id="menu">
+				{% block menu %}
+				<div class="menu_item"><a href="/">Home</a></div>
+				<div class="menu_item"><a href="/proteins">Protein List</a></div>
+				{% endblock %}
+			</div>
+		</div>
 	</div>
 	
-	<!-- PAGE TITLE -->
-	<h2>
-		{% block page_title %}
-		{% endblock %}
-	</h2>
-	
-	<!-- CONTENT -->
-	<div id="content">
-		{% block content %}{% endblock %}
+	<div id="wrap_content">
+		<div id="content">
+			<!-- PAGE TITLE -->
+			<h2>
+				{% block page_title %}
+				{% endblock %}
+			</h2>
+			
+			{% block content %}{% endblock %}
+		</div>
 	</div>
-	
-	<!-- FOOTER -->
-	<span>
-		Data copyright Miyeko Mana, 2013
-	</span>
+
+	<div id="wrap_footer">
+		<!-- FOOTER -->
+		<div id="footer">
+			Data <a href="">Miyeko Mana</a> and <a href="http://biology.as.nyu.edu/object/FabioPiano.html">Fabio Piano</a>, 2009-2013. Website <a href="http://katherineerickson.com">Katherine Erickson</a>, 2013.
+		</div>
+	</div>
 </body>
 </html>

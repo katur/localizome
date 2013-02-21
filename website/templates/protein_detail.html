@@ -1,12 +1,17 @@
 {% extends "base.html"%}
 
 {% block page_title %}
-	{{ protein.common_name }}
+	{{ protein.common_name|upper }}
 {% endblock %}
 
 {% block content %}
-	{{ protein.sequence }}
-	{{ protein.wormbase_id}}
+	{% if protein.sequence != protein.common_name %}
+		Sequence: {{ protein.sequence }}
+	{% endif %}
+
+	{% if protein.wormbase_id %}
+		Wormbase gene ID: {{ protein.wormbase_id}}
+	{% endif %}
 {% comment %}
 	{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
 	{{ video.notes|default:"no notes were taken" }}

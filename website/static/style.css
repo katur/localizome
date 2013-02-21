@@ -1,7 +1,110 @@
-h2 {
-	font-size: 100px;
+/* PAGE LAYOUT */
+div#wrap_header, div#wrap_content, div#wrap_footer {
+	width: 100%;
+	clear: both;
+	float: left;
+	min-width: 1050px;
 }
 
-#content {
-	background: pink;
+div#wrap_header {
+	background: white;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: black;
 }
+
+div#wrap_content {
+	background: #f8f8f4;
+}
+
+div#wrap_footer {
+	background: black;
+}
+
+div#header, div#content, div#footer {
+	width: 1030px;
+	margin: 0 auto;
+}
+
+/* GLOBAL STYLES, including linkes, titles, fonts */
+body {
+	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+	color: #A60000;
+}
+
+a:hover {
+	color: #FF7373;
+}
+
+h1 {
+	font-size: 40px;
+	font-family: perpetua;
+	font-weight: normal;
+	-webkit-margin-before: 0.67em;
+	-webkit-margin-after: 0.67em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+h2 {
+	font-size: 36px;
+	font-family: perpetua;
+	font-weight: normal;
+	-webkit-margin-before: 0.67em;
+	-webkit-margin-after: 0.67em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+/* HEADER, including MENU */
+div#menu {
+	float: left;
+	width: 100%;
+	margin: 10px 0;
+}
+
+div.menu_item a {
+	color: white;
+	font-size: 24px;
+	font-variant: small-caps;
+	background: red;
+	margin-right: 20px;
+	padding: 10px;
+	float: left;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+div.menu_item a:hover {
+	background: #FF7373;
+}
+
+/* CONTENT */
+div#content {
+	min-height: 500px;
+}
+
+/* FOOTER */
+div#footer {
+	padding: 20px 0;
+	font-size: 14px;
+	color: #aaa;
+}
+
+/* Specific to PROTEIN_LIST */
+ul#protein_list {
+	list-style-type: none;
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0px;
+}
+
+ul#protein_list li {
+}	

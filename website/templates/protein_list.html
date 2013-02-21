@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-	<ul>
+	<ul id="protein_list">
 	{% for protein in protein_list  %}
-		<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name }}</a></li>
+		<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
 	{% empty %}
 		<li>Sorry, no proteins in the list.</li>
 	{% endfor %}
