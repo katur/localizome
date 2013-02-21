@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}style.css" type="text/css" />
 	<title>{% block site_title %}Early Embryo Localizome{% endblock %}</title>
 </head>
 
 <body>
+	<!-- MENU -->
 	<div id="menu">
 		{% block menu %}
 		<ul>
@@ -14,14 +15,19 @@
 		</ul>
 		{% endblock %}
 	</div>
+	
+	<!-- PAGE TITLE -->
 	<h2>
 		{% block page_title %}
 		{% endblock %}
 	</h2>
-	<div>
+	
+	<!-- CONTENT -->
+	<div id="content">
 		{% block content %}{% endblock %}
 	</div>
-
+	
+	<!-- FOOTER -->
 	<span>
 		Data copyright Miyeko Mana, 2013
 	</span>

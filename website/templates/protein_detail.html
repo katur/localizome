@@ -6,5 +6,9 @@
 
 {% block content %}
 	{{ protein.sequence }}
-	{{ protein.wormbase_id}}i
+	{{ protein.wormbase_id}}
+{% comment %}
+	{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
+	{{ video.notes|default:"no notes were taken" }}
+{% endcomment %}
 {% endblock %}
