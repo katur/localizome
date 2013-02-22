@@ -16,6 +16,12 @@ def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	return render_to_response('protein_detail.html', {'protein': p}, context_instance=RequestContext(request))
 
+def spaciotemporal(request):
+	return render_to_response('spaciotemporal.html', context_instance=RequestContext(request))
+
+def contact(request):
+	return render_to_response('contact.html', context_instance=RequestContext(request))
+
 # below is to implement generic view ListView. I un-implemented it to simplify things.
 # class ProteinList(ListView):
 #	model = Protein

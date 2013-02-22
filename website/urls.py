@@ -5,7 +5,9 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 	# subsequent args tuples: regex, view, optional dictionary
 	url(r'^$', 'home', name='home_url'),
 	url(r'^proteins$', 'protein_list', name='proteins_url'),
-	url(r'^protein/(?P<common_name>.+)$', 'protein_detail', name='protein_detail_url')
+	url(r'^protein/(?P<common_name>.+)$', 'protein_detail', name='protein_detail_url'),
+	url(r'^spaciotemporal$', 'spaciotemporal', name='spaciotemporal'),
+	url(r'^contact$', 'contact', name='contact')
 	
 	# below are to implement generic views ListView and DetailView.
 	# I un-implemented them to decrease confusion. 

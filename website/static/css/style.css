@@ -1,4 +1,8 @@
 /* PAGE LAYOUT */
+html {
+	padding: 0;
+}
+
 div#wrap_header, div#wrap_content, div#wrap_footer {
 	width: 100%;
 	clear: both;
@@ -81,7 +85,7 @@ div.menu_item a {
 }
 
 div.menu_item.active a, div.menu_item.active a:hover {
-	background: gray;
+	background: #A60000;
 }
 
 div.menu_item.active a:hover {
@@ -121,4 +125,9 @@ ul#protein_list {
 }
 
 ul#protein_list li {
-}	
+}
+
+/* Specific to CONTACT page */
+div.contact_block span {
+	margin: 0 0 20px 0;
+}
