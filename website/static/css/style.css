@@ -1,34 +1,3 @@
-/* PAGE LAYOUT */
-html, body {
-	min-width: 100%;
-	margin: 0;
-}
-
-div#wrap_header, div#wrap_content, div#wrap_footer {
-	width: 100%;
-	clear: both;
-	float: left;
-	min-width: 1000px;
-}
-
-div#wrap_header {
-	background: white;
-	border-bottom: 2px solid black;
-}
-
-div#wrap_content {
-	background: #f8f8f4;
-}
-
-div#wrap_footer {
-	background: black;
-}
-
-div#header, div#content, div#footer {
-	width: 960px;
-	margin: 0 auto;
-}
-
 /* GLOBAL STYLES, including linkes, titles, fonts */
 
 /* add to parent elements when their children are floating
@@ -53,7 +22,6 @@ a {
 	text-decoration: none;
 	color: #A60000;
 }
-
 a:hover {
 	color: #FF7373;
 }
@@ -77,6 +45,42 @@ h2 {
 	font-weight: normal;
 	margin: 0;
 	padding-bottom: 20px;
+	clear: both;
+}
+
+/* PAGE LAYOUT */
+html, body {
+	min-width: 100%;
+	margin: 0;
+}
+
+div#wrap_header, div#wrap_content, div#wrap_footer {
+	width: 100%;
+	clear: both;
+	float: left;
+	min-width: 1000px;
+}
+
+div#wrap_header {
+	background: white;
+	border-bottom: 2px solid black;
+	/*-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 0 10px 5px black;*/
+}
+
+div#wrap_content {
+	background: #f8f8f4;
+	padding-bottom: 20px;
+}
+
+div#wrap_footer {
+	background: black;
+}
+
+div#header, div#content, div#footer {
+	width: 960px;
+	margin: 0 auto;
 }
 
 /* HEADER, including MENU */
@@ -93,17 +97,14 @@ div#menu {
 div#menu a {
 	color: #A60000;
 	font-size: 20px;
-	/*font-variant: small-caps;
-	letter-spacing: 1px;*/
 	margin-right: 30px;
 	padding-bottom: 5px;
 	float: left;
+	border-bottom: 2px solid white; /* for spacing when none active */
 }
-
 div#menu a.active, div#menu a:hover {
 	border-bottom: 2px solid #A60000;
 }
-
 div#menu a.active:hover {
 	cursor: default;
 }
@@ -131,6 +132,29 @@ ul#protein_list li {
 }
 
 /* Specific to CONTACT page */
+div.contact_block {
+	float: left;
+	padding-bottom: 20px;
+}
+
 div.contact_block span {
-	margin: 0 0 20px 0;
+	padding-top: 20px;
+	float: left;
+}
+
+a.bubble_right {
+	margin-right: none;
+}
+
+a.bubble {
+	margin-right: 81px;
+}
+
+a.bubble, a.bubble_right {
+	float: left;
+	padding: 20px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid gray;
+	width: 224px;
 }
