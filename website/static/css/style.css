@@ -1,6 +1,7 @@
 /* PAGE LAYOUT */
-html {
-	padding: 0;
+html, body {
+	min-width: 100%;
+	margin: 0;
 }
 
 div#wrap_header, div#wrap_content, div#wrap_footer {
@@ -12,9 +13,7 @@ div#wrap_header, div#wrap_content, div#wrap_footer {
 
 div#wrap_header {
 	background: white;
-	border-bottom-style: solid;
-	border-bottom-width: 2px;
-	border-bottom-color: black;
+	border-bottom: 2px solid black;
 }
 
 div#wrap_content {
@@ -31,6 +30,20 @@ div#header, div#content, div#footer {
 }
 
 /* GLOBAL STYLES, including linkes, titles, fonts */
+
+/* add to parent elements when their children are floating
+and parent needs to expand to the children's size. */
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
 body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 	font-size: 18px;
@@ -45,59 +58,59 @@ a:hover {
 	color: #FF7373;
 }
 
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
 h1 {
 	font-size: 40px;
-	font-family: perpetua;
+	font-family: perpetua, palatino, serif;
 	font-weight: normal;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
+	margin: 0px;
 }
 
 h2 {
 	font-size: 36px;
 	font-family: perpetua;
 	font-weight: normal;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
+	margin: 0;
+	padding-bottom: 20px;
 }
 
 /* HEADER, including MENU */
+div#header {
+	padding: 20px 0;
+}
+
 div#menu {
 	float: left;
 	width: 100%;
-	margin: 10px 0;
+	margin-top: 30px;
 }
 
-div.menu_item a {
-	color: white;
-	font-size: 24px;
-	font-variant: small-caps;
-	background: red;
-	margin-right: 20px;
-	padding: 10px;
+div#menu a {
+	color: #A60000;
+	font-size: 20px;
+	/*font-variant: small-caps;
+	letter-spacing: 1px;*/
+	margin-right: 30px;
+	padding-bottom: 5px;
 	float: left;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
 }
 
-div.menu_item.active a, div.menu_item.active a:hover {
-	background: #A60000;
+div#menu a.active, div#menu a:hover {
+	border-bottom: 2px solid #A60000;
 }
 
-div.menu_item.active a:hover {
+div#menu a.active:hover {
 	cursor: default;
-}
-
-div.menu_item a:hover {
-	background: #FF7373;
 }
 
 /* CONTENT */
 div#content {
+	padding-top: 20px;
 	min-height: 500px;
 }
 
@@ -112,16 +125,6 @@ div#footer {
 img#network {
 	width: 100%;
 	margin: 0 auto;
-}
-
-/* Specific to PROTEIN_LIST */
-ul#protein_list {
-	list-style-type: none;
-	-webkit-margin-before: 0em;
-	-webkit-margin-after: 0em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	-webkit-padding-start: 0px;
 }
 
 ul#protein_list li {

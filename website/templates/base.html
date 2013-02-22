@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
@@ -8,8 +7,8 @@
 
 <body>
 	<div id="wrap_header">
-		<div id="header">
-			<!-- Site Titla -->
+		<div id="header" class="clearfix">
+			<!-- Site Title -->
 			<h1>Early Embryo Localizome</h1>
 			<!-- MENU -->
 			
@@ -18,18 +17,10 @@
 				{% url website.views.protein_list as url_protein_list %}
 				{% url website.views.spaciotemporal as url_spaciotemporal %}
 				{% url website.views.contact as url_contact %}
-				<div class="menu_item{% if request.path == url_home %} active{% endif %}">
-					<a href="{{ url_home }}">Home</a> 
-				</div>
-				<div class="menu_item{% if request.path == url_protein_list %} active{% endif %}">
-					<a href="{{ url_protein_list }}">Protein List</a>
-				</div>
-				<div class="menu_item{% if request.path == url_spaciotemporal %} active{% endif %}">
-					<a href="{{ url_spaciotemporal}}">Spaciotemporal Search</a>
-				</div>
-				<div class="menu_item{% if request.path == url_contact %} active{% endif %}">
-					<a href="{{ url_contact }}">Contact / Downloads</a>
-				</div>
+				<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>Home</a> 
+				<a href="{{ url_protein_list }}" {% if request.path == url_protein_list %}class="active"{% endif %}>Protein List</a>
+				<a href="{{ url_spaciotemporal}}" {% if request.path == url_spaciotemporal %}class="active"{% endif %}>Spaciotemporal Search</a>
+				<a href="{{ url_contact }}" {% if request.path == url_contact %}class="active"{% endif %}>Contact&Downloads</a>
 			</div>
 		</div>
 	</div>
