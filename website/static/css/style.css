@@ -33,14 +33,14 @@ ul {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 42px;
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
 }
 
 h2 {
-	font-size: 36px;
+	font-size: 34px;
 	font-family: perpetua;
 	font-weight: normal;
 	margin: 0;
@@ -85,7 +85,7 @@ div#wrap_footer {
 }
 
 div#header, div#content, div#footer {
-	width: 960px;
+	width: 980px;
 	margin: 0 auto;
 }
 
@@ -155,4 +155,59 @@ a.bubble, a.bubble_right {
 	border-radius: 15px;
 	border: 1px solid gray;
 	width: 224px;
+}
+
+/* MATRIX */
+table#matrix {
+	width: 100%;
+	table-layout: fixed;
+	border-spacing: 0;
+}
+
+table#matrix td, table#matrix th {
+	text-align: center;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+table#matrix tr.top_row {
+	border-top: 1px solid gray;
+}	
+
+table#matrix th.left_column {
+	border-left: 1px solid gray;
+}
+
+table#matrix th {
+	font-weight: normal;
+}
+
+th.matrix_axis_title {
+	background: #8fd401;
+}
+
+th.matrix_axis_subtitle {
+	background: #25D401;
+}
+
+th.matrix_axis_subsubtitle {
+}
+
+table#matrix th.matrix_hole {
+	background: gray;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+/* Specific to PROTEIN page */
+div#protein_info {
+	width: 450px;
+	height: 200px;
+	float: left;
+}
+
+div#video_box {
+	width: 450px;
+	height: 200px;
+	float: right;
 }

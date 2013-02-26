@@ -5,21 +5,48 @@
 {% endblock %}
 
 {% block content %}
-	{% if protein.sequence != protein.common_name %}
-		Sequence: {{ protein.sequence }}
-	{% endif %}
-	<br>
-	{% if protein.wormbase_id %}
-		Wormbase gene ID: {{ protein.wormbase_id}}
-	{% endif %}
-	<br>
-	{% for timepoint in timepoints %}
-		{{ timepoint.timepoint_name }}<br>
-	{% endfor %}
-
-	{% for compartment in compartments %}
-		{{ compartment.compartment_name }}<br>
-	{% endfor %}
+	<div id="protein_info">
+		{% if protein.sequence != protein.common_name %}
+			Sequence: {{ protein.sequence }}
+		{% endif %}
+		{% if protein.wormbase_id %}
+			Wormbase gene ID: {{ protein.wormbase_id}}
+		{% endif %}
+	</div>
+	<div id="video_box">
+		Video goes here.
+	</div>
+	
+	<table id="matrix">
+		<tr id="top_row">
+			<th class="matrix_hole left_column" colspan="3"></th>
+			<th class="matrix_axis_title" colspan="20">Time</th></tr>
+		<tr>
+			<th class="matrix_hole left_column" colspan="3"></th>
+			<th class="matrix_axis_subtitle" colspan="8">1-Cell</th>
+			<th class="matrix_axis_subtitle" colspan="6">AB</th>
+			<th class="matrix_axis_subtitle" colspan="6">P1</th>
+		</tr>
+		<tr>
+			<th class="matrix_hole left_column" colspan="3"></th>
+			{% for timepoint in timepoints %}
+				<th class="matrix_axis_subsubtitle">
+					{{ forloop.counter }}
+					<tag title = {{ timepoint.timepoint_name }}></tag>
+				</th>
+			{% endfor %}
+		</tr>
+		{% for compartment in compartments %}
+			<tr>
+				<th class="matrix_axis_title left_column"></th>
+				<th class="matrix_axis_subtitle"></th>
+				<th class="matrix_axis_subsubtitle">
+					{{ forloop.counter }}
+					<tag title = {{ compartment.compartment_name }}</tag>
+				</th>
+			<tr>
+		{% endfor %}
+	</table>
 
 {% comment %}
 	{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
