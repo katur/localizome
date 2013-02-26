@@ -39,6 +39,8 @@ class Compartment(models.Model):
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
 	compartment_name = models.CharField(unique=True,max_length=60)
 	display_order = models.PositiveSmallIntegerField(unique=True)
+	class Meta:
+		ordering = ['display_order']
 
 class Timepoint(models.Model):
 	CELL_CYCLE_CATEGORIES = (
@@ -49,6 +51,8 @@ class Timepoint(models.Model):
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
 	timepoint_name = models.CharField(max_length=30)
 	display_order = models.PositiveSmallIntegerField(unique=True)
+	class Meta:
+		ordering = ['display_order']
 
 class Signal(models.Model):
 	STRENGTH_CATEGORIES = (

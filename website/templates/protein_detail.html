@@ -1,11 +1,11 @@
-{% extends "base.html"%}
+{% extends "matrix.html"%}
 
 {% block page_title %}
 	{{ protein.common_name|upper }}
 {% endblock %}
 
-{% block content %}
-	<div id="protein_info">
+{% block prematrix %}
+	<div class="column_block">
 		{% if protein.sequence != protein.common_name %}
 			Sequence: {{ protein.sequence }}
 		{% endif %}
@@ -13,43 +13,11 @@
 			Wormbase gene ID: {{ protein.wormbase_id}}
 		{% endif %}
 	</div>
-	<div id="video_box">
+	<div class="column_block">
 		Video goes here.
+		{% comment %}
+		{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
+		{{ video.notes|default:"no notes were taken" }}
+		{% endcomment %}
 	</div>
-	
-	<table id="matrix">
-		<tr id="top_row">
-			<th class="matrix_hole left_column" colspan="3"></th>
-			<th class="matrix_axis_title" colspan="20">Time</th></tr>
-		<tr>
-			<th class="matrix_hole left_column" colspan="3"></th>
-			<th class="matrix_axis_subtitle" colspan="8">1-Cell</th>
-			<th class="matrix_axis_subtitle" colspan="6">AB</th>
-			<th class="matrix_axis_subtitle" colspan="6">P1</th>
-		</tr>
-		<tr>
-			<th class="matrix_hole left_column" colspan="3"></th>
-			{% for timepoint in timepoints %}
-				<th class="matrix_axis_subsubtitle">
-					{{ forloop.counter }}
-					<tag title = {{ timepoint.timepoint_name }}></tag>
-				</th>
-			{% endfor %}
-		</tr>
-		{% for compartment in compartments %}
-			<tr>
-				<th class="matrix_axis_title left_column"></th>
-				<th class="matrix_axis_subtitle"></th>
-				<th class="matrix_axis_subsubtitle">
-					{{ forloop.counter }}
-					<tag title = {{ compartment.compartment_name }}</tag>
-				</th>
-			<tr>
-		{% endfor %}
-	</table>
-
-{% comment %}
-	{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
-	{{ video.notes|default:"no notes were taken" }}
-{% endcomment %}
 {% endblock %}

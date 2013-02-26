@@ -117,12 +117,24 @@ div#content {
 }
 
 div.content_block {
-	float: left;
 	padding-top: 20px;
 }
 
 div.content_block span {
 	padding-top: 20px;
+	float: right;
+}
+
+div.column_block {
+	width: 50%;
+	min-height: 200px;
+	float: left;
+	padding-top: 20px;
+}
+
+div.column_block_home {
+	width: 50%;
+	min-height: 200px;
 	float: left;
 }
 
@@ -190,24 +202,8 @@ th.matrix_axis_subtitle {
 	background: #25D401;
 }
 
-th.matrix_axis_subsubtitle {
-}
-
 table#matrix th.matrix_hole {
 	background: gray;
 	border-bottom: 1px solid gray;
 	border-right: 1px solid gray;
-}
-
-/* Specific to PROTEIN page */
-div#protein_info {
-	width: 450px;
-	height: 200px;
-	float: left;
-}
-
-div#video_box {
-	width: 450px;
-	height: 200px;
-	float: right;
 }

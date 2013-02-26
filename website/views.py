@@ -5,6 +5,7 @@ from django.template import RequestContext #extends Context; needed for STATIC_U
 from website.models import Protein
 from website.models import Timepoint
 from website.models import Compartment
+import functions
 
 # render_to_response() loads a template, passes it a context, and renders it
 def home(request):
@@ -12,16 +13,21 @@ def home(request):
 
 def protein_list(request):
 	p = Protein.objects.all()
-	return render_to_response('protein_list.html', {'proteins': p}, context_instance=RequestContext(request))
+	return render_to_response('protein_list.html', {'proteins':p}, context_instance=RequestContext(request))
 
 def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	c = Compartment.objects.all()
 	t = Timepoint.objects.all()
-	return render_to_response('protein_detail.html', {'protein': p, 'compartments': c, 'timepoints' : t}, context_instance=RequestContext(request))
+	a = functions.create_matrix(c,t)
+	#sig_merge = get_object_or_404(SignalMerge, protein_id = p.id)
+	#sig_raw = get_object_or_404(SignalRaw, protein_id = p.id)
+	return render_to_response('protein_detail.html', {'protein':p, 'compartments':c, 'timepoints':t}, context_instance=RequestContext(request))
 
 def spaciotemporal(request):
-	return render_to_response('spaciotemporal.html', context_instance=RequestContext(request))
+	c = Compartment.objects.all()
+	t = Timepoint.objects.all()
+	return render_to_response('spaciotemporal.html', {'compartments':c, 'timepoints':t}, context_instance=RequestContext(request))
 
 def contact(request):
 	return render_to_response('contact.html', context_instance=RequestContext(request))

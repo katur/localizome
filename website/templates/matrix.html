@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+
+{% block content %}
+    {% block prematrix %}{% endblock %}
+
+    {% block matrix %}
+	<table id="matrix">
+		<tr id="top_row">
+			<th class="matrix_hole left_column" colspan="3"></th>
+			<th class="matrix_axis_title" colspan="20">Time</th></tr>
+		<tr>
+			<th class="matrix_hole left_column" colspan="3"></th>
+			<th class="matrix_axis_subtitle" colspan="8">1-Cell</th>
+			<th class="matrix_axis_subtitle" colspan="6">AB</th>
+			<th class="matrix_axis_subtitle" colspan="6">P1</th>
+		</tr>
+		<tr>
+			<th class="matrix_hole left_column" colspan="3"></th>
+			{% for timepoint in timepoints %}
+				<th title="{{ timepoint.timepoint_name }}" class="matrix_axis_subsubtitle">
+					{{ forloop.counter }}
+				</th>
+			{% endfor %}
+		</tr>
+		{% for compartment in compartments %}
+			<tr>
+				<th class="matrix_axis_title left_column"></th>
+				<th class="matrix_axis_subtitle"></th>
+				<th title="{{ compartment.compartment_name }}" class="matrix_axis_subsubtitle">
+					{{ forloop.counter }}
+				</th>
+			<tr>
+		{% endfor %}
+	</table>
+	{% endblock %}
+	
+	{% block postmatrix %}{% endblock %}
+{% endblock %}
