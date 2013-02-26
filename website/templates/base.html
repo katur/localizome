@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
+	<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}images/favicon.ico" rel="icon" type="image/x-icon">
 	<title>{% block site_title %}Early Embryo Localizome{% endblock %}</title>
 </head>
 
@@ -28,10 +29,7 @@
 	<div id="wrap_content">
 		<div id="content">
 			<!-- PAGE TITLE -->
-			<h2>
-				{% block page_title %}
-				{% endblock %}
-			</h2>
+			<h2>{% block page_title %}{% endblock %}</h2>
 			
 			{% block content %}{% endblock %}
 		</div>

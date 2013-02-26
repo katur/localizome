@@ -16,16 +16,29 @@ class Protein(models.Model):
 		ordering = ['common_name']
 
 class Video(models.Model):
-	date_filmed = models.DateField(blank=True)
 	protein = models.ForeignKey(Protein)
+	strain = models.CharField(max_length=20)
+	filename = models.CharField(max_length=20)
+	date_filmed = models.DateField(blank=True)
 	lens = models.CharField(max_length=50, blank=True)
-	notes = models.CharField(max_length=200, blank=True)
+	mode = models.CharField(max_length=50, blank=True)
+	summary = models.CharField(max_length=500, blank=True)
 	def __unicode__(self):
 		return self.protein
 
+class VideoNotes(models.Model):
+	note = models.CharField(max_length=500, blank=True)
+	protein = models.ForeignKey(Protein)
+
 class Compartment(models.Model):
-	compartment_name = models.CharField(max_length=50)
-	display_order = models.PositiveSmallIntegerField()
+	SUPERCOMPARTMENT_CATEGORIES = (
+		(u'1', u'periphery/plasma membrane'),
+		(u'2', u'cytoplasmic'),
+		(u'3', u'nuclear')
+	)
+	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
+	compartment_name = models.CharField(unique=True,max_length=60)
+	display_order = models.PositiveSmallIntegerField(unique=True)
 
 class Timepoint(models.Model):
 	CELL_CYCLE_CATEGORIES = (
@@ -34,10 +47,10 @@ class Timepoint(models.Model):
 		(u'3', u'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
-	timepoint_name = models.CharField(max_length=50)
-	display_order = models.PositiveSmallIntegerField()
+	timepoint_name = models.CharField(max_length=30)
+	display_order = models.PositiveSmallIntegerField(unique=True)
 
-class SignalCommonInfo(models.Model):
+class Signal(models.Model):
 	STRENGTH_CATEGORIES = (
 		(u'0', u'no data'),
 		(u'1', u'not present'),
@@ -50,8 +63,8 @@ class SignalCommonInfo(models.Model):
 	class Meta:
 		abstract = True # parent fields for SignalRaw and SignalMerged
 
-class SignalRaw(SignalCommonInfo): # inherits fields from SignalCommonInfo
+class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)
 
-class SignalMerged(SignalCommonInfo): # inherits fields from SignalCommonInfo
+class SignalMerged(Signal): # inherits fields from Signal
 	protein = models.ForeignKey(Protein)

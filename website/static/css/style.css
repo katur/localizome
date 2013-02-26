@@ -44,8 +44,11 @@ h2 {
 	font-family: perpetua;
 	font-weight: normal;
 	margin: 0;
-	padding-bottom: 20px;
 	clear: both;
+}
+
+h2.repeat {
+	padding-top: 40px;
 }
 
 /* PAGE LAYOUT */
@@ -63,15 +66,18 @@ div#wrap_header, div#wrap_content, div#wrap_footer {
 
 div#wrap_header {
 	background: white;
-	border-bottom: 2px solid black;
-	/*-moz-box-shadow: 10px 10px 5px #888;
-	-webkit-box-shadow: 10px 10px 5px #888;
-	box-shadow: 0 10px 5px black;*/
+	position: relative; /* to accept z-index */
+	/*border-bottom: 2px solid black;*/
+	/*-moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);*/
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	z-index: 1;
+	padding: 40px 0 35px 0;
 }
 
 div#wrap_content {
 	background: #f8f8f4;
-	padding-bottom: 20px;
+	padding: 40px 0;
 }
 
 div#wrap_footer {
@@ -84,14 +90,10 @@ div#header, div#content, div#footer {
 }
 
 /* HEADER, including MENU */
-div#header {
-	padding: 20px 0;
-}
-
 div#menu {
 	float: left;
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 div#menu a {
@@ -111,8 +113,17 @@ div#menu a.active:hover {
 
 /* CONTENT */
 div#content {
-	padding-top: 20px;
 	min-height: 500px;
+}
+
+div.content_block {
+	float: left;
+	padding-top: 20px;
+}
+
+div.content_block span {
+	padding-top: 20px;
+	float: left;
 }
 
 /* FOOTER */
@@ -128,20 +139,7 @@ img#network {
 	margin: 0 auto;
 }
 
-ul#protein_list li {
-}
-
 /* Specific to CONTACT page */
-div.contact_block {
-	float: left;
-	padding-bottom: 20px;
-}
-
-div.contact_block span {
-	padding-top: 20px;
-	float: left;
-}
-
 a.bubble_right {
 	margin-right: none;
 }

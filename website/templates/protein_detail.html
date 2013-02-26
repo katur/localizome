@@ -8,10 +8,19 @@
 	{% if protein.sequence != protein.common_name %}
 		Sequence: {{ protein.sequence }}
 	{% endif %}
-
+	<br>
 	{% if protein.wormbase_id %}
 		Wormbase gene ID: {{ protein.wormbase_id}}
 	{% endif %}
+	<br>
+	{% for timepoint in timepoints %}
+		{{ timepoint.timepoint_name }}<br>
+	{% endfor %}
+
+	{% for compartment in compartments %}
+		{{ compartment.compartment_name }}<br>
+	{% endfor %}
+
 {% comment %}
 	{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
 	{{ video.notes|default:"no notes were taken" }}
