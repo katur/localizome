@@ -14,7 +14,7 @@ def main():
 		print row
 	
 	# read the data from the csv
-	data = csv.reader(open('data.csv', "U")) # "U" helps with end-of-line format
+	data = csv.reader(open("data.csv", "U")) # "U" helps with end-of-line format
 	data.next() #skip the "Time" header row
 	data.next() #skip the cell-division cycle row (e.g., "1-cell")
 

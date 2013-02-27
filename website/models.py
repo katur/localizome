@@ -23,12 +23,12 @@ class Video(models.Model):
 	date_filmed = models.DateField(blank=True)
 	lens = models.CharField(max_length=50, blank=True)
 	mode = models.CharField(max_length=50, blank=True)
-	summary = models.CharField(max_length=500, blank=True)
+	summary = models.CharField(max_length=5000, blank=True)
 	def __unicode__(self):
 		return self.protein
 
 class VideoNotes(models.Model):
-	note = models.CharField(max_length=500)
+	note = models.CharField(max_length=2000)
 	video = models.ForeignKey(Video)
 
 class Compartment(models.Model):
