@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="content_block">
+	<div class="one_column">
 		<ul>
 		{% for protein in proteins  %}
 			<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>

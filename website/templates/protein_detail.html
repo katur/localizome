@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block prematrix %}
-	<div class="column_block">
+	<div class="two_column">
 		{% if protein.sequence != protein.common_name %}
 			Sequence: {{ protein.sequence }}<br>
 		{% endif %}
@@ -14,7 +14,7 @@
 		{% endif %}
 		Description of protein goes here.
 	</div>
-	<div class="column_block">
+	<div class="two_column">
 		Video and video meta data go here.
 		{% comment %}
 		{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}

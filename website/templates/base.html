@@ -21,11 +21,11 @@
 				{% url website.views.home as url_home %}
 				{% url website.views.protein_list as url_protein_list %}
 				{% url website.views.spaciotemporal as url_spaciotemporal %}
-				{% url website.views.contact as url_contact %}
+				{% url website.views.network as url_network %}
 				<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>Home</a> 
 				<a href="{{ url_protein_list }}" {% if request.path == url_protein_list %}class="active"{% endif %}>Protein List</a>
 				<a href="{{ url_spaciotemporal}}" {% if request.path == url_spaciotemporal %}class="active"{% endif %}>Spaciotemporal Search</a>
-				<a href="{{ url_contact }}" {% if request.path == url_contact %}class="active"{% endif %}>Downloads & Contact</a>
+				<a href="{{ url_network }}" {% if request.path == url_network %}class="active"{% endif %}>Network</a>
 			</div>
 		</div>
 	</div>

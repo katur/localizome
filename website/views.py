@@ -29,8 +29,8 @@ def spaciotemporal(request):
 	t = Timepoint.objects.all()
 	return render_to_response('spaciotemporal.html', {'compartments':c, 'timepoints':t}, context_instance=RequestContext(request))
 
-def contact(request):
-	return render_to_response('contact.html', context_instance=RequestContext(request))
+def network(request):
+	return render_to_response('network.html', context_instance=RequestContext(request))
 
 # below is to implement generic view ListView. I un-implemented it to simplify things.
 # class ProteinList(ListView):

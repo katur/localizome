@@ -64,15 +64,19 @@ h1 {
 }
 
 h2 {
-	font-size: 34px;
-	font-family: perpetua;
+	font-size: 30px;
+	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0;
 	clear: both;
 }
 
-h2.repeat {
-	padding-top: 40px;
+h3 {
+	font-size: 30px;
+	font-family: perpetua, palatino, serif;
+	font-weight: normal;
+	margin: 0;
+	padding-bottom: 10px;
 }
 
 /* PAGE LAYOUT */
@@ -90,13 +94,12 @@ div#wrap_header, div#wrap_content, div#wrap_footer {
 
 div#wrap_header {
 	background: white;
-	position: relative; /* to accept z-index */
-	/*border-bottom: 2px solid black;*/
-	/*-moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
-	-webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);*/
-	box-shadow: 0 0 8px rgba(0,0,0,0.3);
-	z-index: 1;
 	padding: 24px 0 19px 0;
+	position: relative; /* to accept z-index */
+	z-index: 1;
+	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
 div#wrap_content {
@@ -140,26 +143,14 @@ div#content {
 	min-height: 200px;
 }
 
-div.content_block {
-	padding-top: 20px;
+div.one_column {
+	padding: 20px 0;
 }
 
-div.content_block span {
-	padding-top: 20px;
-	float: right;
-}
-
-div.column_block {
+div.two_column {
 	width: 50%;
-	min-height: 100px;
 	float: left;
-	padding-top: 20px;
-}
-
-div.column_block_home {
-	width: 50%;
-	min-height: 200px;
-	float: left;
+	padding: 20px 0;
 }
 
 /* FOOTER */
@@ -170,29 +161,24 @@ div#footer {
 }
 
 /* Specific to HOMEPAGE */
-img#network {
+div.bubble {
 	width: 100%;
-	margin: 0 auto;
-}
-
-/* Specific to CONTACT page */
-a.bubble_right {
-	margin-right: none;
-	background: #CDBDAC;
-}
-
-a.bubble {
-	margin-right: 81px;
-	background: #CDBDAC;
-}
-
-a.bubble, a.bubble_right {
-	float: left;
 	padding: 20px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	border: 1px solid gray;
-	width: 224px;
+}
+
+span.homepage {
+	float: left;
+	clear: both;
+	padding: 10px 0;
+}
+
+/* Specific to NETWORK PAGE */
+img#network {
+	width: 100%;
+	margin: 0 auto;
 }
 
 /* MATRIX */
