@@ -5,6 +5,7 @@ class Protein(models.Model):
 	common_name = models.CharField(max_length=20)
 	sequence = models.CharField(unique=True, max_length=20)
 	wormbase_id = models.CharField(max_length=20, blank=True)
+	representative_video = models.OneToOneField('Video', related_name='representative', null=True)
 	def __unicode__(self):
 		return self.common_name
 	@models.permalink 
@@ -27,8 +28,8 @@ class Video(models.Model):
 		return self.protein
 
 class VideoNotes(models.Model):
-	note = models.CharField(max_length=500, blank=True)
-	protein = models.ForeignKey(Protein)
+	note = models.CharField(max_length=500)
+	video = models.ForeignKey(Video)
 
 class Compartment(models.Model):
 	SUPERCOMPARTMENT_CATEGORIES = (
@@ -37,9 +38,9 @@ class Compartment(models.Model):
 		(u'3', u'nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	name = models.CharField(max_length=60, default="")
-	short_name = models.CharField(max_length=20, default="")
-	miyeko_excel_name = models.CharField(max_length=60, default="")
+	name = models.CharField(max_length=60)
+	short_name = models.CharField(max_length=20)
+	miyeko_excel_name = models.CharField(max_length=60, blank=True)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
@@ -51,9 +52,9 @@ class Timepoint(models.Model):
 		(u'3', u'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
-	name = models.CharField(max_length=30, default="")
-	short_name = models.CharField(max_length=5, default="")
-	miyeko_excel_name = models.CharField(max_length=30, default="")
+	name = models.CharField(max_length=30)
+	short_name = models.CharField(max_length=5)
+	miyeko_excel_name = models.CharField(max_length=30, blank=True)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']

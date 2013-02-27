@@ -33,6 +33,7 @@ localizome/settings.py
 *.sqlite
 *.csv
 sql_backups
+raw_data
 
 # OS generated files #
 ######################

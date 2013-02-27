@@ -1,0 +1,36 @@
+Step 1)
+Macros do not work (at least on Katherine's computer) with as many Excel sheets as Miyeko's document has. So from her file, save new documents with only 50 sheets each (straightforward way: highlight tabs (hold down shift) at bottom of workbook, right click, select "move or copy", To book: "(new book)", select "Create a copy").
+
+Step 2)
+For each excel document with about 50 sheets, perform the following tasks to run a macro that saves each sheet as a separate csv.
+Tools > Macro > Visual Basic Editor
+double click on ThisWorkbook
+paste the following into the code popup: "
+
+Public Sub SaveWorksheetsAsCsv()
+
+Dim WS As Excel.Worksheet
+Dim SaveToDirectory As String
+
+Dim CurrentWorkbook As String
+Dim CurrentFormat As Long
+
+ CurrentWorkbook = ThisWorkbook.FullName
+ CurrentFormat = ThisWorkbook.FileFormat
+' Store current details for the workbook
+
+      SaveToDirectory = ""
+
+      For Each WS In ThisWorkbook.Worksheets
+          WS.SaveAs WS.Name + ".csv", xlCSV
+      Next
+
+ Application.DisplayAlerts = False
+  ThisWorkbook.SaveAs Filename:=CurrentWorkbook, FileFormat:=CurrentFormat
+ Application.DisplayAlerts = True
+' Temporarily turn alerts off to prevent the user being prompted
+'  about overwriting the original file.
+
+End Sub
+
+" press F5 to execute
