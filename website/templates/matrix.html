@@ -17,19 +17,38 @@
 		<tr>
 			<th class="matrix_hole left_column" colspan="3"></th>
 			{% for timepoint in timepoints %}
-				<th title="{{ timepoint.timepoint_name }}" class="matrix_axis_subsubtitle">
-					{{ forloop.counter }}
+				<th data-hover-tag="{{ timepoint.timepoint_name }}" class="matrix_axis_subsubtitle">
+					{{ timepoint.short_name }}
 				</th>
 			{% endfor %}
 		</tr>
 		{% for compartment in compartments %}
 			<tr>
-				<th class="matrix_axis_title left_column"></th>
-				<th class="matrix_axis_subtitle"></th>
-				<th title="{{ compartment.compartment_name }}" class="matrix_axis_subsubtitle">
-					{{ forloop.counter }}
+			{% ifequal forloop.counter 1 %}
+				<th class="matrix_axis_title left_column" rowspan="22">
+					<div class="rotate">Sub-Cellular Compartment</div>
 				</th>
-			<tr>
+				<th class="matrix_axis_subtitle" rowspan="4">
+					<div class="rotate">Periphery<br>/Membrane</div>
+				</th>
+			{% endifequal %}
+			{% ifequal forloop.counter 5 %}
+				<th class="matrix_axis_subtitle" rowspan="13">
+					<div class="rotate">Cytoplasmic</div>
+				</th>
+			{% endifequal %}
+			{% ifequal forloop.counter 18 %}
+				<th class="matrix_axis_subtitle" rowspan="5">
+					<div class="rotate">Nuclear</div>
+				</th>
+			{% endifequal %}
+			<th data-hover-tag="{{ compartment.compartment_name }}" class="wide_cell">
+				{{ compartment.short_name }}
+			</th>
+			{% for timepoint in timepoints %}
+				<td></td>
+			{% endfor %}
+			</tr>
 		{% endfor %}
 	</table>
 	{% endblock %}

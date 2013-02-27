@@ -7,14 +7,15 @@
 {% block prematrix %}
 	<div class="column_block">
 		{% if protein.sequence != protein.common_name %}
-			Sequence: {{ protein.sequence }}
+			Sequence: {{ protein.sequence }}<br>
 		{% endif %}
 		{% if protein.wormbase_id %}
-			Wormbase gene ID: {{ protein.wormbase_id}}
+			Wormbase gene ID: {{ protein.wormbase_id}}<br>
 		{% endif %}
+		Description of protein goes here.
 	</div>
 	<div class="column_block">
-		Video goes here.
+		Video and video meta data go here.
 		{% comment %}
 		{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
 		{{ video.notes|default:"no notes were taken" }}

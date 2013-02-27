@@ -13,6 +13,25 @@ and parent needs to expand to the children's size. */
   visibility: hidden;
 }
 
+.rotate {
+	white-space: nowrap;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	
+	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	-o-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	
+	/* Should be unset in IE9+ I think. */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
 body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 	font-size: 18px;
@@ -32,8 +51,13 @@ ul {
 	padding: 0;
 }
 
+th {
+	font-weight: normal;
+}
+
+
 h1 {
-	font-size: 42px;
+	font-size: 36px;
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
@@ -72,12 +96,12 @@ div#wrap_header {
 	-webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);*/
 	box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	z-index: 1;
-	padding: 40px 0 35px 0;
+	padding: 24px 0 19px 0;
 }
 
 div#wrap_content {
 	background: #f8f8f4;
-	padding: 40px 0;
+	padding: 24px 0;
 }
 
 div#wrap_footer {
@@ -93,13 +117,13 @@ div#header, div#content, div#footer {
 div#menu {
 	float: left;
 	width: 100%;
-	margin-top: 40px;
+	margin-top: 24px;
 }
 
 div#menu a {
 	color: #A60000;
 	font-size: 20px;
-	margin-right: 30px;
+	margin-right: 36px;
 	padding-bottom: 5px;
 	float: left;
 	border-bottom: 2px solid white; /* for spacing when none active */
@@ -113,7 +137,7 @@ div#menu a.active:hover {
 
 /* CONTENT */
 div#content {
-	min-height: 500px;
+	min-height: 200px;
 }
 
 div.content_block {
@@ -127,7 +151,7 @@ div.content_block span {
 
 div.column_block {
 	width: 50%;
-	min-height: 200px;
+	min-height: 100px;
 	float: left;
 	padding-top: 20px;
 }
@@ -154,10 +178,12 @@ img#network {
 /* Specific to CONTACT page */
 a.bubble_right {
 	margin-right: none;
+	background: #CDBDAC;
 }
 
 a.bubble {
 	margin-right: 81px;
+	background: #CDBDAC;
 }
 
 a.bubble, a.bubble_right {
@@ -172,38 +198,42 @@ a.bubble, a.bubble_right {
 /* MATRIX */
 table#matrix {
 	width: 100%;
-	table-layout: fixed;
 	border-spacing: 0;
+	table-layout: fixed;
 }
 
-table#matrix td, table#matrix th {
+td, th {
 	text-align: center;
 	border-bottom: 1px solid gray;
 	border-right: 1px solid gray;
+	font-size: 15px;
+	overflow: hidden;
+	white-space: nowrap; 
+	text-overflow:ellipsis;
 }
 
-table#matrix tr.top_row {
+tr.top_row {
 	border-top: 1px solid gray;
 }	
 
-table#matrix th.left_column {
+th.left_column {
 	border-left: 1px solid gray;
 }
 
-table#matrix th {
-	font-weight: normal;
+th.y_axis {
+	width: 5px;
 }
 
 th.matrix_axis_title {
 	background: #8fd401;
+	font-size: 18px;
 }
 
 th.matrix_axis_subtitle {
 	background: #25D401;
+	font-size: 16px;
 }
 
-table#matrix th.matrix_hole {
-	background: gray;
-	border-bottom: 1px solid gray;
-	border-right: 1px solid gray;
+th.wideCell {
+	width: 100px;
 }
