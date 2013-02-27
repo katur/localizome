@@ -5,19 +5,19 @@
 
     {% block matrix %}
 	<table id="matrix">
-		<tr id="top_row">
-			<th class="matrix_hole left_column" colspan="3"></th>
-			<th class="matrix_axis_title" colspan="20">Time</th></tr>
 		<tr>
-			<th class="matrix_hole left_column" colspan="3"></th>
-			<th class="matrix_axis_subtitle" colspan="8">1-Cell</th>
-			<th class="matrix_axis_subtitle" colspan="6">AB</th>
-			<th class="matrix_axis_subtitle" colspan="6">P1</th>
+			<th class="no_bottom_border" colspan="3"></th>
+			<th class="axis_title top_row" colspan="20">Time</th></tr>
+		<tr>
+			<th class="no_bottom_border" colspan="3"></th>
+			<th class="axis_subtitle" colspan="8">1-Cell</th>
+			<th class="axis_subtitle" colspan="6">AB</th>
+			<th class="axis_subtitle" colspan="6">P1</th>
 		</tr>
 		<tr>
-			<th class="matrix_hole left_column" colspan="3"></th>
+			<th colspan="3"></th>
 			{% for timepoint in timepoints %}
-				<th data-hover-tag="{{ timepoint.timepoint_name }}" class="matrix_axis_subsubtitle">
+				<th data-hover-tag="{{ timepoint.timepoint_name }}">
 					{{ timepoint.short_name }}
 				</th>
 			{% endfor %}
@@ -25,24 +25,24 @@
 		{% for compartment in compartments %}
 			<tr>
 			{% ifequal forloop.counter 1 %}
-				<th class="matrix_axis_title left_column" rowspan="22">
+				<th class="axis_title left_column" rowspan="22">
 					<div class="rotate">Sub-Cellular Compartment</div>
 				</th>
-				<th class="matrix_axis_subtitle" rowspan="4">
+				<th class="axis_subtitle" rowspan="4">
 					<div class="rotate">Periphery<br>/Membrane</div>
 				</th>
 			{% endifequal %}
 			{% ifequal forloop.counter 5 %}
-				<th class="matrix_axis_subtitle" rowspan="13">
+				<th class="axis_subtitle" rowspan="13">
 					<div class="rotate">Cytoplasmic</div>
 				</th>
 			{% endifequal %}
 			{% ifequal forloop.counter 18 %}
-				<th class="matrix_axis_subtitle" rowspan="5">
+				<th class="axis_subtitle" rowspan="5">
 					<div class="rotate">Nuclear</div>
 				</th>
 			{% endifequal %}
-			<th data-hover-tag="{{ compartment.compartment_name }}" class="wide_cell">
+			<th data-hover-tag="{{ compartment.compartment_name }}">
 				{{ compartment.short_name }}
 			</th>
 			{% for timepoint in timepoints %}

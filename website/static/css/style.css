@@ -212,7 +212,7 @@ td, th {
 	text-overflow:ellipsis;
 }
 
-tr.top_row {
+th.top_row {
 	border-top: 1px solid gray;
 }	
 
@@ -220,20 +220,16 @@ th.left_column {
 	border-left: 1px solid gray;
 }
 
-th.y_axis {
-	width: 5px;
-}
-
-th.matrix_axis_title {
+th.axis_title {
 	background: #8fd401;
 	font-size: 18px;
 }
 
-th.matrix_axis_subtitle {
+th.axis_subtitle {
 	background: #25D401;
 	font-size: 16px;
 }
 
-th.wideCell {
-	width: 100px;
+th.no_bottom_border {
+	border-bottom: none;
 }
