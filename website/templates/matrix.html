@@ -17,7 +17,7 @@
 		<tr>
 			<th colspan="3"></th>
 			{% for timepoint in timepoints %}
-				<th data-hover-tag="{{ timepoint.timepoint_name }}">
+				<th data-hover-tag="{{ timepoint.name }}">
 					{{ timepoint.short_name }}
 				</th>
 			{% endfor %}
@@ -42,7 +42,7 @@
 					<div class="rotate">Nuclear</div>
 				</th>
 			{% endifequal %}
-			<th data-hover-tag="{{ compartment.compartment_name }}">
+			<th data-hover-tag="{{ compartment.name }}">
 				{{ compartment.short_name }}
 			</th>
 			{% for timepoint in timepoints %}

@@ -37,8 +37,9 @@ class Compartment(models.Model):
 		(u'3', u'nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	compartment_name = models.CharField(unique=True,max_length=60)
+	name = models.CharField(max_length=60, default="")
 	short_name = models.CharField(max_length=20, default="")
+	miyeko_excel_name = models.CharField(max_length=60, default="")
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
@@ -50,8 +51,9 @@ class Timepoint(models.Model):
 		(u'3', u'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
-	timepoint_name = models.CharField(max_length=30)
+	name = models.CharField(max_length=30, default="")
 	short_name = models.CharField(max_length=5, default="")
+	miyeko_excel_name = models.CharField(max_length=30, default="")
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
