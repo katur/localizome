@@ -219,3 +219,7 @@ th.axis_subtitle {
 th.no_bottom_border {
 	border-bottom: none;
 }
+
+th.no_right_border {
+	border-right: none;
+}
