@@ -18,19 +18,19 @@ class Protein(models.Model):
 
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
-	strain = models.CharField(max_length=20, blank=True)
-	vector = models.CharField(max_length=20, blank=True)
-	filename = models.CharField(max_length=50, blank=True)
+	strain = models.CharField(max_length=10, blank=True)
+	vector = models.CharField(max_length=10, blank=True)
+	filename = models.CharField(max_length=40, blank=True)
 	excel_id = models.PositiveSmallIntegerField(null=True)	
 	date_filmed = models.DateField(null=True)
-	lens = models.CharField(max_length=50, blank=True)
-	mode = models.CharField(max_length=200, blank=True)
-	summary = models.CharField(max_length=5000, blank=True)
+	lens = models.CharField(max_length=5, blank=True)
+	mode = models.CharField(max_length=70, blank=True)
+	summary = models.CharField(max_length=2000, blank=True)
 	def __unicode__(self):
 		return self.protein
 
 class VideoNotes(models.Model):
-	note = models.CharField(max_length=2000)
+	note = models.CharField(max_length=700)
 	video = models.ForeignKey(Video)
 
 class Compartment(models.Model):
@@ -76,7 +76,6 @@ class Signal(models.Model):
 
 class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)
-#	hello = models.CharField(max_length=10, blank=True)
 
 class SignalMerged(Signal): # inherits fields from Signal
 	protein = models.ForeignKey(Protein)
