@@ -2,70 +2,54 @@ import MySQLdb
 import csv
 import sys
 
-max_summary_length = 0;
-max_note_length = 0;
-
 def main():
 	"""
 	as first arg in console, pass 
 		/path/*.csv 
 	to process ALL csvs in a directory
 	"""
-	# connect to database
-	db = MySQLdb.connect(db="localizome", read_default_file="~/.my.cnf")
+	global db	
 	
-	# for each file in the directory
-	for filename in sys.argv[1:]:
-		# open file
-		with open(filename, "U") as f:
-			# read the data, first to get video meta data
-			data = csv.reader(f) # "U" helps with end-of-line format
+	for filename in sys.argv[1:]: # for each file matching args[1]
+		with open(filename, "U") as f: # open file; "U" helps with EOF format
+			data = csv.reader(f) # create reader to get video meta data
 			try:
-				add_video_meta_to_db(db, data, filename)
+				video_id = add_video_meta_to_db(data, filename)
 			except csv.Error as e:
 				sys.exit('file %s, line %d: %s' % (filename, data.line_num, e))
-		
-		with open(filename, "U") as f:
-			# refresh the reader, this time to get the signal data
-			c = db.cursor()
-			data = csv.reader(f)
-			try:
-				data.next() #skip the "Time" header row
-				data.next() #skip the cell-division cycle row (e.g., "1-cell")
 
-				# create a list of the timepoints from the timepoint row
-				timepoints = data.next() # timepoints[0:1] are empty
-	
-				# traverse rows of signal data
-				data.next() #skip the periphery/plasma membrane row
-				process_matrix(c, data, timepoints)
+		with open(filename, "U") as f: # open file again
+			data = csv.reader(f) # refresh reader to get signla data
+			try:
+				process_matrix(data, video_id)
 			except csv.Error as e:
 				sys.exit('file %s, line %d: %s' % (filename, data.line_num, e))
-		
-	# close database connection
-	db.close()
+	
 
-def add_video_meta_to_db(db, data, filename):
+def add_video_meta_to_db(data, filename):
 	"""
-	process rows of video meta data at bottom of page
+	process rows of video meta data at bottom of csv
 	"""
 	global max_summary_length
 	global max_note_length
-	# first get the excel_id as the number before the . in the filename
+	global db
+
+	# first get the excel_id as number before . in filename
 	excel_id = filename.partition(".")[0]
 	if not is_number(excel_id):
 		sys.exit("Error: file " + filename + " is not a number")
 
-	# first skip the matrix
+	# skip matrix rows
 	row = data.next()
 	while row[0].strip() != "PROTEIN:":
 		row = data.next()
 	
-	i = 0 # counter for notes
 	notes = [] # list for notes (variable number of notes)
+	i = 0 # counter for notes
 
 	# traverse the video meta information, extracting variables needed for db
 	while True:
+		# for these rows, just collect value
 		if row[0].strip() == "PROTEIN:":	
 			protein=row[1]
 		elif row[0].strip() == "LINE:":
@@ -74,8 +58,12 @@ def add_video_meta_to_db(db, data, filename):
 			vector=row[1]
 		elif row[0].strip() == "MOVIE:":
 			movie=row[1]
+		elif row[0].strip() == "Lens:":
+			lens=row[1]
+		elif row[0].strip() == "Mode:":
+			mode=row[1]
 		
-		# Miyeko's dates currently in format 121013 or 81013
+		# for date, deal with format 112013 or 81013
 		elif row[0].strip() == "Date scored:":
 			date=row[1]
 			if date[0:1] == "1":
@@ -92,11 +80,7 @@ def add_video_meta_to_db(db, data, filename):
 				sys.exit("Error: improperly formatted date in " + excel_id)
 			date = year + "-" + month + "-" + day
 		
-		elif row[0].strip() == "Lens:":
-			lens=row[1]
-		elif row[0].strip() == "Mode:":
-			mode=row[1]
-		
+		# for notes and summary, deal with multiples and char length
 		elif row[0][0:4] == "Note":
 			if row[1].strip() != "":
 				notes.append(row[1].strip())
@@ -111,6 +95,7 @@ def add_video_meta_to_db(db, data, filename):
 			if len(summary) > max_summary_length:
 				max_summary_length = len(summary)
 		
+		# if abnormalities
 		elif row[1].strip() == "":
 			print "Warning: skipping a row in " + excel_id
 		else:
@@ -120,9 +105,9 @@ def add_video_meta_to_db(db, data, filename):
 		if row[0].strip() == "SUMMARY:":
 			break
 		row = data.next()
-	
+
 	# query database to get the protein_id for the corresponding protein name
-	c = db.cursor() # create a cursor to execute queries on
+	c = db.cursor()
 	num_lines = c.execute("""SELECT id FROM website_protein WHERE common_name=%s""", (protein.lower()))
 	if num_lines > 1:
 		sys.exit("Error: too many proteins match in " + excel_id)
@@ -148,7 +133,6 @@ def add_video_meta_to_db(db, data, filename):
 		sys.exit("Error: no videos match in " + excel_id)
 	else:
 		video_id = c.fetchone()[0]
-	print video_id
 	c.close()
 
 	# insert a row per note into the database
@@ -156,29 +140,87 @@ def add_video_meta_to_db(db, data, filename):
 		c = db.cursor()
 		c.execute("""INSERT INTO website_videonotes (note, video_id) VALUES (%s, %s);COMMIT;""", (note, video_id))
 		c.close()
+	
+	# return video_id, which is needed to parse the matrix
+	return video_id
 
 
-def process_matrix(c, data, timepoints):
+
+def process_matrix(data, video_id):
 	"""
 	process rows of matrix
 	"""
-	row = data.next()
+	global db
+	global timepoint_dictionary
+	global compartment_dictionary
+
+	data.next() #skip the "Time" header row
+	data.next() #skip the cell-division cycle row (e.g., "1-cell")
+
+	# create a list of the timepoints in the order they are in this file
+	timepoint_list = data.next() # timepoints[0:1] are empty
+	data.next() #skip the periphery/plasma membrane row
+
+	row = data.next() # first row of signal data
+	
+	# for each row, i.e. each compartment
 	while row[1].strip() != "":
 		if row[1].strip() == "cytoplasmic" or row[1].strip() == "nuclear":
 			row = data.next()
 			continue
 		compartment = row[1]
-#		print compartment
-		i = 2
-		for item in row[2:21]:
-	#		print timepoints[i], item
+		compartment_id = compartment_dictionary[compartment]
+		i=2
+		for item in row[2:22]:
+			# calculate item code
+			item = item.strip().partition("*")[0]
+			if item == '0':
+				item = 0
+			elif item == 'na':
+				item = 1
+			elif item == 'w':
+				item = 2
+			elif item == '1':
+				item = 3
+			else:
+				sys.exit("Error: signal " + item + " is invalid") 
+
+			# calculate timepoint_id
+			if i<=9:
+				timepoint_id = timepoint_dictionary_1[timepoint_list[i]]
+			elif i<=15:
+				timepoint_id = timepoint_dictionary_2[timepoint_list[i]]
+			else:
+				timepoint_id = timepoint_dictionary_3[timepoint_list[i]]
+			c = db.cursor()
+			c.execute("""INSERT INTO website_signalraw (strength, compartment_id, timepoint_id, video_id) VALUES (%s, %s, %s, %s);COMMIT;""", (item, compartment_id, timepoint_id, video_id))
+			c.close()
 			i += 1
 		row = data.next()
-	#	print '\n'
-	print "reached end of matrix"
 
-# check if string is a number
+
+
+def create_dictionary(query):
+	"""
+	creates a dictionary from the first two elements returned from a select query.
+	the first element is the key, the second element is the value
+	"""
+	# query database for the timepoints, turning results into a dictionary
+	dictionary = {}
+	c = db.cursor()
+	c.execute(query)
+	result = c.fetchall()
+	for row in result:
+		dictionary[row[0]] = row[1] # key: 0th element; value: 1st element
+	c.close()
+	return dictionary
+
+
+
 def is_number(s):
+	"""
+	check if a string is a number
+	"""
 	try:
 		float(s)
 		return True
@@ -186,7 +228,31 @@ def is_number(s):
 		return False
 
 
+
+############################
+# RUN PROGRAM
+############################
+
+#global variables
+max_summary_length = 0;
+max_note_length = 0;
+db = MySQLdb.connect(db="localizome", read_default_file="~/.my.cnf")
+	
+# dictionaries for the timepoints and compartments
+# timepoints are only unique per category, so create three
+timepoint_dictionary_1 = create_dictionary("""SELECT miyeko_excel_name, id FROM website_timepoint WHERE cell_cycle_category=1""")
+timepoint_dictionary_2 = create_dictionary("""SELECT miyeko_excel_name, id FROM website_timepoint WHERE cell_cycle_category=2""")
+timepoint_dictionary_3 = create_dictionary("""SELECT miyeko_excel_name, id FROM website_timepoint WHERE cell_cycle_category=3""")
+
+# compartments are unique
+compartment_dictionary = create_dictionary("""SELECT miyeko_excel_name, id FROM website_compartment""")	
+
 # run main method
 main()
+
+# close database connection
+db.close()
+
+# print results to apply to database schema
 print "max summary length is " + str(max_summary_length)
 print "max note length is " + str(max_note_length)
