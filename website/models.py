@@ -19,7 +19,9 @@ class Protein(models.Model):
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.CharField(max_length=20)
+	vector = models.CharField(max_length=20, blank=True)
 	filename = models.CharField(max_length=20)
+	excel_id = models.PositiveSmallIntegerField(null=True)	
 	date_filmed = models.DateField(null=True)
 	lens = models.CharField(max_length=50, blank=True)
 	mode = models.CharField(max_length=50, blank=True)
