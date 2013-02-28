@@ -2,8 +2,8 @@ from django.db import models
 
 # Note: blank=True means is allowed to be blank. False is default.
 class Protein(models.Model):
-	common_name = models.CharField(max_length=20)
-	sequence = models.CharField(unique=True, max_length=20)
+	common_name = models.CharField(max_length=20, unique=True)
+	sequence = models.CharField(max_length=20, unique=True)
 	wormbase_id = models.CharField(max_length=20, blank=True)
 	representative_video = models.OneToOneField('Video', related_name='representative', null=True)
 	def __unicode__(self):
@@ -20,12 +20,12 @@ class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.CharField(max_length=10, blank=True)
 	vector = models.CharField(max_length=10, blank=True)
-	filename = models.CharField(max_length=40, blank=True)
-	excel_id = models.PositiveSmallIntegerField(null=True)	
-	date_filmed = models.DateField(null=True)
-	lens = models.CharField(max_length=5, blank=True)
-	mode = models.CharField(max_length=70, blank=True)
-	summary = models.CharField(max_length=2000, blank=True)
+	filename = models.CharField(max_length=40)
+	excel_id = models.PositiveSmallIntegerField(unique=True)	
+	date_filmed = models.DateField()
+	lens = models.CharField(max_length=5)
+	mode = models.CharField(max_length=70)
+	summary = models.CharField(max_length=2000)
 	def __unicode__(self):
 		return self.protein
 
@@ -40,9 +40,9 @@ class Compartment(models.Model):
 		(u'3', u'nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	name = models.CharField(max_length=60)
+	name = models.CharField(max_length=60, unique=True)
 	short_name = models.CharField(max_length=20)
-	miyeko_excel_name = models.CharField(max_length=60, blank=True)
+	miyeko_excel_name = models.CharField(max_length=60, unique=True)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
