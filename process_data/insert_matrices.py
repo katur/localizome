@@ -32,6 +32,7 @@ def add_video_meta_to_db(data, filename):
 	"""
 	global max_summary_length
 	global max_note_length
+	global max_mode_length
 	global db
 
 	# first get the excel_id as number before . in filename
@@ -49,9 +50,25 @@ def add_video_meta_to_db(data, filename):
 
 	# traverse the video meta information, extracting variables needed for db
 	while True:
-		# for these rows, just collect value
+		# protein row has some special cases
 		if row[0].strip() == "PROTEIN:":	
 			protein=row[1]
+			if protein == "F-ACTIN (GFP::MOE)":
+				protein="act-1"	
+			elif protein == "C18E3.2":
+				protein="swsn-2.2"
+			elif protein == "F33G12.3":
+				protein="lrr-1"
+			elif protein == "SP-12":
+				protein="C34B2.10"
+			elif protein == "VBP-1":
+				protein="pfd-3"
+			elif protein =="GBP-1":
+				protein="gpb-1"
+			elif protein == "ZK849.2":
+				protein="gopc-1"
+		
+		# for these rows, just collect value
 		elif row[0].strip() == "LINE:":
 			strain=row[1]
 		elif row[0].strip() == "VECTOR:":
@@ -62,22 +79,29 @@ def add_video_meta_to_db(data, filename):
 			lens=row[1]
 		elif row[0].strip() == "Mode:":
 			mode=row[1]
+			if len(row[1]) > max_mode_length:
+				max_mode_length = len(row[1])
 		
 		# for date, deal with format 112013 or 81013
 		elif row[0].strip() == "Date scored:":
 			date=row[1]
-			if date[0:1] == "1":
-				month=date[0:2]
-				day=date[2:4]
-				year="20"+date[4:6]
-			elif date[0:1] == "0":
-				sys.exit("Error: date that starts with 0 in " + excel_id)
-			else:
+			if len(date) == 6:
+				if date[0:1] == "1":
+					month=date[0:2]
+					day=date[2:4]
+					year="20"+date[4:6]
+				else:
+					sys.exit("Error: 6-digit date that does not start with 1 in " + excel_id)
+			elif len(date) == 5:
 				month="0" + date[0:1]
 				day=date[1:3]
 				year="20"+date[3:5]
+			else:
+				sys.exit("Error: date is not 5 or 6 digits in " + excel_id)
+
 			if int(month)>12 or int(day)>31 or int(year)>2013:
 				sys.exit("Error: improperly formatted date in " + excel_id)
+			
 			date = year + "-" + month + "-" + day
 		
 		# for notes and summary, deal with multiples and char length
@@ -236,6 +260,7 @@ def is_number(s):
 #global variables
 max_summary_length = 0;
 max_note_length = 0;
+max_mode_length = 0;
 db = MySQLdb.connect(db="localizome", read_default_file="~/.my.cnf")
 	
 # dictionaries for the timepoints and compartments
@@ -256,3 +281,4 @@ db.close()
 # print results to apply to database schema
 print "max summary length is " + str(max_summary_length)
 print "max note length is " + str(max_note_length)
+print "max mode length is " + str(max_mode_length)
