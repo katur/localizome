@@ -20,7 +20,7 @@ class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.CharField(max_length=20)
 	filename = models.CharField(max_length=20)
-	date_filmed = models.DateField(blank=True)
+	date_filmed = models.DateField(null=True)
 	lens = models.CharField(max_length=50, blank=True)
 	mode = models.CharField(max_length=50, blank=True)
 	summary = models.CharField(max_length=5000, blank=True)
