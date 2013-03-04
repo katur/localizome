@@ -2,9 +2,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 #from django.views.generic import ListView
 from django.template import RequestContext #extends Context; needed for STATIC_URL
-from website.models import Protein
-from website.models import Timepoint
-from website.models import Compartment
+from website.models import *
 import functions
 
 # render_to_response() loads a template, passes it a context, and renders it
@@ -17,12 +15,16 @@ def protein_list(request):
 
 def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
+	v = Video.objects.filter(protein_id=p.id)
 	c = Compartment.objects.all()
 	t = Timepoint.objects.all()
-	a = functions.create_matrix(c,t)
-	#sig_merge = get_object_or_404(SignalMerge, protein_id = p.id)
-	#sig_raw = get_object_or_404(SignalRaw, protein_id = p.id)
-	return render_to_response('protein_detail.html', {'protein':p, 'compartments':c, 'timepoints':t}, context_instance=RequestContext(request))
+	vcs = [] # [video,[compartment,[signal]]]
+	for video in v:
+		cs = []
+		for compartment in c:
+			cs.append((compartment, SignalRaw.objects.filter(video_id=video.id, compartment_id=compartment.id)))
+		vcs.append((video, cs))
+	return render_to_response('protein_detail.html', {'protein':p, 'timepoints':t, 'vcs_tuple':vcs}, context_instance=RequestContext(request))
 
 def spaciotemporal(request):
 	c = Compartment.objects.all()

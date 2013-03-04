@@ -76,6 +76,10 @@ class Signal(models.Model):
 
 class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)
+	class Meta:
+		ordering = ['video']
 
 class SignalMerged(Signal): # inherits fields from Signal
 	protein = models.ForeignKey(Protein)
+	class Meta:
+		ordering = ['protein']

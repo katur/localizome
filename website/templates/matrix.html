@@ -1,58 +1,62 @@
 {% extends "base.html"%}
 
 {% block content %}
-    {% block prematrix %}{% endblock %}
-
-    {% block matrix %}
-	<table id="matrix">
-		<tr>
-			<th class="no_bottom_border no_right_border" colspan="2" width="80"></th>
-			<th class="no_bottom_border" width="100"></th>
-			<th class="axis_title top_row" colspan="20">Time</th></tr>
-		<tr>
-			<th class="no_bottom_border" colspan="3"></th>
-			<th class="axis_subtitle" colspan="8">1-Cell</th>
-			<th class="axis_subtitle" colspan="6">AB</th>
-			<th class="axis_subtitle" colspan="6">P1</th>
-		</tr>
-		<tr>
-			<th colspan="3"></th>
-			{% for timepoint in timepoints %}
-				<th data-hover-tag="{{ timepoint.name }}">
-					{{ timepoint.short_name }}
-				</th>
-			{% endfor %}
-		</tr>
-		{% for compartment in compartments %}
+  {% block prematrix %}{% endblock %}
+	
+	{% block matrix %}
+	{% for video, compartments in vcs_tuple %}
+		<table id="matrix" name="{{ video.id }}">
 			<tr>
-			{% ifequal forloop.counter 1 %}
-				<th class="axis_title left_column" rowspan="22">
-					<div class="rotate">Sub-Cellular Compartment</div>
-				</th>
-				<th class="axis_subtitle" rowspan="4">
-					<div class="rotate">Periphery<br>/Membrane</div>
-				</th>
-			{% endifequal %}
-			{% ifequal forloop.counter 5 %}
-				<th class="axis_subtitle" rowspan="13">
-					<div class="rotate">Cytoplasmic</div>
-				</th>
-			{% endifequal %}
-			{% ifequal forloop.counter 18 %}
-				<th class="axis_subtitle" rowspan="5">
-					<div class="rotate">Nuclear</div>
-				</th>
-			{% endifequal %}
-			<th data-hover-tag="{{ compartment.name }}">
-				{{ compartment.short_name }}
-			</th>
-			{% for timepoint in timepoints %}
-				<td></td>
-			{% endfor %}
+				<th class="no_bottom_border no_right_border" colspan="2" width="80"></th>
+				<th class="no_bottom_border" width="100"></th>
+				<th class="axis_title top_row" colspan="20">Time</th></tr>
+			<tr>
+				<th class="no_bottom_border" colspan="3"></th>
+				<th class="axis_subtitle" colspan="8">1-Cell</th>
+				<th class="axis_subtitle" colspan="6">AB</th>
+				<th class="axis_subtitle" colspan="6">P1</th>
 			</tr>
+			<tr>
+				<th colspan="3"></th>
+				{% for timepoint in timepoints %}
+					<th data-hover-tag="{{ timepoint.name }}">
+						{{ timepoint.short_name }}
+					</th>
+				{% endfor %}
+			</tr>
+			{% for compartment, signals in compartments %}
+				<tr>
+				{% ifequal forloop.counter 1 %}
+					<th class="axis_title left_column" rowspan="22">
+						<div class="rotate">Sub-Cellular Compartment</div>
+					</th>
+					<th class="axis_subtitle" rowspan="4">
+						<div class="rotate">Periphery<br>/Membrane</div>
+					</th>
+				{% endifequal %}
+				{% ifequal forloop.counter 5 %}
+					<th class="axis_subtitle" rowspan="13">
+						<div class="rotate">Cytoplasmic</div>
+					</th>
+				{% endifequal %}
+				{% ifequal forloop.counter 18 %}
+					<th class="axis_subtitle" rowspan="5">
+						<div class="rotate">Nuclear</div>
+					</th>
+				{% endifequal %}
+				<th data-hover-tag="{{ compartment.name }}">
+					{{ compartment.short_name }}
+				</th>
+				{% for signal in signals %}
+					<td class="strength{{ signal.strength }}"></td>
+				{% endfor %}
+
+				</tr>
+			{% endfor %}
+		</table>
 		{% endfor %}
-	</table>
-	{% endblock %}
+
+		{% endblock %}
 	
 	{% block postmatrix %}{% endblock %}
 {% endblock %}

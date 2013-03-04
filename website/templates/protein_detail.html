@@ -15,7 +15,9 @@
 		Description of protein goes here.
 	</div>
 	<div class="two_column">
-		Video and video meta data go here.
+		{% for video in videos %}
+			{{ video.filename }}
+		{% endfor %}
 		{% comment %}
 		{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
 		{{ video.notes|default:"no notes were taken" }}
