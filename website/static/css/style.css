@@ -196,6 +196,7 @@ td, th {
 	overflow: hidden;
 	white-space: nowrap; 
 	text-overflow:ellipsis;
+	cursor: default;
 }
 
 td.strength0 {
@@ -222,12 +223,12 @@ th.left_column {
 }
 
 th.axis_title {
-	background: #c5af80;
+	background: #cdba92;
 	font-size: 18px;
 }
 
 th.axis_subtitle {
-	background: #d5c5a3;
+	background: #e5dbc6;
 	font-size: 16px;
 }
 
