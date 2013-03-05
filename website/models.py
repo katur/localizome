@@ -23,6 +23,7 @@ class Video(models.Model):
 	filename = models.CharField(max_length=40)
 	excel_id = models.PositiveSmallIntegerField(unique=True)	
 	date_filmed = models.DateField()
+	date_scored = models.DateField()
 	lens = models.CharField(max_length=5)
 	mode = models.CharField(max_length=70)
 	summary = models.CharField(max_length=2000)
