@@ -1,26 +1,68 @@
 {% extends "matrix.html"%}
 
+
 {% block page_title %}
 	{{ protein.common_name|upper }}
 {% endblock %}
 
+
 {% block prematrix %}
-	<div class="two_column">
-		{% if protein.sequence != protein.common_name %}
-			Sequence: {{ protein.sequence }}<br>
-		{% endif %}
-		{% if protein.wormbase_id %}
-			Wormbase gene ID: {{ protein.wormbase_id}}<br>
-		{% endif %}
-		Description of protein goes here.
+<div class="two_column">
+	{% if protein.sequence != protein.common_name %}
+		Sequence: {{ protein.sequence }}<br>
+	{% endif %}
+	{% if protein.wormbase_id %}
+		Wormbase gene ID: {{ protein.wormbase_id}}<br>
+	{% endif %}
+	Description of protein goes here.
+</div>
+<div class="two_column">
+	<div data-swf="{{ STATIC_URL }}swf/flowplayer.swf" class="flowplayer no-volume no-mute" data-ratio="0.5625">
+		<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
+		<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
+		<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
+		<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
+		</video>
 	</div>
-	<div class="two_column">
-		{% for video in videos %}
-			{{ video.filename }}
-		{% endfor %}
-		{% comment %}
-		{{ video.date|date:"SHORT_DATE_FORMAT" or "DATE_FORMAT" }}
-		{{ video.notes|default:"no notes were taken" }}
-		{% endcomment %}
-	</div>
+	
+		<!-- Date Scored: {{ videos.1.date_filmed|date:"SHORT_DATE_FORMAT" }}
+		Lens: {{ videos.1.lens }}
+		Mode: {{ videos.1.mode }}
+		{{ videos.1.summary|default:"no notes were taken" }}-->
+</div>
+{% endblock %}
+
+
+{% block key_contents %}
+<tr>
+	<th class="axis_subtitle left_column">Color</th>
+	<th class="axis_subtitle">Signal Strength</th>
+</tr>
+<tr>
+	<td class="strength0 left_column"></td>
+	<td>absent</td>
+</tr>
+<tr>
+	<td class="strength1 left_column"></td>
+	<td>na</td>
+</tr>
+<tr>
+	<td class="strength2 left_column"></td>
+	<td>weak</td>
+</tr>
+<tr>
+	<td class="strength3 left_column"></td>
+	<td>present</td>
+</tr>
+{% endblock %}
+
+
+{% block under_key %}
+<div id="under-key">
+	<ul>
+	{% for video in videos %}
+		<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
+	{% endfor %}
+	</ul>
+</div>
 {% endblock %}

@@ -28,6 +28,8 @@ class Video(models.Model):
 	summary = models.CharField(max_length=2000)
 	def __unicode__(self):
 		return self.protein
+	class Meta:
+		ordering = ['protein', 'filename']
 
 class VideoNotes(models.Model):
 	note = models.CharField(max_length=700)
@@ -73,6 +75,7 @@ class Signal(models.Model):
 	timepoint = models.ForeignKey(Timepoint)
 	class Meta:
 		abstract = True # parent fields for SignalRaw and SignalMerged
+		ordering = ['compartment','timepoint']
 
 class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)

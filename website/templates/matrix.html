@@ -1,65 +1,79 @@
 {% extends "base.html"%}
 {% load website_extras %}
 
-{% addtoblock "content" %}
-  {% block prematrix %}{% endblock %}
+{% block content %}
+{% block prematrix %}{% endblock %}
+
+<div id="matrix-key-wrapper">
 	
-	{% block matrix %}
-	{% for video, signals in vs_tuple %}
-		{% regroup signals by compartment_id as compartment_list %}
-		<table id="matrix" name="{{ video.id }}">
-			<tr>
-				<th class="no_bottom_border no_right_border" colspan="2" width="80"></th>
-				<th class="no_bottom_border" width="100"></th>
-				<th class="axis_title top_row" colspan="20">Time</th>
-			</tr>
-			<tr>
-				<th class="no_bottom_border" colspan="3"></th>
-				<th class="axis_subtitle" colspan="8">1-Cell</th>
-				<th class="axis_subtitle" colspan="6">AB</th>
-				<th class="axis_subtitle" colspan="6">P1</th>
-			</tr>
-			<tr>
-				<th colspan="3"></th>
-				{% for timepoint in timepoints %}
-					<th data-hover-tag="{{ timepoint.name }}">
-						{{ timepoint.short_name }}
-					</th>
-				{% endfor %}
-			</tr>
-			{% for compartment in compartment_list %}
-				<tr>
-				{% ifequal forloop.counter 1 %}
-					<th class="axis_title left_column" rowspan="22">
-						<div class="rotate">Sub-Cellular Compartment</div>
-					</th>
-					<th class="axis_subtitle" rowspan="4">
-						<div class="rotate">Periphery<br>/Membrane</div>
-					</th>
-				{% endifequal %}
-				{% ifequal forloop.counter 5 %}
-					<th class="axis_subtitle" rowspan="13">
-						<div class="rotate">Cytoplasmic</div>
-					</th>
-				{% endifequal %}
-				{% ifequal forloop.counter 18 %}
-					<th class="axis_subtitle" rowspan="5">
-						<div class="rotate">Nuclear</div>
-					</th>
-				{% endifequal %}
-				<th data-hover-tag="{{ compartment_dictionary|get_item:compartment.grouper }}">
-					{{ compartment_dictionary_short|get_item:compartment.grouper }}
+{% block matrix %}
+{% for video, signals in vs_tuple %}
+	{% regroup signals by compartment_id as compartment_list %}
+	<table class="matrix" data-matrix="{{ video.id }}">
+		<tr>
+			<th class="no_bottom_border no_right_border no_background" colspan="2" width="80"></th>
+			<th class="no_bottom_border no_background" width="90"></th>
+			<th class="axis_title top_row" colspan="20">Time</th>
+		</tr>
+		<tr>
+			<th class="no_bottom_border no_background" colspan="3"></th>
+			<th class="axis_subtitle" colspan="8">1-Cell</th>
+			<th class="axis_subtitle" colspan="6">AB</th>
+			<th class="axis_subtitle" colspan="6">P1</th>
+		</tr>
+		<tr>
+			<th colspan="3" class="no_background"></th>
+			{% for timepoint in timepoints %}
+				<th class="timepoint" data-hover-tag="{{ timepoint.name }}">
+					{{ timepoint.short_name }}
 				</th>
-				{% for signal in compartment.list %}
-					<td class="strength{{ signal.strength }}"></td>
-				{% endfor %}
-
-				</tr>
 			{% endfor %}
-		</table>
+		</tr>
+		{% for compartment in compartment_list %}
+			<tr>
+			{% ifequal forloop.counter 1 %}
+				<th class="axis_title left_column" rowspan="22">
+					<div class="rotate rotate_title">Sub-Cellular Compartment</div>
+				</th>
+				<th class="axis_subtitle" rowspan="4">
+					<div class="rotate rotate_peri">Periphery/<br>Membrane</div>
+				</th>
+			{% endifequal %}
+			{% ifequal forloop.counter 5 %}
+				<th class="axis_subtitle" rowspan="13">
+					<div class="rotate rotate_cyto">Cytoplasmic</div>
+				</th>
+			{% endifequal %}
+			{% ifequal forloop.counter 18 %}
+				<th class="axis_subtitle" rowspan="5">
+					<div class="rotate rotate_nucl">Nuclear</div>
+				</th>
+			{% endifequal %}
+			<th class="compartment" data-hover-tag="{{ compartment_dictionary|get_item:compartment.grouper }}">
+				{{ compartment_dictionary_short|get_item:compartment.grouper }}
+			</th>
+			{% for signal in compartment.list %}
+				<td class="strength{{ signal.strength }}"></td>
+			{% endfor %}
+			</tr>
 		{% endfor %}
-
-		{% endblock %}
+	</table>
+	{% endfor %}
+{% endblock %}
 	
-	{% block postmatrix %}{% endblock %}
-{% endaddtoblock %}
+	
+	<div id="next-to-matrix">
+		<table id="key">
+			<tr>
+				<th colspan="2" class="axis_title top_row left_column">Key</th>
+			</tr>
+			{% block key_contents %}{% endblock %}
+		</table>
+		{% block under_key %}{% endblock %}
+	</div>
+
+</div> <!-- end matrix/key wrapper -->
+	
+{% block postmatrix %}{% endblock %}
+	
+{% endblock %} <!-- end content -->
