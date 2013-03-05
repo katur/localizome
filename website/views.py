@@ -16,15 +16,20 @@ def protein_list(request):
 def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	v = Video.objects.filter(protein_id=p.id)
-	c = Compartment.objects.all()
 	t = Timepoint.objects.all()
-	vcs = [] # [video,[compartment,[signal]]]
+	
+	c = Compartment.objects.all()
+	c_dict = {}
+	c_dict_short = {}
+	for compartment in c:
+		c_dict[compartment.id] = compartment.name
+	for compartment in c:
+		c_dict_short[compartment.id] = compartment.short_name
+	
+	vs = []
 	for video in v:
-		cs = []
-		for compartment in c:
-			cs.append((compartment, SignalRaw.objects.filter(video_id=video.id, compartment_id=compartment.id)))
-		vcs.append((video, cs))
-	return render_to_response('protein_detail.html', {'protein':p, 'timepoints':t, 'vcs_tuple':vcs}, context_instance=RequestContext(request))
+		vs.append((video, SignalRaw.objects.filter(video_id=video.id)))
+	return render_to_response('protein_detail.html', {'protein':p, 'timepoints':t, 'compartments':c, 'compartment_dictionary':c_dict, 'compartment_dictionary_short':c_dict_short, 'videos':v, 'vs_tuple':vs}, context_instance=RequestContext(request))
 
 def spaciotemporal(request):
 	c = Compartment.objects.all()

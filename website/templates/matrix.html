@@ -1,10 +1,12 @@
 {% extends "base.html"%}
+{% load website_extras %}
 
 {% block content %}
   {% block prematrix %}{% endblock %}
 	
 	{% block matrix %}
-	{% for video, compartments in vcs_tuple %}
+	{% for video, signals in vs_tuple %}
+		{% regroup signals by compartment_id as compartment_list %}
 		<table id="matrix" name="{{ video.id }}">
 			<tr>
 				<th class="no_bottom_border no_right_border" colspan="2" width="80"></th>
@@ -24,7 +26,7 @@
 					</th>
 				{% endfor %}
 			</tr>
-			{% for compartment, signals in compartments %}
+			{% for compartment in compartment_list %}
 				<tr>
 				{% ifequal forloop.counter 1 %}
 					<th class="axis_title left_column" rowspan="22">
@@ -44,10 +46,10 @@
 						<div class="rotate">Nuclear</div>
 					</th>
 				{% endifequal %}
-				<th data-hover-tag="{{ compartment.name }}">
-					{{ compartment.short_name }}
+				<th data-hover-tag="{{ compartment_dictionary|get_item:compartment.grouper }}">
+					{{ compartment_dictionary_short|get_item:compartment.grouper }}
 				</th>
-				{% for signal in signals %}
+				{% for signal in compartment.list %}
 					<td class="strength{{ signal.strength }}"></td>
 				{% endfor %}
 
