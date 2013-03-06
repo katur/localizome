@@ -60,6 +60,7 @@ class Timepoint(models.Model):
 	name = models.CharField(max_length=30)
 	short_name = models.CharField(max_length=5)
 	miyeko_excel_name = models.CharField(max_length=30, blank=True)
+	kahn_merge_name = models.CharField(max_length=35, blank=True)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
