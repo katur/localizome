@@ -180,7 +180,7 @@ span.homepage {
 	padding-top: 20px;
 }
 span.homepage-top {
-	padding-top: none;
+	padding-top: 0;
 }
 
 /* Specific to NETWORK PAGE */
