@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-	Protein List
+<h2>Protein List</h2>
 {% endblock %}
 
 {% block content %}
-	<div class="one_column">
-		<ul>
-		{% for protein in proteins  %}
-			<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
-		{% empty %}
-			<li>Sorry, no proteins in the list.</li>
-		{% endfor %}
-		</ul>
-	</div>
+<ul>
+{% for protein in proteins  %}
+	<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
+{% empty %}
+	<li>Sorry, no proteins in the list.</li>
+{% endfor %}
+</ul>
 {% endblock %}

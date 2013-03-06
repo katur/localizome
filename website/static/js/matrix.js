@@ -5,19 +5,22 @@ $(document).ready(function(){
 })
 
 selectDefaultMatrix = function(){
-	$("[data-matrix-link]").first().trigger("click");
+	$("[data-matrix-link='merge']").trigger("click");
 }
 
 toggleMatrix = function(){
 	$("[data-matrix-link]").click(function(e){
 		e.preventDefault(); // keeps page stationary after click
-		$("[data-matrix]").addClass("invisible"); // hide previous matrix
+		
 		$("a").removeClass("active"); // unset previous active link
 		$(this).addClass("active"); // make this link active
-		videoId = $(this).attr("data-matrix-link"); // get the video i 
 		
-		// make corresponding matrix visibled for this link
+		videoId = $(this).attr("data-matrix-link"); // get the video id
+		
+		$("[data-matrix]").addClass("invisible"); // hide matrices
+		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
 		$("[data-matrix='" + videoId + "']").removeClass("invisible");
+		$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
 	});
 }
 
@@ -38,7 +41,8 @@ window.hoverTags = function() {
         fontSize: '13px',
         zIndex: 800,
         textShadow: 'none',
-				borderRadius: '4px'
+				borderRadius: '4px',
+				maxWidth: '300px'
       };
       pointer_styles = {
 				position: 'absolute',

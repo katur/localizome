@@ -17,19 +17,34 @@ def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	v = Video.objects.filter(protein_id=p.id)
 	t = Timepoint.objects.all()
-	
 	c = Compartment.objects.all()
+
+	# dictionaries so that signals can be sorted by compartment_id more efficiently
 	c_dict = {}
 	c_dict_short = {}
 	for compartment in c:
 		c_dict[compartment.id] = compartment.name
 	for compartment in c:
 		c_dict_short[compartment.id] = compartment.short_name
+
+	# tuple	for signals. key: the video or the string "merge". value: list of the 440 signals.
+	video_signals_notes_tuple = []
 	
-	vs = []
+	# add the merge matrix to the tuple
+	video_signals_notes_tuple.append(("merge", SignalMerged.objects.filter(protein_id=p.id), "merge"))
+	
+	# add the video matrices to the tuple
 	for video in v:
-		vs.append((video, SignalRaw.objects.filter(video_id=video.id)))
-	return render_to_response('protein_detail.html', {'protein':p, 'timepoints':t, 'compartments':c, 'compartment_dictionary':c_dict, 'compartment_dictionary_short':c_dict_short, 'videos':v, 'vs_tuple':vs}, context_instance=RequestContext(request))
+		video_signals_notes_tuple.append((video, SignalRaw.objects.filter(video_id=video.id), VideoNotes.objects.filter(video_id=video.id)))
+	
+	return render_to_response('protein_detail.html', {
+		'protein':p, 
+		'timepoints':t, 
+		'compartment_dictionary':c_dict, 
+		'compartment_dictionary_short':c_dict_short, 
+		'videos':v, 
+		'video_signals_notes_tuple':video_signals_notes_tuple
+	}, context_instance=RequestContext(request))
 
 def spaciotemporal(request):
 	c = Compartment.objects.all()

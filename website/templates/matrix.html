@@ -7,9 +7,13 @@
 <div id="matrix-key-wrapper">
 	
 {% block matrix %}
-{% for video, signals in vs_tuple %}
+{% for video,signals,foo in video_signals_notes_tuple %}
 	{% regroup signals by compartment_id as compartment_list %}
-	<table class="matrix" data-matrix="{{ video.id }}">
+	{% if video == "merge" %}
+		<table class="matrix" data-matrix="merge">
+	{% else %}
+		<table class="matrix" data-matrix="{{ video.id }}">
+	{% endif %}
 		<tr>
 			<th class="no_bottom_border no_right_border no_background" colspan="2" width="80"></th>
 			<th class="no_bottom_border no_background" width="90"></th>
@@ -63,13 +67,7 @@
 	
 	
 	<div id="next-to-matrix">
-		<table id="key">
-			<tr>
-				<th colspan="2" class="axis_title top_row left_column">Key</th>
-			</tr>
-			{% block key_contents %}{% endblock %}
-		</table>
-		{% block under_key %}{% endblock %}
+		{% block next_to_matrix %}{% endblock %}
 	</div>
 
 </div> <!-- end matrix/key wrapper -->

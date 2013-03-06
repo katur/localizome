@@ -1,13 +1,8 @@
 {% extends "matrix.html"%}
 
-
-{% block page_title %}
-	{{ protein.common_name|upper }}
-{% endblock %}
-
-
 {% block prematrix %}
-<div class="two_column">
+<div id="video-info">
+	<h3>{{ protein.common_name|upper }}</h3>
 	{% if protein.sequence != protein.common_name %}
 		Sequence: {{ protein.sequence }}<br>
 	{% endif %}
@@ -16,7 +11,7 @@
 	{% endif %}
 	Description of protein goes here.
 </div>
-<div class="two_column">
+<div id="video-player">
 	<div data-swf="{{ STATIC_URL }}swf/flowplayer.swf" class="flowplayer no-volume no-mute" data-ratio="0.5625">
 		<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
 		<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
@@ -24,45 +19,59 @@
 		<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
 		</video>
 	</div>
-	
-		<!-- Date Scored: {{ videos.1.date_filmed|date:"SHORT_DATE_FORMAT" }}
-		Lens: {{ videos.1.lens }}
-		Mode: {{ videos.1.mode }}
-		{{ videos.1.summary|default:"no notes were taken" }}-->
 </div>
 {% endblock %}
 
 
-{% block key_contents %}
-<tr>
-	<th class="axis_subtitle left_column">Color</th>
-	<th class="axis_subtitle">Signal Strength</th>
-</tr>
-<tr>
-	<td class="strength0 left_column"></td>
-	<td>absent</td>
-</tr>
-<tr>
-	<td class="strength1 left_column"></td>
-	<td>na</td>
-</tr>
-<tr>
-	<td class="strength2 left_column"></td>
-	<td>weak</td>
-</tr>
-<tr>
-	<td class="strength3 left_column"></td>
-	<td>present</td>
-</tr>
-{% endblock %}
+{% block next_to_matrix %}
+<div id="key">
+Key:	
+<table>
+	<tr>
+		<th class="axis_subtitle left_column top_row">Color</th>
+		<th class="axis_subtitle top_row">Signal Strength</th>
+	</tr>
+	<tr>
+		<td class="strength0 left_column"></td>
+		<td>absent</td>
+	</tr>
+	<tr>
+		<td class="strength1 left_column"></td>
+		<td>na</td>
+	</tr>
+	<tr>
+		<td class="strength2 left_column"></td>
+		<td>weak</td>
+	</tr>
+	<tr>
+		<td class="strength3 left_column"></td>
+		<td>present</td>
+	</tr>
+</table>
+</div>
 
-
-{% block under_key %}
-<div id="under-key">
+<div id="next-to-key">
+	Select matrix:
 	<ul>
-	{% for video in videos %}
+		<li><a href="#" data-matrix-link="merge">merge</a></li>
+	{% for video,foo,bar in video_signals_notes_tuple %}
 		<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
 	{% endfor %}
 	</ul>
 </div>
+
+<div id="below-key">
+	{% for video,foo,notes in video_signals_notes_tuple %}
+	<ul data-matrix-info="{{ video.id }}">
+		<li>Excel sheet: {{ video.excel_id }}</li>
+		<li>Date filmed: {{ video.date_filmed }}</li>
+		<li>Date scored: {{ video.date_scored }}</li>
+		<li>Strain: {{ video.strain }}</li>
+		<li><a href="#" class="no-cursor" data-hover-tag="{{ video.summary }}">hover for Summary</a></li>
+		{% for note in notes %}
+		<li><a href="#" class="no-cursor" data-hover-tag="{{ note.note }}">hover for Note</a></li>
+		{% endfor %}
+	</ul>
+	{% endfor %}
+</div>	
 {% endblock %}

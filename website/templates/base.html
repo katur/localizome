@@ -15,8 +15,8 @@
 		<div id="header" class="clearfix">
 			<!-- Site Title -->
 			<h1>Early Embryo Localizome</h1>
-			<!-- MENU -->
 			
+			<!-- MENU -->
 			<div id="menu">
 				{% url website.views.home as url_home %}
 				{% url website.views.protein_list as url_protein_list %}
@@ -32,16 +32,17 @@
 	
 	<div id="wrap_content">
 		<div id="content">
-			<!-- PAGE TITLE -->
-			<h2>{% block page_title %}{% endblock %}</h2>
-			
+			<!-- PAGE TITLE.. h2 or h3 based on clear or no-clear -->
+			{% block page_title %}{% endblock %}
+
+			<!-- REST OF CONTENT -->
 			{% block content %}
 			{% endblock %}
 		</div>
 	</div>
 
+	<!-- FOOTER -->
 	<div id="wrap_footer">
-		<!-- FOOTER -->
 		<div id="footer">
 			Data: <a href="" target="blank">Miyeko Mana</a> and <a href="http://biology.as.nyu.edu/object/FabioPiano.html" target="blank">Fabio Piano</a>, Center for Genomics and Systems Biology, NYU, 2009-2013. 
 			Website on <a href="https://github.com/katur/localizome" target="blank">GitHub</a>, 2013
