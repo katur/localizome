@@ -9,13 +9,12 @@ def main():
 	to process ALL csvs in a directory
 	"""
 	global db	
-	
 	for filename in sys.argv[1:]: # for each file matching args[1]
 
 		# first get the protein name as chars before _ in filename
 		protein = filename.partition("_")[0]
 		
-		if protein == "F-ACTIN (GFP//MOE)":
+		if protein == "F-ACTIN (GFP::MOE)":
 			protein="act-1"	
 		elif protein == "C18E3.2":
 			protein="swsn-2.2"
@@ -29,6 +28,12 @@ def main():
 			protein="gpb-1"
 		elif protein == "ZK849.2":
 			protein="gopc-1"
+		elif protein == "H2B":
+			protein="his-11"
+		elif protein == "KNL-1":
+			protein="knl-3"
+		elif protein == "TBA-1":
+			protein="tba-2"
 		print protein
 
 		# query database to get the protein_id for the corresponding protein name
@@ -41,11 +46,10 @@ def main():
 		else:
 			protein_id = c.fetchone()[0]
 		c.close()
-		print protein_id
 		
 		# open file and parse matrix, inserting values into db
 		with open(filename, "U") as f: # open file
-			data = csv.reader(f) # refresh reader to get signla data
+			data = csv.reader(f, delimiter='\t') # refresh reader to get signla data
 			try:
 				process_merge_matrix(data, protein_id)
 			except csv.Error as e:
@@ -64,12 +68,16 @@ def process_merge_matrix(data, protein_id):
 
 	# create a list of the timepoints in the order they are in this file
 	timepoint_list = data.next()
-
+	
 	row = data.next() # first row of signal data
 	
 	# for each row, i.e. each compartment
-	while row[0].strip() != "":
+	for row in data:
+		if row[0].strip() == "periphery/plasma membrane" or row[0].strip() == "cytoplasmic" or row[0].strip() == "nuclear":
+			print "skipping " + row[0].strip()
+			continue
 		compartment = row[0]
+		print compartment
 		compartment_id = compartment_dictionary[compartment]
 		i=0
 		for item in row[1:]:
@@ -87,13 +95,11 @@ def process_merge_matrix(data, protein_id):
 
 			# calculate timepoint_id
 			timepoint_id = timepoint_dictionary[timepoint_list[i]]
-			#c = db.cursor()
-			#c.execute("""INSERT INTO website_signalmerged (strength, compartment_id, timepoint_id, protein_id) VALUES (%s, %s, %s, %s);COMMIT;""", (item, compartment_id, timepoint_id, protein_id))
-			#c.close()
+			c = db.cursor()
+			c.execute("""INSERT INTO website_signalmerged (strength, compartment_id, timepoint_id, protein_id) VALUES (%s, %s, %s, %s);COMMIT;""", (item, compartment_id, timepoint_id, protein_id))
+			c.close()
 			i += 1
-			print compartment_id + timepoint_id + item
-		print "\n\n"
-		row = data.next()
+	print "\n\n"
 
 
 
@@ -129,7 +135,7 @@ def is_number(s):
 ############################
 # RUN PROGRAM
 ############################
-
+print "hello"
 #global variables
 db = MySQLdb.connect(db="localizome", read_default_file="~/.my.cnf")
 	
