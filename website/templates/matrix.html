@@ -7,12 +7,12 @@
 	<div id="matrix-key-wrapper">
 	
 		{% block matrix %}
-			{% for video,signals,foo in video_signals_notes_tuple %}
+			{% for video_id, signals in signals_tuple %}
 				{% regroup signals by compartment_id as compartment_list %}
-				{% if video == "merge" %}
+				{% if video_id == "merge" %}
 					<table class="matrix" data-matrix="merge">
 				{% else %}
-					<table class="matrix" data-matrix="{{ video.id }}">
+					<table class="matrix" data-matrix="{{ video_id }}">
 				{% endif %}
 					<tr>
 						<th class="no_bottom_border no_right_border no_background" colspan="2" width="80"></th>

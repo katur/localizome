@@ -68,7 +68,7 @@
 		</ul>
 	</div>
 
-	{% for video,foo,notes in video_signals_notes_tuple %}
+	{% for video in videos %}
 		<ul class="below-key" data-matrix-info="{{ video.id }}">
 			<li>Filmed {{ video.date_filmed }}</li>
 			<li>Scored {{ video.date_scored }}</li>
@@ -81,16 +81,10 @@
 
 
 {% block below_matrix %}
-	{% for video,foo,notes in video_signals_notes_tuple %}
+	{% for video in videos %}
 		<div data-matrix-info="{{ video.id }}">
 			<h4>Summary</h4>
 			{{ video.summary }}
-			<ul>
-				{% for note in notes %}
-					<li>&nbsp;</li>
-					<li>Note: {{ note.note }}</li>
-				{% endfor %}
-			</ul>
 		</div>
 	{% endfor %}
 {% endblock %}

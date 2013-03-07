@@ -28,14 +28,14 @@ def protein_detail(request, common_name):
 		c_dict_short[compartment.id] = compartment.short_name
 
 	# tuple	for signals. key: the video or the string "merge". value: list of the 440 signals.
-	video_signals_notes_tuple = []
+	signals_tuple = []
 	
 	# add the merge matrix to the tuple
-	video_signals_notes_tuple.append(("merge", SignalMerged.objects.filter(protein_id=p.id), "merge"))
+	signals_tuple.append(("merge", SignalMerged.objects.filter(protein_id=p.id), "merge"))
 	
 	# add the video matrices to the tuple
 	for video in v:
-		video_signals_notes_tuple.append((video, SignalRaw.objects.filter(video_id=video.id), VideoNotes.objects.filter(video_id=video.id)))
+		signals_tuple.append((video.id, SignalRaw.objects.filter(video_id=video.id))) # could also send notes in this tuple if need be
 	
 	return render_to_response('protein_detail.html', {
 		'protein':p, 
@@ -43,7 +43,7 @@ def protein_detail(request, common_name):
 		'compartment_dictionary':c_dict, 
 		'compartment_dictionary_short':c_dict_short, 
 		'videos':v, 
-		'video_signals_notes_tuple':video_signals_notes_tuple
+		'signals_tuple':signals_tuple
 	}, context_instance=RequestContext(request))
 
 def spaciotemporal(request):
