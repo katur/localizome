@@ -1,77 +1,96 @@
 {% extends "matrix.html"%}
 
+
+
 {% block prematrix %}
-<div id="video-info">
-	<h3>{{ protein.common_name|upper }}</h3>
-	{% if protein.sequence != protein.common_name %}
-		Sequence: {{ protein.sequence }}<br>
-	{% endif %}
-	{% if protein.wormbase_id %}
-		Wormbase gene ID: {{ protein.wormbase_id}}<br>
-	{% endif %}
-	Description of protein goes here.
-</div>
-<div id="video-player">
-	<div data-swf="{{ STATIC_URL }}swf/flowplayer.swf" class="flowplayer no-volume no-mute" data-ratio="0.5625">
+	<div id="next-to-video">
+		<h3>{{ protein.common_name|upper }}</h3>
+		<div id="below-protein-name" class="increase-line-height">
+			{% if protein.sequence != protein.common_name %}
+				Sequence: {{ protein.sequence }}
+				<br>
+			{% endif %}
+			{% if protein.wormbase_id %}
+				Wormbase gene ID: 
+				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
+					{{ protein.wormbase_id}}
+				</a>
+				<br>
+			{% endif %}
+		</div>
+	</div>
+	
+	<div class="flowplayer no-volume no-mute" data-swf="{{ STATIC_URL }}swf/flowplayer.swf" data-ratio="0.7">
 		<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
 		<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
 		<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
 		<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
 		</video>
 	</div>
-</div>
 {% endblock %}
 
 
+
 {% block next_to_matrix %}
-<div id="key">
-Key:	
-<table>
-	<tr>
-		<th class="axis_subtitle left_column top_row">Color</th>
-		<th class="axis_subtitle top_row">Signal Strength</th>
-	</tr>
-	<tr>
-		<td class="strength0 left_column"></td>
-		<td>absent</td>
-	</tr>
-	<tr>
-		<td class="strength1 left_column"></td>
-		<td>na</td>
-	</tr>
-	<tr>
-		<td class="strength2 left_column"></td>
-		<td>weak</td>
-	</tr>
-	<tr>
-		<td class="strength3 left_column"></td>
-		<td>present</td>
-	</tr>
-</table>
-</div>
+	<div id="key">
+		Key:	
+		<table>
+			<tr>
+				<th class="axis_subtitle left_column top_row">Color</th>
+				<th class="axis_subtitle top_row">Signal Strength</th>
+			</tr>
+			<tr>
+				<td class="strength0 left_column"></td>
+				<td>absent</td>
+			</tr>
+			<tr>
+				<td class="strength1 left_column"></td>
+				<td>na</td>
+			</tr>
+			<tr>
+				<td class="strength2 left_column"></td>
+				<td>weak</td>
+			</tr>
+			<tr>
+				<td class="strength3 left_column"></td>
+				<td>present</td>
+			</tr>
+		</table>
+	</div>
 
-<div id="next-to-key">
-	Select matrix:
-	<ul>
-		<li><a href="#" data-matrix-link="merge">merge</a></li>
-	{% for video,foo,bar in video_signals_notes_tuple %}
-		<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
-	{% endfor %}
-	</ul>
-</div>
+	<div class="below-key">
+		Select matrix:
+		<ul>
+			<li><a href="#" data-matrix-link="merge">merge</a></li>
+			{% for video in videos %}
+				<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 
-<div id="below-key">
 	{% for video,foo,notes in video_signals_notes_tuple %}
-	<ul data-matrix-info="{{ video.id }}">
-		<li>Excel sheet: {{ video.excel_id }}</li>
-		<li>Date filmed: {{ video.date_filmed }}</li>
-		<li>Date scored: {{ video.date_scored }}</li>
-		<li>Strain: {{ video.strain }}</li>
-		<li><a href="#" class="no-cursor" data-hover-tag="{{ video.summary }}">hover for Summary</a></li>
-		{% for note in notes %}
-		<li><a href="#" class="no-cursor" data-hover-tag="{{ note.note }}">hover for Note</a></li>
-		{% endfor %}
-	</ul>
+		<ul class="below-key" data-matrix-info="{{ video.id }}">
+			<li>Filmed {{ video.date_filmed }}</li>
+			<li>Scored {{ video.date_scored }}</li>
+			<li>Excel sheet: {{ video.excel_id }}</li>
+			<li>Strain: {{ video.strain }}</li>
+		</ul>			
 	{% endfor %}
-</div>	
+{% endblock %}
+
+
+
+{% block below_matrix %}
+	{% for video,foo,notes in video_signals_notes_tuple %}
+		<div data-matrix-info="{{ video.id }}">
+			<h4>Summary</h4>
+			{{ video.summary }}
+			<ul>
+				{% for note in notes %}
+					<li>&nbsp;</li>
+					<li>Note: {{ note.note }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endfor %}
 {% endblock %}

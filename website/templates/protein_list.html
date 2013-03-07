@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-<h2>Protein List</h2>
+	<h2>Protein List</h2>
 {% endblock %}
 
 {% block content %}
-<ul>
-{% for protein in proteins  %}
-	<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
-{% empty %}
-	<li>Sorry, no proteins in the list.</li>
-{% endfor %}
-</ul>
+	<ul class="protein-list">
+		{% for protein in proteins %}
+			<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
+			{% if forloop.counter|divisibleby:"26" %}
+			</ul><ul class="protein-list">
+			{% endif %}
+		
+		{% empty %}
+			<li>Sorry, no proteins in the list.</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

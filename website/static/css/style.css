@@ -23,13 +23,16 @@ body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 	font-size: 18px;
 }
-
+.increase-line-height {
+	line-height: 130%;
+}
 
 /* HEADERS */
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
+	line-height: 80%;
 }
 h1 {
 	font-size: 36px;
@@ -43,6 +46,11 @@ h2 {
 }
 h3 {
 	clear: none;
+}
+h4 {
+	font-weight: bold;
+	font-size: 22px;
+	padding-bottom: 10px;
 }
 
 
@@ -108,41 +116,41 @@ html, body {
 	min-width: 100%;
 	margin: 0;
 }
-div#wrap_header, div#wrap_content, div#wrap_footer {
+#wrap_header, div#wrap_content, div#wrap_footer {
 	width: 100%;
 	clear: both;
 	float: left;
 	min-width: 1000px;
 }
-div#wrap_header {
+#wrap_header {
 	background: white;
-	padding: 15px 0 12px 0;
+	padding: 18px 0 13px 0; /* more on top due to 2px underline with 3px padding */
 	position: relative; /* to accept z-index */
 	z-index: 1;
 	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
-div#wrap_content {
+#wrap_content {
 	background: #f8f8f4;
 	padding: 50px 0 200px 0;
 }
-div#wrap_footer {
+#wrap_footer {
 	background: black;
 }
-div#header, div#content, div#footer {
+#header, #content, #footer {
 	width: 980px;
 	margin: 0 auto;
 }
 
 
 /* MENU */
-div#menu {
+#menu {
 	float: left;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 13px; /* should be 18, but ~5px lost due to long y tails*/
 }
-div#menu a {
+#menu a {
 	color: #A60000;
 	font-size: 20px;
 	margin-right: 36px;
@@ -150,26 +158,27 @@ div#menu a {
 	float: left;
 	border-bottom: 2px solid white; /* for spacing when none active */
 }
-div#menu a.active, div#menu a:hover {
+#menu a.active, #menu a:hover {
 	border-bottom: 2px solid #A60000;
 }
-div#menu a.active:hover {
+#menu a.active:hover {
 	cursor: default;
 }
 
 
 /* FOOTER */
-div#footer {
+#footer {
 	padding: 20px 0;
 	font-size: 14px;
 	color: #aaa;
 }
 
+
 /* Specific to HOMEPAGE */
-div#blurb {
+#blurb {
 	width: 100%;
 }
-div.homepage-column {
+.homepage-column {
 	width: 50%;
 	float: left;
 	padding-top: 30px;
@@ -183,26 +192,42 @@ span.homepage-top {
 	padding-top: 0;
 }
 
+
 /* Specific to NETWORK PAGE */
-img#network {
+#network {
 	width: 100%;
 	margin: 0 auto;
 }
 
-/* Specific to PROTEIN PAGE */
-div#video-info {
-	width: 50%;
+/* Specific to PROTEIN LIST */
+.protein-list {
 	float: left;
-	padding-bottom: 40px;
-}
-div#video-player {
-	width: 50%;
-	float: right;
-	padding-bottom: 40px;
+	width: 25%;
 }
 
+
+/* Specific to PROTEIN PAGE */
+#next-to-video {
+	width: 460px;
+	height: 200px;
+	float: left;
+	margin: 0 60px 60px 0;
+}
+#below-protein-name {
+	padding: 40px;
+	background: rgba(0, 0, 0, 0.036);
+	border-radius: 4px;
+}
 /* player skin */
-.flowplayer { width: 80%; background-color: #222; background-size: cover; max-width: 500px; }
+.flowplayer { 
+	width: 100%; 
+	background-color: #222; 
+	background-size: cover; 
+	width: 460px;
+	max-width: 460px;
+	float: right;
+	margin-bottom: 60px;
+}
 .flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
 .flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
 .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
@@ -211,66 +236,72 @@ div#video-player {
 
 /* MATRIX */
 /* positioning divs */
-div#matrix-key-wrapper {
+#matrix-key-wrapper {
 	width: 100%;
 	float: left;
 }
-div#next-to-matrix {
-	float: left;
+
+#next-to-matrix {
+	float: right;
+	width: 160px;
+	font-size: 16px;
+	padding: 40px;
+	background: rgba(0, 0, 0, 0.036);
+	border-radius: 4px;
 }
-div#key {
-	float: left;
-	width: 130px;
-	max-width: 130px;
-	margin-left: 20px;
+#below-matrix {
+	padding-top: 40px;
+	clear: both;
+	width: 680px;
 }
-div#next-to-key {
+#key {
 	float: left;
-	width: 130px;
-	margin-left: 20px;
+	width: 160px;
 }
-div#below-key {
+#key table {
+	width: 100%;
+}
+.below-key {
 	clear: both;
 	float: left;
-	width: 280px;
-	margin: 50px 0 0 20px;
+	margin-top: 40px;
 }
 
 /* the matrix itself */
-table.matrix {
+.matrix {
 	width: 680px;
 	table-layout: fixed;
 	float: left;
 }
 
 /* titles, subtitles, subsubtitles */
-th.axis_title {
+.axis_title {
 	background: #cdba92;
 	font-size: 16px;
 }
-th.axis_subtitle {
+.axis_subtitle {
 	background: #e5dbc6;
 	font-size: 14px;
 }
-th.timepoint {
+.timepoint {
 	font-family: "Helvetica Narrow", "Arial Narrow", sans-serif;
 }
-th.compartment {
+.compartment {
 	text-align: right;
 	padding-right: 10px;
 }
 
 /* the four colors for protein matrix */
-td.strength0 {
+.strength0 {
 	background: none;
 }
-td.strength1 {
+.strength1 {
 	background: #b1b1b1;
 }
-td.strength2 {
+.strength2 {
 	background: #8fd401;
 }
-td.strength3{
+.strength3{
 	background: #188801;
 }
 
