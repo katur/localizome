@@ -1,32 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="blurb">The Early Embryo Localizome project is lalalalallalaa.</div>
+<div id="blurb">Blurb / Abstract / Image / Slideshow of figures ?</div>
+
+<div class="homepage-column">
+	<h3>Contact & Links:</h3>
+	<span class="homepage homepage-top">
+		<a href="#" target="_blank"><i>The title of the paper</i></a>, PNAS
+	</span>
+	<span class="homepage">
+		email corresponding author <a href="#" target="_blank">Dr. Miyeko Mana <!--&nbsp;&nbsp;miyeko.mana < at > gmail.com--></a>
+	</span>
+	<span class="homepage"> 
+		<a href="#" target="_blank">Piano lab homepage</a>, New York University
+	</span>
+	<span class="homepage"> 
+		<a href="http://cgsb.as.nyu.edu/page/home" target="_blank">Center for Genomics and Systems Biology</a>, New York University
+	</span>
+</div>
 
 <div class="homepage-column">
 	<h3>Downloads:</h3>
-	<span class="homepage homepage-top">
-		<a href="http://www.pnas.org/content/early/2012/09/14/1211286109.short?rss=1&amp%3bssource=mfr" target="blank"><i>The title of the paper</i></a>
-		, PNAS
+	<span class="homepage homepage-top"> 
+		<a href="#">raw matrices in Excel format</a>
 	</span>
-	<span class="homepage"i> 
-		<a href="">Download matrices in Excel format</a>
+	<span class="homepage"> 
+		<a href="#">merge matrices in csv format</a>
 	</span>
 	<span class="homepage">
-		<a href="">Download the compressed videos</a>
+		<a href="#">compressed representative videos</a>
 		<br>(individual videos can be downloaded on 
 		<a href="{% url website.views.protein_list %}">protein pages</a>)
 	</span>
 </div>
 
-<div class="homepage-column">
-	<h3>Contact:</h3>
-	<span class="homepage homepage-top">
-		Corresponding author <a href="mailto:lalala" target="blank">Dr. Miyeko Mana <!--&nbsp;&nbsp;miyeko.mana < at > gmail.com--></a>
-	</span>
-	<span class="homepage"> 
-		<a href="http://cgsb.as.nyu.edu/page/home" target="blank">Center for Genomics and Systems Biology</a>
-		, New York University
-	</span>
-</div>
 {% endblock %}

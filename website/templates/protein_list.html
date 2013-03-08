@@ -5,15 +5,22 @@
 {% endblock %}
 
 {% block content %}
-	<ul class="protein-list">
+	<table class="protein-list">
+		<tr>
+			<th>Common Name</th><th>Canonical Name</th>
+		</tr>
 		{% for protein in proteins %}
-			<li><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></li>
-			{% if forloop.counter|divisibleby:"26" %}
-			</ul><ul class="protein-list">
-			{% endif %}
+		<tr>
+			<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
+			<td>{{ protein.sequence }}</td>
+		</tr>
+		
+		<!--{% if forloop.counter|divisibleby:"26" %}
+		</table><table class="protein-list">
+		{% endif %}-->
 		
 		{% empty %}
-			<li>Sorry, no proteins in the list.</li>
+			Sorry, no proteins in the list.
 		{% endfor %}
-	</ul>
+	</table>
 {% endblock %}
