@@ -7,7 +7,7 @@
 {% block content %}
 	<table class="protein-list">
 		<tr>
-			<th>Common Name</th><th>Canonical Name</th>
+			<th>Common</th><th>Canonical</th>
 		</tr>
 		{% for protein in proteins %}
 		<tr>
@@ -15,9 +15,13 @@
 			<td>{{ protein.sequence }}</td>
 		</tr>
 		
-		<!--{% if forloop.counter|divisibleby:"26" %}
-		</table><table class="protein-list">
-		{% endif %}-->
+		{% if forloop.counter|divisibleby:"26" %}
+			</table>
+			<table class="protein-list">		
+				<tr>
+					<th>Common</th><th>Canonical</th>
+				</tr>
+		{% endif %}
 		
 		{% empty %}
 			Sorry, no proteins in the list.
