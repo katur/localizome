@@ -72,19 +72,18 @@ class Signal(models.Model):
 		(u'2', u'weak'),
 		(u'3', u'present')
 	)
-	strength = models.PositiveSmallIntegerField(choices=STRENGTH_CATEGORIES)
+	strength = models.PositiveSmallIntegerField(choices=STRENGTH_CATEGORIES, db_index=True)
 	compartment = models.ForeignKey(Compartment)
 	timepoint = models.ForeignKey(Timepoint)
 	class Meta:
 		abstract = True # parent fields for SignalRaw and SignalMerged
-		ordering = ['compartment','timepoint']
 
 class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)
 	class Meta:
-		ordering = ['video']
+		ordering = ['video', 'compartment', 'timepoint']
 
 class SignalMerged(Signal): # inherits fields from Signal
 	protein = models.ForeignKey(Protein)
 	class Meta:
-		ordering = ['protein']
+		ordering = ['protein', 'compartment', 'timepoint']
