@@ -1,6 +1,5 @@
 {% extends "matrix.html"%}
 
-
 {% block page_title %}
 	<h3>Spaciotemporal Search</h3>
 {% endblock %}
@@ -27,24 +26,8 @@
 				{% endfor %}-->
 		</table>
 	</div>
-
-<!--	<div class="below-key">
-</div> -->
 {% endblock %}
 
 
-
 {% block below_matrix %}
-	{% for video,foo,notes in video_signals_notes_tuple %}
-		<div data-matrix-info="{{ video.id }}">
-			<h4>Summary</h4>
-			{{ video.summary }}
-			<ul>
-				{% for note in notes %}
-					<li>&nbsp;</li>
-					<li>Note: {{ note.note }}</li>
-				{% endfor %}
-			</ul>
-		</div>
-	{% endfor %}
 {% endblock %}

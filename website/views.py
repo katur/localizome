@@ -4,52 +4,103 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext #extends Context; needed for STATIC_URL
 from website.models import *
 import functions
+import numpy
 
 # render_to_response() loads a template, passes it a context, and renders it
 def home(request):
 	return render_to_response('home.html', context_instance=RequestContext(request))
 
+
 def protein_list(request):
 	p = Protein.objects.all()
 	return render_to_response('protein_list.html', {'proteins':p}, context_instance=RequestContext(request))
 
+
 def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	v = Video.objects.filter(protein_id=p.id)
-	t = Timepoint.objects.all()
 	c = Compartment.objects.all()
+	t = Timepoint.objects.all()
+	num_timepoints = len(t)
 
-	# dictionaries so that signals can be sorted by compartment_id more efficiently
+	# dictionaries to return compartment names and short names
 	c_dict = {}
-	c_dict_short = {}
 	for compartment in c:
 		c_dict[compartment.id] = compartment.name
+	c_dict_short = {}
 	for compartment in c:
 		c_dict_short[compartment.id] = compartment.short_name
 
-	# tuple	for signals. key: the video or the string "merge". value: list of the 440 signals.
-	signals_tuple = []
+	matrices = [] # 2D array for matrices: [video.id or "merge][matrix of signals]
+	matrix = [] # 2D array of signals for one matrix
 	
-	# add the merge matrix to the tuple
-	signals_tuple.append(("merge", SignalMerged.objects.filter(protein_id=p.id), "merge"))
+	# FIRST: add the merge matrix to matrices
+	signals = SignalMerged.objects.filter(protein_id=p.id) # first get all 440 signals as one list
+	i = 0 # index for signal at beginning of current row
+	for compartment in c: # for each row
+		matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+		i += num_timepoints
+	matrices.append(("merge", matrix))
 	
-	# add the video matrices to the tuple
+	# THEN: add each video matrix to matrices
 	for video in v:
-		signals_tuple.append((video.id, SignalRaw.objects.filter(video_id=video.id))) # could also send notes in this tuple if need be
+		signals = SignalRaw.objects.filter(video_id=video.id) # get all 440 signals as one list
+		matrix = [] # refresh matrix
+		i = 0 # refresh index
+		for compartment in c: # for each row
+			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+			i += num_timepoints
+		matrices.append((video.id, matrix))
 	
 	return render_to_response('protein_detail.html', {
 		'protein':p, 
-		'timepoints':t, 
+		'timepoints':t,
+		'videos':v,
 		'compartment_dictionary':c_dict, 
 		'compartment_dictionary_short':c_dict_short, 
-		'videos':v, 
-		'signals_tuple':signals_tuple
+		'matrices':matrices
 	}, context_instance=RequestContext(request))
+
 
 def spaciotemporal(request):
 	c = Compartment.objects.all()
+	num_compartments = len(c)
 	t = Timepoint.objects.all()
-	return render_to_response('spaciotemporal.html', {'compartments':c, 'timepoints':t}, context_instance=RequestContext(request))
+	num_timepoints = len(t)
+	
+	# dictionaries so that signals can be sorted by compartment_id more efficiently
+	c_dict = {}
+	for compartment in c:
+		c_dict[compartment.id] = compartment.name
+	c_dict_short = {}
+	for compartment in c:
+		c_dict_short[compartment.id] = compartment.short_name
+	
+	# for consistency with multiple matrices of protein detail page, make a 2D array for matrices
+	matrices = []
+
+	# this time initialize the matrix to all 0s
+	matrix = [[0 for x in range(0, num_timepoints+1)] for x in range(0, num_compartments+1)]
+	
+	signals = SignalMerged.objects.all() # get ALL signals
+
+	# iterate through signals, incrementing corresponding matrix cells
+	for signal in signals:
+		if signal.strength >= 2: # if 2/weak or 3/present
+			matrix[signal.compartment_id][signal.timepoint_id] += 1
+	
+	matrix = numpy.array(matrix)
+	matrix = matrix[1:,1:]
+	# add the spaciotemporal matrix to the tuple
+	matrices.append(("spaciotemporal", matrix))
+	
+	return render_to_response('spaciotemporal.html', {
+		'timepoints':t,
+		'compartment_dictionary':c_dict,
+		'compartment_dictionary_short':c_dict_short,
+		'matrices':matrices
+	}, context_instance=RequestContext(request))
+
 
 def network(request):
 	return render_to_response('network.html', context_instance=RequestContext(request))

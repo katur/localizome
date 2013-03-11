@@ -7,9 +7,10 @@
 	<div id="matrix-key-wrapper">
 	
 		{% block matrix %}
-			{% for video_id, signals in signals_tuple %}
-				{% regroup signals by compartment_id as compartment_list %}
-				{% if video_id == "merge" %}
+			{% for video_id, matrix in matrices %}
+				{% if video_id == "spaciotemporal" %}
+					<table class="matrix">
+				{% elif video_id == "merge" %}
 					<table class="matrix" data-matrix="merge">
 				{% else %}
 					<table class="matrix" data-matrix="{{ video_id }}">
@@ -33,7 +34,7 @@
 							</th>
 						{% endfor %}
 					</tr>
-					{% for compartment in compartment_list %}
+					{% for row in matrix %}
 						<tr>
 							{% ifequal forloop.counter 1 %}
 								<th class="axis_title left_column" rowspan="22">
@@ -56,12 +57,20 @@
 								</th>
 							{% endifequal %}
 					
-							<th class="compartment" data-hover-tag="{{ compartment_dictionary|get_item:compartment.grouper }}">
-								{{ compartment_dictionary_short|get_item:compartment.grouper }}
+							<th class="compartment" data-hover-tag="{{ compartment_dictionary|get_item:forloop.counter }}">
+								{{ compartment_dictionary_short|get_item:forloop.counter }}
 							</th>
 							
-							{% for signal in compartment.list %}
-								<td class="strength{{ signal.strength }}"></td>
+							{% for signal in row %}
+							<td 
+								{% ifnotequal video_id "spaciotemporal" %}
+									class="strength{{ signal.strength }}"
+								{% endifnotequal %}
+							>
+									{% ifequal video_id "spaciotemporal" %}
+										{{ signal }}
+									{% endifequal %}
+								</td>
 							{% endfor %}
 						</tr>
 					{% endfor %}
