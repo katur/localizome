@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 #from django.views.generic import ListView
 from django.template import RequestContext #extends Context; needed for STATIC_URL
+from django.db.models import Q
 from website.models import *
 import functions
 import numpy
@@ -82,16 +83,17 @@ def spaciotemporal(request):
 	# this time initialize the matrix to all 0s
 	matrix = [[0 for x in range(0, num_timepoints+1)] for x in range(0, num_compartments+1)]
 	
-	signals = SignalMerged.objects.all() # get ALL signals
+	signals = SignalMerged.objects.filter(Q(strength=2) | Q(strength=3)) # get ALL signals
 
 	# iterate through signals, incrementing corresponding matrix cells
 	for signal in signals:
-		if signal.strength >= 2: # if 2/weak or 3/present
-			matrix[signal.compartment_id][signal.timepoint_id] += 1
+		matrix[signal.compartment_id][signal.timepoint_id] += 1
 	
+	# turn into numpy array to cut out the first row and first column
 	matrix = numpy.array(matrix)
 	matrix = matrix[1:,1:]
-	# add the spaciotemporal matrix to the tuple
+
+	# add the spaciotemporal matrix to the matrices tuple
 	matrices.append(("spaciotemporal", matrix))
 	
 	return render_to_response('spaciotemporal.html', {

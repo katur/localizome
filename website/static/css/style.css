@@ -244,6 +244,10 @@ span.homepage-top {
 .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
 .flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
 
+/* Specific to SPACIOTEMPORAL PAGE */
+#above-matrix {
+	margin-bottom: 40px;
+}
 
 /* MATRIX */
 /* positioning divs */
