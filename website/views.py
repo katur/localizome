@@ -104,10 +104,44 @@ def spaciotemporal(request):
 	}, context_instance=RequestContext(request))
 
 
-def spaciotemporal_list(request, compartment, timepoint):
+def spaciotemporal_compartment(request, compartment):
+	c = Compartment.objects.get(id=compartment)
+	s = SignalMerged.objects.filter(
+		Q(compartment_id = compartment),
+		Q(strength=2) | Q(strength=3)
+	)
+	
+	return render_to_response('spaciotemporal_list.html', {
+		'signals':s,
+		'compartment':c
+	}, context_instance=RequestContext(request))
+
+	
+def spaciotemporal_timepoint(request, timepoint):
+	t = Compartment.objects.get(id=timepoint)
+	p = SignalMerged.objects.values('protein').filter(
+		Q(timepoint_id = timepoint), 
+		Q(strength=2) | Q(strength=3)
+	).distinct()
+	s = SignalMerged.objects.filter(
+		Q(protein__in=p),
+		Q(timepoint_id = timepoint)
+	)
+	
+	return render_to_response('spaciotemporal_list.html', {
+		'signals':s,
+		'timepoint':t
+	}, context_instance=RequestContext(request))
+
+
+def spaciotemporal_both(request, compartment, timepoint):
 	c = Compartment.objects.get(id=compartment)
 	t = Compartment.objects.get(id=timepoint)
-	s = SignalMerged.objects.filter(Q(compartment_id = compartment) & Q(timepoint_id = timepoint) & (Q(strength=2) | Q(strength=3)))
+	s = SignalMerged.objects.filter(
+		Q(compartment_id = compartment),
+		Q(timepoint_id = timepoint),
+		Q(strength=2) | Q(strength=3)
+	)
 	
 	return render_to_response('spaciotemporal_list.html', {
 		'signals':s,
