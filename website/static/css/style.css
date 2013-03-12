@@ -331,25 +331,25 @@ span.homepage-top {
 	background: #0A3D01;
 }*/
 .color9 {
-	background: #188801;
+	background: #082D00;
 }
 .color8 {
-	background: #2B9401;
+	background: #105A00;
 }
 .color7 {
-	background: #3FA101;
+	background: #188801; /* "present" on protein page */
 }
 .color6 {
-	background: #53AE01;
+	background: #359B01;
 }
 .color5 {
-	background: #67BA01;
+	background: #53AE01;
 }
 .color4 {
-	background: #7BC701;
+	background: #71C101;
 }
 .color3 {
-	background: #8FD401;
+	background: #8FD401; /* "weak" on protein page */
 }
 .color2 {
 	background: #B4E255;

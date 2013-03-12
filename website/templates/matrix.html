@@ -9,7 +9,7 @@
 		{% block matrix %}
 			{% for video_id, matrix in matrices %}
 				{% if video_id == "spaciotemporal" %}
-					<table class="matrix">
+					<table class="matrix" id="spaciotemporal">
 				{% elif video_id == "merge" %}
 					<table class="matrix" data-matrix="merge">
 				{% else %}
