@@ -16,8 +16,8 @@
 					<table class="matrix" data-matrix="{{ video_id }}">
 				{% endif %}
 					<tr>
-						<th class="no_bottom_border no_right_border no_background" colspan="2" width="80"></th>
-						<th class="no_bottom_border no_background" width="90"></th>
+						<th id="defines-compartment-headers-width" class="no_bottom_border no_right_border no_background" colspan="2"></th>
+						<th id="defines-compartment-width" class="no_bottom_border no_background"></th>
 						<th class="axis_title top_row" colspan="20">Time</th>
 					</tr>
 					<tr>
@@ -63,14 +63,31 @@
 							
 							{% for signal in row %}
 							<td 
-								{% ifnotequal video_id "spaciotemporal" %}
+								{% ifequal video_id "spaciotemporal" %}
+									{% if signal >= 1 and signal <= 5 %}
+										class="color1"
+									{% elif signal >= 6 and signal <= 10 %}
+										class="color2"
+									{% elif signal >= 11 and signal <= 15 %}
+										class="color3"
+									{% elif signal >= 16 and signal <= 20 %}
+										class="color4"
+									{% elif signal >= 21 and signal <= 30 %}
+										class="color5"
+									{% elif signal >= 31 and signal <= 40 %}
+										class="color6"
+									{% elif signal >= 41 and signal <= 50 %}
+										class="color7"
+									{% elif signal >= 51 and signal <= 60 %}
+										class="color8"
+									{% elif signal >= 61 and signal <= 70 %}
+										class="color9"
+									{% endif %}
+								{% else %}
 									class="strength{{ signal.strength }}"
-								{% endifnotequal %}
+								{% endifequal %}
 							>
-									{% ifequal video_id "spaciotemporal" %}
-										{{ signal }}
-									{% endifequal %}
-								</td>
+							</td>
 							{% endfor %}
 						</tr>
 					{% endfor %}

@@ -89,7 +89,7 @@ table {
 td, th {
 	border-bottom: 1px solid gray;
 	border-right: 1px solid gray;
-	height: 20px;
+	height: 21px;
 }
 th {
 	font-weight: normal;
@@ -305,8 +305,14 @@ span.homepage-top {
 	text-align: right;
 	padding-right: 10px;
 }
+#defines-compartment-width {
+	width: 115px;
+}
+#defines-compartment-headers-width {
+	width: 80px;
+}
 
-/* the four colors for protein matrix */
+/* the four colors for protein signal strength */
 .strength0 {
 	background: none;
 }
@@ -318,6 +324,38 @@ span.homepage-top {
 }
 .strength3{
 	background: #188801;
+}
+
+/* colors for spaciotemporal gradient */
+/*.color10 {
+	background: #0A3D01;
+}*/
+.color9 {
+	background: #188801;
+}
+.color8 {
+	background: #2B9401;
+}
+.color7 {
+	background: #3FA101;
+}
+.color6 {
+	background: #53AE01;
+}
+.color5 {
+	background: #67BA01;
+}
+.color4 {
+	background: #7BC701;
+}
+.color3 {
+	background: #8FD401;
+}
+.color2 {
+	background: #B4E255;
+}
+.color1 {
+	background: #D9F0AA;
 }
 
 /* for rotating text in cells of y-axis */

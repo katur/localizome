@@ -96,11 +96,22 @@ def spaciotemporal(request):
 	# add the spaciotemporal matrix to the matrices tuple
 	matrices.append(("spaciotemporal", matrix))
 	
+	#color_gradient = []
+	#for i in range(1, 5):
+	#	start_index = (i-1)*5+1
+	#	color_gradient.append((i, start_index, start_index+4))
+	#
+	#for i in range(5,10):
+	#	start_index = i*10-29
+	#	color_gradient.append((i, start_index, start_index+9))
+	#
+	#color_gradient.append((10, 71, "+"))
+
 	return render_to_response('spaciotemporal.html', {
 		'timepoints':t,
 		'compartment_dictionary':c_dict,
 		'compartment_dictionary_short':c_dict_short,
-		'matrices':matrices
+		'matrices':matrices,
 	}, context_instance=RequestContext(request))
 
 
