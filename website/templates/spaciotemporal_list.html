@@ -6,25 +6,20 @@
 
 {% block content %}
 	<div>Compartment: {{ compartment.name }}<br>Timepoint: {{ timepoint.name }}</div>
-	<table class="protein-list four-columns">
+	<table class="spaciotemporal-list">
 		<tr>
-			<th>Common</th><th>Canonical</th>
+			<th class="top-row left-column">Common</th>
+			<th class="top-row">Canonical</th>
+			<th class="top-row">Signature</th>
 		</tr>
 		
 		{% for signal in signals %}
 			<tr>
-				<td><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
+				<td class="left-column"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
 				<td>{{ signal.protein.sequence }}</td>
+				<td width="50" class="strength{{ signal.strength }}">
 			</tr>
 			
-			{% if forloop.counter|divisibleby:"26" %}
-				</table>
-				<table class="protein-list four-columns">
-					<tr>
-						<th>Common</th><th>Canonical</th>
-					</tr>
-			{% endif %}
-		
 		{% empty %}
 			Sorry, no proteins in the list.
 			

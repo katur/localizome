@@ -94,19 +94,19 @@ td, th {
 th {
 	font-weight: normal;
 }
-.top_row {
+.top-row {
 	border-top: 1px solid gray;
 }	
-.left_column {
+.left-column {
 	border-left: 1px solid gray;
 }
-.no_bottom_border {
+.no-bottom-border {
 	border-bottom: none;
 }
-.no_right_border {
+.no-right-border {
 	border-right: none;
 }
-.no_background {
+.no-background {
 	background: #f8f8f4;
 }
 
@@ -204,14 +204,9 @@ span.homepage-top {
 	float: left;
 	background: none;
 	font-size: 15px;
-}
-.four-columns {
 	width: 180px;
 	min-width: 180px;
 	margin-right: 65px;
-}
-.column-with-signature {
-	width: 100%;
 }
 .protein-list td, .protein-list th {
 	border: none;
@@ -295,11 +290,11 @@ span.homepage-top {
 }
 
 /* titles, subtitles, subsubtitles */
-.axis_title {
+.axis-title {
 	background: #cdba92;
 	font-size: 16px;
 }
-.axis_subtitle {
+.axis-subtitle {
 	background: #e5dbc6;
 	font-size: 14px;
 }
@@ -375,7 +370,7 @@ span.homepage-top {
 	/* Should be unset in IE9+ I think. */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
-.rotate_title {
+.rotate-title {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 150% 250%;
 	-moz-transform-origin: 150% 250%;
@@ -383,7 +378,7 @@ span.homepage-top {
 	-o-transform-origin: 150% 250%;
 	transform-origin: 150% 250%;
 }
-.rotate_cyto {
+.rotate-cyto {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 75% 110%;
 	-moz-transform-origin: 75% 110%;
@@ -391,7 +386,7 @@ span.homepage-top {
 	-o-transform-origin: 75% 110%;
 	transform-origin: 75% 110%;
 }
-.rotate_peri {
+.rotate-peri {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 70% 70%;
 	-moz-transform-origin: 70% 70%;
@@ -399,7 +394,7 @@ span.homepage-top {
 	-o-transform-origin: 70% 70%;
 	transform-origin: 70% 70%;
 }
-.rotate_nucl {
+.rotate-nucl {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 1 1;
 	-moz-transform-origin: 1 1;
