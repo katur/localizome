@@ -15,14 +15,14 @@ spaciotemporalLinks = function(){
 		rowId = $(this).siblings("th").data("id");
 	
 		// get the index number of column that we clicked in e.g., 0 for the first column, 1 for the second column, etc.
-		columnIndex = $(this).closest("tr").find("th, td").index($(this));
+		columnIndex = $(this).closest("tr").find("td").index($(this));
 			
 		// get all of the elements in the first row, be they either TDs or THs,
 		// then choose the Nth one, where n is columnIndex, and get the data-id attribute off of that
-		columnId = $("table tr:first").find("td, th").eq(columnIndex).data("id");
+		columnId = $("table tr:eq(3)").find("td, th").eq(columnIndex).data("id");
 			
 		// assemble the link
-		link = "{% url website.views.protein_list %}?row_id=" + rowId + "&columnId=" + columnId;
+		link = "spaciotemporal/compartment" + rowId + "/timepoint" + columnId;
 		window.location = link;
 	});
 }

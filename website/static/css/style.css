@@ -204,9 +204,14 @@ span.homepage-top {
 	float: left;
 	background: none;
 	font-size: 15px;
+}
+.four-columns {
 	width: 180px;
 	min-width: 180px;
 	margin-right: 65px;
+}
+.column-with-signature {
+	width: 100%;
 }
 .protein-list td, .protein-list th {
 	border: none;

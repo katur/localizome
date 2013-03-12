@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-	<table class="protein-list">
+	<table class="protein-list four-columns">
 		<tr>
 			<th>Common</th><th>Canonical</th>
 		</tr>
@@ -17,7 +17,7 @@
 		
 		{% if forloop.counter|divisibleby:"26" %}
 			</table>
-			<table class="protein-list">		
+			<table class="protein-list four-columns">
 				<tr>
 					<th>Common</th><th>Canonical</th>
 				</tr>
