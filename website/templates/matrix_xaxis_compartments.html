@@ -1,6 +1,6 @@
 <tr>
-	<th id="defines-compartment-headers-width" class="no-bottom-border no-right-border no-background" colspan="2"></th>
-	<th id="defines-compartment-width" class="no-bottom-border no-background"></th>
+	<th id="defines-common-name-width-timepoints" class="no-bottom-border no-right-border no-background" colspan="2"></th>
+	<th id="defines-sequence-width-timepoints" class="no-bottom-border no-background"></th>
 	<th class="axis-title top-row" colspan="22">Sub-Cellular Compartment</th>
 </tr>
 <tr>
@@ -10,10 +10,15 @@
 	<th class="axis-subtitle" colspan="5">Nuclear</th>
 </tr>
 <tr>
-	<th colspan="3" class="no-background"></th>
+	<th class="top-row-extra-pixel left-column" colspan="2">
+		<b>Common</b>
+	</th>
+	<th class="top-row-extra-pixel">
+		<b>Canonical</b>
+	</th>
 	{% for compartment in compartments %}
 		<th class="timepoint" data-hover-tag="{{ compartment.name }}" data-id="{{ compartment.id }}">
-			{{ compartment.short_name }}
+			{{ compartment.extra_short_name }}
 		</th>
 	{% endfor %}
 </tr>

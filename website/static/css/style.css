@@ -96,7 +96,10 @@ th {
 }
 .top-row {
 	border-top: 1px solid gray;
-}	
+}
+.top-row-extra-pixel {
+	outline-top: 1px solid gray;
+}
 .left-column {
 	border-left: 1px solid gray;
 }
@@ -244,10 +247,12 @@ span.homepage-top {
 .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
 .flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
 
-/* Specific to SPACIOTEMPORAL PAGE */
+
+/* Specific to SPACIOTEMPORAL PAGES */
 #above-matrix {
 	margin-bottom: 40px;
 }
+
 
 /* MATRIX */
 /* positioning divs */
@@ -269,6 +274,8 @@ span.homepage-top {
 	clear: both;
 	width: 680px;
 }
+
+/* the key */
 #key {
 	float: left;
 	width: 160px;
@@ -305,11 +312,25 @@ span.homepage-top {
 	text-align: right;
 	padding-right: 10px;
 }
+
+/* define the width of the row headers */
+#defines-compartment-headers-width {
+	width: 80px;
+}
 #defines-compartment-width {
 	width: 115px;
 }
-#defines-compartment-headers-width {
+#defines-common-name-width-compartments {
 	width: 80px;
+}
+#defines-sequence-width-compartments {
+	width: 115px;
+}
+#defines-common-name-width-timepoints {
+	width: 70px;
+}
+#defines-sequence-width-timepoints {
+	width: 77px;
 }
 
 /* the four colors for protein signal strength */
@@ -327,9 +348,6 @@ span.homepage-top {
 }
 
 /* colors for spaciotemporal gradient */
-/*.color10 {
-	background: #0A3D01;
-}*/
 .color9 {
 	background: #082D00;
 }

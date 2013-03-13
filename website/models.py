@@ -45,6 +45,7 @@ class Compartment(models.Model):
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
 	name = models.CharField(max_length=60, unique=True)
 	short_name = models.CharField(max_length=20)
+	extra_short_name = models.CharField(max_length=5)
 	miyeko_excel_name = models.CharField(max_length=60, unique=True)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:

@@ -10,7 +10,17 @@
 	<th class="axis-subtitle" colspan="6">P1</th>
 </tr>
 <tr>
-	<th colspan="3" class="no-background"></th>
+	{% if compartment %}
+		<th class="top-row-extra-pixel left-column" colspan="2">
+			<b>Common</b>
+		</th>
+		<th class="top-row-extra-pixel">
+			<b>Canonical</b>
+		</th> 
+	{% else %}	
+		<th colspan="3" class="no-background"></th>
+	{% endif %}	
+	
 	{% for timepoint in timepoints %}
 		<th class="timepoint" data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}">
 			{{ timepoint.short_name }}
