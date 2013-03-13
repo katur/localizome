@@ -121,9 +121,13 @@ def spaciotemporal_both(request, compartment, timepoint):
 
 def spaciotemporal_compartment(request, compartment):
 	c = Compartment.objects.get(id=compartment)
-	s = SignalMerged.objects.filter(
+	p = SignalMerged.objects.values('protein').filter(
 		Q(compartment_id = compartment),
 		Q(strength=2) | Q(strength=3)
+	).distinct()
+	s = SignalMerged.objects.filter(
+		Q(protein_id__in=p),
+		Q(compartment_id = compartment)
 	)
 	
 	return render_to_response('spaciotemporal_compartment.html', {

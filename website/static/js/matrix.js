@@ -25,6 +25,18 @@ spaciotemporalLinks = function(){
 		link = "spaciotemporal/compartment" + rowId + "/timepoint" + columnId;
 		window.location = link;
 	});
+
+	$("table#spaciotemporal th.compartment").click(function(){
+		rowId = $(this).data("id");
+		link = "spaciotemporal/compartment" + rowId;
+		window.location = link;
+	});
+	
+	$("table#spaciotemporal th.timepoint").click(function(){
+		columnId = $(this).data("id");
+		link = "spaciotemporal/timepoint" + columnId;
+		window.location = link;
+	});
 }
 
 selectDefaultMatrix = function(){
