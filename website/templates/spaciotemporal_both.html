@@ -10,11 +10,11 @@
 
 {% block matrix %}
 	{% if signals %}
-		<table class="matrix">
+		<table id="spaciotemporal-both">
 			<tr>
-				<th class="axis-subtitle top-row left-column">Common</th>
-				<th class="axis-subtitle top-row">Canonical</th>
-				<th class="axis-subtitle top-row">Signal Strength</th>
+				<th class="top-row left-column"><b>Common</b></th>
+				<th class="top-row"><b>Canonical</b></th>
+				<th class="narrow no-background no-right-border"></th>
 			</tr>
 		
 			{% for signal in signals %}

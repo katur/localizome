@@ -253,6 +253,16 @@ span.homepage-top {
 	margin-bottom: 40px;
 }
 
+/* The "both" spaciotemporal results page */
+#spaciotemporal-both {
+	width: 200px;
+	float: left;
+	table-layout: fixed;
+}
+
+.narrow {
+	width: 22px;
+}
 
 /* MATRIX */
 /* positioning divs */
@@ -295,6 +305,7 @@ span.homepage-top {
 	table-layout: fixed;
 	float: left;
 }
+
 
 /* titles, subtitles, subsubtitles */
 .axis-title {
