@@ -12,14 +12,14 @@ spaciotemporalLinks = function(){
 		// get all elements on the same level (row) as the td you clicked
 		// filtering for THs only, then getting the data-id attribute.
 		// FYI, you can pass any selector into .siblings()
-		rowId = $(this).siblings("th").data("id");
+		rowId = $(this).siblings("th.compartment").data("id");
 	
 		// get the index number of column that we clicked in e.g., 0 for the first column, 1 for the second column, etc.
 		columnIndex = $(this).closest("tr").find("td").index($(this));
 			
 		// get all of the elements in the first row, be they either TDs or THs,
 		// then choose the Nth one, where n is columnIndex, and get the data-id attribute off of that
-		columnId = $("table tr:eq(3)").find("td, th").eq(columnIndex).data("id");
+		columnId = $("th.timepoint").eq(columnIndex).data("id");
 			
 		// assemble the link
 		link = "spaciotemporal/compartment" + rowId + "/timepoint" + columnId;

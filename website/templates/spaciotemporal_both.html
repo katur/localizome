@@ -1,28 +1,20 @@
-{% extends "base.html"%}
+{% extends "spaciotemporal_results.html" %}
 
-{% block page_title %}
-<h3>Spaciotemporal Results</h3>
-{% endblock %}
-
-{% block content %}
-	<div>Compartment: {{ compartment.name }}<br>Timepoint: {{ timepoint.name }}</div>
-	<table class="spaciotemporal-list">
+{% block spaciotemporal_list %}
+	<table class="matrix spaciotemporal-list-both">
 		<tr>
 			<th class="axis-subtitle top-row left-column">Common</th>
 			<th class="axis-subtitle top-row">Canonical</th>
-			<th class="axis-subtitle top-row">Signature</th>
+			<th class="axis-subtitle top-row">Signal Strength</th>
 		</tr>
-		
+	
 		{% for signal in signals %}
 			<tr>
 				<td class="left-column"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
 				<td>{{ signal.protein.sequence }}</td>
 				<td width="50" class="strength{{ signal.strength }}">
 			</tr>
-			
-		{% empty %}
-			Sorry, no proteins in the list.
-			
-		{% endfor %}
-	</table>
+			{% endfor %}
+		</table>
+	
 {% endblock %}

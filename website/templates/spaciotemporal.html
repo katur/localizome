@@ -1,15 +1,16 @@
-{% extends "matrix.html"%}
+{% extends "matrix_full.html"%}
+
 
 {% block page_title %}
 	<h3>Spaciotemporal Search</h3>
-{% endblock %}
+{% endblock page_title %}
 
 
 {% block prematrix %}
 	<div id="above-matrix">
 		Click on a compartment, timepoint, or datapoint for list of co-expressed proteins.
 	</div>
-{% endblock %}
+{% endblock prematrix %}
 
 
 {% block next_to_matrix %}
@@ -63,8 +64,4 @@
 		</table>
 	</div>
 	<span style="float: right;">*present or weak</span>
-{% endblock %}
-
-
-{% block below_matrix %}
-{% endblock %}
+{% endblock next_to_matrix %}

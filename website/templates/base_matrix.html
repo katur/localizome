@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+
+{% block content %}
+	{% block prematrix %}{% endblock %}
+
+	<div id="matrix-key-wrapper">
+		{% block matrix %}{% endblock %}
+
+		<div id="next-to-matrix" class="increase-line-height">
+			{% block next_to_matrix %}{% endblock %}
+		</div>
+
+		<div id="below-matrix" class="increase-line-height">
+			{% block below_matrix %}{% endblock %}
+		</div>
+	</div> <!-- end matrix/key wrapper -->
+	
+{% endblock content %}

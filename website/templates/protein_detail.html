@@ -1,4 +1,4 @@
-{% extends "matrix.html"%}
+{% extends "matrix_full.html" %}
 
 
 {% block prematrix %}
@@ -26,7 +26,7 @@
 		<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
 		</video>
 	</div>
-{% endblock %}
+{% endblock prematrix %}
 
 
 {% block next_to_matrix %}
@@ -74,7 +74,7 @@
 			<li>Strain: {{ video.strain }}</li>
 		</ul>			
 	{% endfor %}
-{% endblock %}
+{% endblock next_to_matrix %}
 
 
 {% block below_matrix %}
@@ -84,4 +84,4 @@
 			{{ video.summary }}
 		</div>
 	{% endfor %}
-{% endblock %}
+{% endblock below_matrix %}

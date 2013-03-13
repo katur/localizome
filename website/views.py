@@ -4,7 +4,6 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext #extends Context; needed for STATIC_URL
 from django.db.models import Q
 from website.models import *
-import functions
 import numpy
 
 # render_to_response() loads a template, passes it a context, and renders it
@@ -104,6 +103,22 @@ def spaciotemporal(request):
 	}, context_instance=RequestContext(request))
 
 
+def spaciotemporal_both(request, compartment, timepoint):
+	c = Compartment.objects.get(id=compartment)
+	t = Timepoint.objects.get(id=timepoint)
+	s = SignalMerged.objects.filter(
+		Q(compartment_id = compartment),
+		Q(timepoint_id = timepoint),
+		Q(strength=2) | Q(strength=3)
+	)
+	
+	return render_to_response('spaciotemporal_both.html', {
+		'signals':s,
+		'compartment':c,
+		'timepoint':t
+	}, context_instance=RequestContext(request))
+
+
 def spaciotemporal_compartment(request, compartment):
 	c = Compartment.objects.get(id=compartment)
 	s = SignalMerged.objects.filter(
@@ -111,7 +126,7 @@ def spaciotemporal_compartment(request, compartment):
 		Q(strength=2) | Q(strength=3)
 	)
 	
-	return render_to_response('spaciotemporal_list.html', {
+	return render_to_response('spaciotemporal_compartment.html', {
 		'signals':s,
 		'compartment':c
 	}, context_instance=RequestContext(request))
@@ -128,24 +143,8 @@ def spaciotemporal_timepoint(request, timepoint):
 		Q(timepoint_id = timepoint)
 	)
 	
-	return render_to_response('spaciotemporal_list.html', {
+	return render_to_response('spaciotemporal_timepoint.html', {
 		'signals':s,
-		'timepoint':t
-	}, context_instance=RequestContext(request))
-
-
-def spaciotemporal_both(request, compartment, timepoint):
-	c = Compartment.objects.get(id=compartment)
-	t = Compartment.objects.get(id=timepoint)
-	s = SignalMerged.objects.filter(
-		Q(compartment_id = compartment),
-		Q(timepoint_id = timepoint),
-		Q(strength=2) | Q(strength=3)
-	)
-	
-	return render_to_response('spaciotemporal_list.html', {
-		'signals':s,
-		'compartment':c,
 		'timepoint':t
 	}, context_instance=RequestContext(request))
 

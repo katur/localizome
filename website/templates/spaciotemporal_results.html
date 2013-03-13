@@ -1,0 +1,35 @@
+{% extends "base.html"%}
+
+{% block page_title %}
+<h3>Spaciotemporal Results</h3>
+{% endblock %}
+
+{% block content %}
+	{% if signals %}
+		<div>
+			{% if compartment %}
+				<b>Compartment:</b> {{ compartment.name }}
+				<br>
+			{% endif %}
+				
+			{% if timepoint %}
+				<b>Timepoint:</b> {{ timepoint.name }}
+				<br>
+			{% endif %}	
+		</div>
+		
+		{% block spaciotemporal_list %}{% endblock %}
+		
+		<div id="next-to-matrix">
+			<div id="key">
+			</div>
+		</div>
+		
+	{% else %}
+	
+		No proteins expressed
+		{% if compartment %} in Compartment: [{{ compartment.name }}]{% endif %}
+		{% if timepoint %} at Timepoint: [{{ timepoint.name }}]{% endif %}.
+		
+	{% endif %}
+{% endblock %}
