@@ -1,0 +1,19 @@
+{% extends "matrix_full.html"%}
+
+
+{% block page_title %}
+	<h3>Spaciotemporal Search</h3>
+{% endblock page_title %}
+
+
+{% block prematrix %}
+	<div id="above-matrix">
+		Click on a compartment, timepoint, or datapoint for list of co-expressed proteins.
+	</div>
+{% endblock prematrix %}
+
+
+{% block key %}
+	{% include "matrix_key_spaciotemporal.html" %}
+	<span style="float: right;">*present or weak</span>
+{% endblock key %}

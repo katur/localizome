@@ -1,6 +1,12 @@
 {% extends "spaciotemporal_results.html" %}
 
-{% block spaciotemporal_list %}
+
+{% block below_key %}
+	Note: only showing weak and present
+{% endblock below_key %}
+
+
+{% block matrix %}
 	<table class="matrix spaciotemporal-list-both">
 		<tr>
 			<th class="axis-subtitle top-row left-column">Common</th>
@@ -17,4 +23,4 @@
 			{% endfor %}
 		</table>
 	
-{% endblock %}
+{% endblock matrix %}

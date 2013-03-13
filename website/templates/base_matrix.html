@@ -7,7 +7,11 @@
 		{% block matrix %}{% endblock %}
 
 		<div id="next-to-matrix" class="increase-line-height">
-			{% block next_to_matrix %}{% endblock %}
+			<div id="key">
+				Key:
+				{% block key %}{% endblock %}
+			</div>
+			{% block below_key %}{% endblock %}
 		</div>
 
 		<div id="below-matrix" class="increase-line-height">

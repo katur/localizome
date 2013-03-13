@@ -62,7 +62,7 @@ def protein_detail(request, common_name):
 	}, context_instance=RequestContext(request))
 
 
-def spaciotemporal(request):
+def spaciotemporal_search(request):
 	c = Compartment.objects.all()
 	num_compartments = len(c)
 	t = Timepoint.objects.all()
@@ -95,7 +95,7 @@ def spaciotemporal(request):
 	# add the spaciotemporal matrix to the matrices tuple
 	matrices.append(("spaciotemporal", matrix))
 	
-	return render_to_response('spaciotemporal.html', {
+	return render_to_response('spaciotemporal_search.html', {
 		'timepoints':t,
 		'compartment_dictionary':c_dict,
 		'compartment_dictionary_short':c_dict_short,

@@ -29,33 +29,12 @@
 {% endblock prematrix %}
 
 
-{% block next_to_matrix %}
-	<div id="key">
-		Key:	
-		<table>
-			<tr>
-				<th class="axis-subtitle left-column top-row">Color</th>
-				<th class="axis-subtitle top-row">Signal Strength</th>
-			</tr>
-			<tr>
-				<td class="strength0 left-column"></td>
-				<td>absent</td>
-			</tr>
-			<tr>
-				<td class="strength1 left-column"></td>
-				<td>na</td>
-			</tr>
-			<tr>
-				<td class="strength2 left-column"></td>
-				<td>weak</td>
-			</tr>
-			<tr>
-				<td class="strength3 left-column"></td>
-				<td>present</td>
-			</tr>
-		</table>
-	</div>
+{% block key %}
+	{% include "matrix_key_normal.html" %}
+{% endblock key %}
 
+
+{% block below_key %}
 	<div class="below-key">
 		Select matrix:
 		<ul>
@@ -74,7 +53,7 @@
 			<li>Strain: {{ video.strain }}</li>
 		</ul>			
 	{% endfor %}
-{% endblock next_to_matrix %}
+{% endblock below_key %}
 
 
 {% block below_matrix %}
