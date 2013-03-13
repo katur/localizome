@@ -6,13 +6,12 @@
 	<div id="matrix-key-wrapper">
 		{% block matrix %}{% endblock %}
 
-		<div id="next-to-matrix" class="increase-line-height">
-			<div id="key">
-				Key:
-				{% block key %}{% endblock %}
-			</div>
-			{% block below_key %}{% endblock %}
-		</div>
+		{% block next_to_matrix %}
+				<div id="next-to-matrix" class="increase-line-height">
+					{% block key %}{% endblock %}
+					{% block below_key %}{% endblock %}
+				</div>
+		{% endblock next_to_matrix %}
 
 		<div id="below-matrix" class="increase-line-height">
 			{% block below_matrix %}{% endblock %}

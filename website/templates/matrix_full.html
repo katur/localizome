@@ -1,7 +1,6 @@
 {% extends "base_matrix.html" %}
 {% load website_extras %}
 
-
 {% block matrix %}
 	{% for video_id, matrix in matrices %}
 		{% if video_id == "spaciotemporal" %}
@@ -11,28 +10,11 @@
 		{% else %}
 			<table class="matrix" data-matrix="{{ video_id }}">
 		{% endif %}
+
+		{# THs for timepoints in another file #}
+		{% include "matrix_xaxis_timepoints.html" %}	
 		
-			<tr>
-				<th id="defines-compartment-headers-width" class="no-bottom-border no-right-border no-background" colspan="2"></th>
-				<th id="defines-compartment-width" class="no-bottom-border no-background"></th>
-				<th class="axis-title top-row" colspan="20">Time</th>
-			</tr>
-			<tr>
-				<th class="no-bottom-border no-background" colspan="3"></th>
-				<th class="axis-subtitle" colspan="8">1-Cell</th>
-				<th class="axis-subtitle" colspan="6">AB</th>
-				<th class="axis-subtitle" colspan="6">P1</th>
-			</tr>
-			<tr>
-				<th colspan="3" class="no-background"></th>
-				{% for timepoint in timepoints %}
-					<th class="timepoint" data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}">
-						{{ timepoint.short_name }}
-					</th>
-				{% endfor %}
-			</tr>
-			
-			{% for row in matrix %}
+		{% for row in matrix %}
 				<tr>
 					{% ifequal forloop.counter 1 %}
 						<th class="axis-title left-column" rowspan="22">

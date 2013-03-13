@@ -1,19 +1,26 @@
 {% extends "spaciotemporal_results.html" %}
 
 {% block matrix %}
-	<table class="matrix">
-		<tr>
-			<th class="axis-subtitle top-row left-column">Common</th>
-			<th class="axis-subtitle top-row">Canonical</th>
-			<th class="axis-subtitle top-row">Signal Strength</th>
-		</tr>
+	{% if signals %}
+		<table class="matrix">
+			{% include "matrix_xaxis_timepoints.html" %}
 		
-		{% for signal in signals %}
-			<tr>
-				<td class="left-column"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
-				<td>{{ signal.protein.sequence }}</td>
-				<td width="50" class="strength{{ signal.strength }}">
-			</tr>
-		{% endfor %}
-	</table>
+			{% regroup signals by protein_id as proteins_signals %}
+			
+			{% for protein_signals in proteins_signals %}
+				<tr>
+					{% with protein_signals.list.0.protein as protein %}
+						<td class="left-column" colspan="2">
+							<a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a>
+						</td>
+						<td>{{ protein.sequence }}</td>
+					{% endwith %}
+					
+					{% for signal in protein_signals.list %}
+						<td class="strength{{ signal.strength }}"></td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
 {% endblock matrix %}

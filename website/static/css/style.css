@@ -81,15 +81,15 @@ table {
 	border-spacing: 0;
 	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 12px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	cursor: default;
 }
 td, th {
 	border-bottom: 1px solid gray;
 	border-right: 1px solid gray;
 	height: 21px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 th {
 	font-weight: normal;

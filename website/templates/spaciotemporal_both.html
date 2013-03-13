@@ -2,25 +2,28 @@
 
 
 {% block below_key %}
-	Note: only showing weak and present
+	{% if signals %}
+		Note: only showing weak and present
+	{% endif %}
 {% endblock below_key %}
 
 
 {% block matrix %}
-	<table class="matrix spaciotemporal-list-both">
-		<tr>
-			<th class="axis-subtitle top-row left-column">Common</th>
-			<th class="axis-subtitle top-row">Canonical</th>
-			<th class="axis-subtitle top-row">Signal Strength</th>
-		</tr>
-	
-		{% for signal in signals %}
+	{% if signals %}
+		<table class="matrix">
 			<tr>
-				<td class="left-column"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
-				<td>{{ signal.protein.sequence }}</td>
-				<td width="50" class="strength{{ signal.strength }}">
+				<th class="axis-subtitle top-row left-column">Common</th>
+				<th class="axis-subtitle top-row">Canonical</th>
+				<th class="axis-subtitle top-row">Signal Strength</th>
 			</tr>
+		
+			{% for signal in signals %}
+				<tr>
+					<td class="left-column"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></td>
+					<td>{{ signal.protein.sequence }}</td>
+					<td width="50" class="strength{{ signal.strength }}">
+				</tr>
 			{% endfor %}
 		</table>
-	
+	{% endif %}
 {% endblock matrix %}

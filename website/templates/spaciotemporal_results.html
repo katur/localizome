@@ -1,32 +1,39 @@
 {% extends "base_matrix.html"%}
 
+
 {% block page_title %}
 	<h3>Spaciotemporal Results</h3>
 {% endblock %}
 
+
 {% block prematrix %}
-	{% if signals %}
-		<div>
-			{% if compartment %}
-				<b>Compartment:</b> {{ compartment.name }}
-				<br>
-			{% endif %}
-				
-			{% if timepoint %}
-				<b>Timepoint:</b> {{ timepoint.name }}
-				<br>
-			{% endif %}	
-		</div>
+	<div id="above-matrix">
+		{% if signals %}
+			<div>
+				{% if compartment %}
+					<b>Compartment:</b> {{ compartment.name }}
+					<br>
+				{% endif %}
+					
+				{% if timepoint %}
+					<b>Timepoint:</b> {{ timepoint.name }}
+					<br>
+				{% endif %}	
+			</div>
 		
-	{% else %}
+		{% else %}
 	
-		No proteins expressed
-		{% if compartment %} in Compartment: [{{ compartment.name }}]{% endif %}
-		{% if timepoint %} at Timepoint: [{{ timepoint.name }}]{% endif %}.
+			No proteins expressed
+			{% if compartment %} in Compartment: [{{ compartment.name }}]{% endif %}
+			{% if timepoint %} at Timepoint: [{{ timepoint.name }}]{% endif %}.
 		
-	{% endif %}
+		{% endif %}
+	</div>
 {% endblock prematrix %}
- 
+
+
 {% block key %}
-	{% include "matrix_key_normal.html" %}
+	{% if signals %}
+		{% include "matrix_key_normal.html" %}
+	{% endif %}		
 {% endblock key %}
