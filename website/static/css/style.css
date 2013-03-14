@@ -97,9 +97,6 @@ th {
 .top-row {
 	border-top: 1px solid gray;
 }
-.top-row-extra-pixel {
-	outline-top: 1px solid gray;
-}
 .left-column {
 	border-left: 1px solid gray;
 }

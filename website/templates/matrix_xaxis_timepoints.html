@@ -4,17 +4,17 @@
 	<th class="axis-title top-row" colspan="20">Time</th>
 </tr>
 <tr>
-	<th class="no-bottom-border no-background" colspan="3"></th>
+	<th class="no-background {% if not compartment %}no-bottom-border{% endif %}" colspan="3"></th>
 	<th class="axis-subtitle" colspan="8">1-Cell</th>
 	<th class="axis-subtitle" colspan="6">AB</th>
 	<th class="axis-subtitle" colspan="6">P1</th>
 </tr>
 <tr>
 	{% if compartment %}
-		<th class="top-row-extra-pixel left-column" colspan="2">
+		<th class="left-column" colspan="2">
 			<b>Common</b>
 		</th>
-		<th class="top-row-extra-pixel">
+		<th>
 			<b>Canonical</b>
 		</th> 
 	{% else %}	

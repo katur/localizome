@@ -2,31 +2,36 @@
 
 
 {% block page_title %}
-	<h3>Co-expressed Proteins</h3>
+	<h3>
+		Co-expressed Proteins:
+		{% if compartment and timepoint %}
+		{{ compartment.name }}; {{ timepoint.name }}
+		{% elif compartment %}
+			{{ compartment.name }}
+		{% elif timepoint %}
+			{{ timepoint.name }}
+		{% endif %}
+	</h3>
 {% endblock %}
 
 
 {% block prematrix %}
 	<div id="above-matrix">
 		{% if signals %}
-			<div>
-				{% if compartment %}
-					<b>Compartment:</b> {{ compartment.name }}
-					<br>
-				{% endif %}
-					
-				{% if timepoint %}
-					<b>Timepoint:</b> {{ timepoint.name }}
-					<br>
-				{% endif %}
-			</div>
-		
+			Showing all proteins present or weak in this 
+			{% if compartment and timepoint %}
+				compartment and timepoint.
+			{% elif compartment %}
+				compartment.
+			{% elif timepoint %}
+				timepoint.
+			{% endif %}
+			
 		{% else %}
-	
 			No proteins expressed
 			{% if compartment %} in Compartment: [{{ compartment.name }}]{% endif %}
 			{% if timepoint %} at Timepoint: [{{ timepoint.name }}]{% endif %}.
-		
+			
 		{% endif %}
 	</div>
 {% endblock prematrix %}
