@@ -10,26 +10,34 @@
 	<div id="below-header">
 		List of all proteins analyzed.
 	</div>
-	<table class="protein-list">
-		<tr>
-			<th>Common</th><th>Canonical</th>
-		</tr>
-		{% for protein in proteins %}
-		<tr>
-			<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
-			<td>{{ protein.sequence }}</td>
-		</tr>
+	<div class="shaded-box">
+		<table class="protein-list">
+			<tr>
+				<th>Common</th><th>Canonical</th>
+			</tr>
+			{% for protein in proteins %}
+			<tr>
+				<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
+				<td>{{ protein.sequence }}</td>
+			</tr>
 		
-		{% if forloop.counter|divisibleby:"26" %}
-			</table>
-			<table class="protein-list four-columns">
-				<tr>
-					<th>Common</th><th>Canonical</th>
-				</tr>
-		{% endif %}
+			{% if forloop.counter|divisibleby:"84" %}
+				</table>
+				<table class="protein-list no-right-margin">
+					<tr>
+						<th>Common</th><th>Canonical</th>
+					</tr>
+			{% elif forloop.counter|divisibleby:"21" %}
+				</table>
+				<table class="protein-list">
+					<tr>
+						<th>Common</th><th>Canonical</th>
+					</tr>
+			{% endif %}
 		
-		{% empty %}
-			Sorry, no proteins in the list.
-		{% endfor %}
-	</table>
+			{% empty %}
+				Sorry, no proteins in the list.
+			{% endfor %}
+		</table>
+	</div>
 {% endblock %}

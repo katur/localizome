@@ -209,13 +209,23 @@ span.homepage-top {
 }
 
 /* Specific to PROTEIN LIST */
+.shaded-box {
+	padding: 40px;
+	width: 900px;
+	background: rgba(0, 0, 0, 0.036);
+	border-radius: 4px;
+	float: left;
+}
 .protein-list {
 	float: left;
 	background: none;
-	font-size: 15px;
-	width: 180px;
-	min-width: 180px;
-	margin-right: 65px;
+	font-size: 14px;
+	width: 148px;
+	min-width: 148px;
+	margin-right: 40px;
+}
+.no-right-margin {
+	margin-right: 0px;
 }
 .protein-list td, .protein-list th {
 	border: none;
@@ -238,6 +248,7 @@ span.homepage-top {
 	background: rgba(0, 0, 0, 0.036);
 	border-radius: 4px;
 }
+
 /* player skin */
 .flowplayer { 
 	width: 100%; 
