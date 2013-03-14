@@ -16,6 +16,7 @@ class Protein(models.Model):
 	class Meta:
 		ordering = ['common_name']
 
+
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.CharField(max_length=10, blank=True)
@@ -32,9 +33,11 @@ class Video(models.Model):
 	class Meta:
 		ordering = ['protein', 'filename']
 
+
 class VideoNotes(models.Model):
 	note = models.CharField(max_length=700)
 	video = models.ForeignKey(Video)
+
 
 class Compartment(models.Model):
 	SUPERCOMPARTMENT_CATEGORIES = (
@@ -51,6 +54,7 @@ class Compartment(models.Model):
 	class Meta:
 		ordering = ['display_order']
 
+
 class Timepoint(models.Model):
 	CELL_CYCLE_CATEGORIES = (
 		(u'1', u'1-cell'),
@@ -66,6 +70,7 @@ class Timepoint(models.Model):
 	class Meta:
 		ordering = ['display_order']
 
+
 class Signal(models.Model):
 	STRENGTH_CATEGORIES = (
 		(u'0', u'no data'),
@@ -79,10 +84,12 @@ class Signal(models.Model):
 	class Meta:
 		abstract = True # parent fields for SignalRaw and SignalMerged
 
+
 class SignalRaw(Signal): # inherits fields from Signal
 	video = models.ForeignKey(Video)
 	class Meta:
 		ordering = ['video', 'compartment', 'timepoint']
+
 
 class SignalMerged(Signal): # inherits fields from Signal
 	protein = models.ForeignKey(Protein)

@@ -253,17 +253,6 @@ span.homepage-top {
 	margin-bottom: 40px;
 }
 
-/* The "both" spaciotemporal results page */
-#spaciotemporal-both {
-	width: 200px;
-	float: left;
-	table-layout: fixed;
-}
-
-.narrow {
-	width: 22px;
-}
-
 /* MATRIX */
 /* positioning divs */
 #matrix-key-wrapper {
@@ -304,6 +293,22 @@ span.homepage-top {
 	width: 680px;
 	table-layout: fixed;
 	float: left;
+}
+
+#spaciotemporal td, #spaciotemporal th.timepoint, #spaciotemporal th.compartment {
+	cursor: pointer;
+}
+
+
+/* The "both" spaciotemporal results page */
+#spaciotemporal-both {
+	width: 200px;
+	float: left;
+	table-layout: fixed;
+}
+
+.narrow {
+	width: 22px;
 }
 
 
