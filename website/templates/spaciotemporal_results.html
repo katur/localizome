@@ -18,7 +18,7 @@
 				{% if timepoint %}
 					<b>Timepoint:</b> {{ timepoint.name }}
 					<br>
-				{% endif %}	
+				{% endif %}
 			</div>
 		
 		{% else %}
@@ -32,8 +32,10 @@
 {% endblock prematrix %}
 
 
-{% block key %}
+{% block next_to_matrix %}
 	{% if signals %}
-		{% include "matrix_key_normal.html" %}
+		<div id="next-to-matrix" class="increase-line-height">
+			{% include "matrix_key_normal.html" %}
+		</div>
 	{% endif %}		
-{% endblock key %}
+{% endblock next_to_matrix %}

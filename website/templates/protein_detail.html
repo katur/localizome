@@ -29,34 +29,33 @@
 {% endblock prematrix %}
 
 
-{% block key %}
-	{% include "matrix_key_normal.html" %}
-{% endblock key %}
-
-
-{% block below_key %}
-	<div class="below-key">
-		Select matrix:
-		<ul>
-			{% if matrices|first|first == 'merge' %}
-				<li><a href="#" data-matrix-link="merge">merge</a></li>
-			{% endif %}
+{% block next_to_matrix %}
+	<div id="next-to-matrix" class="increase-line-height">
+		{% include "matrix_key_normal.html" %}
+	
+		<div class="below-key">
+			Select matrix:
+			<ul>
+				{% if matrices|first|first == 'merge' %}
+					<li><a href="#" data-matrix-link="merge">merge</a></li>
+				{% endif %}
 			
-			{% for video in videos %}
-				<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
+				{% for video in videos %}
+					<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
 
-	{% for video in videos %}
-		<ul class="below-key" data-matrix-info="{{ video.id }}">
-			<li>Filmed {{ video.date_filmed }}</li>
-			<li>Scored {{ video.date_scored }}</li>
-			<li>Excel sheet: {{ video.excel_id }}</li>
-			<li>Strain: {{ video.strain }}</li>
-		</ul>			
-	{% endfor %}
-{% endblock below_key %}
+		{% for video in videos %}
+			<ul class="below-key" data-matrix-info="{{ video.id }}">
+				<li>Filmed {{ video.date_filmed }}</li>
+				<li>Scored {{ video.date_scored }}</li>
+				<li>Excel sheet: {{ video.excel_id }}</li>
+				<li>Strain: {{ video.strain }}</li>
+			</ul>			
+		{% endfor %}
+	</div>
+{% endblock next_to_matrix %}
 
 
 {% block below_matrix %}

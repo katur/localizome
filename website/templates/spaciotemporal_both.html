@@ -1,13 +1,6 @@
 {% extends "spaciotemporal_results.html" %}
 
 
-{% block below_key %}
-	{% if signals %}
-		Note: only showing weak and present
-	{% endif %}
-{% endblock below_key %}
-
-
 {% block matrix %}
 	{% if signals %}
 		<table id="spaciotemporal-both">
