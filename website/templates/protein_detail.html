@@ -38,7 +38,10 @@
 	<div class="below-key">
 		Select matrix:
 		<ul>
-			<li><a href="#" data-matrix-link="merge">merge</a></li>
+			{% if matrices|first|first == 'merge' %}
+				<li><a href="#" data-matrix-link="merge">merge</a></li>
+			{% endif %}
+			
 			{% for video in videos %}
 				<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename }}</a></li>
 			{% endfor %}

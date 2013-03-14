@@ -37,10 +37,11 @@ def protein_detail(request, common_name):
 	# FIRST: add the merge matrix to matrices
 	signals = SignalMerged.objects.filter(protein_id=p.id) # first get all 440 signals as one list
 	i = 0 # index for signal at beginning of current row
-	for compartment in c: # for each row
-		matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
-		i += num_timepoints
-	matrices.append(("merge", matrix))
+	if signals:
+		for compartment in c: # for each row
+			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+			i += num_timepoints
+		matrices.append(("merge", matrix))
 	
 	# THEN: add each video matrix to matrices
 	for video in v:

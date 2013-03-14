@@ -40,7 +40,7 @@ spaciotemporalLinks = function(){
 }
 
 selectDefaultMatrix = function(){
-	$("[data-matrix-link='merge']").trigger("click");
+	$("[data-matrix-link]").first().trigger("click");
 }
 
 toggleMatrix = function(){
