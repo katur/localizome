@@ -5,18 +5,18 @@
 	<h3>
 		Co-expressed Proteins:
 		{% if compartment and timepoint %}
-		{{ compartment.name }}; {{ timepoint.name }}
+		<span class="header-emphasis">{{ compartment.name }}</span>; <span class="header-emphasis">{{ timepoint.name }}</span>
 		{% elif compartment %}
-			{{ compartment.name }}
+			<span class="header-emphasis">{{ compartment.name }}</span>
 		{% elif timepoint %}
-			{{ timepoint.name }}
+			<span class="header-emphasis">{{ timepoint.name }}</span>
 		{% endif %}
 	</h3>
 {% endblock %}
 
 
 {% block prematrix %}
-	<div id="above-matrix">
+	<div id="below-header">
 		{% if signals %}
 			Showing all proteins present or weak
 			{% if compartment and timepoint %}
