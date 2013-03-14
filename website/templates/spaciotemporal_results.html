@@ -18,20 +18,25 @@
 {% block prematrix %}
 	<div id="above-matrix">
 		{% if signals %}
-			Showing all proteins present or weak in this 
+			Showing all proteins present or weak
 			{% if compartment and timepoint %}
-				compartment and timepoint.
+				in this compartment and timepoint.
 			{% elif compartment %}
-				compartment.
+				in this compartment.
 			{% elif timepoint %}
-				timepoint.
+				at this timepoint.
 			{% endif %}
 			
 		{% else %}
 			No proteins expressed
-			{% if compartment %} in Compartment: [{{ compartment.name }}]{% endif %}
-			{% if timepoint %} at Timepoint: [{{ timepoint.name }}]{% endif %}.
-			
+			{% if compartment and timepoint %}
+				in this compartment and timepoint.
+			{% elif compartment %}
+				in this compartment.
+			{% elif timepoint %}
+				at this timepoint.
+			{% endif %}
+
 		{% endif %}
 	</div>
 {% endblock prematrix %}

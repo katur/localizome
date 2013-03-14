@@ -360,15 +360,15 @@ span.homepage-top {
 	background: #188801;
 }
 
-/* colors for spaciotemporal gradient */
+/* green colors for spaciotemporal gradient
 .color9 {
-	background: #082D00;
+	background: #082d00;
 }
 .color8 {
 	background: #105A00;
 }
 .color7 {
-	background: #188801; /* "present" on protein page */
+	background: #188801;
 }
 .color6 {
 	background: #359B01;
@@ -380,13 +380,43 @@ span.homepage-top {
 	background: #71C101;
 }
 .color3 {
-	background: #8FD401; /* "weak" on protein page */
+	background: #8FD401;
 }
 .color2 {
 	background: #B4E255;
 }
 .color1 {
 	background: #D9F0AA;
+}
+*/
+
+/* blue colors for spaciotemporal gradient */
+.color9 {
+	background: #00034D;
+}
+.color8 {
+	background: #191C5E;
+}
+.color7 {
+	background: #333570; /* "present" on protein page */
+}
+.color6 {
+	background: #4C4E82;
+}
+.color5 {
+	background: #666794;
+}
+.color4 {
+	background: #7F81A6;
+}
+.color3 {
+	background: #999AB7; /* "weak" on protein page */
+}
+.color2 {
+	background: #B2B3C9;
+}
+.color1 {
+	background: #CCCCDB;
 }
 
 /* for rotating text in cells of y-axis */
