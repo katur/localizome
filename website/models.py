@@ -17,6 +17,13 @@ class Protein(models.Model):
 		ordering = ['common_name']
 
 
+class Strain(models.Model):
+	name = models.CharField(max_length=10)
+	vector = models.CharField(max_length=10, blank=True)
+	protein = models.ForeignKey(Protein)
+	class Meta:
+		ordering = ['protein', 'name']
+
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.CharField(max_length=10, blank=True)
