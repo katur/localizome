@@ -376,63 +376,33 @@ span.homepage-top {
 	background: #188801;
 }
 
-/* green colors for spaciotemporal gradient
+/* purple colors for spaciotemporal gradient */
 .color9 {
-	background: #082d00;
+	background: #11002D;
 }
 .color8 {
-	background: #105A00;
+	background: #23005B;
 }
 .color7 {
-	background: #188801;
+	background: #340089;
 }
 .color6 {
-	background: #359B01;
+	background: #4600B7;
 }
 .color5 {
-	background: #53AE01;
+	background: #5800E5; /* Indigo */
 }
 .color4 {
-	background: #71C101;
+	background: #7933EA;
 }
 .color3 {
-	background: #8FD401;
+	background: #9A66EF;
 }
 .color2 {
-	background: #B4E255;
+	background: #BC99F4;
 }
 .color1 {
-	background: #D9F0AA;
-}
-*/
-
-/* blue colors for spaciotemporal gradient */
-.color9 {
-	background: #00034D;
-}
-.color8 {
-	background: #191C5E;
-}
-.color7 {
-	background: #333570; /* "present" on protein page */
-}
-.color6 {
-	background: #4C4E82;
-}
-.color5 {
-	background: #666794;
-}
-.color4 {
-	background: #7F81A6;
-}
-.color3 {
-	background: #999AB7; /* "weak" on protein page */
-}
-.color2 {
-	background: #B2B3C9;
-}
-.color1 {
-	background: #CCCCDB;
+	background: #DDCCF9;
 }
 
 /* for rotating text in cells of y-axis */
