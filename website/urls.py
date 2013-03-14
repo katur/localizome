@@ -10,10 +10,5 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 	url(r'^spaciotemporal/compartment(?P<compartment>\d{1,2})/timepoint(?P<timepoint>\d{1,2})$', 'spaciotemporal_both', name='spaciotemporal_both_url'),
 	url(r'^spaciotemporal/compartment(?P<compartment>\d{1,2})$', 'spaciotemporal_compartment', name='spaciotemporal_compartment_url'),
 	url(r'^spaciotemporal/timepoint(?P<timepoint>\d{1,2})$', 'spaciotemporal_timepoint', name='spaciotemporal_timepoint_url'),
-	url(r'^network$', 'network', name='network_url')
-	
-	# below are to implement generic views ListView and DetailView.
-	# I un-implemented them to decrease confusion. 
-	# url(r'^proteins$', ProteinList.as_view(template_name='protein_list.html'), name='proteins_url'),
-	# url(r'^protein/(?P<pk>.+)$', DetailView.as_view(model=Protein, template_name='protein_detail.html')),
+	url(r'^network$', 'network', name='network_url'),
 )
