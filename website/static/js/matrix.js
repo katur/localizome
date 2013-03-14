@@ -39,9 +39,11 @@ spaciotemporalLinks = function(){
 	});
 }
 
+
 selectDefaultMatrix = function(){
 	$("[data-matrix-link]").first().trigger("click");
 }
+
 
 toggleMatrix = function(){
 	$("[data-matrix-link]").click(function(e){
@@ -51,11 +53,20 @@ toggleMatrix = function(){
 		$(this).addClass("active"); // make this link active
 		
 		videoId = $(this).attr("data-matrix-link"); // get the video id
+		repVideoId = $("[data-matrix]").eq(1).attr("data-matrix"); // FOR NOW, let the 2nd be the rep video; must change this when have rep videos!!!
 		
 		$("[data-matrix]").addClass("invisible"); // hide matrices
 		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
+		$("[data-matrix-summary]").addClass("invisible"); // hide matrix info
+		
 		$("[data-matrix='" + videoId + "']").removeClass("invisible");
-		$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
+		
+		if (videoId == 'merge') {
+			$("[data-matrix-summary='" + repVideoId + "']").removeClass("invisible");	
+		} else {
+			$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
+			$("[data-matrix-summary='" + videoId + "']").removeClass("invisible");
+		}
 	});
 }
 

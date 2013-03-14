@@ -61,7 +61,7 @@
 
 {% block below_matrix %}
 	{% for video in videos %}
-		<div data-matrix-info="{{ video.id }}">
+		<div data-matrix-summary="{{ video.id }}">
 			<h4>Summary</h4>
 			{{ video.summary }}
 		</div>
