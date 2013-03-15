@@ -86,7 +86,14 @@ ul {
 	margin: 0;
 	padding: 0;
 }
-
+.extra-vertical-spacing li {
+	padding-bottom: 5px;
+}
+li.tiny {
+	font-size: 12px;
+	padding-left: 10px;
+	line-height: 110%;
+}
 
 /* TABLES */
 table {

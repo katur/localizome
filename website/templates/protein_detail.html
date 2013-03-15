@@ -47,15 +47,18 @@
 		</div>
 
 		{% for video in videos %}
-			<ul class="below-key" data-matrix-info="{{ video.id }}">
+			<ul class="below-key extra-vertical-spacing" data-matrix-info="{{ video.id }}">
 				<li>Strain: {{ video.strain_name }}</li>
 				{% if video.vector %}
 					<li>Vector: {{ video.vector }}</li>
 				{% endif %}
-				<li>Filmed {{ video.date_filmed }}</li>
 				<li>Scored {{ video.date_scored }}</li>
-				<li>Excel sheet: {{ video.excel_id }}</li>
-				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download the video</a><li>
+				<li>Excel sheet: {{ video.excel_id }}</li>	
+				
+				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download the video</a></li>
+				<li class="tiny"><b>Filmed</b> {{ video.date_filmed }}</li>
+				<li class="tiny"><b>Lens:</b> {{ video.lens }}</li>
+				<li class="tiny"><b>Mode:</b> {{ video.mode }}</li>
 			</ul>			
 		{% endfor %}
 	</div>
