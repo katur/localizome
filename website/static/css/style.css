@@ -376,7 +376,7 @@ span.homepage-top {
 	background: #188801;
 }
 
-/* purple colors for spaciotemporal gradient */
+/* purple colors for spaciotemporal gradient
 .color9 {
 	background: #11002D;
 }
@@ -390,8 +390,8 @@ span.homepage-top {
 	background: #4600B7;
 }
 .color5 {
-	background: #5800E5; /* Indigo */
-}
+	background: #5800E5; Indigo */
+/*}
 .color4 {
 	background: #7933EA;
 }
@@ -404,7 +404,66 @@ span.homepage-top {
 .color1 {
 	background: #DDCCF9;
 }
+*/
 
+/* blue colors for spaciotemporal gradient
+.color9 {
+	background: #000033;
+}
+.color8 {
+	background: #000066;
+}
+.color7 {
+	background: #000099;
+}
+.color6 {
+	background: #0000CC;
+}
+.color5 {
+	background: #0000FF;
+}
+.color4 {
+	background: #3333FF;
+}
+.color3 {
+	background: #6666FF;
+}
+.color2 {
+	background: #9999FF;
+}
+.color1 {
+	background: #CCCCFF;
+}
+*/
+
+/* red colors for spaciotemporal gradient */
+.color9 {
+	background: #290000;
+}
+.color8 {
+	background: #530000;
+}
+.color7 {
+	background: #7C0000;
+}
+.color6 {
+	background: #A60000;
+}
+.color5 {
+	background: #B42A2A;
+}
+.color4 {
+	background: #C35555;
+}
+.color3 {
+	background: #D27F7F;
+}
+.color2 {
+	background: #E1AAAA;
+}
+.color1 {
+	background: #F0D4D4;
+}
 /* for rotating text in cells of y-axis */
 .rotate {
 	white-space: nowrap;

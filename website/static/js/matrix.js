@@ -89,7 +89,7 @@ window.hoverTags = function() {
         zIndex: 800,
         textShadow: 'none',
 				borderRadius: '4px',
-				maxWidth: '300px'
+				maxWidth: '250px',
       };
       pointer_styles = {
 				position: 'absolute',
@@ -106,7 +106,7 @@ window.hoverTags = function() {
     tag = $('.hover_tag');
     tag.find('.text').html(name);
     top_offset = -7;
-    left_offset = 5;
+    left_offset = -1;
     if (target.data('hover-tag-top')) {
       top_offset = target.data('hover-tag-top');
     }
@@ -115,8 +115,8 @@ window.hoverTags = function() {
     }
     return tag.css({
       top: position.top - tag.outerHeight() + top_offset,
-      left: position.left - tag.outerWidth() + target.width() / 2 + 3 + left_offset // "3" for half of the pointer's width
-    }).show();
+			left: position.left + target.width() - tag.outerWidth() + left_offset
+		}).show();
   });
   return $('body').on('mouseout', '[data-hover-tag]', function(e) {
     return $('.hover_tag').hide();
