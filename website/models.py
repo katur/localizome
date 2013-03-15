@@ -38,12 +38,14 @@ class Video(models.Model):
 	summary = models.CharField(max_length=2000)
 	def __unicode__(self):
 		return self.protein
-	def get_filename_without_protein_or_date(self):
-		short_filename = filename.partition('_')[2] # remove protein from beginning of string
-		short_filename = filename.rpartition('_')[0] # remove date from end of string
-		return short_filename
+	def filename_no_protein_no_date(self):
+		s = self.filename.partition('_')[2] # remove protein from beginning of string
+		s = s.rpartition('_')[0] # remove date from end of string
+		s_tuple = s.rpartition('_') # get tuple [strain, '_', number]
+		s = s_tuple[2] + s_tuple[1] + s_tuple[0] # reorder the tuple
+		return s
 	class Meta:
-		ordering = ['protein', 'filename']
+		ordering = ['protein', 'date_filmed']
 
 
 class VideoNotes(models.Model):

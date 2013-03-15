@@ -56,7 +56,7 @@ def protein_detail(request, common_name):
 		'videos':v,
 		'compartment_dictionary':c_dict, 
 		'compartment_dictionary_short':c_dict_short, 
-		'matrices':matrices
+		'matrices':matrices,
 	}, context_instance=RequestContext(request))
 
 
