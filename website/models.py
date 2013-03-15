@@ -41,8 +41,6 @@ class Video(models.Model):
 	def filename_no_protein_no_date(self):
 		s = self.filename.partition('_')[2] # remove protein from beginning of string
 		s = s.rpartition('_')[0] # remove date from end of string
-		s_tuple = s.rpartition('_') # get tuple [strain, '_', number]
-		s = s_tuple[2] + s_tuple[1] + s_tuple[0] # reorder the tuple
 		return s
 	class Meta:
 		ordering = ['protein', 'date_filmed']
