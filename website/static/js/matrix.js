@@ -53,7 +53,7 @@ toggleMatrix = function(){
 		$(this).addClass("active"); // make this link active
 		
 		videoId = $(this).attr("data-matrix-link"); // get the video id
-		repVideoId = $("[data-matrix]").eq(1).attr("data-matrix"); // FOR NOW, let the 2nd be the rep video; must change this when have rep videos!!!
+		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video from tag
 		
 		$("[data-matrix]").addClass("invisible"); // hide matrices
 		$("[data-matrix-info]").addClass("invisible"); // hide matrix info

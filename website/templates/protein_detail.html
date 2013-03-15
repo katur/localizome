@@ -78,7 +78,7 @@
 
 {% block below_matrix %}
 	{% for video in videos %}
-		<div data-matrix-summary="{{ video.id }}">
+		<div data-matrix-summary="{{ video.id }}" {% if video == representative_video %} data-matrix-summary-rep="{{ video.id }}"{% endif %}>
 			<h4>Summary</h4>
 			{{ video.summary }}
 		</div>
