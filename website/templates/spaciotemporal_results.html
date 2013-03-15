@@ -3,13 +3,13 @@
 
 {% block page_title %}
 	<h3>
-		Co-expressed Proteins:
+		Co-expressed Proteins
 		{% if compartment and timepoint %}
-		<span class="header-emphasis">{{ compartment.name }}</span>; <span class="header-emphasis">{{ timepoint.name }}</span>
+			in <span class="header-emphasis">{{ compartment.name }}</span> at <span class="header-emphasis">{{ timepoint.name }}</span>
 		{% elif compartment %}
-			<span class="header-emphasis">{{ compartment.name }}</span>
+			in <span class="header-emphasis">{{ compartment.name }}</span>
 		{% elif timepoint %}
-			<span class="header-emphasis">{{ timepoint.name }}</span>
+			at <span class="header-emphasis">{{ timepoint.name }}</span>
 		{% endif %}
 	</h3>
 {% endblock %}
