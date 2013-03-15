@@ -55,7 +55,9 @@ h4 {
 	padding-bottom: 10px;
 }
 .header-emphasis {
-	text-decoration: underline;
+	/*text-decoration: underline;*/
+	font-weight: bold;
+	font-variant: small-caps;
 	text-transform: capitalize;
 }
 
