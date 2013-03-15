@@ -48,10 +48,14 @@
 
 		{% for video in videos %}
 			<ul class="below-key" data-matrix-info="{{ video.id }}">
+				<li>Strain: {{ video.strain_name }}</li>
+				{% if video.vector %}
+					<li>Vector: {{ video.vector }}</li>
+				{% endif %}
 				<li>Filmed {{ video.date_filmed }}</li>
 				<li>Scored {{ video.date_scored }}</li>
 				<li>Excel sheet: {{ video.excel_id }}</li>
-				<li>Strain: {{ video.strain_name }}</li>
+				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download the video</a><li>
 			</ul>			
 		{% endfor %}
 	</div>
