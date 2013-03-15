@@ -5,11 +5,13 @@
 	<h3>
 		Co-expressed Proteins
 		{% if compartment and timepoint %}
-			in <span class="header-emphasis">{{ compartment.name }}</span> at <span class="header-emphasis">{{ timepoint.name }}</span>
+			in <span class="header-emphasis">{{ compartment.name }}</span> 
+			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: </span>
+			<span class="header-emphasis">{{ timepoint.name }}</span>
 		{% elif compartment %}
 			in <span class="header-emphasis">{{ compartment.name }}</span>
 		{% elif timepoint %}
-			at <span class="header-emphasis">{{ timepoint.name }}</span>
+			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: {{ timepoint.name }}</span>
 		{% endif %}
 	</h3>
 {% endblock %}

@@ -49,9 +49,9 @@ class VideoNotes(models.Model):
 
 class Compartment(models.Model):
 	SUPERCOMPARTMENT_CATEGORIES = (
-		(u'1', u'periphery/plasma membrane'),
-		(u'2', u'cytoplasmic'),
-		(u'3', u'nuclear')
+		(1, 'Periphery/Plasma Membrane'),
+		(2, 'Cytoplasmic'),
+		(3, 'Nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
 	name = models.CharField(max_length=60, unique=True)
@@ -65,9 +65,9 @@ class Compartment(models.Model):
 
 class Timepoint(models.Model):
 	CELL_CYCLE_CATEGORIES = (
-		(u'1', u'1-cell'),
-		(u'2', u'AB'),
-		(u'3', u'P1')
+		(1, '1-Cell'),
+		(2, 'AB'),
+		(3, 'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
 	name = models.CharField(max_length=30)
