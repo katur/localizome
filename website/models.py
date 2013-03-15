@@ -38,6 +38,10 @@ class Video(models.Model):
 	summary = models.CharField(max_length=2000)
 	def __unicode__(self):
 		return self.protein
+	def get_filename_without_protein_or_date(self):
+		short_filename = filename.partition('_')[2] # remove protein from beginning of string
+		short_filename = filename.rpartition('_')[0] # remove date from end of string
+		return short_filename
 	class Meta:
 		ordering = ['protein', 'filename']
 
