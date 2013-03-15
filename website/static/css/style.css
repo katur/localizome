@@ -311,8 +311,8 @@ span.homepage-top {
 }
 #below-matrix {
 	padding-top: 40px;
-	clear: both;
 	width: 680px;
+	float: left;
 }
 
 /* the key */
