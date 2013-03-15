@@ -43,7 +43,7 @@ class Video(models.Model):
 		s = s.rpartition('_')[0] # remove date from end of string
 		return s
 	class Meta:
-		ordering = ['protein', 'date_filmed']
+		ordering = ['protein', 'strain', 'excel_id']
 
 
 class VideoNotes(models.Model):
