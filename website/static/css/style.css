@@ -34,6 +34,7 @@ h1, h2, h3, h4 {
 	font-weight: normal;
 	margin: 0px;
 	line-height: 80%;
+	clear: none;
 }
 h1 {
 	font-size: 36px;
@@ -154,10 +155,17 @@ html, body {
 }
 
 
-/* MENU */
+/* HEADER */
+#header img {
+	float: left;
+	height: 68px;
+	margin-right: 20px;
+	position: relative;
+	bottom: 2px;
+}
+
 #menu {
 	float: left;
-	width: 100%;
 	margin-top: 13px; /* should be 18, but ~5px lost due to long y tails*/
 }
 #menu a {
