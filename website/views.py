@@ -16,9 +16,10 @@ def protein_list(request):
 def protein_detail(request, common_name):
 	p = get_object_or_404(Protein, common_name=common_name)
 	v = Video.objects.filter(protein_id=p.id)
-	c = Compartment.objects.all()
+	rep_v = p.representative_video
 	t = Timepoint.objects.all()
 	num_timepoints = len(t)
+	c = Compartment.objects.all()
 
 	# dictionaries to return compartment names and short names
 	c_dict = {}
@@ -52,8 +53,9 @@ def protein_detail(request, common_name):
 	
 	return render_to_response('protein_detail.html', {
 		'protein':p, 
-		'timepoints':t,
 		'videos':v,
+		'representative_video':rep_v,
+		'timepoints':t,
 		'compartment_dictionary':c_dict, 
 		'compartment_dictionary_short':c_dict_short, 
 		'matrices':matrices,

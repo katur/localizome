@@ -7,25 +7,31 @@
 		<div id="below-protein-name" class="increase-line-height">
 			{% if protein.sequence != protein.common_name %}
 				Sequence: {{ protein.sequence }}
-				<br>
 			{% endif %}
 			{% if protein.wormbase_id %}
-				Wormbase gene ID: 
+				<br>Wormbase gene ID: 
 				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
 					{{ protein.wormbase_id}}
 				</a>
-				<br>
 			{% endif %}
+
+			<br><br>Click play to view representative video.
 		</div>
 	</div>
 	
-	<div class="flowplayer no-volume no-mute" data-swf="{{ STATIC_URL }}swf/flowplayer.swf" data-ratio="0.7">
-		<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
-		<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
-		<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
-		<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
-		</video>
+	<div class="video-wrapper">
+		<div class="flowplayer no-volume no-mute" data-swf="{{ STATIC_URL }}swf/flowplayer.swf" data-ratio="0.7">
+			<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
+			<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
+			<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
+			<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
+			</video>
+			<span style="color: white">Video to insert: {{ representative_video.filename }}</span>
+		</div>
+		<span>Select asterisked matrix below for download and meta data.</span>
 	</div>
+	
+	
 {% endblock prematrix %}
 
 
@@ -37,17 +43,22 @@
 			Select matrix:
 			<ul>
 				{% if matrices|first|first == 'merge' %}
-					<li><a href="#" data-matrix-link="merge">merge</a></li>
+					<li>
+						<a href="#" data-matrix-link="merge">merge</a>
+					</li>
 				{% endif %}
 			
 				{% for video in videos %}
-					<li><a href="#" data-matrix-link="{{ video.id }}">{{ video.filename_no_protein_no_date }}</a></li>
+					<li>
+						<a href="#" data-matrix-link="{{ video.id }}">{{ video.filename_no_protein_no_date }}</a>{% if video == representative_video %}*{% endif %}
+					</li>
 				{% endfor %}
+				<li class="tiny">* representative video</li>
 			</ul>
 		</div>
 
 		{% for video in videos %}
-			<ul class="below-key extra-vertical-spacing" data-matrix-info="{{ video.id }}">
+			<ul class="below-key extra-vertical-spacing full-width" data-matrix-info="{{ video.id }}">
 				<li>Strain: {{ video.strain_name }}</li>
 				{% if video.vector %}
 					<li>Vector: {{ video.vector }}</li>
@@ -56,9 +67,9 @@
 				<li>Excel sheet: {{ video.excel_id }}</li>	
 				
 				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download the video</a></li>
-				<li class="tiny"><b>Filmed</b> {{ video.date_filmed }}</li>
-				<li class="tiny"><b>Lens:</b> {{ video.lens }}</li>
-				<li class="tiny"><b>Mode:</b> {{ video.mode }}</li>
+				<li class="tiny indent"><b>Filmed</b> {{ video.date_filmed }}</li>
+				<li class="tiny indent"><b>Lens:</b> {{ video.lens }}</li>
+				<li class="tiny indent"><b>Mode:</b> {{ video.mode }}</li>
 			</ul>			
 		{% endfor %}
 	</div>

@@ -91,9 +91,12 @@ ul {
 }
 li.tiny {
 	font-size: 12px;
-	padding-left: 10px;
 	line-height: 110%;
 }
+li.indent {
+	padding-left: 10px;
+}
+	
 
 /* TABLES */
 table {
@@ -267,15 +270,23 @@ span.homepage-top {
 	border-radius: 4px;
 }
 
-/* player skin */
-.flowplayer { 
-	width: 100%; 
-	background-color: #222; 
-	background-size: cover; 
+/* player wrapper */
+.video-wrapper {
 	width: 460px;
 	max-width: 460px;
 	float: right;
-	margin-bottom: 60px;
+	margin-bottom: 40px; /* 20px taken up by span */
+}
+.video-wrapper span {
+	font-size: 13px;
+	float: right;
+	height: 20px;
+}
+
+/* player skin */
+.flowplayer { 
+	background-color: #222; 
+	background-size: cover; 
 }
 .flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
 .flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
