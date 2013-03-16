@@ -32,6 +32,7 @@ class Video(models.Model):
 	strain_name = models.CharField(max_length=10, blank=True)
 	vector = models.CharField(max_length=10, blank=True)
 	filename = models.CharField(max_length=40)
+	movie_number = models.PositiveSmallIntegerField() # eventually add unique=True, after corrections
 	excel_id = models.PositiveSmallIntegerField(unique=True)	
 	date_filmed = models.DateField()
 	date_scored = models.DateField()
