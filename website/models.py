@@ -5,7 +5,7 @@ class Protein(models.Model):
 	common_name = models.CharField(max_length=20, unique=True)
 	sequence = models.CharField(max_length=20, unique=True)
 	wormbase_id = models.CharField(max_length=20, unique=True)
-	representative_video = models.OneToOneField('Video', related_name='representative', null=True) # eventually remove null=True
+	representative_video = models.OneToOneField('Video', related_name='representative', null=True) # eventually remove null=True; optionally add unique=True
 	def __unicode__(self):
 		return self.common_name
 	class Meta:
@@ -19,8 +19,8 @@ class Protein(models.Model):
 
 
 class Strain(models.Model):
-	name = models.CharField(max_length=10)
-	vector = models.CharField(max_length=10, blank=True)
+	name = models.CharField(max_length=10) # consider adding unique=True, but deal w/the two strains with no strain name first!
+	vector = models.CharField(max_length=10, blank=True) # possibly change this field to be vector OR genotype
 	protein = models.ForeignKey(Protein)
 	class Meta:
 		ordering = ['protein', 'name']
@@ -28,8 +28,8 @@ class Strain(models.Model):
 
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
-	strain = models.ForeignKey(Strain, null=True)
-	strain_name = models.CharField(max_length=10, blank=True)
+	strain = models.ForeignKey(Strain)
+	strain_name = models.CharField(max_length=10)
 	vector = models.CharField(max_length=10, blank=True)
 	filename = models.CharField(max_length=40)
 	movie_number = models.PositiveSmallIntegerField() # eventually add unique=True, after corrections
