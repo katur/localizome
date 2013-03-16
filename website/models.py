@@ -99,14 +99,14 @@ class Timepoint(models.Model):
 
 
 class Signal(models.Model):
-	UNKNOWN_STRENGTH = 0
-	ABSENT_STRENGTH = 1
+	ABSENT_STRENGTH = 0
+	UNKNOWN_STRENGTH = 1
 	WEAK_STRENGTH = 2
 	PRESENT_STRENGTH = 3
 	
 	STRENGTH_CATEGORIES = (
-		(UNKNOWN_STRENGTH, 'na'),
 		(ABSENT_STRENGTH, 'absent'),
+		(UNKNOWN_STRENGTH, 'na'),
 		(WEAK_STRENGTH, 'weak'),
 		(PRESENT_STRENGTH, 'present')
 	)
