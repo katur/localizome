@@ -2,7 +2,6 @@ from django.template import RequestContext # extends Context; needed for STATIC_
 from django.shortcuts import render_to_response, get_object_or_404 # r_to_r loads template, passes context, renders
 from django.db.models import Q # enables AND and OR in SQL filters
 from website.models import *
-import numpy # enables deleting columns in 2D arrays
 
 def home(request):
 	"""
@@ -47,35 +46,27 @@ def protein_detail(request, common_name):
 	t = Timepoint.objects.all()
 	num_timepoints = len(t)
 
-	# dictionaries to return compartment names and short names
-	c_dict = {}
-	for compartment in c:
-		c_dict[compartment.id] = compartment.name
-	c_dict_short = {}
-	for compartment in c:
-		c_dict_short[compartment.id] = compartment.short_name
-
-	matrices = [] # 2D array for matrices: [video.id or "union"][matrix[] of signals]
+	matrices = [] # list of matrices. Each element: [video.id or "union"][corresponding matrix]
 	
-	# add each video matrix to matrices[]
+	# add each video matrix to matrices
 	for video in v:
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all 440 signals as one list
-		matrix = [] # array of signals for one matrix (each array element is one row)
+		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row
 		for compartment in c: # for each row
-			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
 			i += num_timepoints
-		matrices.append((video.id, matrix)) # add matrix to matrices[]
+		matrices.append((video.id, matrix))
 	
-	# add the union matrix to matrices[]
+	# add the union matrix to matrices
 	matrix = [] # refresh matrix
 	i = 0 # refresh index
 	signals = SignalMerged.objects.filter(protein_id=p.id) # get all 440 signals as one list
 	if signals:
 		for compartment in c: # for each row
-			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
 			i += num_timepoints
-		matrices.append(("union", matrix)) # add union matrix to matrices[]
+		matrices.append(("union", matrix))
 	
 	# render page
 	return render_to_response('protein_detail.html', {
@@ -83,8 +74,6 @@ def protein_detail(request, common_name):
 		'videos':v,
 		'representative_video':rep_v,
 		'timepoints':t,
-		'compartment_dictionary':c_dict, 
-		'compartment_dictionary_short':c_dict_short, 
 		'matrices':matrices,
 	}, context_instance=RequestContext(request))
 
@@ -94,45 +83,31 @@ def spatiotemporal_search(request):
 	Page with spatiotemporal matrix showing number of proteins 
 	expressed at every spatiotemporal point
 	"""
-	# get all compartments and timepoints, along with their quantities
+	# get all compartments and timepoints
 	c = Compartment.objects.all()
-	num_compartments = len(c)
 	t = Timepoint.objects.all()
-	num_timepoints = len(t)
 	
-	# dictionaries so that signals can be sorted by compartment_id more efficiently
-	c_dict = {}
-	for compartment in c:
-		c_dict[compartment.id] = compartment.name
-	c_dict_short = {}
-	for compartment in c:
-		c_dict_short[compartment.id] = compartment.short_name
+	# create a 2D array of all 0s for the matrix signals	
+	signal_matrix = [[0 for x in range(0, len(t)+1)] for x in range(0, len(c)+1)] 
 	
-	# NOTE: the below data structures for consistency with protein detail page
-	matrices = [] #2D array for matrices ["spatiotemporal"][matrix[] of signals]
-	
-	# each element a row; init all cells to 0	
-	matrix = [[0 for x in range(0, num_timepoints+1)] for x in range(0, num_compartments+1)] 
-	
-	# get ALL merged/unioned signals
+	# get ALL merge (union) signals
 	signals = SignalMerged.objects.filter(Q(strength=2) | Q(strength=3))
 
-	# iterate through signals, incrementing corresponding matrix cells
+	# iterate through signals, incrementing corresponding cell in matrix
 	for signal in signals:
-		matrix[signal.compartment_id][signal.timepoint_id] += 1
+		signal_matrix[signal.compartment_id][signal.timepoint_id] += 1
 	
-	# use numpy to cut out the 0th row and 0th column
-	matrix = numpy.array(matrix)
-	matrix = matrix[1:,1:]
+	matrices = [] #2D array for matrices ["spatiotemporal"][corresponding matrix]
+	matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 
-	# add the resulting matrix to matrices[]
+	for compartment in c:
+		matrix.append((compartment, signal_matrix[compartment.id][1:]))
+
 	matrices.append(("spatiotemporal", matrix))
 	
 	# render page
 	return render_to_response('spatiotemporal_search.html', {
 		'timepoints':t,
-		'compartment_dictionary':c_dict,
-		'compartment_dictionary_short':c_dict_short,
 		'matrices':matrices,
 	}, context_instance=RequestContext(request))
 

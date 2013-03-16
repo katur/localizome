@@ -14,7 +14,7 @@
 		{# THs for timepoints in another file #}
 		{% include "matrix_xaxis_timepoints.html" %}	
 		
-		{% for row in matrix %}
+		{% for compartment, signals in matrix %}
 				<tr>
 					{% ifequal forloop.counter 1 %}
 						<th class="axis-title left-column" rowspan="22">
@@ -37,11 +37,11 @@
 						</th>
 					{% endifequal %}
 					
-					<th class="compartment" data-hover-tag="{{ compartment_dictionary|get_item:forloop.counter }}" data-id="{{ forloop.counter }}">
-						{{ compartment_dictionary_short|get_item:forloop.counter }}
+					<th class="compartment" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
+						{{ compartment.short_name }}
 					</th>
 							
-					{% for signal in row %}
+					{% for signal in signals %}
 						<td 
 							{% ifequal video_id "spatiotemporal" %}
 								{% if signal >= 1 and signal <= 5 %}
