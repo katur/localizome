@@ -59,10 +59,14 @@ class VideoNotes(models.Model):
 
 
 class Compartment(models.Model):
+	PERIPHERY_SUPERCOMPARTMENT = 1
+	CYTOPLASMIC_SUPERCOMPARTMENT = 2
+	NUCLEAR_SUPERCOMPARTMENT = 3
+	
 	SUPERCOMPARTMENT_CATEGORIES = (
-		(1, 'Periphery/Plasma Membrane'),
-		(2, 'Cytoplasmic'),
-		(3, 'Nuclear')
+		(PERIPHERY_SUPERCOMPARTMENT, 'Periphery/Plasma Membrane'),
+		(CYTOPLASMIC_SUPERCOMPARTMENT, 'Cytoplasmic'),
+		(NUCLEAR_SUPERCOMPARTMENT, 'Nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
 	name = models.CharField(max_length=60, unique=True) # compartment names unique
@@ -75,10 +79,14 @@ class Compartment(models.Model):
 
 
 class Timepoint(models.Model):
+	ONE_CELL_CYCLE = 1
+	AB_CELL_CYCLE = 2
+	P1_CELL_CYCLE = 3
+	
 	CELL_CYCLE_CATEGORIES = (
-		(1, '1-Cell'),
-		(2, 'AB'),
-		(3, 'P1')
+		(ONE_CELL_CYCLE, '1-Cell'),
+		(AB_CELL_CYCLE, 'AB'),
+		(P1_CELL_CYCLE, 'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
 	name = models.CharField(max_length=30) # timepoint names are NOT unique (repeat across cell cycle categories)
@@ -91,11 +99,16 @@ class Timepoint(models.Model):
 
 
 class Signal(models.Model):
+	UNKNOWN_STRENGTH = 0
+	ABSENT_STRENGTH = 1
+	WEAK_STRENGTH = 2
+	PRESENT_STRENGTH = 3
+	
 	STRENGTH_CATEGORIES = (
-		(0, 'na'),
-		(1, 'absent'),
-		(2, 'weak'),
-		(3, 'present')
+		(UNKNOWN_STRENGTH, 'na'),
+		(ABSENT_STRENGTH, 'absent'),
+		(WEAK_STRENGTH, 'weak'),
+		(PRESENT_STRENGTH, 'present')
 	)
 	strength = models.PositiveSmallIntegerField(choices=STRENGTH_CATEGORIES, db_index=True)
 	compartment = models.ForeignKey(Compartment)
