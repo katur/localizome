@@ -69,6 +69,7 @@ class Compartment(models.Model):
 	short_name = models.CharField(max_length=20)
 	extra_short_name = models.CharField(max_length=5)
 	miyeko_excel_name = models.CharField(max_length=60, unique=True) # can remove this field eventually
+	display_order = models.PositiveSmallIntegerField(unique=True) # might remove this field eventually
 	class Meta:
 		ordering = ['display_order']
 
@@ -84,6 +85,7 @@ class Timepoint(models.Model):
 	short_name = models.CharField(max_length=5)
 	miyeko_excel_name = models.CharField(max_length=30) # can remove this field eventually
 	kahn_merge_name = models.CharField(max_length=35) # can remove this field eventually
+	display_order = models.PositiveSmallIntegerField(unique=True) # might remove this field eventually
 	class Meta:
 		ordering = ['display_order']
 
