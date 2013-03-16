@@ -32,7 +32,7 @@ class Video(models.Model):
 	strain_name = models.CharField(max_length=10)
 	vector = models.CharField(max_length=10, blank=True)
 	filename = models.CharField(max_length=40)
-	movie_number = models.PositiveSmallIntegerField() # eventually add unique=True, after corrections
+	movie_number = models.PositiveSmallIntegerField()
 	excel_id = models.PositiveSmallIntegerField(unique=True)	
 	date_filmed = models.DateField()
 	date_scored = models.DateField()
@@ -50,6 +50,10 @@ class Video(models.Model):
 
 
 class VideoNotes(models.Model):
+	"""
+	These notes seem to be redundant with summary.
+	After confirmation, can remove this class entirely from the database.
+	"""
 	note = models.CharField(max_length=700)
 	video = models.ForeignKey(Video)
 
@@ -61,7 +65,7 @@ class Compartment(models.Model):
 		(3, 'Nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	name = models.CharField(max_length=60, unique=True)
+	name = models.CharField(max_length=60, unique=True) # compartment names unique
 	short_name = models.CharField(max_length=20)
 	extra_short_name = models.CharField(max_length=5)
 	miyeko_excel_name = models.CharField(max_length=60, unique=True)
@@ -77,10 +81,10 @@ class Timepoint(models.Model):
 		(3, 'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=30) # timepoint names are NOT unique (repeat across cell cycle categories)
 	short_name = models.CharField(max_length=5)
-	miyeko_excel_name = models.CharField(max_length=30, blank=True)
-	kahn_merge_name = models.CharField(max_length=35, blank=True)
+	miyeko_excel_name = models.CharField(max_length=30)
+	kahn_merge_name = models.CharField(max_length=35)
 	display_order = models.PositiveSmallIntegerField(unique=True)
 	class Meta:
 		ordering = ['display_order']
