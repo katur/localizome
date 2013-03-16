@@ -44,7 +44,7 @@
 			<ul>
 				{% for video in videos %}
 					<li>
-						<a href="#" data-matrix-link="{{ video.id }}">movie {{ forloop.counter }}</a>{% if video == representative_video %}*{% endif %}
+						<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>{% if video == representative_video %}*{% endif %}
 					</li>
 				{% endfor %}
 				{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
