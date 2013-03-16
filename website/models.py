@@ -1,11 +1,11 @@
 from django.db import models
 
-# Note: blank=True means is allowed to be blank. False is default.
+# Note: blank=True means is allowed to be blank. default blank=False.
 class Protein(models.Model):
 	common_name = models.CharField(max_length=20, unique=True)
 	sequence = models.CharField(max_length=20, unique=True)
-	wormbase_id = models.CharField(max_length=20, blank=True)
-	representative_video = models.OneToOneField('Video', related_name='representative', null=True)
+	wormbase_id = models.CharField(max_length=20, unique=True)
+	representative_video = models.OneToOneField('Video', related_name='representative', null=True) # eventually remove null=True
 	def __unicode__(self):
 		return self.common_name
 	class Meta:
