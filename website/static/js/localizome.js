@@ -41,7 +41,9 @@ spatiotemporalLinks = function(){
 
 
 selectDefaultMatrix = function(){
-	$("[data-matrix-link]").first().trigger("click");
+	repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
+	$("[data-matrix-link='" + repVideoId + "']").trigger("click");
+	$("[data-matrix-link='union']").trigger("click");
 }
 
 
@@ -53,7 +55,7 @@ toggleMatrix = function(){
 		$(this).addClass("active"); // make this link active
 		
 		videoId = $(this).attr("data-matrix-link"); // get the video id
-		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video from tag
+		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
 		
 		$("[data-matrix]").addClass("invisible"); // hide matrices
 		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
@@ -61,7 +63,7 @@ toggleMatrix = function(){
 		
 		$("[data-matrix='" + videoId + "']").removeClass("invisible");
 		
-		if (videoId == 'merge') {
+		if (videoId == 'union') {
 			$("[data-matrix-summary='" + repVideoId + "']").removeClass("invisible");	
 		} else {
 			$("[data-matrix-info='" + videoId + "']").removeClass("invisible");

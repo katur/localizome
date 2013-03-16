@@ -9,7 +9,7 @@
 				Sequence: {{ protein.sequence }}
 			{% endif %}
 			{% if protein.wormbase_id %}
-				<br>Wormbase gene ID: 
+				<br>WormBase gene ID: 
 				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
 					{{ protein.wormbase_id}}
 				</a>
@@ -28,7 +28,7 @@
 			</video>
 			<span style="color: white">Video to insert: {{ representative_video.filename }}</span>
 		</div>
-		<span class="tiny">Select asterisked matrix below for download and meta data.</span>
+		<span class="tiny">For download and meta data, select asterisked matrix.</span>
 	</div>
 	
 	
@@ -42,17 +42,16 @@
 		<div class="below-key">
 			Select matrix:
 			<ul>
-				{% if matrices|first|first == 'merge' %}
-					<li>
-						<a href="#" data-matrix-link="merge">merge</a>
-					</li>
-				{% endif %}
-			
 				{% for video in videos %}
 					<li>
-						<a href="#" data-matrix-link="{{ video.id }}">{{ video.filename_no_protein_no_date }}</a>{% if video == representative_video %}*{% endif %}
+						<a href="#" data-matrix-link="{{ video.id }}">movie {{ forloop.counter }}</a>{% if video == representative_video %}*{% endif %}
 					</li>
 				{% endfor %}
+				{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
+					<li>
+						<a href="#" data-matrix-link="union">union</a>
+					</li>
+				{% endif %}
 				<li class="tiny">* representative video</li>
 			</ul>
 		</div>

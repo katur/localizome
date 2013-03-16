@@ -55,27 +55,27 @@ def protein_detail(request, common_name):
 	for compartment in c:
 		c_dict_short[compartment.id] = compartment.short_name
 
-	matrices = [] # 2D array for matrices: [video.id or "merge"][matrix[] of signals]
-	matrix = [] # array of signals for one matrix (each element in array is one row)
+	matrices = [] # 2D array for matrices: [video.id or "union"][matrix[] of signals]
 	
-	# first, add the merge matrix to matrices[]
-	signals = SignalMerged.objects.filter(protein_id=p.id) # get all 440 signals as one list
-	i = 0 # index for signal at beginning of current row
-	if signals:
-		for compartment in c: # for each row
-			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
-			i += num_timepoints
-		matrices.append(("merge", matrix)) # add matrix to matrices[]
-	
-	# then, add each video matrix to matrices[]
+	# add each video matrix to matrices[]
 	for video in v:
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all 440 signals as one list
-		matrix = [] # refresh matrix
-		i = 0 # refresh index
+		matrix = [] # array of signals for one matrix (each array element is one row)
+		i = 0 # index for beginning of current row
 		for compartment in c: # for each row
 			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
 			i += num_timepoints
 		matrices.append((video.id, matrix)) # add matrix to matrices[]
+	
+	# add the union matrix to matrices[]
+	matrix = [] # refresh matrix
+	i = 0 # refresh index
+	signals = SignalMerged.objects.filter(protein_id=p.id) # get all 440 signals as one list
+	if signals:
+		for compartment in c: # for each row
+			matrix.append((signals[i:(i+num_timepoints)])) # add next row to the matrix
+			i += num_timepoints
+		matrices.append(("union", matrix)) # add union matrix to matrices[]
 	
 	# render page
 	return render_to_response('protein_detail.html', {
@@ -114,7 +114,7 @@ def spatiotemporal_search(request):
 	# each element a row; init all cells to 0	
 	matrix = [[0 for x in range(0, num_timepoints+1)] for x in range(0, num_compartments+1)] 
 	
-	# get ALL merge signals
+	# get ALL merged/unioned signals
 	signals = SignalMerged.objects.filter(Q(strength=2) | Q(strength=3))
 
 	# iterate through signals, incrementing corresponding matrix cells
