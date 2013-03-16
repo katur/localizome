@@ -6,7 +6,7 @@ import numpy # enables deleting columns in 2D arrays
 
 def home(request):
 	"""
-	Defines homepage
+	Homepage
 	"""
 	# render page
 	return render_to_response('home.html', context_instance=RequestContext(request))
@@ -14,7 +14,7 @@ def home(request):
 
 def protein_list(request):
 	"""
-	Defines page listing all proteins tested
+	Page listing all proteins tested
 	"""
 	# get all proteins
 	p = Protein.objects.all()
@@ -25,7 +25,7 @@ def protein_list(request):
 
 def network(request):
 	"""
-	Defines network page
+	Page with network image
 	"""
 	# render page
 	return render_to_response('network.html', context_instance=RequestContext(request))
@@ -33,7 +33,7 @@ def network(request):
 
 def protein_detail(request, common_name):
 	"""
-	Defines page for each protein, with protein's videos, matrices, and other information
+	Page for each protein, with protein's videos, matrices, and other information
 	"""
 	# get protein from common name
 	p = get_object_or_404(Protein, common_name=common_name)
@@ -91,7 +91,7 @@ def protein_detail(request, common_name):
 
 def spaciotemporal_search(request):
 	"""
-	Defines page with spaciotemporal matrix showing number of proteins 
+	Page with spaciotemporal matrix showing number of proteins 
 	expressed at every spaciotemporal point
 	"""
 	# get all compartments and timepoints, along with their quantities
