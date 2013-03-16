@@ -25,6 +25,7 @@ class Strain(models.Model):
 	class Meta:
 		ordering = ['protein', 'name']
 
+
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.ForeignKey(Strain, null=True)
@@ -86,16 +87,16 @@ class Timepoint(models.Model):
 
 class Signal(models.Model):
 	STRENGTH_CATEGORIES = (
-		(u'0', u'na'),
-		(u'1', u'absent'),
-		(u'2', u'weak'),
-		(u'3', u'present')
+		(0, 'na'),
+		(1, 'absent'),
+		(2, 'weak'),
+		(3, 'present')
 	)
 	strength = models.PositiveSmallIntegerField(choices=STRENGTH_CATEGORIES, db_index=True)
 	compartment = models.ForeignKey(Compartment)
 	timepoint = models.ForeignKey(Timepoint)
 	class Meta:
-		abstract = True # parent fields for SignalRaw and SignalMerged
+		abstract = True # parent class for SignalRaw and SignalMerged
 
 
 class SignalRaw(Signal): # inherits fields from Signal
