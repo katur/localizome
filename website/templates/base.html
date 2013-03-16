@@ -21,11 +21,11 @@
 			<div id="menu">
 				{% url website.views.home as url_home %}
 				{% url website.views.protein_list as url_protein_list %}
-				{% url website.views.spaciotemporal_search as url_spaciotemporal_search %}
+				{% url website.views.spatiotemporal_search as url_spatiotemporal_search %}
 				{% url website.views.network as url_network %}
 				<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>Home</a> 
 				<a href="{{ url_protein_list }}" {% if request.path == url_protein_list %}class="active"{% endif %}>Protein List</a>
-				<a href="{{ url_spaciotemporal_search }}" {% if request.path == url_spaciotemporal_search %}class="active"{% endif %}>Spaciotemporal Search</a>
+				<a href="{{ url_spatiotemporal_search }}" {% if request.path == url_spatiotemporal_search %}class="active"{% endif %}>Spatiotemporal Search</a>
 				<a href="{{ url_network }}" {% if request.path == url_network %}class="active"{% endif %}>Network</a>
 			</div>
 		</div>

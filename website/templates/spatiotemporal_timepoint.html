@@ -1,19 +1,19 @@
-{% extends "spaciotemporal_results.html" %}
+{% extends "spatiotemporal_results.html" %}
 
 {% block matrix %}
 	{% if signals %}
 		<table class="matrix">
-			{% include "matrix_xaxis_timepoints.html" %}
+			{% include "matrix_xaxis_compartments.html" %}
 		
 			{% regroup signals by protein_id as proteins_signals %}
 			
 			{% for protein_signals in proteins_signals %}
 				<tr>
 					{% with protein_signals.list.0.protein as protein %}
-						<td class="left-column" colspan="2">
+						<td class="left-column common_name" colspan="2">
 							<a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a>
 						</td>
-						<td>{{ protein.sequence }}</td>
+						<td class="sequence">{{ protein.sequence }}</td>
 					{% endwith %}
 					
 					{% for signal in protein_signals.list %}

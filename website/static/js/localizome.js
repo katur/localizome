@@ -2,12 +2,12 @@ $(document).ready(function(){
 	hoverTags();
 	toggleMatrix();
 	selectDefaultMatrix();
-	spaciotemporalLinks();
+	spatiotemporalLinks();
 })
 
-spaciotemporalLinks = function(){
+spatiotemporalLinks = function(){
 	// run the contents of this function whenever you click a td
-	$("table#spaciotemporal td").click(function(){
+	$("table#spatiotemporal td").click(function(){
 
 		// get all elements on the same level (row) as the td you clicked
 		// filtering for THs only, then getting the data-id attribute.
@@ -22,19 +22,19 @@ spaciotemporalLinks = function(){
 		columnId = $("th.timepoint").eq(columnIndex).data("id");
 			
 		// assemble the link
-		link = "spaciotemporal/compartment" + rowId + "/timepoint" + columnId;
+		link = "spatiotemporal/compartment" + rowId + "/timepoint" + columnId;
 		window.location = link;
 	});
 
-	$("table#spaciotemporal th.compartment").click(function(){
+	$("table#spatiotemporal th.compartment").click(function(){
 		rowId = $(this).data("id");
-		link = "spaciotemporal/compartment" + rowId;
+		link = "spatiotemporal/compartment" + rowId;
 		window.location = link;
 	});
 	
-	$("table#spaciotemporal th.timepoint").click(function(){
+	$("table#spatiotemporal th.timepoint").click(function(){
 		columnId = $(this).data("id");
-		link = "spaciotemporal/timepoint" + columnId;
+		link = "spatiotemporal/timepoint" + columnId;
 		window.location = link;
 	});
 }

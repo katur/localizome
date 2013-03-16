@@ -65,7 +65,7 @@ h4 {
 	text-transform: capitalize;
 }
 
-/* used on spaciotemporal pages, network page, protein list */
+/* used on spatiotemporal pages, network page, protein list */
 #below-header {
 	margin-bottom: 40px;
 }
@@ -336,13 +336,13 @@ span.homepage-top {
 	float: left;
 }
 
-#spaciotemporal td, #spaciotemporal th.timepoint, #spaciotemporal th.compartment {
+#spatiotemporal td, #spatiotemporal th.timepoint, #spatiotemporal th.compartment {
 	cursor: pointer;
 }
 
 
-/* The "both" spaciotemporal results page */
-#spaciotemporal-both {
+/* The "both" spatiotemporal results page */
+#spatiotemporal-both {
 	width: 200px;
 	float: left;
 	table-layout: fixed;
@@ -404,67 +404,7 @@ span.homepage-top {
 	background: #188801;
 }
 
-/* purple colors for spaciotemporal gradient
-.color9 {
-	background: #11002D;
-}
-.color8 {
-	background: #23005B;
-}
-.color7 {
-	background: #340089;
-}
-.color6 {
-	background: #4600B7;
-}
-.color5 {
-	background: #5800E5; Indigo */
-/*}
-.color4 {
-	background: #7933EA;
-}
-.color3 {
-	background: #9A66EF;
-}
-.color2 {
-	background: #BC99F4;
-}
-.color1 {
-	background: #DDCCF9;
-}
-*/
-
-/* blue colors for spaciotemporal gradient
-.color9 {
-	background: #000033;
-}
-.color8 {
-	background: #000066;
-}
-.color7 {
-	background: #000099;
-}
-.color6 {
-	background: #0000CC;
-}
-.color5 {
-	background: #0000FF;
-}
-.color4 {
-	background: #3333FF;
-}
-.color3 {
-	background: #6666FF;
-}
-.color2 {
-	background: #9999FF;
-}
-.color1 {
-	background: #CCCCFF;
-}
-*/
-
-/* red colors for spaciotemporal gradient */
+/* red colors for spatiotemporal gradient */
 .color9 {
 	background: #290000;
 }

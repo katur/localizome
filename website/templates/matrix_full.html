@@ -3,8 +3,8 @@
 
 {% block matrix %}
 	{% for video_id, matrix in matrices %}
-		{% if video_id == "spaciotemporal" %}
-			<table class="matrix" id="spaciotemporal">
+		{% if video_id == "spatiotemporal" %}
+			<table class="matrix" id="spatiotemporal">
 		{% elif video_id == "merge" %}
 			<table class="matrix" data-matrix="merge">
 		{% else %}
@@ -43,7 +43,7 @@
 							
 					{% for signal in row %}
 						<td 
-							{% ifequal video_id "spaciotemporal" %}
+							{% ifequal video_id "spatiotemporal" %}
 								{% if signal >= 1 and signal <= 5 %}
 									class="color1"
 								{% elif signal >= 6 and signal <= 10 %}

@@ -89,10 +89,10 @@ def protein_detail(request, common_name):
 	}, context_instance=RequestContext(request))
 
 
-def spaciotemporal_search(request):
+def spatiotemporal_search(request):
 	"""
-	Page with spaciotemporal matrix showing number of proteins 
-	expressed at every spaciotemporal point
+	Page with spatiotemporal matrix showing number of proteins 
+	expressed at every spatiotemporal point
 	"""
 	# get all compartments and timepoints, along with their quantities
 	c = Compartment.objects.all()
@@ -109,7 +109,7 @@ def spaciotemporal_search(request):
 		c_dict_short[compartment.id] = compartment.short_name
 	
 	# NOTE: the below data structures for consistency with protein detail page
-	matrices = [] #2D array for matrices ["spaciotemporal"][matrix[] of signals]
+	matrices = [] #2D array for matrices ["spatiotemporal"][matrix[] of signals]
 	
 	# each element a row; init all cells to 0	
 	matrix = [[0 for x in range(0, num_timepoints+1)] for x in range(0, num_compartments+1)] 
@@ -126,10 +126,10 @@ def spaciotemporal_search(request):
 	matrix = matrix[1:,1:]
 
 	# add the resulting matrix to matrices[]
-	matrices.append(("spaciotemporal", matrix))
+	matrices.append(("spatiotemporal", matrix))
 	
 	# render page
-	return render_to_response('spaciotemporal_search.html', {
+	return render_to_response('spatiotemporal_search.html', {
 		'timepoints':t,
 		'compartment_dictionary':c_dict,
 		'compartment_dictionary_short':c_dict_short,
@@ -137,7 +137,7 @@ def spaciotemporal_search(request):
 	}, context_instance=RequestContext(request))
 
 
-def spaciotemporal_both(request, compartment, timepoint):
+def spatiotemporal_both(request, compartment, timepoint):
 	"""
 	Results page for coexpressed proteins given a compartment AND timepoint
 	"""
@@ -153,14 +153,14 @@ def spaciotemporal_both(request, compartment, timepoint):
 	)
 
 	# render page
-	return render_to_response('spaciotemporal_both.html', {
+	return render_to_response('spatiotemporal_both.html', {
 		'signals':s,
 		'compartment':c,
 		'timepoint':t
 	}, context_instance=RequestContext(request))
 
 
-def spaciotemporal_compartment(request, compartment):
+def spatiotemporal_compartment(request, compartment):
 	"""
 	Results page for coexpressed proteins given a compartment only
 	"""
@@ -181,14 +181,14 @@ def spaciotemporal_compartment(request, compartment):
 	)
 
 	# render page
-	return render_to_response('spaciotemporal_compartment.html', {
+	return render_to_response('spatiotemporal_compartment.html', {
 		'signals':s,
 		'compartment':c,
 		'timepoints':t
 	}, context_instance=RequestContext(request))
 
 	
-def spaciotemporal_timepoint(request, timepoint):
+def spatiotemporal_timepoint(request, timepoint):
 	"""
 	Results page for coexpressed proteins given a timepoint only
 	"""
@@ -209,7 +209,7 @@ def spaciotemporal_timepoint(request, timepoint):
 	)
 
 	# render page
-	return render_to_response('spaciotemporal_timepoint.html', {
+	return render_to_response('spatiotemporal_timepoint.html', {
 		'signals':s,
 		'timepoint':t,
 		'compartments':c
