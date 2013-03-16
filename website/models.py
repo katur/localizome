@@ -8,13 +8,14 @@ class Protein(models.Model):
 	representative_video = models.OneToOneField('Video', related_name='representative', null=True)
 	def __unicode__(self):
 		return self.common_name
-	@models.permalink 
-	# permalink takes a URL pattern (either a view name or URL pattern),
-	# and a list of arguments, and uses URLconf patters to construct URL
-	def get_absolute_url(self):
-		return ('protein_detail_url', [str(self.common_name)])
 	class Meta:
 		ordering = ['common_name']
+	
+	# permalink takes a URL pattern (either a view name or URL pattern) and
+	# a list of arguments, and uses URLconf patters to construct URL
+	@models.permalink 
+	def get_absolute_url(self):
+		return ('protein_detail_url', [str(self.common_name)])
 
 
 class Strain(models.Model):
@@ -85,8 +86,8 @@ class Timepoint(models.Model):
 
 class Signal(models.Model):
 	STRENGTH_CATEGORIES = (
-		(u'0', u'no data'),
-		(u'1', u'not present'),
+		(u'0', u'na'),
+		(u'1', u'absent'),
 		(u'2', u'weak'),
 		(u'3', u'present')
 	)
