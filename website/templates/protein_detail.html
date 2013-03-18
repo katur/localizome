@@ -43,7 +43,7 @@
 			
 		{% for video in videos %}
 			<li>
-				<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}{% if video == representative_video %} (representative)</a>{% endif %}
+			<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}{% if video == representative_video %} (representative){% endif %}</a>
 			</li>
 		{% endfor %}
 	</ul>
