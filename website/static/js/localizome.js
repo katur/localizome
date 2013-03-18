@@ -41,9 +41,10 @@ spatiotemporalLinks = function(){
 
 
 selectDefaultMatrix = function(){
+	$("[data-matrix-link]").first().trigger("click"); // first trigger the first link (can remove this once all videos have a rep)
 	repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
-	$("[data-matrix-link='" + repVideoId + "']").trigger("click");
-	$("[data-matrix-link='union']").trigger("click");
+	$("[data-matrix-link='" + repVideoId + "']").trigger("click"); // second trigger the rep video (default if no union)
+	$("[data-matrix-link='union']").trigger("click"); // last trigger the union, if exists
 }
 
 
