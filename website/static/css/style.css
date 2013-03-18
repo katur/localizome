@@ -300,7 +300,18 @@ span.homepage-top {
 	width: 100%;
 	float: left;
 }
-
+ul#matrix-tabs {
+	float: left;
+	padding-left: 200px;
+	width: 480px;
+	list-style-type: circle;
+	font-size: 14px;
+}
+#matrix-tabs li {
+	display: inline;
+	padding-right: 20px;
+	float: left;
+}
 #next-to-matrix {
 	float: right;
 	width: 160px;

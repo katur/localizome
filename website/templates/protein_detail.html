@@ -28,33 +28,31 @@
 			</video>
 			<span style="color: white">Movie to insert: {{ representative_video.filename }}</span>
 		</div>
-		<span class="tiny">For download and meta data, select asterisked matrix.</span>
+		<span class="tiny">For download and meta data, select representative movie below.</span>
 	</div>
-	
-	
 {% endblock prematrix %}
+
+
+{% block matrix_tabs %}
+	<ul id="matrix-tabs">
+		{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
+			<li>
+				<a href="#" data-matrix-link="union">union</a>
+			</li>
+		{% endif %}	
+			
+		{% for video in videos %}
+			<li>
+				<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}{% if video == representative_video %} (representative)</a>{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
 
 
 {% block next_to_matrix %}
 	<div id="next-to-matrix" class="increase-line-height">
 		{% include "matrix_key_normal.html" %}
-	
-		<div class="below-key">
-			Select matrix:
-			<ul>
-				{% for video in videos %}
-					<li>
-						<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>{% if video == representative_video %}*{% endif %}
-					</li>
-				{% endfor %}
-				{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
-					<li>
-						<a href="#" data-matrix-link="union">union</a>
-					</li>
-				{% endif %}
-				<li class="tiny">* representative movie</li>
-			</ul>
-		</div>
 
 		{% for video in videos %}
 			<ul class="below-key extra-vertical-spacing full-width" data-matrix-info="{{ video.id }}">
@@ -65,7 +63,7 @@
 				<li>Scored {{ video.date_scored }}</li>
 				<li>Excel sheet: {{ video.excel_id }}</li>	
 				
-				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download the video</a></li>
+				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download movie {{ video.movie_number }}</a></li>
 				<li class="tiny indent"><b>Filmed</b> {{ video.date_filmed }}</li>
 				<li class="tiny indent"><b>Lens:</b> {{ video.lens }}</li>
 				<li class="tiny indent"><b>Mode:</b> {{ video.mode }}</li>
