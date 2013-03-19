@@ -302,15 +302,32 @@ span.homepage-top {
 }
 ul#matrix-tabs {
 	float: left;
-	padding-left: 200px;
+	padding-left: 199px;
 	width: 480px;
 	list-style-type: circle;
 	font-size: 14px;
 }
 #matrix-tabs li {
 	display: inline;
-	padding-right: 20px;
+	padding-left: 10px;
 	float: left;
+}
+#matrix-tabs a {
+	border: 1px solid gray;
+	border-bottom: 0;
+	background: rgba(0, 0, 0, 0.036);	
+	padding: 5px 10px;
+	float: left;
+	position: relative;
+	top: 1px; /* with pos relative, moves down from normal position by 1px */
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+#matrix-tabs a.active {
+	background: #cdba92;
+	color: white;
+	z-index: 10;
+	cursor: default;
 }
 #next-to-matrix {
 	float: right;
