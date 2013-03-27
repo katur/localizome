@@ -1,33 +1,46 @@
 {% extends "matrix_full.html" %}
+
 {% block prematrix %}
+
 	<div id="next-to-video">
 		<h3>{{ protein.common_name|upper }}</h3>
-		<div id="below-protein-name" class="increase-line-height">
+		<div id="below-protein-name" class="increase-line-height-a-lot">
 			{% if protein.sequence != protein.common_name %}
-				Sequence: {{ protein.sequence }}
+				<span class="full-span">Sequence: {{ protein.sequence }}</span>
 			{% endif %}
+			
 			{% if protein.wormbase_id %}
-				<br>WormBase gene ID: 
+				<span class="full-span">WormBase gene ID: 
 				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
 					{{ protein.wormbase_id}}
-				</a>
+				</a></span>
 			{% endif %}
 
-			<br><br>Select one:
-			
-			<ul id="matrix-tabs">
-				{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
-					<li>
-						<a href="#" data-matrix-link="union">union</a>
-					</li>
-				{% endif %}	
-			
+			<span class="full-span">&nbsp;</span>
+
+			<span class="full-span">
+				Select one option below to view a movie and corresponding matrix:
+
+			<ul class="inline">
 				{% for video in videos %}
-					<li>
-						<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>
+					<li class="right-padding">
+						<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>	
 					</li>
 				{% endfor %}
+				
+				{% if matrices|last|first == 'merge' %} {# "merge" would be the first element in the last matrix appended to the list #}
+					<li>
+						<a href="#" data-matrix-link="merge">merge (matrix only)</a>
+					</li>
+				{% endif %}	
 			</ul>
+
+			<span class="full-span">&nbsp;</span>
+			{% for video in videos %}
+				<div data-matrix-info="{{ video.id }}">
+					<span class="full-span"><a href={{ STATIC_URL }}videos/{{ video.filename }}>Click here to download movie {{ video.movie_number }}</a></span>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 	
@@ -38,29 +51,26 @@
 			<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
 			<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
 			</video>
-			<span style="color: white">Movie to insert: {{ representative_video.filename }}</span>
 		</div>
 	</div>
 {% endblock prematrix %}
 
 
 {% block next_to_matrix %}
-	<div id="next-to-matrix" class="increase-line-height">
+	<div id="next-to-matrix">
 		{% include "matrix_key_normal.html" %}
 
 		{% for video in videos %}
-			<ul class="below-key extra-vertical-spacing full-width" data-matrix-info="{{ video.id }}">
+			<ul class="below-key full-width increase-line-height-a-lot" data-matrix-info="{{ video.id }}">
 				<li>Strain: {{ video.strain_name }}</li>
 				{% if video.vector %}
 					<li>Vector: {{ video.vector }}</li>
-				{% endif %}
+				{% endif %}			
+				<li>Filmed {{ video.date_filmed }}</li>
+				<li class="tiny indent">Lens: {{ video.lens }}</li>
+				<li class="tiny indent">Mode: {{ video.mode }}</li>
 				<li>Scored {{ video.date_scored }}</li>
 				<li>Excel sheet: {{ video.excel_id }}</li>	
-				
-				<li><a href={{ STATIC_URL }}videos/{{ video.filename }}>Download movie {{ video.movie_number }}</a></li>
-				<li class="tiny indent"><b>Filmed</b> {{ video.date_filmed }}</li>
-				<li class="tiny indent"><b>Lens:</b> {{ video.lens }}</li>
-				<li class="tiny indent"><b>Mode:</b> {{ video.mode }}</li>
 			</ul>			
 		{% endfor %}
 	</div>

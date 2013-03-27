@@ -5,8 +5,8 @@
 	{% for video_id, matrix in matrices %}
 		{% if video_id == "spatiotemporal" %}
 			<table class="matrix" id="spatiotemporal">
-		{% elif video_id == "union" %}
-			<table class="matrix" data-matrix="union">
+		{% elif video_id == "merge" %}
+			<table class="matrix" data-matrix="merge">
 		{% else %}
 			<table class="matrix" data-matrix="{{ video_id }}">
 		{% endif %}

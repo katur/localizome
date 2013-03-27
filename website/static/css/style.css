@@ -26,11 +26,25 @@ body {
 .increase-line-height {
 	line-height: 130%;
 }
-.tiny {
-	font-size: 13px;
-	line-height: 110%;
+.increase-line-height-a-lot {
+	line-height: 170%;
 }
-
+.full-span {
+	width: 100%;
+	float: left;
+}
+.half-span-left {
+	width: 50%;
+	float: left;
+}
+.half-span-right {
+	width: 50%;
+	float: right;
+}
+.fifth-span {
+	width: 20%;
+	float: left;
+}
 
 /* HEADERS */
 h1, h2, h3, h4 {
@@ -90,11 +104,12 @@ ul {
 	margin: 0;
 	padding: 0;
 }
-.extra-vertical-spacing li {
-	padding-bottom: 5px;
+.inline li {
+	display: inline;
+	float: left;
 }
-li.indent {
-	padding-left: 10px;
+.right-padding {
+	padding-right: 15px;
 }
 	
 
@@ -264,15 +279,12 @@ span.homepage-top {
 	margin: 0 60px 60px 0;
 }
 #below-protein-name {
+	float: left;
 	padding: 40px;
 	background: rgba(0, 0, 0, 0.036);
 	border-radius: 4px;
-	float: left;
-}
-#matrix-tabs li {
-	display: inline;
-	padding-right: 20px;
-	float: left;
+	font-size: 16px;
+	height: 218px;
 }
 #matrix-tabs a.active {
 	cursor: default;
@@ -283,11 +295,7 @@ span.homepage-top {
 	width: 460px;
 	max-width: 460px;
 	float: right;
-	margin-bottom: 40px; /* 20px taken up by span */
-}
-.video-wrapper span {
-	float: right;
-	height: 20px;
+	margin-bottom: 60px;
 }
 
 /* player skin */

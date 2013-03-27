@@ -46,7 +46,7 @@ def protein_detail(request, common_name):
 	t = Timepoint.objects.all()
 	num_timepoints = len(t)
 
-	matrices = [] # list of matrices. Each element: [video.id or "union"][corresponding matrix]
+	matrices = [] # list of matrices. Each element: [video.id or "merge"][corresponding matrix]
 	
 	# add each video matrix to matrices
 	for video in v:
@@ -58,7 +58,7 @@ def protein_detail(request, common_name):
 			i += num_timepoints
 		matrices.append((video.id, matrix))
 	
-	# add the union matrix to matrices
+	# add the merge matrix to matrices
 	matrix = [] # refresh matrix
 	i = 0 # refresh index
 	signals = SignalMerged.objects.filter(protein_id=p.id) # get all 440 signals as one list
@@ -66,7 +66,7 @@ def protein_detail(request, common_name):
 		for compartment in c: # for each row
 			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
 			i += num_timepoints
-		matrices.append(("union", matrix))
+		matrices.append(("merge", matrix))
 	
 	# render page
 	return render_to_response('protein_detail.html', {
@@ -90,7 +90,7 @@ def spatiotemporal_search(request):
 	# create a 2D array of all 0s for the matrix signals	
 	signal_matrix = [[0 for x in range(0, len(t)+1)] for x in range(0, len(c)+1)] 
 	
-	# get ALL merge (union) signals
+	# get ALL merge signals
 	signals = SignalMerged.objects.filter(Q(strength=2) | Q(strength=3))
 
 	# iterate through signals, incrementing corresponding cell in matrix
