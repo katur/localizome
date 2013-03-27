@@ -260,7 +260,6 @@ span.homepage-top {
 /* Specific to PROTEIN PAGE */
 #next-to-video {
 	width: 460px;
-	height: 200px;
 	float: left;
 	margin: 0 60px 60px 0;
 }
@@ -268,6 +267,15 @@ span.homepage-top {
 	padding: 40px;
 	background: rgba(0, 0, 0, 0.036);
 	border-radius: 4px;
+	float: left;
+}
+#matrix-tabs li {
+	display: inline;
+	padding-right: 20px;
+	float: left;
+}
+#matrix-tabs a.active {
+	cursor: default;
 }
 
 /* player wrapper */
@@ -299,35 +307,6 @@ span.homepage-top {
 #matrix-key-wrapper {
 	width: 100%;
 	float: left;
-}
-ul#matrix-tabs {
-	float: left;
-	padding-left: 199px;
-	width: 480px;
-	list-style-type: circle;
-	font-size: 14px;
-}
-#matrix-tabs li {
-	display: inline;
-	padding-left: 10px;
-	float: left;
-}
-#matrix-tabs a {
-	border: 1px solid gray;
-	border-bottom: 0;
-	background: rgba(0, 0, 0, 0.036);	
-	padding: 5px 10px;
-	float: left;
-	position: relative;
-	top: 1px; /* with pos relative, moves down from normal position by 1px */
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-#matrix-tabs a.active {
-	background: #cdba92;
-	color: white;
-	z-index: 10;
-	cursor: default;
 }
 #next-to-matrix {
 	float: right;

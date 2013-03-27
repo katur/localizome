@@ -13,7 +13,21 @@
 				</a>
 			{% endif %}
 
-			<br><br>Click play to watch representative movie.
+			<br><br>Select one:
+			
+			<ul id="matrix-tabs">
+				{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
+					<li>
+						<a href="#" data-matrix-link="union">union</a>
+					</li>
+				{% endif %}	
+			
+				{% for video in videos %}
+					<li>
+						<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
 	
@@ -26,26 +40,8 @@
 			</video>
 			<span style="color: white">Movie to insert: {{ representative_video.filename }}</span>
 		</div>
-		<span class="tiny">For download and meta data, select representative movie below.</span>
 	</div>
 {% endblock prematrix %}
-
-
-{% block matrix_tabs %}
-	<ul id="matrix-tabs">
-		{% if matrices|last|first == 'union' %} {# "union" would be the first element in the last matrix appended to the list #}
-			<li>
-				<a href="#" data-matrix-link="union">union</a>
-			</li>
-		{% endif %}	
-			
-		{% for video in videos %}
-			<li>
-			<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}{% if video == representative_video %} (representative){% endif %}</a>
-			</li>
-		{% endfor %}
-	</ul>
-{% endblock %}
 
 
 {% block next_to_matrix %}
