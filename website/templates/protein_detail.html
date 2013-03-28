@@ -44,15 +44,33 @@
 		</div>
 	</div>
 	
-	<div class="video-wrapper">
-		<div class="flowplayer no-volume no-mute" data-swf="{{ STATIC_URL }}swf/flowplayer.swf" data-ratio="0.7">
-			<video <!--poster="{{ STATIC_URL }}images/squirrel.jpeg"-->>
-			<!--<source type="video/webm" src="http://stream.flowplayer.org/bauhaus/624x260.webm"/>-->
-			<source type="video/mp4" src="{{ STATIC_URL }}videos/nathalie.mp4"/>
-			<!--<source type="video/ogv" src="http://stream.flowplayer.org/bauhaus/624x260.ogv"/>-->
-			</video>
-		</div>
+	<!-- surrounding element with class - needed!! -->
+	<div class="leanback-player-video video-wrapper">
+	  <!-- HTML5 <video> element -->
+		<video width="458" height="312" preload="metadata" controls poster="images/favicon.ico">
+			<!-- HTML5 <video> sources -->
+			<!--<source src="./folder/video.webm" type='video/webm; codecs="vp8, vorbis"'/>-->
+			<source src="{{ STATIC_URL }}videos/nathalie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
+			<!--<source src="./folder/video.ogv" type='video/ogg; codecs="theora, vorbis"'/>-->
+			
+			<!-- Flash-Fallback -->
+			<object class="leanback-player-flash-fallback" width="360" height="240">
+			</object>
+																		 
+			<!-- HTML-Fallback - Download Links -->
+			<div class="leanback-player-html-fallback">
+				<img src="./folder/poster.jpg" width="360" height="240" alt="Poster Image" 
+					title="No HTML5 media playback capabilities available." />
+				<div>
+					<strong>Download Video:</strong>
+					<a href="videos/nathalie.mp4">.mp4</a>,
+					<a href="videos/nathalie.webm">.webm</a>,
+					<a href="videos/nathalie.ogv">.ogv</a>
+				</div>
+			</div>
+		</video>
 	</div>
+	
 {% endblock prematrix %}
 
 

@@ -292,10 +292,7 @@ span.homepage-top {
 
 /* player wrapper */
 .video-wrapper {
-	width: 460px;
-	max-width: 460px;
 	float: right;
-	margin-bottom: 60px;
 }
 
 /* player skin */
