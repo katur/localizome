@@ -23,28 +23,35 @@ body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 	font-size: 18px;
 }
+
 .increase-line-height {
 	line-height: 130%;
 }
+
 .increase-line-height-a-lot {
 	line-height: 170%;
 }
+
 .full-span {
 	width: 100%;
 	float: left;
 }
+
 .half-span-left {
 	width: 50%;
 	float: left;
 }
+
 .half-span-right {
 	width: 50%;
 	float: right;
 }
+
 .fifth-span {
 	width: 20%;
 	float: left;
 }
+
 
 /* HEADERS */
 h1, h2, h3, h4 {
@@ -54,24 +61,30 @@ h1, h2, h3, h4 {
 	line-height: 80%;
 	clear: none;
 }
+
 h1 {
 	font-size: 36px;
 }
+
 h2, h3 {
 	font-size: 30px;
 	padding-bottom: 20px;
 }
+
 h2 {	
 	clear: both;
 }
+
 h3 {
 	clear: none;
 }
+
 h4 {
 	font-weight: bold;
 	font-size: 22px;
 	padding-bottom: 10px;
 }
+
 .header-emphasis {
 	/*text-decoration: underline;*/
 	font-weight: bold;
@@ -103,13 +116,6 @@ ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-}
-.inline li {
-	display: inline;
-	float: left;
-}
-.right-padding {
-	padding-right: 15px;
 }
 	
 
@@ -273,46 +279,96 @@ span.homepage-top {
 
 
 /* Specific to PROTEIN PAGE */
+/* Protein title bar */
+#protein-title-bar {
+	width: 100%;
+	float: left;
+	margin-bottom: 35px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d1d1d1;
+}
+
+#protein-title-bar h3 {
+	float: left;
+}
+
+#protein-subtitle {
+	float: right;
+	text-align: right;
+}
+
+.video-nav {
+	float: left;
+	clear: both;
+	margin-top: 10px;
+}
+
+.video-nav li {
+	display: inline;
+	float: left;
+	padding-left: 15px;
+}
+
+.video-nav li:first-child {
+	padding-left: 0;
+}
+
+/* Video and next to it */
+.video-wrapper {
+	float: left;
+	width: 460px;
+}
+
+.leanback-player-video {
+	float: left;
+	clear: both;
+}
+
+#video-info-wrapper {
+	min-height: 30px;
+	width: 100%;
+	float: left;
+	margin-top: 36px;
+}
+
+.video-info {
+	float: left;
+	width: 100%;
+	font-size: 12px;
+	clear: both;
+}
+
+.video-info-left {
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+
+.video-info-right {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
 #next-to-video {
 	width: 460px;
-	float: left;
-	margin: 0 60px 60px 0;
-}
-#below-protein-name {
-	float: left;
-	padding: 40px;
-	background: rgba(0, 0, 0, 0.036);
-	border-radius: 4px;
+	margin-left: 60px;
+	float: right;
 	font-size: 16px;
-	height: 218px;
 }
+
 #matrix-tabs a.active {
 	cursor: default;
 }
 
-/* player wrapper */
-.video-wrapper {
-	float: right;
-}
-
-/* player skin */
-.flowplayer { 
-	background-color: #222; 
-	background-size: cover; 
-}
-.flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
-.flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
-.flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
-.flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
-
-
 
 /* MATRIX */
-/* positioning divs */
 #matrix-key-wrapper {
 	width: 100%;
 	float: left;
+	margin-top: 60px;
 }
+
 #next-to-matrix {
 	float: right;
 	width: 160px;
@@ -321,6 +377,7 @@ span.homepage-top {
 	background: rgba(0, 0, 0, 0.036);
 	border-radius: 4px;
 }
+
 #below-matrix {
 	padding-top: 40px;
 	width: 680px;
@@ -332,9 +389,11 @@ span.homepage-top {
 	float: left;
 	width: 160px;
 }
+
 #key table {
 	width: 100%;
 }
+
 .below-key {
 	clear: both;
 	float: left;
@@ -370,13 +429,16 @@ span.homepage-top {
 	background: #cdba92;
 	font-size: 16px;
 }
+
 .axis-subtitle {
 	background: #e5dbc6;
 	font-size: 14px;
 }
+
 .timepoint {
 	font-family: "Helvetica Narrow", "Arial Narrow", sans-serif;
 }
+
 .compartment {
 	text-align: right;
 	padding-right: 10px;
@@ -386,18 +448,23 @@ span.homepage-top {
 #defines-compartment-headers-width {
 	width: 80px;
 }
+
 #defines-compartment-width {
 	width: 115px;
 }
+
 #defines-common-name-width-compartments {
 	width: 80px;
 }
+
 #defines-sequence-width-compartments {
 	width: 115px;
 }
+
 #defines-common-name-width-timepoints {
 	width: 70px;
 }
+
 #defines-sequence-width-timepoints {
 	width: 77px;
 }
@@ -406,12 +473,15 @@ span.homepage-top {
 .strength0 {
 	background: none;
 }
+
 .strength1 {
 	background: #b1b1b1;
 }
+
 .strength2 {
 	background: #8fd401;
 }
+
 .strength3{
 	background: #188801;
 }
@@ -420,30 +490,39 @@ span.homepage-top {
 .color9 {
 	background: #290000;
 }
+
 .color8 {
 	background: #530000;
 }
+
 .color7 {
 	background: #7C0000;
 }
+
 .color6 {
 	background: #A60000;
 }
+
 .color5 {
 	background: #B42A2A;
 }
+
 .color4 {
 	background: #C35555;
 }
+
 .color3 {
 	background: #D27F7F;
 }
+
 .color2 {
 	background: #E1AAAA;
 }
+
 .color1 {
 	background: #F0D4D4;
 }
+
 /* for rotating text in cells of y-axis */
 .rotate {
 	white-space: nowrap;
@@ -456,6 +535,7 @@ span.homepage-top {
 	/* Should be unset in IE9+ I think. */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
+
 .rotate-title {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 150% 250%;
@@ -464,6 +544,7 @@ span.homepage-top {
 	-o-transform-origin: 150% 250%;
 	transform-origin: 150% 250%;
 }
+
 .rotate-cyto {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 75% 110%;
@@ -472,6 +553,7 @@ span.homepage-top {
 	-o-transform-origin: 75% 110%;
 	transform-origin: 75% 110%;
 }
+
 .rotate-peri {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 70% 70%;
@@ -480,6 +562,7 @@ span.homepage-top {
 	-o-transform-origin: 70% 70%;
 	transform-origin: 70% 70%;
 }
+
 .rotate-nucl {
 	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 1 1;
