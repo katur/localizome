@@ -1,23 +1,30 @@
 {% extends "matrix_full.html" %}
 
+
 {% block prematrix %}
-	
-<!-- PROTEIN TITLE BAR -->
+	<!-- PROTEIN TITLE BAR -->
 	<div id="protein-title-bar" class="increase-line-height">
+		<!-- protein title on left -->
 		<h3>{{ protein.common_name|upper }}</h3>
+		
+		<!-- sequence and wormbase link on right -->
 		<div id="protein-subtitle">
 			{% if protein.sequence != protein.common_name %}
 				Sequence: {{ protein.sequence }}
+			{% endif %}
+
+			{% if protein.sequence != protein.common_name and protein.wormbase_id %}
 				<br>
 			{% endif %}
-			
+
 			{% if protein.wormbase_id %}
 				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
 					{{ protein.wormbase_id}}
 				</a>
 			{% endif %}
 		</div>
-	
+		
+		<!-- navigation bar for the videos -->
 		<ul class="video-nav">
 			{% for video in videos %}
 				<li>
@@ -25,7 +32,8 @@
 				</li>
 			{% endfor %}
 			
-			{% if matrices|last|first == 'merge' %} {# "merge" would be the first element in the last matrix appended to the list #}
+			{# "merge" would be the first element in the last matrix appended to the list #}
+			{% if matrices|last|first == 'merge' %} 
 				<li>
 					<a href="#" data-video-link="merge">merge (matrix only)</a>
 				</li>
@@ -33,38 +41,37 @@
 		</ul>
 	</div>
 	
-	
-	<!-- VIDEO -->
-	<div class="video-wrapper">	
-		<!-- surrounding element with class - needed!! -->
-		<div class="leanback-player-video">
-			<video width="458" height="312" preload="metadata" controls poster="images/favicon.ico">
-				<!--<source src="{{ STATIC_URL }}videos/video_name.webm" type='video/webm; codecs="vp8, vorbis"'/>-->
-				<source src="{{ STATIC_URL }}videos/nathalie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
-				<!--<source src="{{ STATIC_URL }}videos/video_name.ogv" type='video/ogg; codecs="theora, vorbis"'/>-->
-				
-				<!-- Flash-Fallback -->
-				<object class="leanback-player-flash-fallback" width="360" height="240">
-				</object>
-																			 
-				<!-- HTML-Fallback - Download Links -->
-				<div class="leanback-player-html-fallback">
-					<img src="./folder/poster.jpg" width="360" height="240" alt="Poster Image" 
-						title="No HTML5 media playback capabilities available." />
-					<div>
-						<strong>Download Video:</strong>
-						<a href="videos/nathalie.mp4">.mp4</a>,
-						<a href="videos/nathalie.webm">.webm</a>,
-						<a href="videos/nathalie.ogv">.ogv</a>
-					</div>
+	<!-- VIDEO AREA -->
+	{% for video in videos %}
+		<!-- wrapper for the entire video area including summary -->
+		<div class="video-summary-wrapper" data-matrix-info="{{ video.id}}">
+			<!-- wrapper for the video and meta data beneath the video -->
+			<div class="video-wrapper">	
+				<!-- video player itself -->
+				<div class="leanback-player-video">
+					<video width="458" height="312" preload="metadata" controls>
+						<source src="{{ STATIC_URL }}videos/nathalie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
+						<source src="{{ STATIC_URL }}videos/nathalie.ogv" type='video/ogg; codecs="theora, vorbis"'/>
+						
+						<!-- Flash-Fallback -->
+						<object class="leanback-player-flash-fallback" width="458" height="312">
+						</object>
+																					 
+						<!-- HTML-Fallback - Download Links -->
+						<div class="leanback-player-html-fallback">
+							<img src="{{ STATIC_URL }}images/ee-logo.png" width="458" height="312" alt="Poster Image" 
+								title="No HTML5 media playback capabilities available." />
+							<div>
+								<strong>Download Video:</strong>
+								<a href="{{ STATIC_URL }}videos/nathalie.mp4">.mp4</a>,
+								<a href="{{ STATIC_URL }}videos/nathalie.ogv">.ogv</a>
+							</div>
+						</div>
+					</video>
 				</div>
-			</video>
-		</div>
-		
-		<!-- Video meta data -->
-		<div id="video-info-wrapper">
-			{% for video in videos %}
-				<div class="video-info" data-matrix-info="{{ video.id }}">
+				
+				<!-- meta data beneath video -->
+				<div class="video-info">
 					<div class="video-info-left">
 						Lens: {{ video.lens }}
 						<br>
@@ -76,50 +83,45 @@
 						<a class="video-download" href={{ STATIC_URL }}videos/{{ video.filename }}>Download</a>
 					</div>
 				</div>
-			{% endfor %}
-		</div>		
-	</div>
+			</div> <!-- video-wrapper -->
 
-	<!-- Info next to video -->
-	<div id="next-to-video" class="increase-line-height-a-lot">
-		{% for video in videos %}
-			<ul data-matrix-info="{{ video.id }}">
-				<li>
-					<b>Strain:</b> {{ video.strain_name }}
-				</li>
-				{% if video.vector %}
+			<!-- info next to video, including summary -->
+			<div id="next-to-video" class="increase-line-height-a-lot">
+				<ul>
 					<li>
-						<b>Vector:</b> {{ video.vector }}</li>
+						<b>Strain:</b> {{ video.strain_name }}
 					</li>
-				{% endif %}			
+					{% if video.vector %}
+						<li>
+							<b>Vector:</b> {{ video.vector }}</li>
+						</li>
+					{% endif %}			
 
-				{% if video.truncated_summary %}
-					<li>
-						<div class="summary-collapsed">
-							<b>Summary:</b> {{ video.truncated_summary }}&hellip;
-							<a class="toggle-summary shaded-box">
-								more
-							</a>
-						</div>
-						
-						<div class="summary-expanded invisible">
+					{% if video.truncated_summary %}
+						<li>
+							<div class="summary-collapsed">
+								<b>Summary:</b> {{ video.truncated_summary }}&hellip;
+								<a class="toggle-summary shaded-box">
+									more
+								</a>
+							</div>
+							
+							<div class="summary-expanded invisible">
+								<b>Summary:</b> {{ video.summary }}
+								<a class="toggle-summary shaded-box">
+									less
+								</a>
+							</div>
+						</li>
+					{% else %}
+						<li>
 							<b>Summary:</b> {{ video.summary }}
-							<a class="toggle-summary shaded-box">
-								less
-							</a>
-						</div>
-					</li>
-				{% else %}
-					<li>
-						<b>Summary:</b> {{ video.summary }}
-					</li>
-				{% endif %}
-			</ul>
-		{% endfor %}
-	</div>
-	
-	
-	
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div> <!-- video-summary-wrapper -->		
+		{% endfor %} {# video loop #}
 {% endblock prematrix %}
 
 
@@ -135,7 +137,3 @@
 		{% endfor %}
 	</div>
 {% endblock next_to_matrix %}
-
-
-{% block below_matrix %}
-{% endblock below_matrix %}

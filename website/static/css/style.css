@@ -309,7 +309,7 @@ span.homepage-top {
 #protein-title-bar {
 	width: 100%;
 	float: left;
-	margin-bottom: 35px;
+	margin-bottom: 60px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #d1d1d1;
 }
@@ -343,6 +343,7 @@ span.homepage-top {
 .video-wrapper {
 	float: left;
 	width: 460px;
+	padding-bottom: 60px;
 }
 
 .leanback-player-video {
@@ -350,14 +351,8 @@ span.homepage-top {
 	clear: both;
 }
 
-#video-info-wrapper {
-	min-height: 30px;
-	width: 100%;
-	float: left;
-	margin-top: 36px;
-}
-
 .video-info {
+	margin-top: 36px;
 	float: left;
 	width: 100%;
 	font-size: 12px;
@@ -384,7 +379,7 @@ span.homepage-top {
 }
 
 .toggle-summary {
-	padding: 10px;
+	padding: 5px 10px;
 	font-variant: small-caps;
 	cursor: pointer;
 }
@@ -398,7 +393,6 @@ span.homepage-top {
 #matrix-key-wrapper {
 	width: 100%;
 	float: left;
-	margin-top: 60px;
 }
 
 #next-to-matrix {
