@@ -1,16 +1,51 @@
 $(document).ready(function(){
-	hoverTags();
+	toggleSummaryLength();
 	toggleMatrix();
 	selectDefaultMatrix();
 	spatiotemporalLinks();
-	toggleSummaryLength();
+	hoverTags();
 })
+
 
 toggleSummaryLength = function(){
 	$(".toggle-summary").click(function(){
 		$(this).closest("li").find(".summary-collapsed, .summary-expanded").toggleClass("invisible");
 	});
 }
+
+
+toggleMatrix = function(){
+	$("[data-video-link]").click(function(e){
+		e.preventDefault(); // keeps page stationary after click
+		
+		$("a").removeClass("active"); // unset previous active link
+		$(this).addClass("active"); // make this link active
+		
+		videoId = $(this).attr("data-video-link"); // get the video id
+		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
+		
+		$("[data-matrix]").addClass("invisible"); // hide matrices
+		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
+		$("[data-matrix-summary]").addClass("invisible"); // hide matrix info
+		
+		$("[data-matrix='" + videoId + "']").removeClass("invisible");
+		
+		if (videoId == 'merge') {
+			$("[data-matrix-summary='" + repVideoId + "']").removeClass("invisible");	
+		} else {
+			$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
+			$("[data-matrix-summary='" + videoId + "']").removeClass("invisible");
+		}
+	});
+}
+
+
+selectDefaultMatrix = function(){
+	$("[data-video-link]").first().trigger("click"); // first trigger the first link (can remove this once all videos have a rep)
+	repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
+	$("[data-video-link='" + repVideoId + "']").trigger("click"); // second trigger the rep video (default if no merge)
+}
+
 
 spatiotemporalLinks = function(){
 	// run the contents of this function whenever you click a td
@@ -43,39 +78,6 @@ spatiotemporalLinks = function(){
 		columnId = $(this).data("id");
 		link = "spatiotemporal/timepoint" + columnId;
 		window.location = link;
-	});
-}
-
-
-selectDefaultMatrix = function(){
-	$("[data-matrix-link]").first().trigger("click"); // first trigger the first link (can remove this once all videos have a rep)
-	repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
-	$("[data-matrix-link='" + repVideoId + "']").trigger("click"); // second trigger the rep video (default if no merge)
-}
-
-
-toggleMatrix = function(){
-	$("[data-matrix-link]").click(function(e){
-		e.preventDefault(); // keeps page stationary after click
-		
-		$("a").removeClass("active"); // unset previous active link
-		$(this).addClass("active"); // make this link active
-		
-		videoId = $(this).attr("data-matrix-link"); // get the video id
-		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
-		
-		$("[data-matrix]").addClass("invisible"); // hide matrices
-		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
-		$("[data-matrix-summary]").addClass("invisible"); // hide matrix info
-		
-		$("[data-matrix='" + videoId + "']").removeClass("invisible");
-		
-		if (videoId == 'merge') {
-			$("[data-matrix-summary='" + repVideoId + "']").removeClass("invisible");	
-		} else {
-			$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
-			$("[data-matrix-summary='" + videoId + "']").removeClass("invisible");
-		}
 	});
 }
 

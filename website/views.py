@@ -51,8 +51,10 @@ def protein_detail(request, common_name):
 	
 	# add each video matrix to matrices
 	for video in v:
-		# first add truncated summary to each video
-		video.truncated_summary = video.summary[:500]
+		# if summary length is longer than can fit nicely on page
+		if len(video.summary) > 500:
+			# add truncated summary to each video
+			video.truncated_summary = video.summary[:500]
 
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all 440 signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]

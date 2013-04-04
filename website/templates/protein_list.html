@@ -10,8 +10,8 @@
 	<div id="below-header">
 		All proteins analyzed in this project.
 	</div>
-	<div class="shaded-box">
-		<table class="protein-list">
+	<div class="shaded-box protein-list">
+		<table class="protein-list-column">
 			<tr>
 				<th>Common</th><th>Canonical</th>
 			</tr>
@@ -23,13 +23,13 @@
 		
 			{% if forloop.counter|divisibleby:"84" %}
 				</table>
-				<table class="protein-list no-right-margin">
+				<table class="protein-list-column no-right-margin">
 					<tr>
 						<th>Common</th><th>Canonical</th>
 					</tr>
 			{% elif forloop.counter|divisibleby:"21" %}
 				</table>
-				<table class="protein-list">
+				<table class="protein-list-column">
 					<tr>
 						<th>Common</th><th>Canonical</th>
 					</tr>

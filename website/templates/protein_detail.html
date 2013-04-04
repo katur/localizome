@@ -21,13 +21,13 @@
 		<ul class="video-nav">
 			{% for video in videos %}
 				<li>
-					<a href="#" data-matrix-link="{{ video.id }}">movie {{ video.movie_number }}</a>	
+					<a href="#" data-video-link="{{ video.id }}">movie {{ video.movie_number }}</a>	
 				</li>
 			{% endfor %}
 			
 			{% if matrices|last|first == 'merge' %} {# "merge" would be the first element in the last matrix appended to the list #}
 				<li>
-					<a href="#" data-matrix-link="merge">merge (matrix only)</a>
+					<a href="#" data-video-link="merge">merge (matrix only)</a>
 				</li>
 			{% endif %}	
 		</ul>
@@ -85,27 +85,35 @@
 		{% for video in videos %}
 			<ul data-matrix-info="{{ video.id }}">
 				<li>
-					Strain: {{ video.strain_name }}
+					<b>Strain:</b> {{ video.strain_name }}
 				</li>
 				{% if video.vector %}
-					<li>Vector: {{ video.vector }}</li>
+					<li>
+						<b>Vector:</b> {{ video.vector }}</li>
+					</li>
 				{% endif %}			
-				<li>
-					<h4>Summary</h4>
-					<div class="summary-collapsed">
-						{{ video.truncated_summary }}&hellip;
-						<span class="toggle-summary">
-							more
-						</span>
-					</div>
-					
-					<div class="summary-expanded invisible">
-						{{ video.summary }}
-						<span class="toggle-summary">
-							less
-						</span>
-					</div>
-				</li>
+
+				{% if video.truncated_summary %}
+					<li>
+						<div class="summary-collapsed">
+							<b>Summary:</b> {{ video.truncated_summary }}&hellip;
+							<a class="toggle-summary shaded-box">
+								more
+							</a>
+						</div>
+						
+						<div class="summary-expanded invisible">
+							<b>Summary:</b> {{ video.summary }}
+							<a class="toggle-summary shaded-box">
+								less
+							</a>
+						</div>
+					</li>
+				{% else %}
+					<li>
+						<b>Summary:</b> {{ video.summary }}
+					</li>
+				{% endif %}
 			</ul>
 		{% endfor %}
 	</div>
@@ -116,7 +124,7 @@
 
 
 {% block next_to_matrix %}
-	<div id="next-to-matrix">
+	<div id="next-to-matrix" class="shaded-box">
 		{% include "matrix_key_normal.html" %}
 
 		{% for video in videos %}

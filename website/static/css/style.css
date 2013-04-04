@@ -3,6 +3,7 @@ and parent needs to expand to the children's size. */
 .clearfix {
   zoom: 1;
 }
+
 .clearfix:after {
   content: ".";
   display: block;
@@ -11,12 +12,16 @@ and parent needs to expand to the children's size. */
   visibility: hidden;
 }
 
-
 /* make an element invisible */
 .invisible {
 	display: none;
 }
 
+/* shaded box, used on protein page and protein list page */
+.shaded-box {
+	background: rgba(0, 0, 0, 0.036);
+	border-radius: 4px;
+}
 
 /* PRIMARY FONT */
 body {
@@ -53,13 +58,13 @@ body {
 }
 
 
+
 /* HEADERS */
-h1, h2, h3, h4 {
+h1, h2, h3 {
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
 	line-height: 80%;
-	clear: none;
 }
 
 h1 {
@@ -71,31 +76,21 @@ h2, h3 {
 	padding-bottom: 20px;
 }
 
+/* used on spatiotemporal pages, network page, protein list */
+#below-header {
+	margin-bottom: 40px;
+}
+
 h2 {	
 	clear: both;
 }
 
-h3 {
-	clear: none;
-}
-
-h4 {
-	font-weight: bold;
-	font-size: 20px;
-	padding-bottom: 10px;
-}
-
 .header-emphasis {
-	/*text-decoration: underline;*/
 	font-weight: bold;
 	font-variant: small-caps;
 	text-transform: capitalize;
 }
 
-/* used on spatiotemporal pages, network page, protein list */
-#below-header {
-	margin-bottom: 40px;
-}
 
 
 /* LINKS */
@@ -103,12 +98,15 @@ a {
 	text-decoration: none;
 	color: #A60000;
 }
+
 a:hover, a.active {
 	color: #FF7373;
 }
+
 .no-cursor {
 	cursor: default;
 }
+
 
 
 /* LISTS */
@@ -119,6 +117,7 @@ ul {
 }
 	
 
+
 /* TABLES */
 table {
 	background: white;
@@ -127,6 +126,7 @@ table {
 	font-size: 12px;
 	cursor: default;
 }
+
 td, th {
 	border-bottom: 1px solid gray;
 	border-right: 1px solid gray;
@@ -135,24 +135,31 @@ td, th {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
 th {
 	font-weight: normal;
 }
+
 .top-row {
 	border-top: 1px solid gray;
 }
+
 .left-column {
 	border-left: 1px solid gray;
 }
+
 .no-bottom-border {
 	border-bottom: none;
 }
+
 .no-right-border {
 	border-right: none;
 }
+
 .no-background {
 	background: #f8f8f4;
 }
+
 
 
 /* PAGE LAYOUT */
@@ -160,12 +167,14 @@ html, body {
 	min-width: 100%;
 	margin: 0;
 }
+
 #wrap_header, div#wrap_content, div#wrap_footer {
 	width: 100%;
 	clear: both;
 	float: left;
 	min-width: 1000px;
 }
+
 #wrap_header {
 	background: white;
 	padding: 18px 0 13px 0; /* more on top due to 2px underline with 3px padding */
@@ -175,17 +184,21 @@ html, body {
 	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
+
 #wrap_content {
 	background: #f8f8f4;
 	padding: 50px 0 200px 0;
 }
+
 #wrap_footer {
 	background: black;
 }
+
 #header, #content, #footer {
 	width: 980px;
 	margin: 0 auto;
 }
+
 
 
 /* HEADER */
@@ -202,6 +215,7 @@ html, body {
 	float: left;
 	margin-top: 13px; /* should be 18, but ~5px lost due to long y tails*/
 }
+
 #menu a {
 	color: #A60000;
 	font-size: 20px;
@@ -210,12 +224,15 @@ html, body {
 	float: left;
 	border-bottom: 2px solid white; /* for spacing when none active */
 }
+
 #menu a.active, #menu a:hover {
 	border-bottom: 2px solid #A60000;
 }
+
 #menu a.active:hover {
 	cursor: default;
 }
+
 
 
 /* FOOTER */
@@ -226,39 +243,44 @@ html, body {
 }
 
 
-/* Specific to HOMEPAGE */
+/* HOMEPAGE */
 #blurb {
 	width: 100%;
 }
+
 .homepage-column {
 	width: 50%;
 	float: left;
 	padding-top: 30px;
 }
+
 span.homepage {
 	float: left;
 	clear: both;
 	padding-top: 20px;
 }
+
 span.homepage-top {
 	padding-top: 0;
 }
 
 
-/* Specific to NETWORK PAGE */
+
+/* NETWORK PAGE */
 #network {
 	width: 100%;
 }
 
-/* Specific to PROTEIN LIST */
-.shaded-box {
-	padding: 40px;
+
+
+/* PROTEIN LIST */
+.protein-list {
 	width: 900px;
-	background: rgba(0, 0, 0, 0.036);
-	border-radius: 4px;
+	padding: 40px;
 	float: left;
 }
-.protein-list {
+
+.protein-list-column {
 	float: left;
 	background: none;
 	font-size: 14px;
@@ -266,16 +288,20 @@ span.homepage-top {
 	min-width: 148px;
 	margin-right: 40px;
 }
+
 .no-right-margin {
 	margin-right: 0px;
 }
-.protein-list td, .protein-list th {
+
+.protein-list-column td, .protein-list-column th {
 	border: none;
 }
-.protein-list th {
+
+.protein-list-column th {
 	font-weight: bold;
 	text-align: left;
 }
+
 
 
 /* Specific to PROTEIN PAGE */
@@ -357,7 +383,10 @@ span.homepage-top {
 	font-size: 16px;
 }
 
-.summary-collapsed {
+.toggle-summary {
+	padding: 10px;
+	font-variant: small-caps;
+	cursor: pointer;
 }
 
 #matrix-tabs a.active {
@@ -375,10 +404,8 @@ span.homepage-top {
 #next-to-matrix {
 	float: right;
 	width: 160px;
-	font-size: 16px;
 	padding: 40px;
-	background: rgba(0, 0, 0, 0.036);
-	border-radius: 4px;
+	font-size: 16px;
 }
 
 #below-matrix {
