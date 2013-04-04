@@ -81,7 +81,7 @@ h3 {
 
 h4 {
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 20px;
 	padding-bottom: 10px;
 }
 
@@ -355,6 +355,9 @@ span.homepage-top {
 	margin-left: 60px;
 	float: right;
 	font-size: 16px;
+}
+
+.summary-collapsed {
 }
 
 #matrix-tabs a.active {

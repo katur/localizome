@@ -3,7 +3,14 @@ $(document).ready(function(){
 	toggleMatrix();
 	selectDefaultMatrix();
 	spatiotemporalLinks();
+	toggleSummaryLength();
 })
+
+toggleSummaryLength = function(){
+	$(".toggle-summary").click(function(){
+		$(this).closest("li").find(".summary-collapsed, .summary-expanded").toggleClass("invisible");
+	});
+}
 
 spatiotemporalLinks = function(){
 	// run the contents of this function whenever you click a td

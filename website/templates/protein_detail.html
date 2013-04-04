@@ -92,7 +92,19 @@
 				{% endif %}			
 				<li>
 					<h4>Summary</h4>
-					{{ video.summary }}
+					<div class="summary-collapsed">
+						{{ video.truncated_summary }}&hellip;
+						<span class="toggle-summary">
+							more
+						</span>
+					</div>
+					
+					<div class="summary-expanded invisible">
+						{{ video.summary }}
+						<span class="toggle-summary">
+							less
+						</span>
+					</div>
 				</li>
 			</ul>
 		{% endfor %}
