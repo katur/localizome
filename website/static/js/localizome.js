@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	toggleSummaryLength();
-	toggleMatrix();
-	selectDefaultMatrix();
+	toggleVideo();
+	selectDefaultVideo();
 	spatiotemporalLinks();
 	hoverTags();
 })
@@ -14,36 +14,24 @@ toggleSummaryLength = function(){
 }
 
 
-toggleMatrix = function(){
+toggleVideo = function(){
 	$("[data-video-link]").click(function(e){
 		e.preventDefault(); // keeps page stationary after click
-		
 		$("a").removeClass("active"); // unset previous active link
-		$(this).addClass("active"); // make this link active
+		$(this).addClass("active"); // set clicked link active
 		
-		videoId = $(this).attr("data-video-link"); // get the video id
-		repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
+		videoId = $(this).attr("data-video-link"); // get video id for clicked link
 		
-		$("[data-matrix]").addClass("invisible"); // hide matrices
-		$("[data-matrix-info]").addClass("invisible"); // hide matrix info
-		$("[data-matrix-summary]").addClass("invisible"); // hide matrix info
-		
-		$("[data-matrix='" + videoId + "']").removeClass("invisible");
-		
-		if (videoId == 'merge') {
-			$("[data-matrix-summary='" + repVideoId + "']").removeClass("invisible");	
-		} else {
-			$("[data-matrix-info='" + videoId + "']").removeClass("invisible");
-			$("[data-matrix-summary='" + videoId + "']").removeClass("invisible");
-		}
+		$("[data-video-content]").addClass("invisible"); // hide all videos, matrices, summaries
+		$("[data-video-content='" + videoId + "']").removeClass("invisible"); // make this one visible
 	});
 }
 
 
-selectDefaultMatrix = function(){
-	$("[data-video-link]").first().trigger("click"); // first trigger the first link (can remove this once all videos have a rep)
-	repVideoId = $("[data-matrix-summary-rep]").attr("data-matrix-summary-rep"); // get rep video
-	$("[data-video-link='" + repVideoId + "']").trigger("click"); // second trigger the rep video (default if no merge)
+selectDefaultVideo = function(){
+	$("[data-video-link]").first().trigger("click"); // trigger the first link (in case no rep)
+	repVideoId = $("[data-video-representative]").attr("data-video-link"); // get rep video
+	$("[data-video-link='" + repVideoId + "']").trigger("click"); // trigger the rep video
 }
 
 

@@ -28,7 +28,13 @@
 		<ul class="video-nav">
 			{% for video in videos %}
 				<li>
-					<a href="#" data-video-link="{{ video.id }}">movie {{ video.movie_number }}</a>	
+					<a href="#" data-video-link="{{ video.id }}"
+						{% if video = representative_video %}
+							data-video-representative="true"
+						{% endif %}
+					>
+						movie {{ video.movie_number }}
+					</a>	
 				</li>
 			{% endfor %}
 			
@@ -44,7 +50,7 @@
 	<!-- VIDEO AREA -->
 	{% for video in videos %}
 		<!-- wrapper for the entire video area including summary -->
-		<div class="video-summary-wrapper" data-matrix-info="{{ video.id}}">
+		<div class="video-summary-wrapper" data-video-content="{{ video.id}}">
 			<!-- wrapper for the video and meta data beneath the video -->
 			<div class="video-wrapper">	
 				<!-- video player itself -->
@@ -60,7 +66,7 @@
 						<!-- HTML-Fallback - Download Links -->
 						<div class="leanback-player-html-fallback">
 							<img src="{{ STATIC_URL }}images/ee-logo.png" width="458" height="312" alt="Poster Image" 
-								title="No HTML5 media playback capabilities available." />
+								title="No HTML5 media playback capabilities available.">
 							<div>
 								<strong>Download Video:</strong>
 								<a href="{{ STATIC_URL }}videos/nathalie.mp4">.mp4</a>,
@@ -130,7 +136,7 @@
 		{% include "matrix_key_normal.html" %}
 
 		{% for video in videos %}
-			<ul class="below-key full-width increase-line-height-a-lot" data-matrix-info="{{ video.id }}">
+			<ul class="below-key full-width increase-line-height-a-lot" data-video-content="{{ video.id }}">
 				<li>Scored {{ video.date_scored }}</li>
 				<li>Excel sheet: {{ video.excel_id }}</li>	
 			</ul>			

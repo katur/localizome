@@ -39,7 +39,6 @@ def protein_detail(request, common_name):
 	
 	# get protein's videos and rep video
 	v = Video.objects.filter(protein_id=p.id)
-	
 	rep_v = p.representative_video
 
 	# get all compartments and timepoints
@@ -52,7 +51,7 @@ def protein_detail(request, common_name):
 	# add each video matrix to matrices
 	for video in v:
 		# if summary length is longer than can fit nicely on page
-		if len(video.summary) > 500:
+		if len(video.summary) > 700:
 			# add truncated summary to each video
 			video.truncated_summary = video.summary[:500]
 
