@@ -10,10 +10,10 @@
 			{% for protein_signals in proteins_signals %}
 				<tr>
 					{% with protein_signals.list.0.protein as protein %}
-						<td class="left-column common_name" colspan="2">
+						<td class="left-column" colspan="2">
 							<a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a>
 						</td>
-						<td class="sequence">{{ protein.sequence }}</td>
+						<td>{{ protein.sequence }}</td>
 					{% endwith %}
 					
 					{% for signal in protein_signals.list %}

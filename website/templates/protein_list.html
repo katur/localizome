@@ -16,25 +16,19 @@
 				<th>Common</th><th>Canonical</th>
 			</tr>
 			{% for protein in proteins %}
-			<tr>
-				<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
-				<td>{{ protein.sequence }}</td>
-			</tr>
-		
-			{% if forloop.counter|divisibleby:"84" %}
-				</table>
-				<table class="protein-list-column no-right-margin">
-					<tr>
-						<th>Common</th><th>Canonical</th>
-					</tr>
-			{% elif forloop.counter|divisibleby:"21" %}
-				</table>
-				<table class="protein-list-column">
-					<tr>
-						<th>Common</th><th>Canonical</th>
-					</tr>
-			{% endif %}
-		
+				<tr>
+					<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
+					<td>{{ protein.sequence }}</td>
+				</tr>
+			
+				{% if forloop.counter|divisibleby:"21" %}
+					</table>
+					<table class="protein-list-column">
+						<tr>
+							<th>Common</th><th>Canonical</th>
+						</tr>
+				{% endif %}
+			
 			{% empty %}
 				Sorry, no proteins in the list.
 			{% endfor %}

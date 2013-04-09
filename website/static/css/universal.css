@@ -1,0 +1,158 @@
+/* add to parent elements when their children are floating
+and parent needs to expand to the children's size. */
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.invisible {
+	display: none;
+}
+
+/* used on protein page and protein list page */
+.shaded-box {
+	background: rgba(0, 0, 0, 0.036);
+	border-radius: 4px;
+}
+
+/* fonts */
+body {
+	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+	font-size: 18px;
+}
+
+h1, h2, h3 {
+	font-family: perpetua, palatino, serif;
+	font-weight: normal;
+	margin: 0px;
+	line-height: 80%;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h2, h3 {
+	font-size: 30px;
+	padding-bottom: 20px;
+}
+
+.increase-line-height {
+	line-height: 170%;
+}
+
+
+/* links */
+a {
+	text-decoration: none;
+	color: #A60000;
+}
+
+a:hover, a.active {
+	color: #FF7373;
+}
+
+.no-cursor {
+	cursor: default;
+}
+
+
+/* lists */
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* tables */
+table {
+	background: white;
+	border-spacing: 0;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 12px;
+	cursor: default;
+}
+
+td, th {
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	height: 21px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+th {
+	font-weight: normal;
+}
+
+.top-row {
+	border-top: 1px solid gray;
+}
+
+.left-column {
+	border-left: 1px solid gray;
+}
+
+.no-bottom-border {
+	border-bottom: none;
+}
+
+.no-right-border {
+	border-right: none;
+}
+
+.no-background {
+	background: #f8f8f4;
+}
+
+
+/* page layout */
+html, body {
+	min-width: 100%;
+	margin: 0;
+}
+
+#wrap_header, div#wrap_content, div#wrap_footer {
+	width: 100%;
+	clear: both;
+	float: left;
+	min-width: 1000px;
+}
+
+#wrap_header {
+	background: white;
+	padding: 18px 0 13px 0; /* more on top due to 2px underline with 3px padding */
+	position: relative; /* to accept z-index */
+	z-index: 1;
+	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* used on spatiotemporal pages, network page, protein list */
+#below-header {
+	margin-bottom: 40px;
+}
+
+#wrap_content {
+	background: #f8f8f4;
+	padding: 50px 0 200px 0;
+}
+
+#wrap_footer {
+	background: black;
+}
+
+#header, #content, #footer {
+	width: 980px;
+	margin: 0 auto;
+}

@@ -1,0 +1,16 @@
+/* styles for home page */
+#blurb {
+	width: 100%;
+}
+
+.homepage-column {
+	width: 50%;
+	float: left;
+	padding-top: 30px;
+}
+
+.homepage-column span {
+	float: left;
+	clear: both;
+	padding-bottom: 20px;
+}

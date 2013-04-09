@@ -1,0 +1,78 @@
+/* styles for protein detail page (note for matrix styles, see matrix.css */
+#protein-title-bar {
+	width: 100%;
+	float: left;
+	margin-bottom: 60px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d1d1d1;
+	line-height: 130%;
+}
+
+#protein-title-bar h3 {
+	float: left;
+}
+
+#protein-subtitle {
+	float: right;
+	text-align: right;
+}
+
+.video-nav {
+	float: left;
+	clear: both;
+	margin-top: 10px;
+}
+
+.video-nav li {
+	display: inline;
+	float: left;
+	padding-left: 20px;
+}
+
+.video-nav li:first-child {
+	padding-left: 0;
+}
+
+.video-wrapper {
+	float: left;
+	width: 460px;
+	padding-bottom: 60px;
+}
+
+.leanback-player-video {
+	float: left;
+	clear: both;
+}
+
+.video-info {
+	margin-top: 36px;
+	float: left;
+	width: 100%;
+	font-size: 12px;
+	clear: both;
+}
+
+.video-info-left {
+	width: 50%;
+	float: left;
+	text-align: left;
+}
+
+.video-info-right {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+#next-to-video {
+	width: 460px;
+	margin-left: 60px;
+	float: right;
+	font-size: 16px;
+}
+
+.toggle-summary {
+	padding: 5px 10px;
+	font-variant: small-caps;
+	cursor: pointer;
+}

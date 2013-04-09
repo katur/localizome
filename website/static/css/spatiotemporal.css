@@ -1,0 +1,54 @@
+/* styles for spatiotemporal page (note for matrix styles, see matrix.css) */
+#spatiotemporal td, #spatiotemporal th.timepoint, #spatiotemporal th.compartment {
+	cursor: pointer;
+}
+
+#spatiotemporal-both {
+	width: 200px;
+	float: left;
+	table-layout: fixed;
+}
+
+.header-emphasis {
+	font-weight: bold;
+	font-variant: small-caps;
+	text-transform: capitalize;
+}
+
+/* spatiotemporal gradient */
+.color9 {
+	background: #290000;
+}
+
+.color8 {
+	background: #530000;
+}
+
+.color7 {
+	background: #7C0000;
+}
+
+.color6 {
+	background: #A60000;
+}
+
+.color5 {
+	background: #B42A2A;
+}
+
+.color4 {
+	background: #C35555;
+}
+
+.color3 {
+	background: #D27F7F;
+}
+
+.color2 {
+	background: #E1AAAA;
+}
+
+.color1 {
+	background: #F0D4D4;
+}
+

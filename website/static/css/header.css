@@ -1,0 +1,31 @@
+/* styles for header */
+#header img {
+	float: left;
+	height: 68px;
+	width: 100px;
+	margin-right: 20px;
+	position: relative;
+	bottom: 2px;
+}
+
+#menu {
+	float: left;
+	margin-top: 13px; /* should be 18, but ~5px lost due to long y tails*/
+}
+
+#menu a {
+	color: #A60000;
+	font-size: 20px;
+	margin-right: 36px;
+	padding-bottom: 3px;
+	float: left;
+	border-bottom: 2px solid white; /* for spacing when none active */
+}
+
+#menu a.active, #menu a:hover {
+	border-bottom: 2px solid #A60000;
+}
+
+#menu a.active:hover {
+	cursor: default;
+}

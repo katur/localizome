@@ -3,7 +3,7 @@
 
 {% block prematrix %}
 	<!-- PROTEIN TITLE BAR -->
-	<div id="protein-title-bar" class="increase-line-height">
+	<div id="protein-title-bar">
 		<!-- protein title on left -->
 		<h3>{{ protein.common_name|upper }}</h3>
 		
@@ -86,13 +86,13 @@
 					<div class="video-info-right">
 						Filmed {{ video.date_filmed }}
 						<br>
-						<a class="video-download" href={{ STATIC_URL }}videos/{{ video.filename }}>Download</a>
+						<a href={{ STATIC_URL }}videos/{{ video.filename }}>Download</a>
 					</div>
 				</div>
 			</div> <!-- video-wrapper -->
 
 			<!-- info next to video, including summary -->
-			<div id="next-to-video" class="increase-line-height-a-lot">
+			<div id="next-to-video" class="increase-line-height">
 				<ul>
 					<li>
 						<b>Strain:</b> {{ video.strain_name }}
@@ -136,7 +136,7 @@
 		{% include "matrix_key_normal.html" %}
 
 		{% for video in videos %}
-			<ul class="below-key increase-line-height-a-lot" data-video-content="{{ video.id }}">
+			<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
 				<li>Scored {{ video.date_scored }}</li>
 				<li>Excel sheet: {{ video.excel_id }}</li>	
 			</ul>			

@@ -1,0 +1,28 @@
+/* styles for protein list page */
+.protein-list {
+	width: 900px;
+	padding: 40px;
+	float: left;
+}
+
+.protein-list-column {
+	float: left;
+	background: none;
+	font-size: 14px;
+	width: 148px;
+	min-width: 148px;
+	margin-left: 40px;
+}
+
+.protein-list table:first-child {
+	margin-left: 0px;
+}
+
+.protein-list-column td, .protein-list-column th {
+	border: none;
+}
+
+.protein-list-column th {
+	font-weight: bold;
+	text-align: left;
+}
