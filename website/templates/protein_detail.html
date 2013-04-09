@@ -10,7 +10,7 @@
 		<!-- sequence and wormbase link on right -->
 		<div id="protein-subtitle">
 			{% if protein.sequence != protein.common_name %}
-				Sequence: {{ protein.sequence }}
+				Cosmid: {{ protein.sequence }}
 			{% endif %}
 
 			{% if protein.sequence != protein.common_name and protein.wormbase_id %}
