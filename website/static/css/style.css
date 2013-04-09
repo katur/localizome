@@ -23,43 +23,12 @@ and parent needs to expand to the children's size. */
 	border-radius: 4px;
 }
 
-/* PRIMARY FONT */
+/* Fonts */
 body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 	font-size: 18px;
 }
 
-.increase-line-height {
-	line-height: 130%;
-}
-
-.increase-line-height-a-lot {
-	line-height: 170%;
-}
-
-.full-span {
-	width: 100%;
-	float: left;
-}
-
-.half-span-left {
-	width: 50%;
-	float: left;
-}
-
-.half-span-right {
-	width: 50%;
-	float: right;
-}
-
-.fifth-span {
-	width: 20%;
-	float: left;
-}
-
-
-
-/* HEADERS */
 h1, h2, h3 {
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
@@ -76,19 +45,18 @@ h2, h3 {
 	padding-bottom: 20px;
 }
 
-/* used on spatiotemporal pages, network page, protein list */
-#below-header {
-	margin-bottom: 40px;
-}
-
-h2 {	
-	clear: both;
-}
-
 .header-emphasis {
 	font-weight: bold;
 	font-variant: small-caps;
 	text-transform: capitalize;
+}
+
+.increase-line-height {
+	line-height: 130%;
+}
+
+.increase-line-height-a-lot {
+	line-height: 170%;
 }
 
 
@@ -183,6 +151,11 @@ html, body {
 	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* used on spatiotemporal pages, network page, protein list */
+#below-header {
+	margin-bottom: 40px;
 }
 
 #wrap_content {
@@ -305,7 +278,6 @@ span.homepage-top {
 
 
 /* Specific to PROTEIN PAGE */
-/* Protein title bar */
 #protein-title-bar {
 	width: 100%;
 	float: left;
@@ -339,7 +311,6 @@ span.homepage-top {
 	padding-left: 0;
 }
 
-/* Video and next to it */
 .video-wrapper {
 	float: left;
 	width: 460px;
@@ -408,7 +379,6 @@ span.homepage-top {
 	float: left;
 }
 
-/* the key */
 #key {
 	float: left;
 	width: 160px;
@@ -424,7 +394,6 @@ span.homepage-top {
 	margin-top: 40px;
 }
 
-/* the matrix itself */
 .matrix {
 	width: 680px;
 	table-layout: fixed;
@@ -435,8 +404,6 @@ span.homepage-top {
 	cursor: pointer;
 }
 
-
-/* The "both" spatiotemporal results page */
 #spatiotemporal-both {
 	width: 200px;
 	float: left;
@@ -447,8 +414,6 @@ span.homepage-top {
 	width: 22px;
 }
 
-
-/* titles, subtitles, subsubtitles */
 .axis-title {
 	background: #cdba92;
 	font-size: 16px;
@@ -468,7 +433,6 @@ span.homepage-top {
 	padding-right: 10px;
 }
 
-/* define the width of the row headers */
 #defines-compartment-headers-width {
 	width: 80px;
 }
@@ -493,7 +457,7 @@ span.homepage-top {
 	width: 77px;
 }
 
-/* the four colors for protein signal strength */
+/* protein signal strength */
 .strength0 {
 	background: none;
 }
@@ -510,7 +474,7 @@ span.homepage-top {
 	background: #188801;
 }
 
-/* red colors for spatiotemporal gradient */
+/* spatiotemporal gradient */
 .color9 {
 	background: #290000;
 }
@@ -547,7 +511,7 @@ span.homepage-top {
 	background: #F0D4D4;
 }
 
-/* for rotating text in cells of y-axis */
+/* for rotating text in y-axis cells */
 .rotate {
 	white-space: nowrap;
 	-webkit-transform: rotate(-90deg);
@@ -570,7 +534,6 @@ span.homepage-top {
 }
 
 .rotate-cyto {
-	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 75% 110%;
 	-moz-transform-origin: 75% 110%;
 	-ms-transform-origin: 75% 110%;
@@ -579,7 +542,6 @@ span.homepage-top {
 }
 
 .rotate-peri {
-	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 70% 70%;
 	-moz-transform-origin: 70% 70%;
 	-ms-transform-origin: 70% 70%;
@@ -588,7 +550,6 @@ span.homepage-top {
 }
 
 .rotate-nucl {
-	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
 	-webkit-transform-origin: 1 1;
 	-moz-transform-origin: 1 1;
 	-ms-transform-origin: 1 1;
