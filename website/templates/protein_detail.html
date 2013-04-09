@@ -29,7 +29,7 @@
 			{% for video in videos %}
 				<li>
 					<a href="#" data-video-link="{{ video.id }}"
-						{% if video = representative_video %}
+						{% if video = protein.representative_video %}
 							data-video-representative="true"
 						{% endif %}
 					>

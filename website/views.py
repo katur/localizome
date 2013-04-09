@@ -34,12 +34,9 @@ def protein_detail(request, common_name):
 	"""
 	Page for each protein, with protein's videos, matrices, and other information
 	"""
-	# get protein from common name
+	# get protein from common name, its videos
 	p = get_object_or_404(Protein, common_name=common_name)
-	
-	# get protein's videos and rep video
 	v = Video.objects.filter(protein_id=p.id)
-	rep_v = p.representative_video
 
 	# get all compartments and timepoints
 	c = Compartment.objects.all()
@@ -48,14 +45,13 @@ def protein_detail(request, common_name):
 
 	matrices = [] # list of matrices. Each element: [video.id or "merge"][corresponding matrix]
 	
-	# add each video matrix to matrices
 	for video in v:
-		# if summary length is longer than can fit nicely on page
+		# if summary length is longer than can fit on page
 		if len(video.summary) > 700:
-			# add truncated summary to each video
-			video.truncated_summary = video.summary[:500]
-
-		signals = SignalRaw.objects.filter(video_id=video.id) # get all 440 signals as one list
+			# add truncated summary to video
+			video.truncated_summary = video.summary[:600]
+		
+		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row
 		for compartment in c: # for each row
@@ -66,7 +62,7 @@ def protein_detail(request, common_name):
 	# add the merge matrix to matrices
 	matrix = [] # refresh matrix
 	i = 0 # refresh index
-	signals = SignalMerged.objects.filter(protein_id=p.id) # get all 440 signals as one list
+	signals = SignalMerged.objects.filter(protein_id=p.id) # get all signals as one list
 	if signals:
 		for compartment in c: # for each row
 			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
@@ -77,7 +73,6 @@ def protein_detail(request, common_name):
 	return render_to_response('protein_detail.html', {
 		'protein':p, 
 		'videos':v,
-		'representative_video':rep_v,
 		'timepoints':t,
 		'matrices':matrices,
 	}, context_instance=RequestContext(request))
