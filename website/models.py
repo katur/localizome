@@ -70,9 +70,9 @@ class Compartment(models.Model):
 		(NUCLEAR_SUPERCOMPARTMENT, 'Nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	name = models.CharField(max_length=60, unique=True) # compartment names unique
-	short_name = models.CharField(max_length=20)
-	extra_short_name = models.CharField(max_length=5)
+	name = models.CharField(max_length=60, unique=True)
+	short_name = models.CharField(max_length=20, blank=True) # blank indicates to hide this compartment
+	extra_short_name = models.CharField(max_length=5, blank=True) # blank indicates to hide this compartment
 	miyeko_excel_name = models.CharField(max_length=60, unique=True) # can remove this field eventually
 	display_order = models.PositiveSmallIntegerField(unique=True) # might remove this field eventually
 	class Meta:

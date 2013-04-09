@@ -15,61 +15,63 @@
 		{% include "matrix_xaxis_timepoints.html" %}	
 		
 		{% for compartment, signals in matrix %}
+			{% if compartment.short_name %}
 				<tr>
-					{% ifequal forloop.counter 1 %}
-						<th class="axis-title left-column" rowspan="22">
-							<div class="rotate rotate-title">Sub-Cellular Compartment</div>
-						</th>
-						<th class="axis-subtitle" rowspan="4">
-							<div class="rotate rotate-peri">Periphery/<br>Membrane</div>
-						</th>
-					{% endifequal %}
-						
-					{% ifequal forloop.counter 5 %}
-						<th class="axis-subtitle" rowspan="13">
-							<div class="rotate rotate-cyto">Cytoplasmic</div>
-						</th>
-					{% endifequal %}
-						
-					{% ifequal forloop.counter 18 %}
-						<th class="axis-subtitle" rowspan="5">
-							<div class="rotate rotate-nucl">Nuclear</div>
-						</th>
-					{% endifequal %}
-					
-					<th class="compartment" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
-						{{ compartment.short_name }}
-					</th>
+						{% ifequal forloop.counter 1 %}
+							<th class="axis-title left-column" rowspan="22">
+								<div class="rotate rotate-title">Sub-Cellular Compartment</div>
+							</th>
+							<th class="axis-subtitle" rowspan="4">
+								<div class="rotate rotate-peri">Periphery/<br>Membrane</div>
+							</th>
+						{% endifequal %}
 							
-					{% for signal in signals %}
-						<td 
-							{% ifequal video_id "spatiotemporal" %}
-								{% if signal >= 1 and signal <= 5 %}
-									class="color1"
-								{% elif signal >= 6 and signal <= 10 %}
-									class="color2"
-								{% elif signal >= 11 and signal <= 15 %}
-									class="color3"
-								{% elif signal >= 16 and signal <= 20 %}
-									class="color4"
-								{% elif signal >= 21 and signal <= 30 %}
-									class="color5"
-								{% elif signal >= 31 and signal <= 40 %}
-									class="color6"
-								{% elif signal >= 41 and signal <= 50 %}
-									class="color7"
-								{% elif signal >= 51 and signal <= 60 %}
-									class="color8"
-								{% elif signal >= 61 and signal <= 70 %}
-									class="color9"
-								{% endif %}
-							{% else %}
-								class="strength{{ signal.strength }}"
-							{% endifequal %}
-						>
-						</td>
-					{% endfor %}
-				</tr>
+						{% ifequal forloop.counter 5 %}
+							<th class="axis-subtitle" rowspan="11">
+								<div class="rotate rotate-cyto">Cytoplasmic</div>
+							</th>
+						{% endifequal %}
+							
+						{% ifequal forloop.counter 18 %}
+							<th class="axis-subtitle" rowspan="5">
+								<div class="rotate rotate-nucl">Nuclear</div>
+							</th>
+						{% endifequal %}
+						
+						<th class="compartment" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
+							{{ compartment.short_name }}
+						</th>
+								
+						{% for signal in signals %}
+							<td 
+								{% ifequal video_id "spatiotemporal" %}
+									{% if signal >= 1 and signal <= 5 %}
+										class="color1"
+									{% elif signal >= 6 and signal <= 10 %}
+										class="color2"
+									{% elif signal >= 11 and signal <= 15 %}
+										class="color3"
+									{% elif signal >= 16 and signal <= 20 %}
+										class="color4"
+									{% elif signal >= 21 and signal <= 30 %}
+										class="color5"
+									{% elif signal >= 31 and signal <= 40 %}
+										class="color6"
+									{% elif signal >= 41 and signal <= 50 %}
+										class="color7"
+									{% elif signal >= 51 and signal <= 60 %}
+										class="color8"
+									{% elif signal >= 61 and signal <= 70 %}
+										class="color9"
+									{% endif %}
+								{% else %}
+									class="strength{{ signal.strength }}"
+								{% endifequal %}
+							>
+							</td>
+						{% endfor %}
+					</tr>
+				{% endif %}
 			{% endfor %}
 		</table>
 	{% endfor %}	
