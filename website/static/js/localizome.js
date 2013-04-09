@@ -19,10 +19,13 @@ toggleVideo = function(){
 		e.preventDefault(); // keeps page stationary after click
 		$("a").removeClass("active"); // unset previous active link
 		$(this).addClass("active"); // set clicked link active
-		
-		videoId = $(this).attr("data-video-link"); // get video id for clicked link
-		
 		$("[data-video-content]").addClass("invisible"); // hide all videos, matrices, summaries
+		
+		// hide expanded and unhide truncated summaries
+		$(".summary-expanded").addClass("invisible"); 
+		$(".summary-collapsed").removeClass("invisible"); 
+
+		videoId = $(this).attr("data-video-link"); // get video id for clicked link
 		$("[data-video-content='" + videoId + "']").removeClass("invisible"); // make this one visible
 	});
 }
