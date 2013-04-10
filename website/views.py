@@ -55,9 +55,9 @@ def protein_detail(request, common_name):
 		video.strain = get_object_or_404(Strain, id=video.strain_id) # get strain
 		
 		# if Miyeko's strain, generate genotype from vector and protein.
-		if video.strain.vector == 'pJon': 
+		if video.strain.genotype == 'pJon': 
 			video.strain.genotype = "unc-119(ed3) III; nnIs[unc-119(+) + Ppie-1::GFP-TEV-STag::" + p.common_name + "::3'pie-1]"
-		elif video.strain.vector == 'pDESTMB16':
+		elif video.strain.genotype == 'pDESTMB16':
 			video.strain.genotype = "unc-119(ed3) III; nnIs[unc-119(+) + Ppie-1::" + p.common_name + "::GFP::3'pie-1]"
 		
 		# if non-Miyeko-made strains missing a hard-coded genotype entry in the database, it means they can be linked to on WormBase
