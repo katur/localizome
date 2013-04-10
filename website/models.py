@@ -21,6 +21,7 @@ class Protein(models.Model):
 class Strain(models.Model):
 	name = models.CharField(max_length=10) # consider adding unique=True, but deal w/the two strains with no strain name first!
 	vector = models.CharField(max_length=10, blank=True)
+	genotype = models.CharField(max_length=100, blank=True) # for now, to only use if not on Wormbase AND if genotype can't be dynamically generated from vector+protein
 	protein = models.ForeignKey(Protein)
 	class Meta:
 		ordering = ['protein', 'name']
