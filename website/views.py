@@ -50,7 +50,20 @@ def protein_detail(request, common_name):
 		if len(video.summary) > 700:
 			# add truncated summary to video
 			video.truncated_summary = video.summary[:600]
+		
+		# get the strain corresponding to the video, and process the strain's genotype
 		video.strain = get_object_or_404(Strain, id=video.strain_id) # get strain
+		
+		# if Miyeko's strain, generate genotype from vector and protein.
+		if video.strain.vector == 'pJon': 
+			video.strain.genotype = "unc-119(ed3) III; nnIs[unc-119(+) + Ppie-1::GFP-TEV-STag::" + p.common_name + "::3'pie-1]"
+		elif video.strain.vector == 'pDESTMB16':
+			video.strain.genotype = "unc-119(ed3) III; nnIs[unc-119(+) + Ppie-1::" + p.common_name + "::GFP::3'pie-1]"
+		
+		# if non-Miyeko-made strains missing a hard-coded genotype entry in the database, it means they can be linked to on WormBase
+		if not video.strain.genotype:
+			video.strain.wormbase = "http://www.wormbase.org/species/c_elegans/strain/" + video.strain.name
+		
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row

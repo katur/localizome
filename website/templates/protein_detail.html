@@ -95,15 +95,22 @@
 			<div id="next-to-video" class="increase-line-height">
 				<ul>
 					<li>
-						<b>Strain:</b> 
-						{{ video.strain.name }}
+						<b>Strain:</b>
+						{% if video.strain.wormbase %}
+							<a target="_blank" href="http://www.wormbase.org/species/c_elegans/strain/{{ video.strain.name }}">
+								{{ video.strain.name }}
+							</a>
+						{% else %}
+							{{ video.strain.name }}
+						{% endif %}
 					</li>
-					{% if video.strain.vector %}
-						<li>
-							<b>Vector:</b> 
-							{{ video.strain.vector }}</li>
-						</li>
-					{% endif %}			
+					
+					{% if video.strain.genotype %}
+					<li>
+						<b>Genotype:</b> 
+						{{ video.strain.genotype }}
+					</li>
+					{% endif %}
 
 					{% if video.truncated_summary %}
 						<li>
