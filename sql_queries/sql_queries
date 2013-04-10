@@ -1,0 +1,40 @@
+/* to see which notes not contained in video */
+SELECT website_video.id, website_protein.common_name, website_videonotes.note, website_video.summary 
+FROM website_video, website_videonotes, website_protein 
+WHERE website_video.id = website_videonotes.video_id 
+AND website_protein.id = website_video.protein_id
+AND website_video.summary NOT LIKE CONCAT('%', website_videonotes.note ,'%') 
+AND website_videonotes.note NOT LIKE '*%'
+
+
+/* to find strain/protein discrepancies between miyeko's strains in localizome db and k's strain database */
+SELECT pf_strains.strain, website_protein.common_name, pf_strains.gene, pf_strains.sequence 
+FROM website_strain, website_protein, pf_strains 
+WHERE website_protein.id = website_strain.protein_id 
+AND website_strain.name = pf_strains.strain
+AND website_strain.name LIKE "PF%" 
+AND website_strain.name != "PF100" 
+AND website_strain.name != "PF402"
+AND (common_name != gene
+		OR common_name != pf_strains.sequence)
+
+
+/* to find strain/vector discrepancies between miyeko's strains in localizome db and k's strain database */
+SELECT website_strain.name, website_protein.common_name, website_strain.vector, pf_strains.vector
+FROM website_strain, website_protein, pf_strains
+WHERE website_protein.id = website_strain.protein_id  
+AND website_strain.name = pf_strains.strain
+AND website_strain.name LIKE "PF%"
+AND website_strain.name != "PF100"
+AND website_strain.name != "PF402"
+AND ((website_strain.vector = 'pJon' AND pf_strains.vector = 2) OR (website_strain.vector = 'pDESTMB16' AND pf_strains.vector = 1))
+
+
+/* to confirm that ER: lateral and ER: medial always match */
+SELECT first_signals.strength
+FROM website_signalraw AS first_signals, website_signalraw AS second_signals
+WHERE first_signals.video_id = second_signals.video_id
+AND first_signals.timepoint_id = second_signals.timepoint_id
+AND first_signals.compartment_id = 7
+AND second_signals.compartment_id = 8
+AND first_signals.strength != second_signals.strength
