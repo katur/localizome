@@ -50,7 +50,7 @@ def protein_detail(request, common_name):
 		if len(video.summary) > 700:
 			# add truncated summary to video
 			video.truncated_summary = video.summary[:600]
-		
+		video.strain = get_object_or_404(Strain, id=video.strain_id) # get strain
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row

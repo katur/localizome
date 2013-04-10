@@ -95,11 +95,13 @@
 			<div id="next-to-video" class="increase-line-height">
 				<ul>
 					<li>
-						<b>Strain:</b> {{ video.strain_name }}
+						<b>Strain:</b> 
+						{{ video.strain.name }}
 					</li>
-					{% if video.vector %}
+					{% if video.strain.vector %}
 						<li>
-							<b>Vector:</b> {{ video.vector }}</li>
+							<b>Vector:</b> 
+							{{ video.vector }}</li>
 						</li>
 					{% endif %}			
 

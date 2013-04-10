@@ -38,3 +38,19 @@ AND first_signals.timepoint_id = second_signals.timepoint_id
 AND first_signals.compartment_id = 7
 AND second_signals.compartment_id = 8
 AND first_signals.strength != second_signals.strength
+
+
+/* to view all CGC strains */
+SELECT website_strain.name, website_protein.common_name, website_protein.sequence
+FROM website_strain, website_protein
+WHERE website_strain.protein_id = website_protein.id
+AND website_strain.name NOT LIKE "PF%"
+AND website_strain.name != "n/a"
+ORDER BY name
+
+/* to make strain table's name, vector fields match video table's strain, vector field before deleting the latter */
+SELECT website_strain.name, website_video.strain_name, website_video.excel_id
+FROM website_strain, website_video
+WHERE website_strain.id = website_video.strain_id
+AND (website_strain.vector != website_video.vector
+		OR website_strain.`name` != website_video.strain_name)
