@@ -103,8 +103,12 @@
 						{% else %}
 							{{ video.strain.name }}
 						{% endif %}
+						
+						{% if video.strain.note %}
+							<span style="font-size: 13px">({{ video.strain.note }})</span>
+						{% endif %}
 					</li>
-					
+
 					{% if video.strain.genotype %}
 					<li>
 						<b>Genotype:</b> 

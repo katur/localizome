@@ -24,6 +24,7 @@ class Strain(models.Model):
 	# genotype field is vector if miyeko's strain (to dynamically generate genotype). hard-coded otherwise if not on WormBase.
 	genotype = models.CharField(max_length=100, blank=True) 	
 	protein = models.ForeignKey(Protein)
+	note = models.CharField(max_length=100, blank=True)
 	class Meta:
 		ordering = ['protein', 'name']
 
