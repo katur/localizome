@@ -34,7 +34,7 @@ class Video(models.Model):
 	strain = models.ForeignKey(Strain)
 	filename = models.CharField(max_length=40)
 	movie_number = models.PositiveSmallIntegerField()
-	excel_id = models.PositiveSmallIntegerField(unique=True)	
+	excel_id = models.PositiveSmallIntegerField(unique=True, blank=True)
 	date_filmed = models.DateField()
 	date_scored = models.DateField()
 	lens = models.CharField(max_length=5)
