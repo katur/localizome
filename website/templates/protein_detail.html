@@ -145,6 +145,7 @@
 
 
 {% block next_to_matrix %}
+	{% if matrices %}
 	<div id="next-to-matrix" class="shaded-box">
 		{% include "matrix_key_normal.html" %}
 
@@ -155,4 +156,5 @@
 			</ul>			
 		{% endfor %}
 	</div>
+	{% endif %}
 {% endblock next_to_matrix %}

@@ -67,10 +67,11 @@ def protein_detail(request, common_name):
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row
-		for compartment in c: # for each row
-			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
-			i += num_timepoints
-		matrices.append((video.id, matrix))
+		if signals:
+			for compartment in c: # for each row
+				matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
+				i += num_timepoints
+			matrices.append((video.id, matrix))
 	
 	# add the merge matrix to matrices
 	matrix = [] # refresh matrix
