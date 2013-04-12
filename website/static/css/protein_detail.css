@@ -39,13 +39,7 @@
 	padding-bottom: 60px;
 }
 
-.leanback-player-video {
-	float: left;
-	clear: both;
-}
-
 .video-info {
-	margin-top: 36px;
 	float: left;
 	width: 100%;
 	font-size: 12px;

@@ -54,27 +54,9 @@
 			<!-- wrapper for the video and meta data beneath the video -->
 			<div class="video-wrapper">	
 				<!-- video player itself -->
-				<div class="leanback-player-video">
-					<video width="458" height="312" preload="metadata" controls>
-						<source src="{{ STATIC_URL }}videos/nathalie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
-						<source src="{{ STATIC_URL }}videos/nathalie.ogv" type='video/ogg; codecs="theora, vorbis"'/>
-						
-						<!-- Flash-Fallback -->
-						<object class="leanback-player-flash-fallback" width="458" height="312">
-						</object>
-																					 
-						<!-- HTML-Fallback - Download Links -->
-						<div class="leanback-player-html-fallback">
-							<img src="{{ STATIC_URL }}images/ee-logo.png" width="458" height="312" alt="Poster Image" 
-								title="No HTML5 media playback capabilities available.">
-							<div>
-								<strong>Download Video:</strong>
-								<a href="{{ STATIC_URL }}videos/nathalie.mp4">.mp4</a>,
-								<a href="{{ STATIC_URL }}videos/nathalie.ogv">.ogv</a>
-							</div>
-						</div>
-					</video>
-				</div>
+				<video width="458" height="312" controls>
+					<source src="{{ STATIC_URL }}videos/nathalie.mp4" type='video/mp4'/>
+				</video>
 				
 				<!-- meta data beneath video -->
 				<div class="video-info">
