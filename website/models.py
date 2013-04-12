@@ -1,6 +1,5 @@
 from django.db import models
 
-# Note: blank=True means is allowed to be blank. default blank=False.
 class Protein(models.Model):
 	common_name = models.CharField(max_length=10, unique=True)
 	sequence = models.CharField(max_length=15, unique=True)
@@ -58,6 +57,10 @@ class VideoNotes(models.Model):
 
 
 class Compartment(models.Model):
+	name = models.CharField(max_length=60, unique=True)
+	short_name = models.CharField(max_length=20, blank=True) # blank indicates to not display compart.
+	extra_short_name = models.CharField(max_length=5, blank=True) # when axes flip
+	
 	PERIPHERY_SUPERCOMPARTMENT = 1
 	CYTOPLASMIC_SUPERCOMPARTMENT = 2
 	NUCLEAR_SUPERCOMPARTMENT = 3
@@ -68,16 +71,15 @@ class Compartment(models.Model):
 		(NUCLEAR_SUPERCOMPARTMENT, 'Nuclear')
 	)
 	supercompartment = models.PositiveSmallIntegerField(choices=SUPERCOMPARTMENT_CATEGORIES)
-	name = models.CharField(max_length=60, unique=True)
-	short_name = models.CharField(max_length=20, blank=True) # blank indicates to hide this compartment
-	extra_short_name = models.CharField(max_length=5, blank=True) # blank indicates to hide this compartment
-	miyeko_excel_name = models.CharField(max_length=60, unique=True) # can remove this field eventually
-	display_order = models.PositiveSmallIntegerField(unique=True) # might remove this field eventually
 	class Meta:
-		ordering = ['display_order']
+		ordering = ['id']
 
 
 class Timepoint(models.Model):
+	name = models.CharField(max_length=30) # timepoint names NOT unique (depend on cell cycle)
+	short_name = models.CharField(max_length=5)
+	kahn_merge_name = models.CharField(max_length=35) # can remove eventually
+	
 	ONE_CELL_CYCLE = 1
 	AB_CELL_CYCLE = 2
 	P1_CELL_CYCLE = 3
@@ -88,13 +90,8 @@ class Timepoint(models.Model):
 		(P1_CELL_CYCLE, 'P1')
 	)
 	cell_cycle_category = models.PositiveSmallIntegerField(choices=CELL_CYCLE_CATEGORIES)
-	name = models.CharField(max_length=30) # timepoint names are NOT unique (repeat across cell cycle categories)
-	short_name = models.CharField(max_length=5)
-	miyeko_excel_name = models.CharField(max_length=30) # can remove this field eventually
-	kahn_merge_name = models.CharField(max_length=35) # can remove this field eventually
-	display_order = models.PositiveSmallIntegerField(unique=True) # might remove this field eventually
 	class Meta:
-		ordering = ['display_order']
+		ordering = ['id']
 
 
 class Signal(models.Model):
