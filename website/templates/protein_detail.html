@@ -82,8 +82,10 @@
 							<a target="_blank" href="http://www.wormbase.org/species/c_elegans/strain/{{ video.strain.name }}">
 								{{ video.strain.name }}
 							</a>
-						{% else %}
+						{% elif video.strain.name %}
 							{{ video.strain.name }}
+						{% else %}
+							n/a
 						{% endif %}
 						
 						{% if video.strain.note %}

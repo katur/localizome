@@ -2,10 +2,10 @@ from django.db import models
 
 # Note: blank=True means is allowed to be blank. default blank=False.
 class Protein(models.Model):
-	common_name = models.CharField(max_length=20, unique=True)
-	sequence = models.CharField(max_length=20, unique=True)
-	wormbase_id = models.CharField(max_length=20, unique=True)
-	representative_video = models.OneToOneField('Video', related_name='representative', null=True) # eventually remove null=True; optionally add unique=True
+	common_name = models.CharField(max_length=10, unique=True)
+	sequence = models.CharField(max_length=15, unique=True)
+	wormbase_id = models.CharField(max_length=15, unique=True)
+	representative_video = models.OneToOneField('Video', related_name='representative', null=True, unique=True)
 	def __unicode__(self):
 		return self.common_name
 	class Meta:
@@ -19,12 +19,12 @@ class Protein(models.Model):
 
 
 class Strain(models.Model):
-	name = models.CharField(max_length=10) # consider adding unique=True, but deal w/the two strains with no strain name first!
+	name = models.CharField(max_length=10)
 	
-	# genotype field is vector if miyeko's strain (to dynamically generate genotype). hard-coded otherwise if not on WormBase.
+	# genotype is vector if miyeko's strain (to dynamically generate genotype), hard-coded if not hers and not on WormBase, blank otherwise.
 	genotype = models.CharField(max_length=100, blank=True) 	
 	protein = models.ForeignKey(Protein)
-	note = models.CharField(max_length=100, blank=True)
+	note = models.CharField(max_length=75, blank=True)
 	class Meta:
 		ordering = ['protein', 'name']
 
