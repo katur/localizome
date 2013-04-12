@@ -48,7 +48,9 @@ h2, h3 {
 	line-height: 170%;
 }
 
-
+.increase-line-height-less {
+	line-height: 150%;
+}
 /* links */
 a {
 	text-decoration: none;

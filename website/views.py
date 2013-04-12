@@ -47,9 +47,9 @@ def protein_detail(request, common_name):
 	
 	for video in v:
 		# if summary length is longer than can fit on page
-		if len(video.summary) > 700:
+		if len(video.summary) > 600:
 			# add truncated summary to video
-			video.truncated_summary = video.summary[:600]
+			video.truncated_summary = video.summary[:500]
 		
 		# get the strain corresponding to the video, and process the strain's genotype
 		video.strain = get_object_or_404(Strain, id=video.strain_id) # get strain
