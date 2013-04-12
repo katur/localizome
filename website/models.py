@@ -25,14 +25,12 @@ class Strain(models.Model):
 	genotype = models.CharField(max_length=100, blank=True) 	
 	protein = models.ForeignKey(Protein)
 	note = models.CharField(max_length=75, blank=True)
-	class Meta:
-		ordering = ['protein', 'name']
 
 
 class Video(models.Model):
 	protein = models.ForeignKey(Protein)
 	strain = models.ForeignKey(Strain)
-	filename = models.CharField(max_length=40)
+	filename = models.CharField(max_length=30, unique=True)
 	movie_number = models.PositiveSmallIntegerField()
 	excel_id = models.PositiveSmallIntegerField(unique=True, null=True)
 	date_filmed = models.DateField()
