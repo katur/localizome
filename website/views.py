@@ -64,6 +64,7 @@ def protein_detail(request, common_name):
 		if not video.strain.genotype:
 			video.strain.wormbase = "http://www.wormbase.org/species/c_elegans/strain/" + video.strain.name
 		
+		# process signals for the video; relies on signals being sorted
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row
