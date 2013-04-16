@@ -47,6 +47,9 @@ localizome/settings.py
 sql_backups
 raw_data
 
+# Static files dump #
+website/static_dump/*
+
 # OS generated files #
 ######################
 .DS_Store
