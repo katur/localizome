@@ -1,3 +1,39 @@
+/* to see how many proteins are represented with strains of Miyeko's only, vs CGC only, vs both */
+DROP TABLE Miyeko_only;
+CREATE TABLE Miyeko_only AS
+SELECT DISTINCT common_name AS Miyeko
+FROM website_protein, website_strain
+WHERE website_protein.id = website_strain.protein_id
+AND (website_strain.genotype = "pDESTMB16"
+OR website_strain.genotype = "pJon")
+AND common_name NOT IN
+(SELECT DISTINCT common_name
+FROM website_protein, website_strain
+WHERE website_protein.id = website_strain.protein_id
+AND (website_strain.genotype != "pDESTMB16"
+AND website_strain.genotype != "pJon"));
+
+DROP TABLE CGC_only;
+CREATE TABLE CGC_only AS
+SELECT DISTINCT common_name AS CGC
+FROM website_protein, website_strain
+WHERE website_protein.id = website_strain.protein_id
+AND (website_strain.genotype != "pDESTMB16"
+AND website_strain.genotype != "pJon")
+AND common_name NOT IN
+(SELECT DISTINCT common_name
+FROM website_protein, website_strain
+WHERE website_protein.id = website_strain.protein_id
+AND (website_strain.genotype = "pDESTMB16"
+OR website_strain.genotype = "pJon"));
+
+DROP TABLE both_miyeko_and_CGC;
+CREATE TABLE both_miyeko_and_CGC AS
+SELECT common_name
+FROM website_protein
+WHERE common_name NOT IN (SELECT CGC FROM CGC_only)
+AND common_name NOT IN (SELECT Miyeko FROM Miyeko_only);
+
 /* to see which notes not contained in video */
 SELECT website_video.id, website_protein.common_name, website_videonotes.note, website_video.summary 
 FROM website_video, website_videonotes, website_protein 
@@ -53,4 +89,4 @@ SELECT website_strain.name, website_video.strain_name, website_video.excel_id
 FROM website_strain, website_video
 WHERE website_strain.id = website_video.strain_id
 AND (website_strain.vector != website_video.vector
-		OR website_strain.`name` != website_video.strain_name)
+OR website_strain.`name` != website_video.strain_name)
