@@ -2,59 +2,59 @@
 
 
 {% block prematrix %}
-	<!-- PROTEIN TITLE BAR -->
-	<div id="protein-title-bar">
-		<!-- protein title on left -->
-		<h3>{{ protein.common_name|upper }}</h3>
-		
-		<!-- sequence and wormbase link on right -->
-		<div id="protein-subtitle">
-			{% if protein.sequence != protein.common_name %}
-				Cosmid: {{ protein.sequence }}
-			{% endif %}
+<!-- PROTEIN TITLE BAR -->
+<div id="protein-title-bar">
+	<!-- protein title on left -->
+	<h3>{{ protein.common_name|upper }}</h3>
+	
+	<!-- sequence and wormbase link on right -->
+	<div id="protein-subtitle">
+		{% if protein.sequence != protein.common_name %}
+			Cosmid: {{ protein.sequence }}
+		{% endif %}
 
-			{% if protein.sequence != protein.common_name and protein.wormbase_id %}
-				<br>
-			{% endif %}
+		{% if protein.sequence != protein.common_name and protein.wormbase_id %}
+			<br>
+		{% endif %}
 
-			{% if protein.wormbase_id %}
-				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
-					{{ protein.wormbase_id}}
-				</a>
-			{% endif %}
-		</div>
-		
-		<!-- navigation bar for the videos -->
-		<ul class="video-nav">
-			{% for video in videos %}
-				<li>
-					<a href="#" data-video-link="{{ video.id }}"
-						{% if video = protein.representative_video %}
-							data-video-representative="true"
-						{% endif %}
-					>
-						movie {{ video.movie_number }}
-					</a>	
-				</li>
-			{% endfor %}
-			
-			{# "merge" would be the first element in the last matrix appended to the list #}
-			{% if matrices|last|first == 'merge' %} 
-				<li>
-					<a href="#" data-video-link="merge">merge (matrix only)</a>
-				</li>
-			{% endif %}	
-		</ul>
+		{% if protein.wormbase_id %}
+			<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
+				{{ protein.wormbase_id}}
+			</a>
+		{% endif %}
 	</div>
 	
-	<!-- VIDEO AREA -->
-	{% for video in videos %}
-		<!-- wrapper for the entire video area including summary -->
-		<div class="video-summary-wrapper" data-video-content="{{ video.id}}">
-			<!-- wrapper for the video and meta data beneath the video -->
-			<div class="video-wrapper">	
-				<!-- video player itself -->
-				<video width="460" height="336" controls>
+	<!-- navigation bar for the videos -->
+	<ul class="video-nav">
+		{% for video in videos %}
+			<li>
+				<a href="#" data-video-link="{{ video.id }}"
+					{% if video = protein.representative_video %}
+						data-video-representative="true"
+					{% endif %}
+				>
+					movie {{ video.movie_number }}
+				</a>	
+			</li>
+		{% endfor %}
+		
+		{# "merge" would be the first element in the last matrix appended to the list #}
+		{% if matrices|last|first == 'merge' %} 
+			<li>
+				<a href="#" data-video-link="merge">merge (matrix only)</a>
+			</li>
+		{% endif %}	
+	</ul>
+</div>
+
+<!-- VIDEO AREA -->
+{% for video in videos %}
+	<!-- wrapper for the entire video area including summary -->
+	<div class="video-summary-wrapper" data-video-content="{{ video.id}}">
+		<!-- wrapper for the video and meta data beneath the video -->
+		<div class="video-wrapper">	
+			<!-- video player itself -->
+			<video preload="auto" width="460" height="336" controls>
 					<source src="{{ STATIC_URL }}videos/air1.mp4" type='video/mp4'/>
 					<source src="{{ STATIC_URL }}videos/air1.ogv" type='video/ogg'/>
 					Your browser does not support the video tag

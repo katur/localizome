@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	initializeVideoPlayer();
 	toggleSummaryLength();
 	toggleVideo();
 	selectDefaultVideo();
@@ -6,6 +7,15 @@ $(document).ready(function(){
 	hoverTags();
 })
 
+
+initializeVideoPlayer = function(){
+	$('video').mediaelementplayer({
+		// show framecount in timecode (##:00:00:00)
+		showTimecodeFrameCount: true,
+		// the order of controls you want on the control bar (and other plugins below)
+		features: ['playpause','current','progress','duration','tracks','fullscreen'],
+	});
+}
 
 toggleSummaryLength = function(){
 	$(".toggle-summary").click(function(){
