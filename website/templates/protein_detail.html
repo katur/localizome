@@ -131,15 +131,15 @@
 
 {% block next_to_matrix %}
 	{% if matrices %}
-	<div id="next-to-matrix" class="shaded-box">
-		{% include "matrix_key_normal.html" %}
+		<div id="next-to-matrix" class="shaded-box">
+			{% include "matrix_key_normal.html" %}
 
-		{% for video in videos %}
-			<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
-				<li>Scored {{ video.date_scored }}</li>
-				<li>Excel sheet: {{ video.excel_id }}</li>	
-			</ul>			
-		{% endfor %}
-	</div>
+			{% for video in videos %}
+				<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
+					<li>Scored {{ video.date_scored }}</li>
+					<li>Excel sheet: {{ video.excel_id }}</li>	
+				</ul>			
+			{% endfor %}
+		</div>
 	{% endif %}
 {% endblock next_to_matrix %}

@@ -84,8 +84,8 @@ table {
 }
 
 td, th {
-	border-bottom: 1px solid gray;
-	border-right: 1px solid gray;
+	border-bottom: 1px solid #666;
+	border-right: 1px solid #666;
 	height: 21px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -97,11 +97,11 @@ th {
 }
 
 .top-row {
-	border-top: 1px solid gray;
+	border-top: 1px solid #666;
 }
 
 .left-column {
-	border-left: 1px solid gray;
+	border-left: 1px solid #666;
 }
 
 .no-bottom-border {
@@ -114,6 +114,14 @@ th {
 
 .no-background {
 	background: #f8f8f4;
+}
+
+.bold-top th, .bold-top td {
+	border-top: 1px solid #666;
+}
+
+.bold-right {
+	border-right: 2px solid #666;
 }
 
 

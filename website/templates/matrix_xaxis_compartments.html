@@ -5,8 +5,8 @@
 </tr>
 <tr>
 	<th class="no-background" colspan="3"></th>
-	<th class="axis-subtitle" colspan="4">Periphery</th>
-	<th class="axis-subtitle" colspan="13">Cytoplasmic</th>
+	<th class="axis-subtitle bold-right" colspan="4">Periphery</th>
+	<th class="axis-subtitle bold-right" colspan="13">Cytoplasmic</th>
 	<th class="axis-subtitle" colspan="5">Nuclear</th>
 </tr>
 <tr>
@@ -17,8 +17,11 @@
 		<b>Canonical</b>
 	</th>
 	{% for compartment in compartments %}
-		<th class="timepoint" data-hover-tag="{{ compartment.name }}" data-id="{{ compartment.id }}">
-			{{ compartment.extra_short_name }}
+		<th data-hover-tag="{{ compartment.name }}" data-id="{{ compartment.id }}" class="timepoint
+			{% if forloop.counter == 4 or forloop.counter == 17 %}
+				bold-right
+			{% endif %}
+		">{{ compartment.extra_short_name }}
 		</th>
 	{% endfor %}
 </tr>

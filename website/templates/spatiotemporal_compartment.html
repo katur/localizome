@@ -17,7 +17,11 @@
 					{% endwith %}
 					
 					{% for signal in protein_signals.list %}
-						<td class="strength{{ signal.strength }}"></td>
+						<td class="strength{{ signal.strength }}
+							{% if forloop.counter == 8 or forloop.counter == 14 %}
+								bold-right
+							{% endif %}
+						"></td>
 					{% endfor %}
 				</tr>
 			{% endfor %}

@@ -5,8 +5,8 @@
 </tr>
 <tr>
 	<th class="no-background {% if not compartment %}no-bottom-border{% endif %}" colspan="3"></th>
-	<th class="axis-subtitle" colspan="8">1-Cell</th>
-	<th class="axis-subtitle" colspan="6">AB</th>
+	<th class="axis-subtitle bold-right" colspan="8">1-Cell</th>
+	<th class="axis-subtitle bold-right" colspan="6">AB</th>
 	<th class="axis-subtitle" colspan="6">P1</th>
 </tr>
 <tr>
@@ -22,8 +22,11 @@
 	{% endif %}	
 	
 	{% for timepoint in timepoints %}
-		<th class="timepoint" data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}">
-			{{ timepoint.short_name }}
+		<th data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}" class="timepoint
+			{% if forloop.counter == 8 or forloop.counter == 14 %}
+				bold-right
+			{% endif %}
+		">{{ timepoint.short_name }}
 		</th>
 	{% endfor %}
 </tr>
