@@ -1,4 +1,10 @@
 /* styles for home page */
+#homepage-image {
+	margin: auto;
+	display: block;
+	min-height: 370px;
+}
+
 #blurb {
 	width: 100%;
 }
