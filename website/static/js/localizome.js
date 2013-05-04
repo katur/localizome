@@ -4,6 +4,7 @@ $(document).ready(function(){
 	toggleVideo();
 	selectDefaultVideo();
 	spatiotemporalLinks();
+	matrixAxisHighlight();
 	hoverTags();
 })
 
@@ -79,6 +80,19 @@ spatiotemporalLinks = function(){
 		columnId = $(this).data("id");
 		link = "spatiotemporal/timepoint" + columnId;
 		window.location = link;
+	});
+}
+
+
+matrixAxisHighlight = function(){
+	$("td.signal").mouseover(function(){
+		$(this).siblings(".compartment").addClass("highlight");
+		index = $(this).siblings("td").index($(this).prev()) + 1;
+		$(".timepoint").eq(index).addClass("highlight");
+	}).mouseout(function(){
+		$(this).siblings(".compartment").removeClass("highlight");	
+		index = $(this).siblings("td").index($(this).prev()) + 1;
+		$(".timepoint").eq(index).removeClass("highlight");
 	});
 }
 

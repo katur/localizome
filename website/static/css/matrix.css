@@ -81,6 +81,10 @@
 	padding-right: 10px;
 }
 
+.highlight, .timepoint:hover, .compartment:hover {
+	background: #ffffaa;
+}
+
 #defines-compartment-headers-width {
 	width: 80px;
 }
