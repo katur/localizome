@@ -2,17 +2,21 @@
 #homepage-image {
 	margin: auto;
 	display: block;
-	min-height: 370px;
+	height: 351px;
+	padding: 36px 0 44px;
 }
 
 #blurb {
 	width: 100%;
 }
 
+#homepage-line {
+	padding-bottom: 40px;
+}
+
 .homepage-column {
 	width: 50%;
 	float: left;
-	padding-top: 30px;
 }
 
 .homepage-column span {

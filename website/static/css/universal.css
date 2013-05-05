@@ -22,6 +22,14 @@ and parent needs to expand to the children's size. */
 	border-radius: 4px;
 }
 
+hr {
+	margin: 0;
+	border: 0;
+	border-top: 1px solid #d1d1d1;
+	width: 100%;
+	float: left;
+}
+
 /* fonts */
 body {
 	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
