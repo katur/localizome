@@ -3,4 +3,25 @@
 	padding: 20px 0;
 	font-size: 14px;
 	color: #aaa;
+	line-height: 1.3;
+}
+
+#footer-left {
+	float: left;
+}
+
+#footer-right {
+	float: right;
+}
+
+#footer-right span, #footer-left span {
+	clear: both;
+	float: left;
+}
+
+.footer-subtitle {
+	font-family: "Helvetica", "Arial", sans-serif;
+	padding-bottom: 4px;
+	letter-spacing: 2px;
+	text-decoration: underline;
 }
