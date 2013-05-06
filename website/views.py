@@ -66,12 +66,14 @@ def protein_detail(request, common_name):
 		
 		# process signals for the video; relies on signals being sorted
 		signals = SignalRaw.objects.filter(video_id=video.id) # get all signals as one list
+			
 		matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 		i = 0 # index for beginning of current row
 		if signals:
 			for compartment in c: # for each row
-				matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
-				i += num_timepoints
+				if (compartment.id != 8) and (compartment.id != 15):
+					matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
+				i += num_timepoints # raw matrices do have these rows, so skip them
 			matrices.append((video.id, matrix))
 	
 	# add the merge matrix to matrices
@@ -80,8 +82,9 @@ def protein_detail(request, common_name):
 	signals = SignalMerged.objects.filter(protein_id=p.id) # get all signals as one list
 	if signals:
 		for compartment in c: # for each row
-			matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
-			i += num_timepoints
+			if (compartment.id != 8) and (compartment.id != 15):	
+				matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
+				i += num_timepoints
 		matrices.append(("merge", matrix))
 	
 	# render page
@@ -116,7 +119,8 @@ def spatiotemporal_search(request):
 	matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 
 	for compartment in c:
-		matrix.append((compartment, signal_matrix[compartment.id][1:]))
+		if (compartment.id != 8) and (compartment.id != 15): 
+			matrix.append((compartment, signal_matrix[compartment.id][1:]))
 
 	matrices.append(("spatiotemporal", matrix))
 	
@@ -184,7 +188,7 @@ def spatiotemporal_timepoint(request, timepoint):
 	"""
 	# get this timepoint and ALL compartments
 	t = Timepoint.objects.get(id=timepoint)
-	c = Compartment.objects.all()
+	c = Compartment.objects.exclude(id=8).exclude(id=15)
 
 	# get all proteins present or weak in any compartment at this timepoint
 	p = SignalMerged.objects.values('protein').filter(

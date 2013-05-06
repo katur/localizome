@@ -14,72 +14,71 @@
 		{% include "matrix_xaxis_timepoints.html" %}	
 		
 		{% for compartment, signals in matrix %}
-			{% if compartment.short_name %}
-					{% if forloop.counter == 1 %}
-						<tr>
-							<th class="axis-title left-column" rowspan="22">
-								<div class="rotate rotate-title">Sub-Cellular Compartment</div>
-							</th>
-							<th class="axis-subtitle" rowspan="4">
-								<div class="rotate rotate-peri">Periphery/<br>Membrane</div>
-							</th>
-						
-					{% elif forloop.counter == 5 %}
-						<tr class="bold-top">
-							<th class="axis-subtitle" rowspan="11">
-								<div class="rotate rotate-cyto">Cytoplasmic</div>
-							</th>
-						
-					{% elif forloop.counter == 18 %}
-						<tr class="bold-top">
-							<th class="axis-subtitle" rowspan="5">
-								<div class="rotate rotate-nucl">Nuclear</div>
-							</th>
+			{% if forloop.counter == 1 %}
+				<tr>
+					<th class="axis-title left-column" rowspan="20">
+						<div class="rotate rotate-title">Sub-Cellular Compartment</div>
+					</th>
+					<th class="axis-subtitle" rowspan="4">
+						<div class="rotate rotate-peri">Periphery/<br>Membrane</div>
+					</th>
+					
+			{% elif forloop.counter == 5 %}
+				<tr class="bold-top">
+					<th class="axis-subtitle" rowspan="11">
+						<div class="rotate rotate-cyto">Cytoplasmic</div>
+					</th>
+					
+			{% elif forloop.counter == 16 %}
+				<tr class="bold-top">
+					<th class="axis-subtitle" rowspan="5">
+						<div class="rotate rotate-nucl">Nuclear</div>
+					</th>
 
+			{% else %}
+				<tr>
+					
+			{% endif %}
+						
+			<th class="compartment row-header" data-hover-tag="{{ compartment.name }}" data-id="{{ compartment.id }}">
+				{{ compartment.short_name }}
+			</th>
+					
+			{% for signal in signals %}
+				<td class="signal 
+					{% ifequal video_id "spatiotemporal" %}
+						{% if signal >= 1 and signal <= 5 %}
+							color1
+						{% elif signal >= 6 and signal <= 10 %}
+							color2
+						{% elif signal >= 11 and signal <= 15 %}
+							color3
+						{% elif signal >= 16 and signal <= 20 %}
+							color4
+						{% elif signal >= 21 and signal <= 30 %}
+							color5
+						{% elif signal >= 31 and signal <= 40 %}
+							color6
+						{% elif signal >= 41 and signal <= 50 %}
+							color7
+						{% elif signal >= 51 and signal <= 60 %}
+							color8
+						{% elif signal >= 61 and signal <= 70 %}
+							color9
+						{% endif %}
 					{% else %}
-						<tr>
-						
+						strength{{ signal.strength }}
+					{% endifequal %}
+					
+					{% if forloop.counter == 8 or forloop.counter == 14 %}
+						bold-right	
 					{% endif %}
-						
-						<th class="compartment row-header" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
-							{{ compartment.short_name }}
-						</th>
-								
-						{% for signal in signals %}
-							<td class="signal 
-								{% ifequal video_id "spatiotemporal" %}
-									{% if signal >= 1 and signal <= 5 %}
-										color1
-									{% elif signal >= 6 and signal <= 10 %}
-										color2
-									{% elif signal >= 11 and signal <= 15 %}
-										color3
-									{% elif signal >= 16 and signal <= 20 %}
-										color4
-									{% elif signal >= 21 and signal <= 30 %}
-										color5
-									{% elif signal >= 31 and signal <= 40 %}
-										color6
-									{% elif signal >= 41 and signal <= 50 %}
-										color7
-									{% elif signal >= 51 and signal <= 60 %}
-										color8
-									{% elif signal >= 61 and signal <= 70 %}
-										color9
-									{% endif %}
-								{% else %}
-									strength{{ signal.strength }}
-								{% endifequal %}
-								
-								{% if forloop.counter == 8 or forloop.counter == 14 %}
-									bold-right	
-								{% endif %}
-							">
-							</td>
-						{% endfor %}
-					</tr>
-				{% endif %}
+				">
+				</td>
 			{% endfor %}
+		
+			</tr>
+		{% endfor %}
 		</table>
 	{% endfor %}	
 {% endblock matrix %}

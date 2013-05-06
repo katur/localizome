@@ -97,22 +97,6 @@
 	width: 115px;
 }
 
-#defines-common-name-width-compartments {
-	width: 80px;
-}
-
-#defines-sequence-width-compartments {
-	width: 115px;
-}
-
-#defines-common-name-width-timepoints {
-	width: 70px;
-}
-
-#defines-sequence-width-timepoints {
-	width: 77px;
-}
-
 /* for rotating text in y-axis cells */
 .rotate {
 	white-space: nowrap;
