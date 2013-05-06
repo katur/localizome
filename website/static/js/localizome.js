@@ -85,7 +85,7 @@ spatiotemporalLinks = function(){
 
 
 matrixAxisHighlight = function(){
-	$("td.signal").mouseover(function(){
+	$("td.highlight-both-axes").mouseover(function(){
 		$(this).siblings(".compartment").addClass("highlight");
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(".timepoint").eq(index).addClass("highlight");
