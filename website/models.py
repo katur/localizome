@@ -78,7 +78,6 @@ class Compartment(models.Model):
 class Timepoint(models.Model):
 	name = models.CharField(max_length=30) # timepoint names NOT unique (depend on cell cycle)
 	short_name = models.CharField(max_length=5)
-	kahn_merge_name = models.CharField(max_length=35) # can remove eventually
 	
 	ONE_CELL_CYCLE = 1
 	AB_CELL_CYCLE = 2
