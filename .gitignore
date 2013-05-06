@@ -1,7 +1,6 @@
 # Connection files #
 ####################
-localizome/settings.py
-*settings.py
+*settings_secret.py
 
 # Compiled source #
 ###################
