@@ -41,12 +41,12 @@
 						
 					{% endif %}
 						
-						<th class="compartment" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
+						<th class="compartment row-header" data-hover-tag="{{ compartment.name }}" data-id="{{ forloop.counter }}">
 							{{ compartment.short_name }}
 						</th>
 								
 						{% for signal in signals %}
-							<td class="highlight-both-axes 
+							<td class="signal 
 								{% ifequal video_id "spatiotemporal" %}
 									{% if signal >= 1 and signal <= 5 %}
 										color1

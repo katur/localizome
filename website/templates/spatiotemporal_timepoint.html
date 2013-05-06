@@ -10,14 +10,15 @@
 			{% for protein_signals in proteins_signals %}
 				<tr>
 					{% with protein_signals.list.0.protein as protein %}
-						<td class="left-column" colspan="2">
+						<th class="left-column left-align row-header" colspan="2">
 							<a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a>
-						</td>
-						<td>{{ protein.sequence }}</td>
+						</th>
+						<th class="left-align">{{ protein.sequence }}</th>
 					{% endwith %}
 					
 					{% for signal in protein_signals.list %}
-						<td class="strength{{ signal.strength }}
+						<td class="signal 
+							strength{{ signal.strength }}
 							{% if forloop.counter == 4 or forloop.counter == 17 %}
 								bold-right
 							{% endif %}

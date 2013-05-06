@@ -85,12 +85,12 @@ spatiotemporalLinks = function(){
 
 
 matrixAxisHighlight = function(){
-	$("td.highlight-both-axes").mouseover(function(){
-		$(this).siblings(".compartment").addClass("highlight");
+	$("td.signal").mouseover(function(){
+		$(this).siblings(".row-header").addClass("highlight");
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(".timepoint").eq(index).addClass("highlight");
 	}).mouseout(function(){
-		$(this).siblings(".compartment").removeClass("highlight");	
+		$(this).siblings(".row-header").removeClass("highlight");	
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(".timepoint").eq(index).removeClass("highlight");
 	});

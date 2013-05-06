@@ -81,6 +81,10 @@
 	padding-right: 10px;
 }
 
+.left-align {
+	text-align: left;
+}
+
 .highlight, .timepoint:hover, .compartment:hover {
 	background: #ffff66;
 }
