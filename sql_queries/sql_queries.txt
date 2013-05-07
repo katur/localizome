@@ -90,3 +90,7 @@ FROM website_strain, website_video
 WHERE website_strain.id = website_video.strain_id
 AND (website_strain.vector != website_video.vector
 OR website_strain.`name` != website_video.strain_name)
+
+/* to remove " movie" from end of filenames */
+update videos_from_drive
+set filename = SUBSTRING_INDEX(filename, ' ', 1);
