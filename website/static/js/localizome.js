@@ -88,11 +88,11 @@ matrixAxisHighlight = function(){
 	$("td.signal").mouseover(function(){
 		$(this).siblings(".row-header").addClass("highlight");
 		index = $(this).siblings("td").index($(this).prev()) + 1;
-		$(".timepoint").eq(index).addClass("highlight");
+		$(this).closest(".matrix").find(".timepoint").eq(index).addClass("highlight");
 	}).mouseout(function(){
 		$(this).siblings(".row-header").removeClass("highlight");	
 		index = $(this).siblings("td").index($(this).prev()) + 1;
-		$(".timepoint").eq(index).removeClass("highlight");
+		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
 	});
 }
 
