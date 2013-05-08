@@ -34,9 +34,9 @@ class Video(models.Model):
 	excel_id = models.PositiveSmallIntegerField(unique=True, null=True)
 	date_filmed = models.DateField()
 	date_scored = models.DateField(null=True)
-	lens = models.CharField(max_length=5)
-	mode = models.CharField(max_length=70)
-	summary = models.CharField(max_length=2000)
+	lens = models.CharField(max_length=5, blank=True)
+	mode = models.CharField(max_length=70, blank=True)
+	summary = models.CharField(max_length=2000, blank=True)
 	def __unicode__(self):
 		return self.protein
 	def shortened_filename(self):
