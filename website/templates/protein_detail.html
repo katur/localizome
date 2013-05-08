@@ -65,9 +65,14 @@
 				<!-- meta data beneath video -->
 				<div class="video-info">
 					<div class="video-info-left">
-						Lens: {{ video.lens }}
-						<br>
-						Mode: {{ video.mode }}
+						{% if video.lens %}
+							Lens: {{ video.lens }}
+							<br>
+						{% endif %}
+						
+						{% if video.mode %}
+							Mode: {{ video.mode }}
+						{% endif %}
 					</div>
 					<div class="video-info-right">
 						Filmed {{ video.date_filmed }}<br>
@@ -102,27 +107,29 @@
 						{{ video.strain.genotype }}
 					</li>
 					{% endif %}
-
-					{% if video.truncated_summary %}
-						<li>
-							<div class="summary-collapsed">
-								<b>Summary:</b> {{ video.truncated_summary }}&hellip;
-								<a class="toggle-summary shaded-box">
-									more
-								</a>
-							</div>
-							
-							<div class="summary-expanded invisible">
+					
+					{% if video.summary %}
+						{% if video.truncated_summary %}
+							<li>
+								<div class="summary-collapsed">
+									<b>Summary:</b> {{ video.truncated_summary }}&hellip;
+									<a class="toggle-summary shaded-box">
+										more
+									</a>
+								</div>
+								
+								<div class="summary-expanded invisible">
+										<b>Summary:</b> {{ video.summary }}
+										<a class="toggle-summary shaded-box">
+											less
+										</a>
+								</div>
+							</li>
+						{% else %}
+							<li>
 								<b>Summary:</b> {{ video.summary }}
-								<a class="toggle-summary shaded-box">
-									less
-								</a>
-							</div>
-						</li>
-					{% else %}
-						<li>
-							<b>Summary:</b> {{ video.summary }}
-						</li>
+							</li>
+						{% endif %}
 					{% endif %}
 				</ul>
 			</div>
@@ -132,16 +139,14 @@
 
 
 {% block next_to_matrix %}
-	{% if matrices %}
-		<div id="next-to-matrix" class="shaded-box">
-			{% include "matrix_key_normal.html" %}
+	<div id="next-to-matrix" class="shaded-box">
+		{% include "matrix_key_normal.html" %}
 
-			{% for video in videos %}
-				<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
-					<li>Scored {{ video.date_scored }}</li>
-					<li>Excel sheet: {{ video.excel_id }}</li>	
-				</ul>			
-			{% endfor %}
-		</div>
-	{% endif %}
+		{% for video in videos %}
+			<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
+				<li>Scored {{ video.date_scored }}</li>
+				<li>Excel sheet: {{ video.excel_id }}</li>	
+			</ul>			
+		{% endfor %}
+	</div>
 {% endblock next_to_matrix %}
