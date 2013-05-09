@@ -1,13 +1,13 @@
 /* styles for home page */
+#blurb {
+	width: 100%;
+}
+
 #homepage-image {
 	margin: auto;
 	display: block;
 	height: 351px;
 	padding: 36px 0 44px;
-}
-
-#blurb {
-	width: 100%;
 }
 
 #homepage-line {
@@ -17,10 +17,23 @@
 .homepage-column {
 	width: 50%;
 	float: left;
+	font-size: 16px;
+}
+
+.homepage-column ul {
+	list-style-type: square;
+	list-style-position: inside;
+}
+
+.homepage-column li {
+	padding-bottom: 10px;
+}
+
+#contact {
+	padding-top: 30px;
 }
 
 .homepage-column span {
-	float: left;
-	clear: both;
-	padding-bottom: 20px;
+	float: right;
+	font-size: 12px;
 }
