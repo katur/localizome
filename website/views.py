@@ -28,6 +28,10 @@ def network(request):
 	"""
 	p = Protein.objects.filter(network_x_coordinate__isnull=False)
 	
+	for protein in p:
+		protein.network_x_coordinate_adjusted = protein.network_x_coordinate - 30
+		protein.network_y_coordinate_adjusted	= protein.network_y_coordinate - 5
+	
 	# render page
 	return render_to_response('network.html', {
 		'proteins':p,

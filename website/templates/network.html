@@ -20,14 +20,14 @@
 					title="{{ protein.common_name }}" 
 					alt="{{ protein.common_name }}"
 				/>
-				<span style="
-					left:{{ protein.network_x_coordinate }}px; 
-					top:{{ protein.network_y_coordinate }}px;"
+				<a style="
+					left:{{ protein.network_x_coordinate_adjusted }}px; 
+					top:{{ protein.network_y_coordinate_adjusted }}px;"
+					href="../protein/{{protein.common_name }}"
 				>
-				{{ protein.common_name }}
-			</span>
+				{{ protein.common_name|upper }}
+			</a>
 			{% endfor %}
 		</map>
 	</div>
-	<div id="invisible-container"></div>
 {% endblock %}

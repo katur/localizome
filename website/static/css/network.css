@@ -7,16 +7,12 @@
 	width: 100%;
 	min-height: 747px;
 	border: 1px solid gray;
-	position: absolute;
-	left:0;
-	top:0;
 }
 
-#container span {
+#container a {
 	position: absolute;
-	font-size: 15px;
-}
-
-#invisible-container {
-	height: 747px;
+	width: 60px;
+	text-align: center;
+	font-size: 13px;
+	color: black;
 }
