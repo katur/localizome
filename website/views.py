@@ -26,8 +26,12 @@ def network(request):
 	"""
 	Page with network image
 	"""
+	p = Protein.objects.filter(network_x_coordinate__isnull=False)
+	
 	# render page
-	return render_to_response('network.html', context_instance=RequestContext(request))
+	return render_to_response('network.html', {
+		'proteins':p,
+	}, context_instance=RequestContext(request))
 
 
 def protein_detail(request, common_name):

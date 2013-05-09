@@ -1,6 +1,22 @@
 /* styles for network page */
+#container {
+	position: relative;
+}
+
 #network {
 	width: 100%;
 	min-height: 747px;
 	border: 1px solid gray;
+	position: absolute;
+	left:0;
+	top:0;
+}
+
+#container span {
+	position: absolute;
+	font-size: 15px;
+}
+
+#invisible-container {
+	height: 747px;
 }
