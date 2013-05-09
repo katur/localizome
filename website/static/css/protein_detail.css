@@ -2,7 +2,6 @@
 #protein-title-bar {
 	width: 100%;
 	float: left;
-	line-height: 130%;
 }
 
 #protein-title-bar-line {
@@ -43,6 +42,7 @@
 
 .video-info {
 	float: left;
+	padding-top: 5px;
 	width: 100%;
 	font-size: 12px;
 	clear: both;

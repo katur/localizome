@@ -10,10 +10,10 @@
 			{% for protein_signals in proteins_signals %}
 				<tr>
 					{% with protein_signals.list.0.protein as protein %}
-						<th class="left-column left-align row-header" colspan="2">
+						<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
 							<a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a>
 						</th>
-						<th class="left-align">{{ protein.sequence }}</th>
+						<th class="y-axis-spatiotemporal-result row-header">{{ protein.sequence }}</th>
 					{% endwith %}
 					
 					{% for signal in protein_signals.list %}
