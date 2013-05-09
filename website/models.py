@@ -5,10 +5,13 @@ class Protein(models.Model):
 	sequence = models.CharField(max_length=15, unique=True)
 	wormbase_id = models.CharField(max_length=15, unique=True)
 	representative_video = models.OneToOneField('Video', related_name='representative', null=True, unique=True)
+	network_x_coordinate = models.PositiveIntegerField(null=True)
+	network_y_coordinate = models.PositiveIntegerField(null=True)
 	def __unicode__(self):
 		return self.common_name
 	class Meta:
 		ordering = ['common_name']
+		unique_together = ('network_x_coordinate', 'network_y_coordinate')
 	
 	# permalink takes a URL pattern (either a view name or URL pattern) and
 	# a list of arguments, and uses URLconf patters to construct URL

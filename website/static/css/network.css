@@ -1,5 +1,6 @@
 /* styles for network page */
 #network {
 	width: 100%;
+	min-height: 747px;
 	border: 1px solid gray;
 }
