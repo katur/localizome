@@ -1,4 +1,5 @@
 /* styles for network page */
 #network {
 	width: 100%;
+	border: 1px solid gray;
 }
