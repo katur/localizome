@@ -139,14 +139,14 @@ html, body {
 	margin: 0;
 }
 
-#wrap_header, div#wrap_content, div#wrap_footer {
+#wrap-header, div#wrap-content, div#wrap-footer {
 	width: 100%;
 	clear: both;
 	float: left;
 	min-width: 1000px;
 }
 
-#wrap_header {
+#wrap-header {
 	background: white;
 	padding: 18px 0 13px 0; /* more on top due to 2px underline with 3px padding */
 	position: relative; /* to accept z-index */
@@ -161,13 +161,9 @@ html, body {
 	margin-bottom: 40px;
 }
 
-#wrap_content {
+#wrap-content {
 	background: #f8f8f4;
 	padding: 50px 0 200px 0;
-}
-
-#wrap_footer {
-	background: black;
 }
 
 #header, #content, #footer {
