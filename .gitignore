@@ -19,13 +19,13 @@
 # Videos #
 ##########
 website/static/videos
+website/static/image_sequences
 *.avi
 *.mov
 *.mp4
 *.oog
 *.ogv
 *.webm
-
 
 # Packages #
 ############
