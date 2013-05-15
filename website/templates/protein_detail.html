@@ -57,10 +57,10 @@
 		<div class="video-wrapper">	
 			<!-- video player itself -->
 			<video preload="auto" width="460" height="336" controls>
-					<source src="{{ STATIC_URL }}videos/air1.mp4" type='video/mp4'/>
-					<source src="{{ STATIC_URL }}videos/air1.ogv" type='video/ogg'/>
+				<source src="{{ STATIC_URL }}videos/{{ video.filename }}.mp4" type='video/mp4'/>
+				<!-- <source src="{{ STATIC_URL }}videos/{{ video.filename }}.ogv" type='video/ogg'/>-->
 					Your browser does not support the video tag
-				</video>
+			</video>
 				
 				<!-- meta data beneath video -->
 				<div class="video-info">

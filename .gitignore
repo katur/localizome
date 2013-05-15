@@ -18,6 +18,9 @@
 
 # Videos #
 ##########
+website/static/videos
+*.avi
+*.mov
 *.mp4
 *.oog
 *.ogv

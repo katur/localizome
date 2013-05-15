@@ -3,11 +3,24 @@
 	width: 100%;
 }
 
-#homepage-image {
-	margin: auto;
-	display: block;
-	height: 351px;
+#homepage-images {
 	padding: 36px 0 44px;
+	float: left;
+	width: 100%;
+}
+
+#homepage-main-image {
+	float: left;
+	height: 351px;
+}
+
+#nyu-logo {
+	float: left;
+	padding-right: 125px;
+}
+
+#cgsb-logo {
+	float: right;
 }
 
 #homepage-line {
