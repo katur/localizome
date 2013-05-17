@@ -40,6 +40,21 @@
 	padding-bottom: 60px;
 }
 
+.lost-video {
+	width: 460px;
+	height: 336px; 
+	background: black; 
+	float: left;
+}
+
+.lost-video span {
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-top: 40px;
+	color: white;
+}
+
 .video-info {
 	float: left;
 	padding-top: 5px;

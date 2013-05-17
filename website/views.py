@@ -59,6 +59,10 @@ def protein_detail(request, common_name):
 			# add truncated summary to video
 			video.truncated_summary = video.summary[:500]
 		
+		# for not found videos (currently just one), add a field so warning message displays
+		if video.filename == "NUM1_PF1134_3_120510":
+			video.lost = 1
+
 		# get the strain corresponding to the video, and process the strain's genotype
 		video.strain = get_object_or_404(Strain, id=video.strain_id) # get strain
 		
