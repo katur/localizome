@@ -1,0 +1,5 @@
+from home_view import home
+from protein_list_view import protein_list
+from protein_detail_view import protein_detail
+from spatiotemporal_views import spatiotemporal_search, spatiotemporal_both, spatiotemporal_compartment, spatiotemporal_timepoint
+from network_view import network
