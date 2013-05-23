@@ -9,6 +9,15 @@
 }
 
 .downloads-column li {
-	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
+.inner li {
+	padding-left: 20px;
+	list-style-type: circle;
+	padding-top: 0px;
+}
+
+.downloads-column form {
+	padding: 20px 0;
+}

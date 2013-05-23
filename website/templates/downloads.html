@@ -6,7 +6,7 @@
 
 {% block content %}
 	<div class="downloads-column">
-		<h4>Project-wide</h4>
+		<h4>Project-wide:</h4>
 		<ul> 
 			<li><a href="" target="_blank">zip archive of .png image sequences</a></li>
 			<li><a href="" target="_blank">zip archive of .avi videos</a></li>
@@ -16,9 +16,51 @@
 		</ul>
 	</div>
 
-	{% if protein %}
-		<div class="downloads-column">
+	<div class="downloads-column">
+		<h4>Specific protein:</h4>
+		<form action="/downloads/" method="get">
+			<select name="protein">
+				{% for protein in proteins %}
+					<option value="{{ protein }}">{{ protein|upper }}</option>
+				{% endfor %}
+			</select>
+			<input type="submit" value="Submit">
+		</form>
+
+		{% if protein %}
 			<h4>{{ protein|upper }}</h4>
-		</div>
-	{% endif %}
+			{% for video in videos %}
+				<ul>
+					<li>movie {{ video.movie_number }}</li>
+					<ul class="inner">
+						<li>
+							<a href="{{ STATIC_URL }}image_sequences/{{ video.filename }}.zip" target="_blank">
+								zipped image sequence
+							</a>
+						</li>
+						<li>
+							<a href="{{ STATIC_URL }}videos/avi/{{ video.filename }}.avi" target="_blank">
+								avi
+							</a>
+						</li>
+						<li>
+							<a href="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" target="_blank">
+								mp4
+							</a>
+						</li>
+						<li>
+							<a href="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" target="_blank">
+								ogv
+							</a>
+						</li>
+						<li>
+							<a href="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" target="_blank">
+								webm
+							</a>
+						</li>
+					</ul>	
+				</ul>
+			{% endfor %}
+		{% endif %}
+	</div>
 {% endblock %}

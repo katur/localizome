@@ -43,4 +43,8 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 		r'^downloads/(?P<common_name>.+)$',
 		'downloads_protein',
 	),
+	url(
+		r'^downloads/$',
+		'downloads_protein',
+	),
 )

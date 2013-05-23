@@ -36,7 +36,7 @@ body {
 	font-size: 18px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
@@ -50,6 +50,10 @@ h1 {
 h2, h3 {
 	font-size: 30px;
 	padding-bottom: 20px;
+}
+
+h4 {
+	font-size: 23px;
 }
 
 .increase-line-height {
