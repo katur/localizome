@@ -12,7 +12,7 @@
 			{% for signal in signals %}
 				<tr>
 					<th class="left-column y-axis-spatiotemporal-result row-header">
-						<a href="{% url website.views.protein_detail common_name=signal.protein.common_name %}">
+						<a href="{% url website.views.protein_detail common_name=signal.protein %}">
 							{{ signal.protein|upper }}
 						</a>
 					</th>

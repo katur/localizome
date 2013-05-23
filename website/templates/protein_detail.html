@@ -5,7 +5,7 @@
 <!-- PROTEIN TITLE BAR -->
 <div id="protein-title-bar">
 	<!-- protein title on left -->
-	<h3>{{ protein.common_name|upper }}</h3>
+	<h3>{{ protein|upper }}</h3>
 	
 	<!-- sequence and wormbase link on right -->
 	<div id="protein-subtitle">
@@ -13,7 +13,7 @@
 			Cosmid: {{ protein.sequence }}
 		{% endif %}
 
-		{% if protein.sequence != protein.common_name and protein.wormbase_id %}
+		{% if protein.sequence != protein and protein.wormbase_id %}
 			<br>
 		{% endif %}
 
@@ -82,7 +82,7 @@
 				</div>
 				<div class="video-info-right">
 					Filmed {{ video.date_filmed }}<br>
-					<a href="{% url website.views.downloads_protein common_name=protein.common_name %}">
+					<a href="{% url website.views.downloads_protein common_name=protein %}">
 						Download
 					</a>
 				</div>

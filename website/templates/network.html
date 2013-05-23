@@ -16,14 +16,14 @@
 			{% for protein in proteins %}
 				<area	shape="circle" 
 					coords="{{ protein.network_x_coordinate }},{{ protein.network_y_coordinate }},21" 
-					href="../protein/{{ protein.common_name }}" 
-					title="{{ protein.common_name }}" 
-					alt="{{ protein.common_name }}"
+					href="../protein/{{ protein }}" 
+					title="{{ protein }}" 
+					alt="{{ protein }}"
 				/>
 				<a style="
 					left:{{ protein.network_x_coordinate_adjusted }}px; 
 					top:{{ protein.network_y_coordinate_adjusted }}px;"
-					href="{% url website.views.protein_detail common_name=protein.common_name %}"
+					href="{% url website.views.protein_detail common_name=protein %}"
 				>
 				{{ protein.common_name|upper }}
 			</a>

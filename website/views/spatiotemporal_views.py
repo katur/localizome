@@ -81,7 +81,7 @@ def spatiotemporal_compartment(request, compartment):
 	)
 
 	# render page
-	return render_to_response('spatiotemporal_compartment.html', {
+	return render_to_response('spatiotemporal_results.html', {
 		'signals':s,
 		'compartment':c,
 		'timepoints':t
@@ -109,7 +109,7 @@ def spatiotemporal_timepoint(request, timepoint):
 	)
 
 	# render page
-	return render_to_response('spatiotemporal_timepoint.html', {
+	return render_to_response('spatiotemporal_results.html', {
 		'signals':s,
 		'timepoint':t,
 		'compartments':c

@@ -18,8 +18,8 @@
 			{% for protein in proteins %}
 				<tr>
 					<td>
-						<a href="{% url website.views.protein_detail common_name=protein.common_name %}">
-							{{ protein.common_name|upper }}
+						<a href="{% url website.views.protein_detail common_name=protein %}">
+							{{ protein|upper }}
 						</a>
 					</td>
 					<td>

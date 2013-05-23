@@ -51,3 +51,48 @@
 		</div>
 	{% endif %}		
 {% endblock next_to_matrix %}
+
+
+{% block matrix %}
+	{% if signals %}
+		<table class="matrix">
+			{% if compartment %}
+				{% include "matrix_xaxis_timepoints.html" %}
+			{% elif timepoint %}
+				{% include "matrix_xaxis_compartments.html" %}
+			{% endif %}
+
+			{% regroup signals by protein_id as proteins_signals %}
+			
+			{% for protein_signals in proteins_signals %}
+				<tr>
+					{% with protein_signals.list.0.protein as protein %}
+						<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
+							<a href="{% url website.views.protein_detail common_name=protein %}">
+								{{ protein|upper }}
+							</a>
+						</th>
+						<th class="y-axis-spatiotemporal-result row-header">
+							{{ protein.sequence }}
+						</th>
+					{% endwith %}
+					
+					{% for signal in protein_signals.list %}
+						<td class="signal
+							strength{{ signal.strength }}
+							{% if compartment %}
+								{% if forloop.counter == 8 or forloop.counter == 14 %}
+									bold-right
+								{% endif %}
+							{% elif timepoint %}
+								{% if forloop.counter == 4 or forloop.counter == 15 %}
+									bold-right
+								{% endif %}
+							{% endif %}
+						"></td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+{% endblock matrix %}
