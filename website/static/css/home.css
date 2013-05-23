@@ -27,21 +27,6 @@
 	padding-bottom: 40px;
 }
 
-.homepage-column {
-	width: 50%;
-	float: left;
-	font-size: 16px;
-}
-
-.homepage-column ul {
-	list-style-type: square;
-	list-style-position: inside;
-}
-
-.homepage-column li {
-	padding-bottom: 10px;
-}
-
 #contact {
 	padding-top: 30px;
 }

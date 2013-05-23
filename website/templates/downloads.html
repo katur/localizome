@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+	<h3>Downloads</h3>
+{% endblock %}
+
+{% block content %}
+	<div class="downloads-column">
+		<h4>Project-wide</h4>
+		<ul> 
+			<li><a href="" target="_blank">zip archive of .png image sequences</a></li>
+			<li><a href="" target="_blank">zip archive of .avi videos</a></li>
+			<li><a href="" target="_blank">excel document of original matrices</a></li>
+			<li><a href="" target="_blank">zip archive of .csv merge matrices</a></li>
+			<li><a href="" target="_blank">MySQL database</a></li>
+		</ul>
+	</div>
+
+	{% block downloads_protein %}
+	{% endblock %}
+{% endblock %}

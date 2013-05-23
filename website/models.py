@@ -18,7 +18,7 @@ class Protein(models.Model):
 	@models.permalink 
 	def get_absolute_url(self):
 		return ('protein_detail_url', [str(self.common_name)])
-
+	
 
 class Strain(models.Model):
 	name = models.CharField(max_length=10)
