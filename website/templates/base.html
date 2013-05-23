@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link href="{{ STATIC_URL }}images/favicon.ico" rel="icon" type="image/x-icon">
-		<link href="{{ STATIC_URL }}css/universal.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/home.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/protein_list.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/protein_detail.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/spatiotemporal.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/network.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/downloads.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/matrix.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/header.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}css/footer.css" rel="stylesheet" type="text/css" />
-		<link href="{{ STATIC_URL }}johndyer-mediaelement-b81a0d3/mediaelementplayer.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}johndyer-mediaelement-b81a0d3/mediaelement-and-player.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/localizome.js"></script>
-		<title>EE Localizome</title>
-	</head>
+	<!-- HEAD -->
+	{% include "head.html" %}
 
 	<body>
 		<div id="wrap-header">
@@ -29,18 +13,7 @@
 				<h1>Early Embryo Localizome</h1>
 				
 				<!-- MENU -->
-				<div id="menu">
-					{% url website.views.home as url_home %}
-					{% url website.views.protein_list as url_protein_list %}
-					{% url website.views.spatiotemporal_search as url_spatiotemporal_search %}
-					{% url website.views.network as url_network %}
-					{% url website.views.downloads as url_downloads %}
-					<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>Home</a> 
-					<a href="{{ url_protein_list }}" {% if request.path == url_protein_list %}class="active"{% endif %}>Protein List</a>
-					<a href="{{ url_spatiotemporal_search }}" {% if request.path == url_spatiotemporal_search %}class="active"{% endif %}>Spatiotemporal Search</a>
-					<a href="{{ url_network }}" {% if request.path == url_network %}class="active"{% endif %}>Network</a>
-					<a href="{{ url_downloads }}" {% if request.path == url_downloads %}class="active"{% endif %}>Downloads</a>
-				</div>
+				{% include "menu.html" %}
 			</div>
 		</div>
 		
@@ -54,30 +27,7 @@
 			</div>
 		</div>
 
-
-
 		<!-- FOOTER -->
-		<div id="wrap-footer">
-			<div id="footer">
-				<div id="footer-left">
-					Data:
-					Miyeko Mana,
-					Kahn Rhrissorrakrai,
-					and 
-					<a href="http://biology.as.nyu.edu/object/FabioPiano.html" target="_blank">Fabio Piano</a>
-					<br>
-					<a href="http://cgsb.as.nyu.edu/" target="_blank">Center for Genomics and Systems Biology</a>,
-					NYU,
-					2009-2013
-				</div>
-				<div id="footer-right">
-					Website:
-					<a href="http://www.katherineerickson.com/" target="_blank">Katherine Erickson</a>
-					<br>
-					code on <a href="https://github.com/katur/localizome" target="_blank">GitHub</a>,
-					2013
-				</div>	
-			</div>
-		</div>
+		{% include "footer.html" %}
 	</body>
 </html>
