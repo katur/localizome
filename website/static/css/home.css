@@ -11,12 +11,12 @@
 
 #homepage-main-image {
 	float: left;
+	padding-left: 118px;
 	height: 351px;
 }
 
 #cgsb-logo {
 	float: left;
-	padding-right: 118px;
 }
 
 #nyu-logo {

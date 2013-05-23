@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="blurb" class="increase-line-height">
-	The Early Embryo Localizome project examines 100 GFP-fused proteins in their native cellular environments during the first two rounds of mitotic cell division in the <i>C. elegans</i> developing embryo.
-</div>
-<div id="homepage-images">
-	<img id="cgsb-logo" src="{{ STATIC_URL }}images/cgsb-logo.png" >
-	<img id="homepage-main-image" src="{{ STATIC_URL }}images/homepage.png" >
-	<img id="nyu-logo" src="{{ STATIC_URL }}images/nyu-logo.png" >
-</div>
-<hr id="homepage-line"></hr>
-
-<div id="blurb">
-	<h3>Paper</h3>
-	<a href="" target="_blank"><i>The title of the paper</i></a>, Miyeko Mana, ..., The Journal
+	<div id="blurb" class="increase-line-height">
+		The Early Embryo Localizome project examines 100 GFP-fused proteins in their native cellular environments during the first two rounds of mitotic cell division in the <i>C. elegans</i> developing embryo.
+	</div>
+	<div id="homepage-images">
+		<a href="http://cgsb.as.nyu.edu/" target="_blank">
+			<img id="cgsb-logo" src="{{ STATIC_URL }}images/cgsb-logo.png" >
+		</a>
+		<img id="homepage-main-image" src="{{ STATIC_URL }}images/homepage.png" >
+		<a href="http://nyu.edu/" target="_blank">
+			<img id="nyu-logo" src="{{ STATIC_URL }}images/nyu-logo.png" >
+		</a>	
+	</div>
 	
-	<h3 id="contact">Contact</h3>
-		corresponding author Dr. Fabio Piano: fp1 < at > nyu.edu
-</div>
+	<hr id="homepage-line"></hr>
 
+	<div id="blurb">
+		<h3>Paper</h3>
+		<a href="" target="_blank"><i>The title of the paper</i></a>, Miyeko Mana, ..., The Journal
+		
+		<h3 id="contact">Contact</h3>
+		Corresponding author Dr. Fabio Piano: fp1 < at > nyu.edu
+	</div>
 {% endblock %}
