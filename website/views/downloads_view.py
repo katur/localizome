@@ -23,7 +23,7 @@ def downloads_protein(request, common_name):
 		video.ogv = video.filename + ".ogv"
 
 	# render page
-	return render_to_response('downloads_protein.html', {
+	return render_to_response('downloads.html', {
 		'protein':p,
 		'videos':v,
 	}, context_instance=RequestContext(request))

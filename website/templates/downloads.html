@@ -16,6 +16,9 @@
 		</ul>
 	</div>
 
-	{% block downloads_protein %}
-	{% endblock %}
+	{% if protein %}
+		<div class="downloads-column">
+			<h4>{{ protein|upper }}</h4>
+		</div>
+	{% endif %}
 {% endblock %}
