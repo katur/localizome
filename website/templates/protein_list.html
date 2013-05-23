@@ -17,8 +17,14 @@
 			</tr>
 			{% for protein in proteins %}
 				<tr>
-					<td><a href="{{ protein.get_absolute_url }}">{{ protein.common_name|upper }}</a></td>
-					<td>{{ protein.sequence }}</td>
+					<td>
+						<a href="{% url website.views.protein_detail common_name=protein.common_name %}">
+							{{ protein.common_name|upper }}
+						</a>
+					</td>
+					<td>
+						{{ protein.sequence }}
+					</td>
 				</tr>
 			
 				{% if forloop.counter|divisibleby:"22" %}

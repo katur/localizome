@@ -1,6 +1,5 @@
 {% extends "spatiotemporal_results.html" %}
 
-
 {% block matrix %}
 	{% if signals %}
 		<table id="spatiotemporal-both">
@@ -12,9 +11,15 @@
 		
 			{% for signal in signals %}
 				<tr>
-					<th class="left-column y-axis-spatiotemporal-result row-header"><a href="{{ signal.protein.get_absolute_url }}">{{ signal.protein|upper }}</a></th>
-					<th class="y-axis-spatiotemporal-result row-header">{{ signal.protein.sequence }}</th>
-					<td width="50" class="signal strength{{ signal.strength }}">
+					<th class="left-column y-axis-spatiotemporal-result row-header">
+						<a href="{% url website.views.protein_detail common_name=signal.protein.common_name %}">
+							{{ signal.protein|upper }}
+						</a>
+					</th>
+					<th class="y-axis-spatiotemporal-result row-header">
+						{{ signal.protein.sequence }}
+					</th>
+					<td width="50" class="signal strength{{ signal.strength }}"></td>	
 				</tr>
 			{% endfor %}
 		</table>

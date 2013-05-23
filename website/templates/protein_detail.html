@@ -82,7 +82,9 @@
 				</div>
 				<div class="video-info-right">
 					Filmed {{ video.date_filmed }}<br>
-					<a href="../downloads/{{ protein.common_name }}">Download</a>
+					<a href="{% url website.views.downloads_protein common_name=protein.common_name %}">
+						Download
+					</a>
 				</div>
 			</div>
 		</div> <!-- video-wrapper -->

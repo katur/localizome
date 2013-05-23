@@ -13,12 +13,6 @@ class Protein(models.Model):
 		ordering = ['common_name']
 		unique_together = ('network_x_coordinate', 'network_y_coordinate')
 	
-	# permalink takes a URL pattern (either a view name or URL pattern) and
-	# a list of arguments, and uses URLconf patters to construct URL
-	@models.permalink 
-	def get_absolute_url(self):
-		return ('protein_detail_url', [str(self.common_name)])
-	
 
 class Strain(models.Model):
 	name = models.CharField(max_length=10)
