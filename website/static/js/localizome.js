@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	showProteinDownloads();
 	initializeVideoPlayer();
 	toggleSummaryLength();
 	toggleVideo();
@@ -8,6 +9,11 @@ $(document).ready(function(){
 	hoverTags();
 })
 
+showProteinDownloads = function(){
+	$("select[name=protein]").change(function(){
+		window.location = $(this).data("path") + "/" + $(this).val();
+	});
+}
 
 initializeVideoPlayer = function(){
 	$('video').mediaelementplayer({
@@ -23,7 +29,6 @@ toggleSummaryLength = function(){
 		$(this).closest("li").find(".summary-collapsed, .summary-expanded").toggleClass("invisible");
 	});
 }
-
 
 toggleVideo = function(){
 	$("[data-video-link]").click(function(e){
@@ -43,13 +48,11 @@ toggleVideo = function(){
 	});
 }
 
-
 selectDefaultVideo = function(){
 	$("[data-video-link]").first().trigger("click"); // trigger the first link (in case no rep)
 	repVideoId = $("[data-video-representative]").attr("data-video-link"); // get rep video
 	$("[data-video-link='" + repVideoId + "']").trigger("click"); // trigger the rep video
 }
-
 
 spatiotemporalLinks = function(){
 	// run the contents of this function whenever you click a td
@@ -85,7 +88,6 @@ spatiotemporalLinks = function(){
 	});
 }
 
-
 matrixAxisHighlight = function(){
 	$("td.signal").mouseover(function(){
 		$(this).siblings(".row-header").addClass("highlight");
@@ -97,7 +99,6 @@ matrixAxisHighlight = function(){
 		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
 	});
 }
-
 
 window.hoverTags = function() {
 	$('body').on('mouseover', '[data-hover-tag]', function(e) {

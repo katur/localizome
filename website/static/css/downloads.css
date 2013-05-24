@@ -18,6 +18,6 @@
 	padding-top: 0px;
 }
 
-.downloads-column form {
-	padding: 20px 0;
+.downloads-column select {
+	margin: 20px 0;
 }
