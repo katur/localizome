@@ -6,8 +6,9 @@
 
 {% block content %}
 	<div class="downloads-column">
-		<h4>Specific protein:</h4>
+		<h4>Use dropdown for protein-specific downloads:</h4>
 		<select name="protein" data-path="{% url website.views.downloads %}">
+			<option>Select a protein</option>
 			{% for p in proteins %}
 				<option value="{{ p }}" {% if p = protein %}selected="selected"{% endif %}>
 					{{ p|upper }}
@@ -16,49 +17,51 @@
 		</select>
 
 		{% if protein %}
-			<h4>{{ protein|upper }}</h4>
-			{% for video in videos %}
-				<ul>
-					<li>movie {{ video.movie_number }}</li>
-					<ul class="inner">
-						<li>
-							<a href="{{ STATIC_URL }}image_sequences/{{ video.filename }}.zip" target="_blank">
-								zipped image sequence
-							</a>
-						</li>
-						<li>
-							<a href="{{ STATIC_URL }}videos/avi/{{ video.filename }}.avi" target="_blank">
-								avi
-							</a>
-						</li>
-						<li>
-							<a href="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" target="_blank">
-								mp4
-							</a>
-						</li>
-						<li>
-							<a href="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" target="_blank">
-								ogv
-							</a>
-						</li>
-						<li>
-							<a href="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" target="_blank">
-								webm
-							</a>
-						</li>
-					</ul>	
-				</ul>
-			{% endfor %}
+			<div class="shaded-box protein-downloads">
+				<h4>{{ protein|upper }}</h4>
+				{% for video in videos %}
+					<ul>
+						<li>movie {{ video.movie_number }}</li>
+						<ul class="inner">
+							<li>
+								<a href="{{ STATIC_URL }}videos/avi/{{ video.filename }}.avi" target="_blank">
+									avi
+								</a>
+							</li>
+							<li>
+								<a href="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" target="_blank">
+									mp4
+								</a>
+							</li>
+							<li>
+								<a href="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" target="_blank">
+									ogv
+								</a>
+							</li>
+							<li>
+								<a href="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" target="_blank">
+									webm
+								</a>
+							</li>
+							<li>
+								<a href="{{ STATIC_URL }}image_sequences/{{ video.filename }}.zip" target="_blank">
+									image sequence (zip)
+								</a>
+							</li>
+						</ul>	
+					</ul>
+				{% endfor %}
+			</div>	
 		{% endif %}
 	</div>
 	
 	<div class="downloads-column">
-		<h4>Project-wide:</h4>
+		<h4>Project-wide downloads:</h4>
 		<ul> 
-			<li><a href="" target="_blank">zip archive of .png image sequences</a></li>
-			<li><a href="" target="_blank">zip archive of .avi videos</a></li>
-			<li><a href="" target="_blank">excel document of original matrices</a></li>
-			<li><a href="" target="_blank">zip archive of .csv merge matrices</a></li>
+			<li><a href="" target="_blank">zip archive of all image sequences</a></li>
+			<li><a href="" target="_blank">zip archive of all avi videos</a></li>
+			<li><a href="" target="_blank">excel file of original matrices</a></li>
+			<li><a href="" target="_blank">zip archive of csv merge matrices</a></li>
 			<li><a href="" target="_blank">MySQL database</a></li>
 		</ul>
 	</div>

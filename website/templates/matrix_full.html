@@ -3,7 +3,7 @@
 {% block matrix %}
 	{% for video_id, matrix in matrices %}
 		{% if video_id == "spatiotemporal" %}
-			<table class="matrix" id="spatiotemporal">
+			<table class="matrix" data-path="{% url website.views.spatiotemporal_search %}" id="spatiotemporal">
 		{% elif video_id == "merge" %}
 			<table class="matrix" data-video-content="merge">
 		{% else %}

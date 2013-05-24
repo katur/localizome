@@ -11,7 +11,9 @@ $(document).ready(function(){
 
 showProteinDownloads = function(){
 	$("select[name=protein]").change(function(){
-		window.location = $(this).data("path") + "/" + $(this).val();
+		if ($(this).val() != undefined) {
+			window.location = $(this).data("path") + $(this).val();
+		}
 	});
 }
 
@@ -55,6 +57,8 @@ selectDefaultVideo = function(){
 }
 
 spatiotemporalLinks = function(){
+	path = $("table#spatiotemporal").data("path");
+	
 	// run the contents of this function whenever you click a td
 	$("table#spatiotemporal td").click(function(){
 
@@ -71,19 +75,19 @@ spatiotemporalLinks = function(){
 		columnId = $("th.timepoint").eq(columnIndex).data("id");
 			
 		// assemble the link
-		link = "spatiotemporal/compartment" + rowId + "/timepoint" + columnId;
+		link = path + "compartment" + rowId + "/timepoint" + columnId;
 		window.location = link;
 	});
 
 	$("table#spatiotemporal th.compartment").click(function(){
 		rowId = $(this).data("id");
-		link = "spatiotemporal/compartment" + rowId;
+		link = path + "compartment" + rowId;
 		window.location = link;
 	});
 	
 	$("table#spatiotemporal th.timepoint").click(function(){
 		columnId = $(this).data("id");
-		link = "spatiotemporal/timepoint" + columnId;
+		link = path + "timepoint" + columnId;
 		window.location = link;
 	});
 }

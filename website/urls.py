@@ -8,7 +8,7 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 		'home',
 	),
 	url(
-		r'^proteins$',
+		r'^proteins/$',
 		'protein_list',
 	),
 	url(
@@ -16,7 +16,7 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 		'protein_detail',
 	),
 	url(
-		r'^spatiotemporal$',
+		r'^spatiotemporal/$',
 		'spatiotemporal_search',
 	),
 	url(
@@ -32,11 +32,11 @@ urlpatterns = patterns('website.views', # first arg prefix for views
 		'spatiotemporal_timepoint',
 	),
 	url(
-		r'^network$',
+		r'^network/$',
 		'network',
 	),
 	url(
-		r'^downloads$',
+		r'^downloads/$',
 		'downloads',
 	),
 	url(

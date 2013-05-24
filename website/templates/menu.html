@@ -4,19 +4,19 @@
 	{% url website.views.spatiotemporal_search as url_spatiotemporal_search %}
 	{% url website.views.network as url_network %}
 	{% url website.views.downloads as url_downloads %}
-	<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>
+	<a href="{{ url_home }}" {% ifequal request.path url_home %}class="active"{% endifequal %}>
 		Home
 	</a> 
-	<a href="{{ url_protein_list }}" {% if request.path == url_protein_list %}class="active"{% endif %}>
+	<a href="{{ url_protein_list }}" {% ifequal request.path url_protein_list %}class="active"{% endifequal %}>
 		Protein List
 	</a>
-	<a href="{{ url_spatiotemporal_search }}" {% if request.path == url_spatiotemporal_search %}class="active"{% endif %}>
+	<a href="{{ url_spatiotemporal_search }}" {% ifequal request.path url_spatiotemporal_search %}class="active"{% endifequal %}>
 		Spatiotemporal Search
 	</a>
-	<a href="{{ url_network }}" {% if request.path == url_network %}class="active"{% endif %}>
+	<a href="{{ url_network }}" {% ifequal request.path url_network %}class="active"{% endifequal %}>
 		Network
 	</a>
-	<a href="{{ url_downloads }}" {% if request.path == url_downloads %}class="active"{% endif %}>
+	<a href="{{ url_downloads }}" {% if url_downloads in request.path %}class="active"{% endif %}>
 		Downloads
 	</a>
 </div>
