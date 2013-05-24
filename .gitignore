@@ -40,8 +40,8 @@ website/static/image_sequences
 *.tar
 *.zip
 
-# Logs and databases #
-######################
+# Logs, databases, raw data #
+#############################
 *.log
 *.sql
 *.sqlite

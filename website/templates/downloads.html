@@ -44,7 +44,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="{{ STATIC_URL }}image_sequences/{{ video.filename }}.zip" target="_blank">
+								<a href="{{ STATIC_URL }}videos/image_sequences_zipped/{{ video.filename }}.zip" target="_blank">
 									image sequence (zip)
 								</a>
 							</li>
@@ -58,11 +58,11 @@
 	<div class="downloads-column">
 		<h4>Project-wide downloads:</h4>
 		<ul> 
-			<li><a href="" target="_blank">zip archive of all image sequences</a></li>
-			<li><a href="" target="_blank">zip archive of all avi videos</a></li>
-			<li><a href="" target="_blank">excel file of original matrices</a></li>
-			<li><a href="" target="_blank">zip archive of csv merge matrices</a></li>
-			<li><a href="" target="_blank">MySQL database</a></li>
+			<li><a href="{{ STATIC_URL }}project_wide_downloads/localizome_avi_videos.zip" target="_blank">zip archive of all ALL avi videos (782MB)</a></li>
+			<li><a href="{{ STATIC_URL }}project_wide_downloads/localizome_image_sequences.zip" target="_blank">zip archive of ALL image sequences (3.75GB)</a></li>
+			<li><a href="{{ STATIC_URL }}project_wide_downloads/localizome.sql" target="_blank">MySQL database</a></li>
+			<li><a href="{{ STATIC_URL }}project_wide_downloads/localizome.xls" target="_blank">excel file of original matrices</a></li>
+			<li><a href="{{ STATIC_URL }}project_wide_downloads/localizome_merge_matrices.zip" target="_blank">zip archive of csv merge matrices</a></li>
 		</ul>
 	</div>
 

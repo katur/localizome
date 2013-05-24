@@ -41,11 +41,11 @@ h1, h2, h3, h4 {
 	font-family: perpetua, palatino, serif;
 	font-weight: normal;
 	margin: 0px;
-	line-height: 80%;
 }
 
 h1 {
 	font-size: 36px;
+	line-height: 80%;
 }
 
 h2, h3 {
