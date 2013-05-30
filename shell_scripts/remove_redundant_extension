@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd ../website/static/videos/webm
+for f in *.webmhd.webm
+do
+	echo "filename is $f"
+	filename=$(basename "$f")
+	filename="${filename%.webmhd.webm}"
+	echo mv $f "$filename.webm"
+done

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd ../website/static/videos/image_sequences/
+for dir in *
+do
+	cd $dir
+	echo "directory is $dir"
+	echo zip ../../image_sequences_zipped/$dir.zip *.png 	
+	cd ..
+done

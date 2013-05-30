@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FILES=../website/static/videos/avi/*.avi
+for f in $FILES
+do
+	echo "Processing $f file..."
+	filename=$(basename "$f")
+	extension="${filename##*.}"
+	filename="${filename%.*}"
+	echo HandBrakeCLI -i $f -o ../website/static/videos/mp4_handbrake/$filename.mp4 --preset "iPhone & iPod Touch" -a "none" --crop 0:0:0:0 --two-pass --optimize
+done

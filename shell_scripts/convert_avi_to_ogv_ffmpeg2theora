@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FILES=../website/static/videos/avi/*.avi
+for f in $FILES
+do
+	echo "Processing $f file..."
+	filename=$(basename "$f")
+	extension="${filename##*.}"
+	filename="${filename%.*}"
+	echo ffmpeg2theora -o ../website/static/videos/ogv_ffmpeg2theora/$filename.ogv --noaudio --optimize $f
+done

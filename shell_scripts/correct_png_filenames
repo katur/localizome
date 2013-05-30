@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# example of how to convert all the png filenames for one image sequence
+# here, we are changing JH1447 to JH1448
+cd ../website/static/image_sequences/MEX5_JH1448_1_123108/
+for f in *.png
+do
+	echo "filename is $f"
+	input="${f% *} ${f#* }"
+	output=${f%JH1447*}JH1448${f#*JH1447}
+	output="${output% *} ${output#* }"
+	echo mv "$input" "$output"
+done
