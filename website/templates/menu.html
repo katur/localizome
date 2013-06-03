@@ -1,9 +1,9 @@
 <div id="menu">
-	{% url website.views.home as url_home %}
-	{% url website.views.protein_list as url_protein_list %}
-	{% url website.views.spatiotemporal_search as url_spatiotemporal_search %}
-	{% url website.views.network as url_network %}
-	{% url website.views.downloads as url_downloads %}
+	{% url 'website.views.home' as url_home %}
+	{% url 'website.views.protein_list' as url_protein_list %}
+	{% url 'website.views.spatiotemporal_search' as url_spatiotemporal_search %}
+	{% url 'website.views.network' as url_network %}
+	{% url 'website.views.downloads' as url_downloads %}
 	<a href="{{ url_home }}" {% ifequal request.path url_home %}class="active"{% endifequal %}>
 		Home
 	</a> 

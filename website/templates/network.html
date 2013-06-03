@@ -23,7 +23,7 @@
 				<a style="
 					left:{{ protein.network_x_coordinate_adjusted }}px; 
 					top:{{ protein.network_y_coordinate_adjusted }}px;"
-					href="{% url website.views.protein_detail common_name=protein %}"
+					href="{% url 'website.views.protein_detail' common_name=protein %}"
 				>
 				{{ protein.common_name|upper }}
 			</a>

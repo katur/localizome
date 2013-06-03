@@ -68,7 +68,7 @@
 				<tr>
 					{% with protein_signals.list.0.protein as protein %}
 						<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
-							<a href="{% url website.views.protein_detail common_name=protein %}">
+							<a href="{% url 'website.views.protein_detail' common_name=protein %}">
 								{{ protein|upper }}
 							</a>
 						</th>

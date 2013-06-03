@@ -7,7 +7,7 @@
 {% block content %}
 	<div class="downloads-column">
 		<h4>Use dropdown for protein-specific downloads:</h4>
-		<select name="protein" data-path="{% url website.views.downloads %}">
+		<select name="protein" data-path="{% url 'website.views.downloads' %}">
 			<option>Select a protein</option>
 			{% for p in proteins %}
 				<option value="{{ p }}" {% if p = protein %}selected="selected"{% endif %}>
