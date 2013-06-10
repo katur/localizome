@@ -1,3 +1,5 @@
+/* various SQL queries, mostly to check for consistency in the data */
+
 /* to see how many proteins are represented with strains of Miyeko's only, vs CGC only, vs both */
 DROP TABLE Miyeko_only;
 CREATE TABLE Miyeko_only AS
