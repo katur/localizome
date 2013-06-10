@@ -1,7 +1,7 @@
 # Django settings for localizome project.
 
 # to keep my secret settings, i.e. db connection and secret key, out of git repo
-from settings_secret import *
+from secret_settings import *
 
 # to use dynamically-generated roots throughout settings file
 import os

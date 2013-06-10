@@ -1,6 +1,6 @@
 # Connection files #
 ####################
-*settings_secret.py
+*secret_settings.py
 
 # Compiled source #
 ###################
