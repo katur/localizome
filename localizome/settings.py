@@ -1,6 +1,6 @@
 # Django settings for localizome project.
 
-# to keep my secret settings, i.e. db connection and secret key, out of git repo
+# to keep db connection and secret key out of git repo
 from secret_settings import *
 
 # to use dynamically-generated roots throughout settings file
@@ -129,12 +129,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Uncomment the next line to enable the admin:
+    'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    'django.contrib.admindocs',
     'south', # for database migrations
     'website', # module for localizome website itself
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging
