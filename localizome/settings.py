@@ -109,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+		'lockdown.middleware.LockdownMiddleware',
 )
 
 ROOT_URLCONF = 'localizome.urls'
@@ -135,6 +136,9 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'south', # for database migrations
     'website', # module for localizome website itself
+		# below to password protect site. also see addition to MIDDLEWARE_CLASSES
+		# the password itself is in secret_settings
+		'lockdown',
 )
 
 # A sample logging configuration. The only tangible logging
