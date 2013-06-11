@@ -1,50 +1,54 @@
 from django.conf.urls import patterns, include, url
+from django.contrib import admin
+
+admin.autodiscover()
 
 # urlpatterns is a module-level variable
-urlpatterns = patterns('website.views', # first arg prefix for views
+urlpatterns = patterns('', # first arg prefix for views
 	# subsequent args are tuples: (regex, view, optional dictionary)
+	(r'^admin/', include(admin.site.urls)),
 	url(
 		r'^$',
-		'home',
+		'website.views.home',
 	),
 	url(
 		r'^proteins/$',
-		'protein_list',
+		'website.views.protein_list',
 	),
 	url(
 		r'^protein/(?P<common_name>.+)$',
-		'protein_detail',
+		'website.views.protein_detail',
 	),
 	url(
 		r'^spatiotemporal/$',
-		'spatiotemporal_search',
+		'website.views.spatiotemporal_search',
 	),
 	url(
 		r'^spatiotemporal/compartment(?P<compartment>\d{1,2})/timepoint(?P<timepoint>\d{1,2})$',
-		'spatiotemporal_both',
+		'website.views.spatiotemporal_both',
 	),
 	url(
 		r'^spatiotemporal/compartment(?P<compartment>\d{1,2})$',
-		'spatiotemporal_compartment',
+		'website.views.spatiotemporal_compartment',
 	),
 	url(
 		r'^spatiotemporal/timepoint(?P<timepoint>\d{1,2})$',
-		'spatiotemporal_timepoint',
+		'website.views.spatiotemporal_timepoint',
 	),
 	url(
 		r'^network/$',
-		'network',
+		'website.views.network',
 	),
 	url(
 		r'^downloads/$',
-		'downloads',
+		'website.views.downloads',
 	),
 	url(
 		r'^downloads/(?P<common_name>.+)$',
-		'downloads_protein',
+		'website.views.downloads_protein',
 	),
 	url(
 		r'^downloads/$',
-		'downloads_protein',
+		'website.views.downloads_protein',
 	),
 )
