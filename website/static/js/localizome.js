@@ -46,6 +46,7 @@ toggleVideo = function(){
 		videoId = $(this).attr("data-video-link"); // get video id for clicked link
 		$("[data-video-content='" + videoId + "']").removeClass("invisible"); // make this one visible
 		
+		$(".matrix").is(":visible") ? $(".matrix-prompt").show() : $(".matrix-prompt").hide();
 		$(".matrix").is(":visible") ? $("#next-to-matrix").show() : $("#next-to-matrix").hide();
 	});
 }
