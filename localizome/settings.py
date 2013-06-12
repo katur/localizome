@@ -181,3 +181,6 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 # http://python.6.x6.nabble.com/Django-18336-Static-files-randomly-fail-to-load-in-Google-Chrome-td4974987.html
 from django.core.servers.basehttp import WSGIServer
 WSGIServer.request_queue_size = 10
+
+# tried the line below to force lockdown password prompt on browser close, but it didn't work 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
