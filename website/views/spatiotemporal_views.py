@@ -22,18 +22,15 @@ def spatiotemporal_search(request):
 	for signal in signals:
 		signal_matrix[signal.compartment_id][signal.timepoint_id] += 1
 	
-	matrices = [] #2D array for matrices ["spatiotemporal"][corresponding matrix]
 	matrix = [] # list of rows for this matrix. Each element: [compartment][list of signals for that row]
 
 	for compartment in c:
 		matrix.append((compartment, signal_matrix[compartment.id][1:]))
 
-	matrices.append(("spatiotemporal", matrix))
-	
 	# render page
 	return render_to_response('spatiotemporal_search.html', {
 		'timepoints':t,
-		'matrices':matrices,
+		'spatiotemporal_matrix':matrix,
 	}, context_instance=RequestContext(request))
 
 

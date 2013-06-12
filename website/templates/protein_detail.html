@@ -1,161 +1,176 @@
-{% extends "matrix_full.html" %}
+{% extends "base.html" %}
 
+{% block content %}
+	<!-- title bar -->
+	<div id="protein-title-bar">
+		<h3>{{ protein|upper }}</h3>
+		
+		<div id="protein-subtitle">
+			{% if protein.sequence and protein.sequence != protein.common_name %}
+				Cosmid: {{ protein.sequence }}
+			{% endif %}
 
-{% block prematrix %}
-<!-- PROTEIN TITLE BAR -->
-<div id="protein-title-bar">
-	<!-- protein title on left -->
-	<h3>{{ protein|upper }}</h3>
-	
-	<!-- sequence and wormbase link on right -->
-	<div id="protein-subtitle">
-		{% if protein.sequence and protein.sequence != protein.common_name %}
-			Cosmid: {{ protein.sequence }}
-		{% endif %}
+			{% if protein.sequence != protein and protein.wormbase_id %}
+				<br>
+			{% endif %}
 
-		{% if protein.sequence != protein and protein.wormbase_id %}
-			<br>
-		{% endif %}
+			{% if protein.wormbase_id %}
+				<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
+					{{ protein.wormbase_id}}
+				</a>
+			{% endif %}
+		</div>
+		
+		<!-- movie navigation bar -->
+		<ul class="video-nav">
+			{% for video in videos %}
+				<li>
+					<a href="#" data-video-link="{{ video.id }}"
+						{% if video = protein.representative_video %}
+							data-video-representative="true"
+						{% endif %}
+					>
+						movie {{ video.movie_number }}
+					</a>	
+				</li>
+			{% endfor %}
+			
+			{% if protein.consensus_matrix %} 
+				<li>
+					<a href="#" data-video-link="merge">consensus matrix</a>
+				</li>
+			{% endif %}	
+		</ul>
+	</div> <!-- title bar-->
 
-		{% if protein.wormbase_id %}
-			<a href="http://www.wormbase.org/species/c_elegans/gene/{{ protein.wormbase_id }}" target="_blank">
-				{{ protein.wormbase_id}}
-			</a>
-		{% endif %}
-	</div>
-	
-	<!-- navigation bar for the videos -->
-	<ul class="video-nav">
-		{% for video in videos %}
-			<li>
-				<a href="#" data-video-link="{{ video.id }}"
-					{% if video = protein.representative_video %}
-						data-video-representative="true"
+	<hr id="protein-title-bar-line"></hr>
+
+	<!-- video section -->
+	{% for video in videos %}
+		<div class="video-summary-wrapper" data-video-content="{{ video.id }}">
+			<div class="video-wrapper">	<!-- includes meta data beneath video -->
+				{% if video.lost %}
+					<div class="lost-video">
+						<span class="lost-video">This movie was lost.</span>
+					</div>
+				{% else %}
+					<video preload="auto" width="460" height="336" controls>
+						<source src="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" type='video/mp4'/>
+						<source src="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" type='video/webm'/>
+						<source src="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" type='video/ogg'/>
+						Your browser does not support the video tag
+					</video>
+				{% endif %}
+					
+				<!-- meta data beneath video -->
+				<div class="video-info">
+					<div class="video-info-left">
+						{% if video.lens %}
+							Lens: {{ video.lens }}
+							<br>
+						{% endif %}
+						
+						{% if video.mode %}
+							Mode: {{ video.mode }}
+						{% endif %}
+					</div>
+					<div class="video-info-right">
+						Filmed {{ video.date_filmed }}<br>
+						<a href="{% url 'website.views.downloads_protein' common_name=protein %}">
+							Download
+						</a>
+					</div>
+				</div>
+			</div> <!-- video-wrapper -->
+
+			<div id="next-to-video" class="increase-line-height-less">
+				<ul>
+					<li>
+						<b>Strain:</b>
+						{% if video.strain.wormbase %}
+							<a target="_blank" href="http://www.wormbase.org/species/c_elegans/strain/{{ video.strain.name }}">
+								{{ video.strain.name }}
+							</a>
+						{% elif video.strain.name %}
+							{{ video.strain.name }}
+						{% else %}
+							n/a
+						{% endif %}
+						
+						{% if video.strain.note %}
+							<span style="font-size: 13px">({{ video.strain.note }})</span>
+						{% endif %}
+					</li>
+
+					{% if video.strain.genotype %}
+					<li>
+						<b>Genotype:</b> 
+						{{ video.strain.genotype }}
+					</li>
 					{% endif %}
-				>
-					movie {{ video.movie_number }}
-				</a>	
-			</li>
+					
+					{% if video.summary %}
+						{% if video.truncated_summary %}
+							<li>
+								<div class="summary-collapsed">
+									<b>Summary:</b> {{ video.truncated_summary }}&hellip;
+									<a class="toggle-summary shaded-box">
+										more
+									</a>
+								</div>
+								
+								<div class="summary-expanded invisible">
+										<b>Summary:</b> {{ video.summary }}
+										<a class="toggle-summary shaded-box">
+											less
+										</a>
+								</div>
+							</li>
+						{% else %}
+							<li>
+								<b>Summary:</b> {{ video.summary }}
+							</li>
+						{% endif %}
+					{% endif %}
+				</ul>
+			</div><!-- next-to-video -->
+		</div> <!-- video-summary-wrapper -->		
+	{% endfor %} {# video loop #}
+	
+	<div id="matrix-key-wrapper">
+		{% for video in videos %}
+			{% if video.matrix %}
+				<div data-video-content="{{ video.id }}"}}>
+					<span class="matrix-title">
+						Human Score of {{ protein|upper }} Expression in Movie {{ video.movie_number }}
+					</span>
+					{% with matrix=video.matrix %}
+						{% include "matrix.html" %}
+					{% endwith %}
+				</div>
+			{% endif %}
 		{% endfor %}
 		
-		{# "merge" would be the first element in the last matrix appended to the list #}
-		{% if matrices|last|first == 'merge' %} 
-			<li>
-				<a href="#" data-video-link="merge">consensus matrix</a>
-			</li>
-		{% endif %}	
-	</ul>
-</div>
-
-<hr id="protein-title-bar-line"></hr>
-
-<!-- VIDEO AREA -->
-{% for video in videos %}
-	<!-- wrapper for the entire video area including summary -->
-	<div class="video-summary-wrapper" data-video-content="{{ video.id}}">
-		<!-- wrapper for the video and meta data beneath the video -->
-		<div class="video-wrapper">	
-			<!-- video player itself -->
-			{% if video.lost %}
-				<div class="lost-video">
-					<span>This movie was lost.</span>
-				</div>
-			{% else %}
-				<video preload="auto" width="460" height="336" controls>
-					<source src="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" type='video/mp4'/>
-					<source src="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" type='video/webm'/>
-					<source src="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" type='video/ogg'/>
-					Your browser does not support the video tag
-				</video>
-			{% endif %}
-				
-			<!-- meta data beneath video -->
-			<div class="video-info">
-				<div class="video-info-left">
-					{% if video.lens %}
-						Lens: {{ video.lens }}
-						<br>
-					{% endif %}
-					
-					{% if video.mode %}
-						Mode: {{ video.mode }}
-					{% endif %}
-				</div>
-				<div class="video-info-right">
-					Filmed {{ video.date_filmed }}<br>
-					<a href="{% url 'website.views.downloads_protein' common_name=protein %}">
-						Download
-					</a>
-				</div>
+		{% if protein.consensus_matrix %}
+			<div data-video-content="merge">
+				<span class="matrix-title">
+					Consensus of Human Scores of {{ protein|upper }} Expression
+				</span>
+				{% with matrix=protein.consensus_matrix %}
+					{% include "matrix.html" %}
+				{% endwith %}
 			</div>
-		</div> <!-- video-wrapper -->
-
-		<!-- info next to video, including summary -->
-		<div id="next-to-video" class="increase-line-height-less">
-			<ul>
-				<li>
-					<b>Strain:</b>
-					{% if video.strain.wormbase %}
-						<a target="_blank" href="http://www.wormbase.org/species/c_elegans/strain/{{ video.strain.name }}">
-							{{ video.strain.name }}
-						</a>
-					{% elif video.strain.name %}
-						{{ video.strain.name }}
-					{% else %}
-						n/a
-					{% endif %}
-					
-					{% if video.strain.note %}
-						<span style="font-size: 13px">({{ video.strain.note }})</span>
-					{% endif %}
-				</li>
-
-				{% if video.strain.genotype %}
-				<li>
-					<b>Genotype:</b> 
-					{{ video.strain.genotype }}
-				</li>
-				{% endif %}
-				
-				{% if video.summary %}
-					{% if video.truncated_summary %}
-						<li>
-							<div class="summary-collapsed">
-								<b>Summary:</b> {{ video.truncated_summary }}&hellip;
-								<a class="toggle-summary shaded-box">
-									more
-								</a>
-							</div>
-							
-							<div class="summary-expanded invisible">
-									<b>Summary:</b> {{ video.summary }}
-									<a class="toggle-summary shaded-box">
-										less
-									</a>
-							</div>
-						</li>
-					{% else %}
-						<li>
-							<b>Summary:</b> {{ video.summary }}
-						</li>
-					{% endif %}
-				{% endif %}
-			</ul>
+		{% endif %}
+		
+		<div id="next-to-matrix" class="shaded-box">
+			{% include "matrix_key_normal.html" %}
+			
+			{% for video in videos %}
+				<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
+					<li>Scored {{ video.date_scored }}</li>
+					<li>Excel sheet: {{ video.excel_id }}</li>	
+				</ul>			
+			{% endfor %}
 		</div>
-	</div> <!-- video-summary-wrapper -->		
-{% endfor %} {# video loop #}
-{% endblock prematrix %}
-
-
-{% block next_to_matrix %}
-	<div id="next-to-matrix" class="shaded-box">
-		{% include "matrix_key_normal.html" %}
-
-		{% for video in videos %}
-			<ul class="below-key increase-line-height" data-video-content="{{ video.id }}">
-				<li>Scored {{ video.date_scored }}</li>
-				<li>Excel sheet: {{ video.excel_id }}</li>	
-			</ul>			
-		{% endfor %}
 	</div>
-{% endblock next_to_matrix %}
+{% endblock content %}
