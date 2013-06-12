@@ -1,13 +1,19 @@
 {% extends "base_matrix.html" %}
 
 {% block matrix %}
-	{% for video_id, matrix in matrices %}
-		{% if video_id == "spatiotemporal" %}
+	{% for video, matrix in matrices %}
+		{% if video == "spatiotemporal" %}
 			<table class="matrix" data-path="{% url 'website.views.spatiotemporal_search' %}" id="spatiotemporal">
-		{% elif video_id == "merge" %}
+		{% elif video == "merge" %}
+			<span class="matrix-title" data-video-content="merge">
+				Consensus of Human Scores of {{ protein|upper }} Expression
+			</span>
 			<table class="matrix" data-video-content="merge">
 		{% else %}
-			<table class="matrix" data-video-content="{{ video_id }}">
+			<span class="matrix-title" data-video-content="{{ video.id }}">
+				Human Score of {{ protein|upper }} Expression in Movie {{ video.movie_number }}
+			</span>
+			<table class="matrix" data-video-content="{{ video.id }}">
 		{% endif %}
 
 		{# THs for timepoints in another file #}
@@ -46,7 +52,7 @@
 					
 			{% for signal in signals %}
 				<td class="signal 
-					{% ifequal video_id "spatiotemporal" %}
+					{% ifequal video "spatiotemporal" %}
 						{% if signal >= 1 and signal <= 5 %}
 							color1
 						{% elif signal >= 6 and signal <= 10 %}

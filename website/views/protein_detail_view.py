@@ -55,7 +55,7 @@ def protein_detail(request, common_name):
 			for compartment in c: # for each row
 				matrix.append((compartment, signals[i:(i+num_timepoints)])) # add this row's compartment and signals
 				i += num_timepoints # raw matrices do have these rows, so skip them
-			matrices.append((video.id, matrix))
+			matrices.append((video, matrix))
 	
 	# add the merge matrix to matrices
 	matrix = [] # refresh matrix
