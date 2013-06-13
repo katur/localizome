@@ -6,6 +6,7 @@ $(document).ready(function(){
 	selectDefaultVideo();
 	spatiotemporalLinks();
 	matrixAxisHighlight();
+	fixSpatiotemporalResultsRows();
 	hoverTags();
 })
 
@@ -101,6 +102,21 @@ matrixAxisHighlight = function(){
 		$(this).siblings(".row-header").removeClass("highlight");	
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
+	});
+}
+
+fixSpatiotemporalResultsRows = function(){
+	var tableOffset = $("#spatiotemporal-results").offset().top;
+	var $header = $("#spatiotemporal-results > thead").clone();
+	var $fixedHeader = $("#table-thead-fixed").append($header);
+
+	$(window).bind("scroll", function() {
+				var offset = $(this).scrollTop();
+				if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
+					$fixedHeader.show();
+				} else if (offset < tableOffset) {
+					$fixedHeader.hide();
+				}
 	});
 }
 

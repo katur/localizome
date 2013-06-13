@@ -41,12 +41,14 @@
 	<div id="matrix-key-wrapper">
 		{% if signals %}
 			{% if compartment and timepoint %}
-				<table id="spatiotemporal-both">
-					<tr>
-						<th class="top-row left-column"><b>Common</b></th>
-						<th class="top-row"><b>Canonical</b></th>
-						<th class="narrow no-background no-right-border"></th>
-					</tr>
+				<table id="spatiotemporal-results" class="spatiotemporal-both">
+					<thead>
+						<tr>
+							<th class="top-row left-column"><b>Common</b></th>
+							<th class="top-row"><b>Canonical</b></th>
+							<th class="narrow no-background no-right-border"></th>
+						</tr>
+					</thead>
 					{% for signal in signals %}
 						<tr>
 							<th class="left-column y-axis-spatiotemporal-result row-header">
@@ -61,14 +63,17 @@
 						</tr>
 					{% endfor %}
 				</table>
+				<table id="table-thead-fixed" class="spatiotemporal-both"></table>
 			{% else %}
-				<table class="matrix">
-					{% if compartment %}
-						{% include "matrix_xaxis_timepoints.html" %}
-					{% elif timepoint %}
-						{% include "matrix_xaxis_compartments.html" %}
-					{% endif %}
-
+				<table id="spatiotemporal-results" class="matrix">
+					<thead>
+						{% if compartment %}
+							{% include "matrix_xaxis_timepoints.html" %}
+						{% elif timepoint %}
+							{% include "matrix_xaxis_compartments.html" %}
+						{% endif %}
+					</thead>
+					
 					{% regroup signals by protein_id as proteins_signals %}
 					
 					{% for protein_signals in proteins_signals %}
@@ -101,8 +106,9 @@
 						</tr>
 					{% endfor %}	
 				</table>
+				<table id="table-thead-fixed" class="matrix"></table>
 			{% endif %}
-			
+				
 			<div id="next-to-matrix" class="shaded-box">
 				{% include "matrix_key_normal.html" %}
 			</div>

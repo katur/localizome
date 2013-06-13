@@ -105,10 +105,6 @@
 	background: #ffff66;
 }
 
-#spatiotemporal .timepoint, #spatiotemporal .compartment {
-	/* color: #A60000; */
-}
-
 #spatiotemporal .timepoint:hover, #spatiotemporal .compartment:hover {
 	color: #FF7373;
 }

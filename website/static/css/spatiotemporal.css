@@ -3,7 +3,7 @@
 	cursor: pointer;
 }
 
-#spatiotemporal-both {
+.spatiotemporal-both {
 	width: 200px;
 	float: left;
 	table-layout: fixed;
@@ -12,6 +12,13 @@
 .header-emphasis {
 	font-weight: bold;
 	text-transform: capitalize;
+}
+
+#table-thead-fixed {
+	position: fixed;
+	top: 0px;
+	display: none;
+	background-color: white;
 }
 
 /* spatiotemporal gradient */
