@@ -50,9 +50,9 @@
 		<div class="video-summary-wrapper" data-video-content="{{ video.id }}">
 			<div class="video-wrapper">	<!-- includes meta data beneath video -->
 				{% if video.lost %}
-					<div class="lost-video">
-						<span class="lost-video">This movie was lost.</span>
-					</div>
+					<table class="lost-video">
+						<tr><td>This movie was lost.</td></tr>
+					</table>
 				{% else %}
 					<video preload="auto" width="460" height="336" controls>
 						<source src="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" type='video/mp4'/>
@@ -76,9 +76,11 @@
 					</div>
 					<div class="video-info-right">
 						Filmed {{ video.date_filmed }}<br>
-						<a href="{% url 'website.views.downloads_protein' common_name=protein %}">
-							Download
-						</a>
+						{% if not video.lost %}
+							<a href="{% url 'website.views.downloads_protein' common_name=protein %}">
+								Download
+							</a>
+						{% endif %}
 					</div>
 				</div>
 			</div> <!-- video-wrapper -->

@@ -39,10 +39,12 @@
 #key {
 	float: left;
 	width: 160px;
+	font-family: "Helvetica", "Arial", sans-serif;
 }
 
 #key table {
 	width: 100%;
+	margin-top: 8px;
 }
 
 #key table td {
@@ -55,6 +57,8 @@
 
 #key-footnote {
 	float: right;
+	padding-top: 8px;
+	font-size: 12px;
 }
 
 .below-key {
@@ -97,8 +101,16 @@
 	padding-left: 5px;
 }
 
-.highlight, .timepoint:hover, .compartment:hover {
+.highlight {
 	background: #ffff66;
+}
+
+#spatiotemporal .timepoint, #spatiotemporal .compartment {
+	/* color: #A60000; */
+}
+
+#spatiotemporal .timepoint:hover, #spatiotemporal .compartment:hover {
+	color: #FF7373;
 }
 
 #defines-compartment-headers-width {

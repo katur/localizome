@@ -44,15 +44,14 @@
 	width: 460px;
 	height: 336px; 
 	background: black; 
+	color: white;
 	float: left;
+	font-size: 18px;
+	text-align: center;
 }
 
-.lost-video span {
-	float: left;
-	width: 100%;
-	text-align: center;
-	margin-top: 40px;
-	color: white;
+.lost-video td {
+	vertical-align: middle;
 }
 
 .video-info {
