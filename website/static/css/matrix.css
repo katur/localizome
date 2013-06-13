@@ -24,7 +24,8 @@
 
 .matrix-title {
 	float: left;
-	width: 100%;
+	width: 480px;
+	padding-left: 200px;
 	text-align: center;
 	font-weight: bold;
 	padding-bottom: 20px;
