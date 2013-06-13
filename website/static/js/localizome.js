@@ -6,8 +6,8 @@ $(document).ready(function(){
 	selectDefaultVideo();
 	spatiotemporalLinks();
 	matrixAxisHighlight();
-	fixSpatiotemporalResultsRows();
 	hoverTags();
+	fixSpatiotemporalResultsRows();
 })
 
 showProteinDownloads = function(){
