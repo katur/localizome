@@ -1,5 +1,4 @@
-{% extends "base_matrix.html"%}
-
+{% extends "base.html"%}
 
 {% block page_title %}
 	<h3>
@@ -14,10 +13,9 @@
 			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: {{ timepoint.name }}</span>
 		{% endif %}
 	</h3>
-{% endblock %}
+{% endblock page_title %}
 
-
-{% block prematrix %}
+{% block content %}
 	<div id="below-header">
 		{% if signals %}
 			Showing all proteins present or weak
@@ -27,8 +25,7 @@
 				in this compartment.
 			{% elif timepoint %}
 				at this timepoint.
-			{% endif %}
-			
+			{% endif %}			
 		{% else %}
 			No proteins expressed
 			{% if compartment and timepoint %}
@@ -38,61 +35,77 @@
 			{% elif timepoint %}
 				at this timepoint.
 			{% endif %}
-
 		{% endif %}
 	</div>
-{% endblock prematrix %}
 
-
-{% block next_to_matrix %}
-	{% if signals %}
-		<div id="next-to-matrix" class="shaded-box">
-			{% include "matrix_key_normal.html" %}
-		</div>
-	{% endif %}		
-{% endblock next_to_matrix %}
-
-
-{% block matrix %}
-	{% if signals %}
-		<table class="matrix">
-			{% if compartment %}
-				{% include "matrix_xaxis_timepoints.html" %}
-			{% elif timepoint %}
-				{% include "matrix_xaxis_compartments.html" %}
-			{% endif %}
-
-			{% regroup signals by protein_id as proteins_signals %}
-			
-			{% for protein_signals in proteins_signals %}
-				<tr>
-					{% with protein_signals.list.0.protein as protein %}
-						<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
-							<a href="{% url 'website.views.protein_detail' common_name=protein %}">
-								{{ protein|upper }}
-							</a>
-						</th>
-						<th class="y-axis-spatiotemporal-result row-header">
-							{{ protein.sequence }}
-						</th>
-					{% endwith %}
-					
-					{% for signal in protein_signals.list %}
-						<td class="signal
-							strength{{ signal.strength }}
-							{% if compartment %}
-								{% if forloop.counter == 8 or forloop.counter == 14 %}
-									bold-right
-								{% endif %}
-							{% elif timepoint %}
-								{% if forloop.counter == 4 or forloop.counter == 15 %}
-									bold-right
-								{% endif %}
-							{% endif %}
-						"></td>
+	<div id="matrix-key-wrapper">
+		{% if signals %}
+			{% if compartment and timepoint %}
+				<table id="spatiotemporal-both">
+					<tr>
+						<th class="top-row left-column"><b>Common</b></th>
+						<th class="top-row"><b>Canonical</b></th>
+						<th class="narrow no-background no-right-border"></th>
+					</tr>
+					{% for signal in signals %}
+						<tr>
+							<th class="left-column y-axis-spatiotemporal-result row-header">
+								<a href="{% url 'website.views.protein_detail' common_name=signal.protein %}">
+									{{ signal.protein|upper }}
+								</a>
+							</th>
+							<th class="y-axis-spatiotemporal-result row-header">
+								{{ signal.protein.sequence }}
+							</th>
+							<td width="50" class="signal strength{{ signal.strength }}"></td>	
+						</tr>
 					{% endfor %}
-				</tr>
-			{% endfor %}
-		</table>
-	{% endif %}
-{% endblock matrix %}
+				</table>
+			{% else %}
+				<table class="matrix">
+					{% if compartment %}
+						{% include "matrix_xaxis_timepoints.html" %}
+					{% elif timepoint %}
+						{% include "matrix_xaxis_compartments.html" %}
+					{% endif %}
+
+					{% regroup signals by protein_id as proteins_signals %}
+					
+					{% for protein_signals in proteins_signals %}
+						<tr>
+							{% with protein_signals.list.0.protein as protein %}
+								<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
+									<a href="{% url 'website.views.protein_detail' common_name=protein %}">
+										{{ protein|upper }}
+									</a>
+								</th>
+								<th class="y-axis-spatiotemporal-result row-header">
+									{{ protein.sequence }}
+								</th>
+							{% endwith %}
+							
+							{% for signal in protein_signals.list %}
+								<td class="signal
+									strength{{ signal.strength }}
+									{% if compartment %}
+										{% if forloop.counter == 8 or forloop.counter == 14 %}
+											bold-right
+										{% endif %}
+									{% elif timepoint %}
+										{% if forloop.counter == 4 or forloop.counter == 15 %}
+											bold-right
+										{% endif %}
+									{% endif %}
+								"></td>
+							{% endfor %}
+						</tr>
+					{% endfor %}	
+				</table>
+			{% endif %}
+			
+			<div id="next-to-matrix" class="shaded-box">
+				{% include "matrix_key_normal.html" %}
+			</div>
+		{% endif %}		
+	</div>
+{% endblock content %}

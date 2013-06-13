@@ -50,7 +50,7 @@ def spatiotemporal_both(request, compartment, timepoint):
 	)
 
 	# render page
-	return render_to_response('spatiotemporal_both.html', {
+	return render_to_response('spatiotemporal_results.html', {
 		'signals':s,
 		'compartment':c,
 		'timepoint':t

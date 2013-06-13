@@ -9,11 +9,10 @@
 		Click on a compartment, timepoint, or cell to view co-expressed proteins.
 	</div>
 	
-	<div data-video-content="spatiotemporal">
+	<div id="spatiotemporal" data-path="{% url 'website.views.spatiotemporal_search' %}">
 		{% with matrix=spatiotemporal_matrix %}
 			{% include "matrix.html" %}
 		{% endwith %}
-				<!--<table class="matrix" data-path="{% url 'website.views.spatiotemporal_search' %}" id="spatiotemporal">-->
 	</div>
 	
 	<div id="next-to-matrix" class="shaded-box">

@@ -57,10 +57,10 @@ selectDefaultVideo = function(){
 }
 
 spatiotemporalLinks = function(){
-	path = $("table#spatiotemporal").data("path");
+	path = $("div#spatiotemporal").data("path");
 	
 	// run the contents of this function whenever you click a td
-	$("table#spatiotemporal td").click(function(){
+	$("div#spatiotemporal td").click(function(){
 
 		// get all elements on the same level (row) as the td you clicked
 		// filtering for THs only, then getting the data-id attribute.
@@ -79,13 +79,13 @@ spatiotemporalLinks = function(){
 		window.location = link;
 	});
 
-	$("table#spatiotemporal th.compartment").click(function(){
+	$("div#spatiotemporal th.compartment").click(function(){
 		rowId = $(this).data("id");
 		link = path + "compartment" + rowId;
 		window.location = link;
 	});
 	
-	$("table#spatiotemporal th.timepoint").click(function(){
+	$("div#spatiotemporal th.timepoint").click(function(){
 		columnId = $(this).data("id");
 		link = path + "timepoint" + columnId;
 		window.location = link;
