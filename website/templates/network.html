@@ -16,7 +16,7 @@
 			{% for protein in proteins %}
 				<area	shape="circle" 
 					coords="{{ protein.network_x_coordinate }},{{ protein.network_y_coordinate }},21" 
-					href="../protein/{{ protein }}" 
+					href="{% url 'website.views.protein_detail' common_name=protein %}"
 					title="{{ protein }}" 
 					alt="{{ protein }}"
 				/>
