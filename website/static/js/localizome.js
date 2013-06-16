@@ -6,8 +6,8 @@ $(document).ready(function(){
 	selectDefaultVideo();
 	spatiotemporalLinks();
 	matrixAxisHighlight();
-	hoverTags();
 	fixSpatiotemporalResultsRows();
+	hoverTags();
 })
 
 showProteinDownloads = function(){
@@ -106,18 +106,20 @@ matrixAxisHighlight = function(){
 }
 
 fixSpatiotemporalResultsRows = function(){
-	var tableOffset = $("#spatiotemporal-results").offset().top;
-	var $header = $("#spatiotemporal-results > thead").clone();
-	var $fixedHeader = $("#table-thead-fixed").append($header);
+	if ($("#spatiotemporal-results").length) {	
+		var tableOffset = $("#spatiotemporal-results").offset().top;
+		var $header = $("#spatiotemporal-results > thead").clone();
+		var $fixedHeader = $("#table-thead-fixed").append($header);
 
-	$(window).bind("scroll", function() {
-				var offset = $(this).scrollTop();
-				if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
-					$fixedHeader.show();
-				} else if (offset < tableOffset) {
-					$fixedHeader.hide();
-				}
-	});
+		$(window).bind("scroll", function() {
+					var offset = $(this).scrollTop();
+					if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
+						$fixedHeader.show();
+					} else if (offset < tableOffset) {
+						$fixedHeader.hide();
+					}
+		});
+	}
 }
 
 window.hoverTags = function() {
