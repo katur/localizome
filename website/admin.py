@@ -1,7 +1,4 @@
 from django.contrib import admin
-from models import Protein
+from models import Strain
 
-class ProteinAdmin(admin.ModelAdmin):
-	pass
-
-admin.site.register(Protein, ProteinAdmin)
+admin.site.register(Strain)
