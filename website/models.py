@@ -21,6 +21,8 @@ class Strain(models.Model):
 	genotype = models.CharField(max_length=100, blank=True) 	
 	protein = models.ForeignKey(Protein)
 	note = models.CharField(max_length=75, blank=True)
+	def __unicode__(self):
+		return self.name
 
 
 class Video(models.Model):
