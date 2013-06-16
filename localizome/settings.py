@@ -66,7 +66,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'website/static_dump'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -182,5 +182,5 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 from django.core.servers.basehttp import WSGIServer
 WSGIServer.request_queue_size = 10
 
-# tried the line below to force lockdown password prompt on browser close, but it didn't work 
+# tried the line below to force lockdown password prompt on browser close, but it doesn't always work 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
