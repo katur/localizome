@@ -51,4 +51,8 @@ urlpatterns = patterns('', # first arg prefix for views
 		r'^downloads/$',
 		'website.views.downloads_protein',
 	),
+	url(
+		r'^test_video/$',
+		'website.views.test_video',
+	),
 )

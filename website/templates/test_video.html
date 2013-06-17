@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<video preload="auto" width="460" height="336" controls autobuffer>
+		<source src="{{ STATIC_URL }}videos/mp4/ZEN4_MG170_1_072410.mp4" type='video/mp4'/>
+		<source src="{{ STATIC_URL }}videos/webm/ZEN4_MG170_1_072410.webm" type='video/webm'/>
+		<source src="{{ STATIC_URL }}videos/ogv/ZEN4_MG170_1_072410.ogv" type='video/ogg'/>
+		Your browser does not support the video tag
+	</video>
+{% endblock %}

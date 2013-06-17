@@ -5,3 +5,4 @@ from spatiotemporal_views import spatiotemporal_search, spatiotemporal_both, spa
 from network_view import network
 from downloads_view import downloads
 from downloads_view import downloads_protein
+from test_video_view import test_video

@@ -54,7 +54,7 @@
 						<tr><td>This movie was lost.</td></tr>
 					</table>
 				{% else %}
-					<video preload="auto" width="460" height="336" controls>
+					<video preload="auto" width="460" height="336" controls autobuffer>
 						<source src="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" type='video/mp4'/>
 						<source src="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" type='video/webm'/>
 						<source src="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" type='video/ogg'/>
