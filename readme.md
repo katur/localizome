@@ -1,7 +1,7 @@
 Early Embryo Localizome web interface
 =====================================
 
-Web interface for a biology project 
+Django web interface for a biology project 
 examining the localization patterns of proteins in the _C. elegans_ early embryo.
 
-It was built using Django.
+See requirements.txt for dependencies.
