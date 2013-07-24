@@ -15,7 +15,7 @@ class Protein(models.Model):
 	
 
 class Strain(models.Model):
-	name = models.CharField(max_length=10)
+	name = models.CharField(max_length=10, blank=True)
 	
 	# genotype is vector if miyeko's strain (to dynamically generate genotype), hard-coded if not hers and not on WormBase, blank otherwise.
 	genotype = models.CharField(max_length=100, blank=True) 	
