@@ -6,4 +6,4 @@ examining the localization patterns of proteins in the _C. elegans_ early embryo
 
 See requirements.txt for dependencies.
 
-See eelocalizome\_relational\_implementation.jpeg for MySQL database structure.
+See localizome\_relational\_implementation.jpeg for MySQL database structure.
