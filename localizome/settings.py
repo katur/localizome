@@ -12,10 +12,12 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
 	'localhost', # Allow domain and subdomains
+	'128.122.4.12',
+	'eelocalizome.bio.nyu.edu',
 ]
 
 ADMINS = (
-	('Katherine Erickson', 'katherine.erickson@gmail.com'),
+	('Katherine Erickson', 'bee.litner.erickson@gmail.com'),
 )
 
 MANAGERS = ADMINS
