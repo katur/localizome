@@ -7,6 +7,7 @@ $(document).ready(function(){
 	spatiotemporalLinks();
 	fixSpatiotemporalResultsRows();
 	matrixAxisHighlight();
+	confirmDownload();
 	hoverTags();
 })
 
@@ -121,6 +122,25 @@ matrixAxisHighlight = function(){
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
 		$("#table-thead-fixed").find(".timepoint").eq(index).removeClass("highlight");
+	});
+}
+
+confirmDownload = function(){
+	$("li#zipped-avi").click(function(){
+		var answer = confirm("This is a big download. Are you sure?");
+		if (answer) {
+			window.open('/static/project_wide_downloads/localizome_avi_videos.zip');
+		} else {
+			alert("Download cancelled.");
+		}
+	});
+	$("li#zipped-png").click(function(){
+		var answer = confirm("This is a big download. Are you sure?");
+		if (answer) {
+			window.open('/static/project_wide_downloads/localizome_image_sequences.zip');
+		} else {
+			alert("Download cancelled.");
+		}
 	});
 }
 
