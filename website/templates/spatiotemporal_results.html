@@ -18,7 +18,7 @@
 {% block content %}
 	<div id="below-header">
 		{% if signals %}
-			Showing all proteins present or weak
+			Showing all proteins observed
 			{% if compartment and timepoint %}
 				in this compartment and timepoint.
 			{% elif compartment %}
@@ -27,7 +27,7 @@
 				at this timepoint.
 			{% endif %}			
 		{% else %}
-			No proteins expressed
+			No proteins observed
 			{% if compartment and timepoint %}
 				in this compartment and timepoint.
 			{% elif compartment %}
