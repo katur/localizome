@@ -7,7 +7,7 @@
 		
 		<div id="protein-subtitle">
 			{% if protein.sequence and protein.sequence != protein.common_name %}
-				Cosmid: {{ protein.sequence }}
+				Cosmid Gene ID: {{ protein.sequence }}
 			{% endif %}
 
 			{% if protein.sequence != protein and protein.wormbase_id %}
