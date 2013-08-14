@@ -5,8 +5,8 @@ $(document).ready(function(){
 	toggleVideo();
 	selectDefaultVideo();
 	spatiotemporalLinks();
-	matrixAxisHighlight();
 	fixSpatiotemporalResultsRows();
+	matrixAxisHighlight();
 	hoverTags();
 })
 
@@ -93,18 +93,6 @@ spatiotemporalLinks = function(){
 	});
 }
 
-matrixAxisHighlight = function(){
-	$("td.signal").mouseover(function(){
-		$(this).siblings(".row-header").addClass("highlight");
-		index = $(this).siblings("td").index($(this).prev()) + 1;
-		$(this).closest(".matrix").find(".timepoint").eq(index).addClass("highlight");
-	}).mouseout(function(){
-		$(this).siblings(".row-header").removeClass("highlight");	
-		index = $(this).siblings("td").index($(this).prev()) + 1;
-		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
-	});
-}
-
 fixSpatiotemporalResultsRows = function(){
 	if ($("#spatiotemporal-results").length) {	
 		var tableOffset = $("#spatiotemporal-results").offset().top;
@@ -120,6 +108,20 @@ fixSpatiotemporalResultsRows = function(){
 					}
 		});
 	}
+}
+
+matrixAxisHighlight = function(){
+	$("td.signal").mouseover(function(){
+		$(this).siblings(".row-header").addClass("highlight");
+		index = $(this).siblings("td").index($(this).prev()) + 1;
+		$(this).closest(".matrix").find(".timepoint").eq(index).addClass("highlight");
+		$("#table-thead-fixed").find(".timepoint").eq(index).addClass("highlight");
+	}).mouseout(function(){
+		$(this).siblings(".row-header").removeClass("highlight");	
+		index = $(this).siblings("td").index($(this).prev()) + 1;
+		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
+		$("#table-thead-fixed").find(".timepoint").eq(index).removeClass("highlight");
+	});
 }
 
 window.hoverTags = function() {
