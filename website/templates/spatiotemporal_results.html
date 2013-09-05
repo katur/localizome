@@ -2,9 +2,9 @@
 
 {% block page_title %}
 	<h3>
-		Co-expressed Proteins
+		Observed Proteins
 		{% if compartment and timepoint %}
-			in <span class="header-emphasis">{{ compartment.name }}</span> 
+			in <span class="header-emphasis">{{ compartment.name }}</span>
 			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: </span>
 			<span class="header-emphasis">{{ timepoint.name }}</span>
 		{% elif compartment %}
@@ -25,7 +25,7 @@
 				in this compartment.
 			{% elif timepoint %}
 				at this timepoint.
-			{% endif %}			
+			{% endif %}
 		{% else %}
 			No proteins observed
 			{% if compartment and timepoint %}
@@ -59,7 +59,7 @@
 							<th class="y-axis-spatiotemporal-result row-header">
 								{{ signal.protein.sequence }}
 							</th>
-							<td width="50" class="signal strength{{ signal.strength }}"></td>	
+							<td width="50" class="signal strength{{ signal.strength }}"></td>
 						</tr>
 					{% endfor %}
 				</table>
@@ -73,9 +73,9 @@
 							{% include "matrix_xaxis_compartments.html" %}
 						{% endif %}
 					</thead>
-					
+
 					{% regroup signals by protein_id as proteins_signals %}
-					
+
 					{% for protein_signals in proteins_signals %}
 						<tr>
 							{% with protein_signals.list.0.protein as protein %}
@@ -88,7 +88,7 @@
 									{{ protein.sequence }}
 								</th>
 							{% endwith %}
-							
+
 							{% for signal in protein_signals.list %}
 								<td class="signal
 									strength{{ signal.strength }}
@@ -104,14 +104,14 @@
 								"></td>
 							{% endfor %}
 						</tr>
-					{% endfor %}	
+					{% endfor %}
 				</table>
 				<table id="table-thead-fixed" class="matrix"></table>
 			{% endif %}
-				
+
 			<div id="next-to-matrix" class="shaded-box">
 				{% include "matrix_key_normal.html" %}
 			</div>
-		{% endif %}		
+		{% endif %}
 	</div>
 {% endblock content %}
