@@ -6,15 +6,15 @@
 
 {% block content %}
 	<div id="below-header">
-		Click on a compartment, timepoint, or cell to view co-expressed proteins.
+		Click on a compartment, timepoint, or cell to view co-observed proteins.
 	</div>
-	
+
 	<div id="spatiotemporal" data-path="{% url 'website.views.spatiotemporal_search' %}">
 		{% with matrix=spatiotemporal_matrix %}
 			{% include "matrix.html" %}
 		{% endwith %}
 	</div>
-	
+
 	<div id="next-to-matrix" class="shaded-box">
 		{% include "matrix_key_spatiotemporal.html" %}
 	</div>

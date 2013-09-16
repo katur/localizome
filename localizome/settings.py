@@ -61,12 +61,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '' 
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '' 
+MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -188,5 +188,5 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 from django.core.servers.basehttp import WSGIServer
 WSGIServer.request_queue_size = 10
 
-# tried the line below to force lockdown password prompt on browser close, but it doesn't always work 
+# tried the line below to force lockdown password prompt on browser close, but it doesn't always work
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
