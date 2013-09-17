@@ -26,7 +26,7 @@
 						{{ protein.sequence }}
 					</td>
 				</tr>
-			
+
 				{% if forloop.counter|divisibleby:"22" %}
 					</table>
 					<table class="protein-list-column">
@@ -34,10 +34,17 @@
 							<th>Common</th><th>Canonical</th>
 						</tr>
 				{% endif %}
-			
+
 			{% empty %}
 				Sorry, no proteins in the list.
 			{% endfor %}
 		</table>
 	</div>
+
+	{% if control %}
+		<span id="link-to-the-control">
+			<a href="{% url 'website.views.protein_detail' common_name='no GFP' %}">Click here</a>
+			for control video with no GFP
+		</span>
+	{% endif %}
 {% endblock %}

@@ -7,7 +7,11 @@ def protein_list(request):
 	Page listing all proteins tested
 	"""
 	# get all proteins
-	p = Protein.objects.all()
+	p = Protein.objects.all().exclude(common_name="no GFP")
+	c = get_object_or_404(Protein, common_name="no GFP")
 
 	# render page
-	return render_to_response('protein_list.html', {'proteins':p}, context_instance=RequestContext(request))
+	return render_to_response('protein_list.html', {
+		'proteins':p,
+		'control':c
+	}, context_instance=RequestContext(request))
