@@ -71,17 +71,21 @@ toggleSummaryLength = function(){
 toggleVideo = function(){
 	$("[data-video-link]").click(function(e){
 		e.preventDefault(); // keeps page stationary after click
-		$("a").removeClass("active"); // unset previous active link
-		$(this).addClass("active"); // set clicked link active
-		$("[data-video-content]").addClass("invisible"); // hide all videos, matrices, summaries
-		
-		// hide expanded and unhide truncated summaries
-		$(".summary-expanded").addClass("invisible"); 
-		$(".summary-collapsed").removeClass("invisible"); 
+
+		// update menu based on new click
+		$("a").removeClass("active");
+		$(this).addClass("active");
+
+		// hide ALL movie-specific videos, matrices, summaries, information
+		$("[data-video-content]").addClass("invisible");
+
+		// hide expanded and display truncated summaries
+		$(".summary-expanded").addClass("invisible");
+		$(".summary-collapsed").removeClass("invisible");
 
 		videoId = $(this).attr("data-video-link"); // get video id for clicked link
 		$("[data-video-content='" + videoId + "']").removeClass("invisible"); // make this one visible
-		
+
 		$(".matrix").is(":visible") ? $("#next-to-matrix").show() : $("#next-to-matrix").hide();
 	});
 }
@@ -94,7 +98,7 @@ selectDefaultVideo = function(){
 
 spatiotemporalLinks = function(){
 	path = $("div#spatiotemporal").data("path");
-	
+
 	// run the contents of this function whenever you click a td
 	$("div#spatiotemporal td").click(function(){
 
@@ -102,14 +106,14 @@ spatiotemporalLinks = function(){
 		// filtering for THs only, then getting the data-id attribute.
 		// FYI, you can pass any selector into .siblings()
 		rowId = $(this).siblings("th.compartment").data("id");
-	
+
 		// get the index number of column that we clicked in e.g., 0 for the first column, 1 for the second column, etc.
 		columnIndex = $(this).closest("tr").find("td").index($(this));
-			
+
 		// get all of the elements in the first row, be they either TDs or THs,
 		// then choose the Nth one, where n is columnIndex, and get the data-id attribute off of that
 		columnId = $("th.timepoint").eq(columnIndex).data("id");
-			
+
 		// assemble the link
 		link = path + "compartment" + rowId + "/timepoint" + columnId;
 		window.location = link;
@@ -120,7 +124,7 @@ spatiotemporalLinks = function(){
 		link = path + "compartment" + rowId;
 		window.location = link;
 	});
-	
+
 	$("div#spatiotemporal th.timepoint").click(function(){
 		columnId = $(this).data("id");
 		link = path + "timepoint" + columnId;
@@ -129,18 +133,18 @@ spatiotemporalLinks = function(){
 }
 
 fixSpatiotemporalResultsRows = function(){
-	if ($("#spatiotemporal-results").length) {	
+	if ($("#spatiotemporal-results").length) {
 		var tableOffset = $("#spatiotemporal-results").offset().top;
 		var $header = $("#spatiotemporal-results > thead").clone();
 		var $fixedHeader = $("#table-thead-fixed").append($header);
 
 		$(window).bind("scroll", function() {
-					var offset = $(this).scrollTop();
-					if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
-						$fixedHeader.show();
-					} else if (offset < tableOffset) {
-						$fixedHeader.hide();
-					}
+			var offset = $(this).scrollTop();
+			if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
+				$fixedHeader.show();
+			} else if (offset < tableOffset) {
+				$fixedHeader.hide();
+			}
 		});
 	}
 }
@@ -152,7 +156,7 @@ matrixAxisHighlight = function(){
 		$(this).closest(".matrix").find(".timepoint").eq(index).addClass("highlight");
 		$("#table-thead-fixed").find(".timepoint").eq(index).addClass("highlight");
 	}).mouseout(function(){
-		$(this).siblings(".row-header").removeClass("highlight");	
+		$(this).siblings(".row-header").removeClass("highlight");
 		index = $(this).siblings("td").index($(this).prev()) + 1;
 		$(this).closest(".matrix").find(".timepoint").eq(index).removeClass("highlight");
 		$("#table-thead-fixed").find(".timepoint").eq(index).removeClass("highlight");
