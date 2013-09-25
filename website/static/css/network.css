@@ -5,8 +5,8 @@
 
 #network {
 	width: 100%;
-	min-height: 747px;
-	border: 1px solid #d1d1d1;
+	margin-top: -30px;
+	min-height: 696px;
 }
 
 #container a {
