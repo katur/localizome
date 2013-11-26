@@ -14,14 +14,14 @@
 		<img id="network" src="{{ STATIC_URL }}images/network.png" alt="Network" usemap="#network-map" />
 		<map name="network-map" id="network-map">
 			{% for protein in proteins %}
-				<area	shape="circle" 
-					coords="{{ protein.network_x_coordinate }},{{ protein.network_y_coordinate }},21" 
+				<area	shape="circle"
+				coords="{{ protein.network_x_coordinate }},{{ protein.network_y_coordinate }},18"
 					href="{% url 'website.views.protein_detail' common_name=protein %}"
-					title="{{ protein }}" 
+					title="{{ protein }}"
 					alt="{{ protein }}"
 				/>
 				<a style="
-					left:{{ protein.network_x_coordinate_adjusted }}px; 
+					left:{{ protein.network_x_coordinate_adjusted }}px;
 					top:{{ protein.network_y_coordinate_adjusted }}px;"
 					href="{% url 'website.views.protein_detail' common_name=protein %}"
 				>
