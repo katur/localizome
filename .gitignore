@@ -27,6 +27,12 @@ website/static/image_sequences
 *.ogv
 *.webm
 
+
+# other big files #
+##########
+*.xls
+*.xlsx
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
