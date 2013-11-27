@@ -144,14 +144,14 @@
 			<div data-video-content="{{ video.id }}"}}>
 				{% if video.matrix %}
 					<span class="matrix-title">
-						Human Score of {{ protein|upper }} Expression in Movie {{ video.movie_number }}
+						{{ protein|upper }} Expression in Movie {{ video.movie_number }}
 					</span>
 					{% with matrix=video.matrix %}
 						{% include "matrix.html" %}
 					{% endwith %}
 				{% else %}
 					<span class="matrix-title">
-						This movie was not included in the paper.
+						This movie was not analyzed in the paper.
 					</span>
 				{% endif %}
 			</div>
