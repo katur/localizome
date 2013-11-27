@@ -27,6 +27,11 @@
 }
 
 #link-to-the-control {
-	margin-top: 40px;
+	margin-top: 15px;
 	float: left;
+}
+
+#not-in-paper {
+	margin-top: 15px;
+	float: right;
 }

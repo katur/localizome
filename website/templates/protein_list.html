@@ -19,8 +19,7 @@
 				<tr>
 					<td>
 						<a href="{% url 'website.views.protein_detail' common_name=protein %}">
-							{{ protein|upper }}
-						</a>
+							{{ protein|upper }}</a>{% if not protein.in_paper %}*{% endif %}
 					</td>
 					<td>
 						{{ protein.sequence }}
@@ -45,6 +44,9 @@
 		<span id="link-to-the-control">
 			<a href="{% url 'website.views.protein_detail' common_name='no GFP' %}">Click here</a>
 			for control video with no GFP.
+		</span>
+		<span id="not-in-paper">
+			*not included in paper
 		</span>
 	{% endif %}
 {% endblock %}

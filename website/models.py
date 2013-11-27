@@ -4,6 +4,7 @@ class Protein(models.Model):
 	common_name = models.CharField(max_length=10, unique=True)
 	sequence = models.CharField(max_length=15, unique=True)
 	wormbase_id = models.CharField(max_length=15, unique=True)
+	in_paper = models.BooleanField(default=True)
 	representative_video = models.OneToOneField('Video', related_name='representative', null=True, unique=True)
 	network_x_coordinate = models.PositiveIntegerField(null=True)
 	network_y_coordinate = models.PositiveIntegerField(null=True)
@@ -12,13 +13,13 @@ class Protein(models.Model):
 	class Meta:
 		ordering = ['common_name']
 		unique_together = ('network_x_coordinate', 'network_y_coordinate')
-	
+
 
 class Strain(models.Model):
 	name = models.CharField(max_length=10, blank=True)
-	
+
 	# genotype is vector if miyeko's strain (to dynamically generate genotype), hard-coded if not hers and not on WormBase, blank otherwise.
-	genotype = models.CharField(max_length=100, blank=True) 	
+	genotype = models.CharField(max_length=100, blank=True)
 	protein = models.ForeignKey(Protein)
 	note = models.CharField(max_length=75, blank=True)
 	def __unicode__(self):
@@ -59,11 +60,11 @@ class Compartment(models.Model):
 	name = models.CharField(max_length=60, unique=True)
 	short_name = models.CharField(max_length=20, blank=True) # blank indicates to not display compart.
 	extra_short_name = models.CharField(max_length=5, blank=True) # when axes flip
-	
+
 	PERIPHERY_SUPERCOMPARTMENT = 1
 	CYTOPLASMIC_SUPERCOMPARTMENT = 2
 	NUCLEAR_SUPERCOMPARTMENT = 3
-	
+
 	SUPERCOMPARTMENT_CATEGORIES = (
 		(PERIPHERY_SUPERCOMPARTMENT, 'Periphery/Plasma Membrane'),
 		(CYTOPLASMIC_SUPERCOMPARTMENT, 'Cytoplasmic'),
@@ -77,11 +78,11 @@ class Compartment(models.Model):
 class Timepoint(models.Model):
 	name = models.CharField(max_length=30) # timepoint names NOT unique (depend on cell cycle)
 	short_name = models.CharField(max_length=5)
-	
+
 	ONE_CELL_CYCLE = 1
 	AB_CELL_CYCLE = 2
 	P1_CELL_CYCLE = 3
-	
+
 	CELL_CYCLE_CATEGORIES = (
 		(ONE_CELL_CYCLE, '1-Cell'),
 		(AB_CELL_CYCLE, 'AB'),
@@ -97,7 +98,7 @@ class Signal(models.Model):
 	UNKNOWN_STRENGTH = 1
 	WEAK_STRENGTH = 2
 	PRESENT_STRENGTH = 3
-	
+
 	STRENGTH_CATEGORIES = (
 		(ABSENT_STRENGTH, 'absent'),
 		(UNKNOWN_STRENGTH, 'na'),
