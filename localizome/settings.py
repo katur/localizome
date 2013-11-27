@@ -7,7 +7,12 @@ from secret_settings import *
 import os
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = False
+'''
+# include this in settings_secret.py, to keep it out of repo
+# (because always True on devbox, always false on server)
+DEBUG = True
+'''
+
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
