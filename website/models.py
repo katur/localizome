@@ -47,15 +47,6 @@ class Video(models.Model):
 		ordering = ['movie_number']
 
 
-class VideoNotes(models.Model):
-	"""
-	These notes seem to be redundant with summary.
-	After confirmation, can remove this class entirely from the database.
-	"""
-	note = models.CharField(max_length=700)
-	video = models.ForeignKey(Video)
-
-
 class Compartment(models.Model):
 	name = models.CharField(max_length=60, unique=True)
 	short_name = models.CharField(max_length=20, blank=True) # blank indicates to not display compart.
