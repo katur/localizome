@@ -160,7 +160,7 @@
 		{% if protein.consensus_matrix %}
 			<div data-video-content="merge">
 				<span class="matrix-title">
-					Consensus of Human Scores of {{ protein|upper }} Expression
+					Consensus Matrix of {{ protein|upper }} Expression
 				</span>
 				{% with matrix=protein.consensus_matrix %}
 					{% include "matrix.html" %}
