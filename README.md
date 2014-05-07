@@ -1,8 +1,7 @@
-Early Embryo Localizome web interface
+Early Embryo Localizome Web Interface
 =====================================
 
-Django web interface for a genomics project
-examining the localization patterns of proteins
+Django site for a genomics project examining the localization patterns of proteins
 in the _Caenorhabditis elegans_ early embryo.
 
 See requirements.txt for dependencies.
