@@ -1,5 +1,6 @@
 # Connection files #
 ####################
+backups
 *secret_settings.py
 
 # Compiled source #
@@ -52,7 +53,6 @@ website/static/image_sequences
 *.sql
 *.sqlite
 *.csv
-sql_backups
 raw_data
 
 # Static files dump #
