@@ -1,6 +1,7 @@
 # Connection files #
 ####################
 backups
+materials
 *secret_settings.py
 
 # Compiled source #
@@ -47,13 +48,12 @@ website/static/image_sequences
 *.tar
 *.zip
 
-# Logs, databases, raw data #
-#############################
+# Logs, databases #
+###################
 *.log
 *.sql
 *.sqlite
 *.csv
-raw_data
 
 # Static files dump #
 website/static_dump/*
