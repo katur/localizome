@@ -5,6 +5,9 @@
 backups/
 materials/
 
+# Collected static files (can be re-collected with ./manage.py collectstatic)
+staticfiles/
+
 # Static files dump
 website/static_dump/*
 

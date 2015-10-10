@@ -38,7 +38,7 @@ MEDIA_ROOT = ''
 
 MEDIA_URL = ''
 
-STATIC_ROOT = ''
+STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = '/static/'
 
