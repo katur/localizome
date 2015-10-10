@@ -10,7 +10,6 @@ MySQL Database
 mysql -u localizome -p localizome < <sql dump filename>
 ```
 
-
 Code
 ----
 ```
