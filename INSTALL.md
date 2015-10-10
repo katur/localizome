@@ -55,11 +55,11 @@ cd /opt/local/localizome
 mkdir apache2
 cd apache2
 vi localizome.conf
-# add project-specific apache settings, using port 8009
-sudo ln -s /opt/local/localizome/apache2/localizome.conf /etc/apache2/sites-enabled/001-localizome.conf
+# add project-specific apache settings, using port 8010
+sudo ln -s /opt/local/localizome/apache2/localizome.conf /etc/apache2/sites-enabled/003-localizome.conf
 cd /etc/apache2
 vi ports.conf
-# add line to Listen 8009. comment out line to Listen 80 if port 80 not being used
+# add line to Listen 8010
 ```
 
 Apache Commands
