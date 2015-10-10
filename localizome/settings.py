@@ -10,11 +10,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '128.122.4.12',
-    'eelocalizome.bio.nyu.edu',
-]
+ALLOWED_HOSTS = ['*']
 
 ADMINS = (
     ('Katherine Erickson', 'bee.litner.erickson@gmail.com'),
