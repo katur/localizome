@@ -8,22 +8,21 @@ materials/
 # Collected static files (can be re-collected with ./manage.py collectstatic)
 staticfiles/
 
-# Static files dump
-website/static_dump/*
-
 # Excel files
 *.xls
 *.xlsx
 
 # Videos
 website/static/videos
-website/static/image_sequences
 *.avi
 *.mov
 *.mp4
 *.oog
 *.ogv
 *.webm
+
+# Other large files
+website/static/project_wide_downloads
 
 # Compiled source
 *.com
