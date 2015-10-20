@@ -13,7 +13,7 @@ See [INSTALL.md](INSTALL.md) for sample Ubuntu deployment steps.
 
 Python version is listed in [runtime.txt](runtime.txt).
 
-Package dependencies, including Django,
+Python package dependencies, including Django,
 are listed in [requirements.txt](requirements.txt).
 
 
