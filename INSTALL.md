@@ -63,8 +63,8 @@ cd apache2
 vi localizome.conf
 # add project-specific apache settings, using port 8010
 sudo ln -s /opt/local/localizome/apache2/localizome.conf /etc/apache2/sites-enabled/003-localizome.conf
-cd /etc/apache2
-vi ports.conf
+
+sudo vi /etc/apache2/ports.conf
 # add line to Listen 8010
 ```
 
@@ -84,7 +84,7 @@ Deploying in a Nutshell -- DRAFT
 # dump database, in case reverting is necessary
 # record the currently-deployed git commit, in case reverting is necessary
 
-# Activate virtual environment
+# Activate Python virtual environment
 cd /opt/local/localizome/localizome
 source opt/local/localizome/localizomevirtualenv/bin/activate
 
@@ -94,7 +94,7 @@ git pull
 # If changes to requirements.txt:
 pip install -r requirements.txt
 
-# If new static files:
+# If new/changed static files:
 ./manage.py collectstatic --link
 
 # If new database migrations:
@@ -107,9 +107,9 @@ pip install -r requirements.txt
 ./manage.py test
 ```
 
-### As user with sudo...
+### As user with sudo
 ```
 sudo service apache2 restart
 ```
 
-If front-end changes, visually inspect.
+If front-end changes, inspect visually.
