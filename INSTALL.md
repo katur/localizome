@@ -37,7 +37,9 @@ Static Files
 ```
 source /opt/local/localizome/localizomevirtualenv/bin/activate
 cd /opt/local/localizome/localizome
-./manage.py collectstatic
+
+# Use --link to avoid copying large data/video files
+./manage.py collectstatic --link
 ```
 
 Running Django Built-in Development Server
@@ -78,12 +80,19 @@ Deploying (to be fleshed out and automated)
 cd /opt/local/localizome/localizome
 source opt/local/localizome/localizomevirtualenv/bin/activate
 git pull
+
 # if requirements.txt changed:
 pip install -r requirements.txt
+
+# if new static files:
+./manage.py collectstatic --link
+
 # if new database migrations:
 ./manage.py migrate
+
 # if any scripts must be run, e.g. to modify data in keeping with schema changes:
 ./manage.py scriptname
+
 # if unit tests:
 ./manage.py test
 
