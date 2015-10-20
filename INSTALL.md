@@ -35,16 +35,16 @@ pip install -r localizome/requirements.txt
 Static Files
 ------------
 ```
+# Copy static files that are excluded from git repo
+cd /opt/local/localizome/localizome/website/static
+rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/videos .
+rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/project_wide_downloads .
+
 source /opt/local/localizome/localizomevirtualenv/bin/activate
 cd /opt/local/localizome/localizome
 
 # Use --link to avoid copying large data/video files
 ./manage.py collectstatic --link
-
-# Copy static files that are excluded from git repo
-cd /opt/local/localizome/localizome/website/static
-rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/videos .
-rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/project_wide_downloads .
 ```
 
 Running Django Built-in Development Server
