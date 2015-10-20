@@ -63,8 +63,8 @@ cd apache2
 vi localizome.conf
 # add project-specific apache settings, using port 8010
 sudo ln -s /opt/local/localizome/apache2/localizome.conf /etc/apache2/sites-enabled/003-localizome.conf
-cd /etc/apache2
-vi ports.conf
+
+sudo vi /etc/apache2/ports.conf
 # add line to Listen 8010
 ```
 
@@ -76,33 +76,40 @@ sudo service apache2 start
 sudo service apache2 stop
 ```
 
-Deploying (to be fleshed out and automated)
--------------------------------------------
+Deploying in a Nutshell -- DRAFT
+--------------------------------
+### As user localizome
+
 ```
-### As user localizome...
 # dump database, in case reverting is necessary
 # record the currently-deployed git commit, in case reverting is necessary
+
+# Activate Python virtual environment
 cd /opt/local/localizome/localizome
 source opt/local/localizome/localizomevirtualenv/bin/activate
+
+# Pull changes
 git pull
 
-# if requirements.txt changed:
+# If changes to requirements.txt:
 pip install -r requirements.txt
 
-# if new static files:
+# If new/changed static files:
 ./manage.py collectstatic --link
 
-# if new database migrations:
+# If new database migrations:
 ./manage.py migrate
 
-# if any scripts must be run, e.g. to modify data in keeping with schema changes:
+# If any scripts must be run:
 ./manage.py scriptname
 
-# if unit tests:
+# If there are unit tests:
 ./manage.py test
-
-### As user katherine...
-sudo service apache2 restart
-# if front-end changes, visual inspection of site
-# if necessary, revert the repo, db, and packages to the recorded versions.
 ```
+
+### As user with sudo
+```
+sudo service apache2 restart
+```
+
+If front-end changes, inspect visually.
