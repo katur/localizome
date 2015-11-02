@@ -19,6 +19,5 @@ are listed in [requirements.txt](requirements.txt).
 
 ## Database
 
-Click
-[here](https://www.lucidchart.com/documents/view/4e5c-8328-51e095b2-a5dc-0d860a001900 "Database Schema at Lucidchart")
-for database schema on LucidChart.
+[Click here](https://www.lucidchart.com/documents/view/4e5c-8328-51e095b2-a5dc-0d860a001900 "Database Schema at Lucidchart")
+to view the database schema on LucidChart.
