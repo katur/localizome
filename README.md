@@ -17,7 +17,10 @@ Python package dependencies, including Django,
 are listed in [requirements.txt](requirements.txt).
 
 
-## Database
+## Database Schema
 
-[Click here](https://www.lucidchart.com/documents/view/4e5c-8328-51e095b2-a5dc-0d860a001900 "Database Schema at Lucidchart")
-to view the database schema on LucidChart.
+[Click here](https://www.lucidchart.com/documents/view/7b1804c6-01fd-47b8-b79d-db626749afdc)
+to view on LucidChart.
+
+[Click here](https://www.lucidchart.com/publicSegments/view/2d1d5784-cf2f-4d0c-a8ac-82c4a6679475/image.pdf)
+to download PDF.
