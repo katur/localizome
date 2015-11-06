@@ -101,9 +101,9 @@ vi /opt/local/localizome/secret/localizome.my.cnf
 mkdir /opt/local/localizome/bin
 chmod 775 /opt/local/localizome/bin
 
-vi ~/.profile
-> PATH="/opt/local/localizome/bin:$PATH"
-source ~/.profile
+vi ~/.zshenv
+> path=(/opt/local/localizome/bin $path)
+source ~/.zshenv
 
 touch /opt/local/localizome/bin/mysqldump_localizome
 chmod 774 /opt/local/localizome/bin/mysqldump_localizome
