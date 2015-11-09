@@ -1,7 +1,10 @@
 # Installing `localizome` Project
 
+1. [Development](#development)
+1. [Production](#production)
 
-## Development Installation
+
+## Development
 
 
 #### Code
@@ -58,7 +61,7 @@ deactivate
 
 
 
-## Production Installation
+## Production
 
 Here is a walkthrough of how I deployed this with Apache and modwsgi on Ubuntu.
 
