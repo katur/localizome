@@ -10,6 +10,7 @@ MySQL Database
 mysql -u localizome -p localizome < <sql dump filename>
 ```
 
+
 Code
 ----
 ```
@@ -19,6 +20,7 @@ cd /opt/local/localizome/localizome/localizome
 # copy local_settings.py from development computer
 # edit local_settings with database connection info, and set DEBUG=False
 ```
+
 
 Virtual Environment and Dependencies
 ------------------------------------
@@ -31,6 +33,7 @@ virtualenv --python=/usr/bin/python2.7 localizomevirtualenv
 source localizomevirtualenv/bin/activate
 pip install -r localizome/requirements.txt
 ```
+
 
 Static Files
 ------------
@@ -47,12 +50,14 @@ cd /opt/local/localizome/localizome
 ./manage.py collectstatic --link
 ```
 
+
 Running Django Built-in Development Server
 ------------------------------------------
 ```
 source /opt/local/localizome/localizomevirtualenv/bin/activate
 /opt/local/localizome/localizome/manage.py runserver <IP address>:8000
 ```
+
 
 Apache Configuration
 --------------------
@@ -68,6 +73,7 @@ sudo vi /etc/apache2/ports.conf
 # add line to Listen 8010
 ```
 
+
 Apache Commands
 ---------------
 ```
@@ -76,10 +82,42 @@ sudo service apache2 start
 sudo service apache2 stop
 ```
 
+
+Database Backups
+----------------
+```
+mkdir /volume/data1/project/localizome/database_backups
+
+mkdir /opt/local/localizome/secret
+chmod 700 /opt/local/localizome/secret
+
+touch /opt/local/localizome/secret/localizome.my.cnf
+chmod 600 /opt/local/localizome/secret/localizome.my.cnf
+vi /opt/local/localizome/secret/localizome.my.cnf
+> [client]
+> user = localizome_ro
+> password = <password>
+
+mkdir /opt/local/localizome/bin
+chmod 775 /opt/local/localizome/bin
+
+vi ~/.zshenv
+> path=(/opt/local/localizome/bin $path)
+source ~/.zshenv
+
+touch /opt/local/localizome/bin/mysqldump_localizome
+chmod 774 /opt/local/localizome/bin/mysqldump_localizome
+vi /opt/local/localizome/bin/mysqldump_localizome
+
+> #!/bin/sh
+>
+> /usr/bin/mysqldump --defaults-file=/opt/local/localizome/secret/localizome.my.cnf --single-transaction localizome | pbzip2 -c -p16 > /volume/data1/project/localizome/database_backups/localizome_`date +%Y-%m-%d_%H-%M-%S`.sql.bz2
+```
+
+
 Deploying in a Nutshell -- DRAFT
 --------------------------------
 ### As user localizome
-
 ```
 # dump database, in case reverting is necessary
 # record the currently-deployed git commit, in case reverting is necessary
