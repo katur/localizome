@@ -145,9 +145,16 @@ pip install -r /opt/local/localizome/localizome/requirements.txt
 #### Static Files
 
 ```
+# Copy static files that are excluded from git repo
+cd /opt/local/localizome/localizome/website/static
+rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/videos .
+rsync -avz katherine@aquarius.bio.nyu.edu:~/ka73r/projects/localizome/website/static/project_wide_downloads .
+
 source /opt/local/localizome/localizomevirtualenv/bin/activate
 cd /opt/local/localizome/localizome
-./manage.py collectstatic
+
+# Use --link to avoid copying large data/video files
+./manage.py collectstatic --link
 ```
 
 
