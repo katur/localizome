@@ -1,5 +1,5 @@
 Django==1.8.4
-django-lockdown==0.1.1
+django-lockdown==1.2
 gunicorn==0.17.4
 MySQL-python==1.2.5
 wheel==0.24.0
