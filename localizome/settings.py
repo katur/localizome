@@ -2,7 +2,7 @@
 
 # to keep db connection and secret key out of git repo
 from local_settings import (DEBUG, DATABASES, SECRET_KEY,
-                            LOCKDOWN_PASSWORD, LOCKDOWN_FORM)
+                            LOCKDOWN_PASSWORDS, LOCKDOWN_FORM)
 
 # to use dynamically-generated roots throughout settings file
 import os
@@ -67,8 +67,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'lockdown.middleware.LockdownMiddleware',
 )
 
@@ -87,9 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'website',
     'lockdown',
