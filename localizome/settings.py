@@ -1,69 +1,58 @@
-# Django settings for localizome project.
+"""
+Django settings for the localizome project.
 
-# to keep db connection and secret key out of git repo
-from local_settings import (DEBUG, DATABASES, SECRET_KEY,
-                            LOCKDOWN_PASSWORDS, LOCKDOWN_FORM)
+For more information on this file, see
+https://docs.djangoproject.com/en/dev/topics/settings/
 
-# to use dynamically-generated roots throughout settings file
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/dev/ref/settings/
+"""
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+
+# Local configuration
+
+from local_settings import (
+    DEBUG, SECRET_KEY, LOCKDOWN_PASSWORDS, DATABASES)
 
 TEMPLATE_DEBUG = DEBUG
 
+
+# Security
+
 ALLOWED_HOSTS = ['*']
 
-ADMINS = (
-    ('Katherine Erickson', 'bee.litner.erickson@gmail.com'),
-)
 
-MANAGERS = ADMINS
+# Administration
 
-TIME_ZONE = 'America/New_York'
+ADMINS = [('Katherine Erickson', 'katherine.erickson@gmail.com'),]
 
-LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+# Application definition
 
-USE_I18N = True
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
-USE_L10N = True
+    'jquery',
 
-USE_TZ = True
+    'website',
 
-MEDIA_ROOT = ''
-
-MEDIA_URL = ''
-
-STATIC_ROOT = 'staticfiles'
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    'website/static',
-)
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
-
-'''
-# include this, filled in, in settings_secret.py
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
-'''
-
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    # 'django.template.loaders.eggs.Loader',
+    # Must be listed after website
+    'lockdown',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -75,64 +64,46 @@ ROOT_URLCONF = 'localizome.urls'
 
 WSGI_APPLICATION = 'localizome.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, "templates"),
-)
 
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
-    'jquery',
-    'website',
-    'lockdown',
-)
+# Internationalization
+# https://docs.djangoproject.com/en/dev/topics/i18n/
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
+LANGUAGE_CODE = 'en-us'
 
-# to have request object in templates
+TIME_ZONE = 'America/New_York'
+
+USE_I18N = True
+
+USE_L10N = False
+
+USE_TZ = True
+
+
+# Static files
+# https://docs.djangoproject.com/en/dev/howto/static-files/
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = 'staticfiles'
+
+
+# For request object in templates
+
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+
+# Site password protection
+
+LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
+
+# To force lockdown password prompt on browser close; doesn't always work
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
 # to fix Chrome bug of too many concurrent requests of static files:
 # http://python.6.x6.nabble.com/Django-18336-Static-files-randomly-fail-to-load-in-Google-Chrome-td4974987.html
 from django.core.servers.basehttp import WSGIServer
 WSGIServer.request_queue_size = 10
-
-# tried the line below to force lockdown password prompt on browser close,
-# but it doesn't always work
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
