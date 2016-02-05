@@ -204,7 +204,8 @@ git pull
 pip install -r requirements.txt
 
 # If new/changed static files
-./manage.py collectstatic
+# Use --link to avoid copying large data/video files
+./manage.py collectstatic --link
 
 # If new database migrations
 ./manage.py migrate
