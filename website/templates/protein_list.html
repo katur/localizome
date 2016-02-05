@@ -2,51 +2,51 @@
 
 
 {% block page_title %}
-	<h2>Protein List</h2>
+  <h2>Protein List</h2>
 {% endblock %}
 
 
 {% block content %}
-	<div id="below-header">
-		All proteins analyzed in this project.
-	</div>
-	<div class="shaded-box protein-list">
-		<table class="protein-list-column">
-			<tr>
-				<th>Common</th><th>Canonical</th>
-			</tr>
-			{% for protein in proteins %}
-				<tr>
-					<td>
-						<a href="{% url 'website.views.protein_detail' common_name=protein %}">
-							{{ protein|upper }}</a>{% if not protein.in_paper %}*{% endif %}
-					</td>
-					<td>
-						{{ protein.sequence }}
-					</td>
-				</tr>
+  <div id="below-header">
+    All proteins analyzed in this project.
+  </div>
+  <div class="shaded-box protein-list">
+    <table class="protein-list-column">
+      <tr>
+        <th>Common</th><th>Canonical</th>
+      </tr>
+      {% for protein in proteins %}
+        <tr>
+          <td>
+            <a href="{% url 'protein_detail_url' common_name=protein %}">
+              {{ protein|upper }}</a>{% if not protein.in_paper %}*{% endif %}
+          </td>
+          <td>
+            {{ protein.sequence }}
+          </td>
+        </tr>
 
-				{% if forloop.counter|divisibleby:"22" %}
-					</table>
-					<table class="protein-list-column">
-						<tr>
-							<th>Common</th><th>Canonical</th>
-						</tr>
-				{% endif %}
+        {% if forloop.counter|divisibleby:"22" %}
+          </table>
+          <table class="protein-list-column">
+            <tr>
+              <th>Common</th><th>Canonical</th>
+            </tr>
+        {% endif %}
 
-			{% empty %}
-				Sorry, no proteins in the list.
-			{% endfor %}
-		</table>
-	</div>
+      {% empty %}
+        Sorry, no proteins in the list.
+      {% endfor %}
+    </table>
+  </div>
 
-	{% if control %}
-		<span id="link-to-the-control">
-			<a href="{% url 'website.views.protein_detail' common_name='no GFP' %}">Click here</a>
-			for control video with no GFP.
-		</span>
-		<span id="not-in-paper">
-			*not included in paper
-		</span>
-	{% endif %}
+  {% if control %}
+    <span id="link-to-the-control">
+      <a href="{% url 'protein_detail_url' common_name='no GFP' %}">Click here</a>
+      for control video with no GFP.
+    </span>
+    <span id="not-in-paper">
+      *not included in paper
+    </span>
+  {% endif %}
 {% endblock %}

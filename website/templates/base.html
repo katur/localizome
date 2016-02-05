@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!-- HEAD -->
-	{% include "head.html" %}
+  <!-- HEAD -->
+  {% include "head.html" %}
 
-	<body>
-		<div id="wrap-header">
-			<div id="header" class="clearfix">
-				<!-- Site Title -->
-				<a href="{% url 'website.views.home' %}">
-					<img src="{{ STATIC_URL }}images/ee-logo.png">
-				</a>
-				<h1>Early Embryo Localizome</h1>
-				
-				<!-- MENU -->
-				{% include "menu.html" %}
-			</div>
-		</div>
-		
-		<div id="wrap-content">
-			<div id="content">
-				<!-- PAGE TITLE.. h2 or h3 based on clear or no-clear -->
-				{% block page_title %}{% endblock %}
+  <body>
+    <div id="wrap-header">
+      <div id="header" class="clearfix">
+        <!-- Site Title -->
+        <a href="{% url 'home_url' %}">
+          <img src="{{ STATIC_URL }}images/ee-logo.png">
+        </a>
+        <h1>Early Embryo Localizome</h1>
 
-				<!-- REST OF CONTENT -->
-				{% block content %}{% endblock %}
-			</div>
-		</div>
+        <!-- MENU -->
+        {% include "menu.html" %}
+      </div>
+    </div>
 
-		<!-- FOOTER -->
-		{% include "footer.html" %}
-	</body>
+    <div id="wrap-content">
+      <div id="content">
+        <!-- PAGE TITLE.. h2 or h3 based on clear or no-clear -->
+        {% block page_title %}{% endblock %}
+
+        <!-- REST OF CONTENT -->
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {% include "footer.html" %}
+  </body>
 </html>

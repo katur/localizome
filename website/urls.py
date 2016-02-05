@@ -1,58 +1,31 @@
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
+from django.conf.urls import url
 
-admin.autodiscover()
+from . import views
+
 
 # urlpatterns is a module-level variable
-urlpatterns = patterns('', # first arg prefix for views
-	# subsequent args are tuples: (regex, view, optional dictionary)
-	(r'^admin/', include(admin.site.urls)),
-	url(
-		r'^$',
-		'website.views.home',
-	),
-	url(
-		r'^proteins/$',
-		'website.views.protein_list',
-	),
-	url(
-		r'^protein/(?P<common_name>.+)$',
-		'website.views.protein_detail',
-	),
-	url(
-		r'^spatiotemporal/$',
-		'website.views.spatiotemporal_search',
-	),
-	url(
-		r'^spatiotemporal/compartment(?P<compartment>\d{1,2})/timepoint(?P<timepoint>\d{1,2})$',
-		'website.views.spatiotemporal_both',
-	),
-	url(
-		r'^spatiotemporal/compartment(?P<compartment>\d{1,2})$',
-		'website.views.spatiotemporal_compartment',
-	),
-	url(
-		r'^spatiotemporal/timepoint(?P<timepoint>\d{1,2})$',
-		'website.views.spatiotemporal_timepoint',
-	),
-	url(
-		r'^network/$',
-		'website.views.network',
-	),
-	url(
-		r'^downloads/$',
-		'website.views.downloads',
-	),
-	url(
-		r'^downloads/(?P<common_name>.+)$',
-		'website.views.downloads_protein',
-	),
-	url(
-		r'^downloads/$',
-		'website.views.downloads_protein',
-	),
-	url(
-		r'^test_video/$',
-		'website.views.test_video',
-	),
-)
+urlpatterns = [
+    url(r'^$', views.home,
+        name='home_url'),
+    url(r'^proteins/$', views.protein_list,
+        name='protein_list_url'),
+    url(r'^protein/(?P<common_name>.+)$', views.protein_detail,
+        name='protein_detail_url'),
+    url(r'^spatiotemporal/$', views.spatiotemporal_search,
+        name='spatiotemporal_search_url'),
+    url((r'^spatiotemporal/compartment(?P<compartment>\d{1,2})/'
+         'timepoint(?P<timepoint>\d{1,2})$'),
+        views.spatiotemporal_both, name='spatiotemporatl_both_url'),
+    url(r'^spatiotemporal/compartment(?P<compartment>\d{1,2})$',
+        views.spatiotemporal_compartment,
+        name='spatiotemporal_compartment_url',),
+    url(r'^spatiotemporal/timepoint(?P<timepoint>\d{1,2})$',
+        views.spatiotemporal_timepoint,
+        name='spatiotemporat_timepoint_url'),
+    url(r'^network/$', views.network,
+        name='network_url'),
+    url(r'^downloads/$', views.downloads,
+        name='downloads_url'),
+    url(r'^downloads/(?P<common_name>.+)$', views.downloads_protein,
+        name='downloads_protein_url'),
+]

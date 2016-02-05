@@ -1,22 +1,32 @@
 <div id="menu">
-	{% url 'website.views.home' as url_home %}
-	{% url 'website.views.protein_list' as url_protein_list %}
-	{% url 'website.views.spatiotemporal_search' as url_spatiotemporal_search %}
-	{% url 'website.views.network' as url_network %}
-	{% url 'website.views.downloads' as url_downloads %}
-	<a href="{{ url_home }}" {% if request.path == url_home %}class="active"{% endif %}>
-		Home
-	</a> 
-	<a href="{{ url_protein_list }}" {% ifequal request.path url_protein_list %}class="active"{% endifequal %}>
-		Protein List
-	</a>
-	<a href="{{ url_spatiotemporal_search }}" {% ifequal request.path url_spatiotemporal_search %}class="active"{% endifequal %}>
-		Spatiotemporal Search
-	</a>
-	<a href="{{ url_network }}" {% ifequal request.path url_network %}class="active"{% endifequal %}>
-		Network
-	</a>
-	<a href="{{ url_downloads }}" {% if url_downloads in request.path %}class="active"{% endif %}>
-		Downloads
-	</a>
+  {% url 'home_url' as home_url %}
+  {% url 'protein_list_url' as protein_list_url %}
+  {% url 'spatiotemporal_search_url' as spatiotemporal_search_url %}
+  {% url 'network_url' as network_url %}
+  {% url 'downloads_url' as downloads_url %}
+
+  <a href="{{ home_url }}"
+      {% ifequal request.path home_url %}class="active"{% endifequal %}>
+    Home
+  </a>
+
+  <a href="{{ protein_list_url }}"
+      {% ifequal request.path protein_list_url %}class="active"{% endifequal %}>
+    Protein List
+  </a>
+
+  <a href="{{ spatiotemporal_search_url }}"
+      {% ifequal request.path spatiotemporal_search_url %}class="active"{% endifequal %}>
+    Spatiotemporal Search
+  </a>
+
+  <a href="{{ network_url }}"
+      {% ifequal request.path network_url %}class="active"{% endifequal %}>
+    Network
+  </a>
+
+  <a href="{{ downloads_url }}"
+      {% ifequal request.path downloads_url %}class="active"{% endifequal %}>
+    Downloads
+  </a>
 </div>

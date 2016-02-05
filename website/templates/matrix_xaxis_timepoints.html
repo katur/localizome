@@ -1,32 +1,32 @@
 <tr>
-	<th id="defines-compartment-headers-width" class="no-bottom-border no-right-border no-background" colspan="2"></th>
-	<th id="defines-compartment-width" class="no-bottom-border no-background"></th>
-	<th class="axis-title top-row" colspan="20">Time</th>
+  <th id="defines-compartment-headers-width" class="no-bottom-border no-right-border no-background" colspan="2"></th>
+  <th id="defines-compartment-width" class="no-bottom-border no-background"></th>
+  <th class="axis-title top-row" colspan="20">Time</th>
 </tr>
 <tr>
-	<th class="no-background {% if not compartment %}no-bottom-border{% endif %}" colspan="3"></th>
-	<th class="axis-subtitle bold-right" colspan="8">1-Cell</th>
-	<th class="axis-subtitle bold-right" colspan="6">AB</th>
-	<th class="axis-subtitle" colspan="6">P1</th>
+  <th class="no-background {% if not compartment %}no-bottom-border{% endif %}" colspan="3"></th>
+  <th class="axis-subtitle bold-right" colspan="8">1-Cell</th>
+  <th class="axis-subtitle bold-right" colspan="6">AB</th>
+  <th class="axis-subtitle" colspan="6">P1</th>
 </tr>
 <tr>
-	{% if compartment %}
-		<th class="left-column" colspan="2">
-			<b>Common</b>
-		</th>
-		<th>
-			<b>Canonical</b>
-		</th> 
-	{% else %}	
-		<th colspan="3" class="no-background"></th>
-	{% endif %}	
-	
-	{% for timepoint in timepoints %}
-		<th data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}" class="timepoint
-			{% if forloop.counter == 8 or forloop.counter == 14 %}
-				bold-right
-			{% endif %}
-		">{{ timepoint.short_name }}
-		</th>
-	{% endfor %}
+  {% if compartment %}
+    <th class="left-column" colspan="2">
+      <b>Common</b>
+    </th>
+    <th>
+      <b>Canonical</b>
+    </th>
+  {% else %}
+    <th colspan="3" class="no-background"></th>
+  {% endif %}
+
+  {% for timepoint in timepoints %}
+    <th data-hover-tag="{{ timepoint.name }}" data-id="{{ timepoint.id }}" class="timepoint
+      {% if forloop.counter == 8 or forloop.counter == 14 %}
+        bold-right
+      {% endif %}
+    ">{{ timepoint.short_name }}
+    </th>
+  {% endfor %}
 </tr>

@@ -1,117 +1,117 @@
 {% extends "base.html"%}
 
 {% block page_title %}
-	<h3>
-		Proteins Observed
-		{% if compartment and timepoint %}
-			in <span class="header-emphasis">{{ compartment.name }}</span>
-			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: </span>
-			<span class="header-emphasis">{{ timepoint.name }}</span>
-		{% elif compartment %}
-			in <span class="header-emphasis">{{ compartment.name }}</span>
-		{% elif timepoint %}
-			at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: {{ timepoint.name }}</span>
-		{% endif %}
-	</h3>
+  <h3>
+    Proteins Observed
+    {% if compartment and timepoint %}
+      in <span class="header-emphasis">{{ compartment.name }}</span>
+      at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: </span>
+      <span class="header-emphasis">{{ timepoint.name }}</span>
+    {% elif compartment %}
+      in <span class="header-emphasis">{{ compartment.name }}</span>
+    {% elif timepoint %}
+      at <span class="header-emphasis">{{ timepoint.get_cell_cycle_category_display }}: {{ timepoint.name }}</span>
+    {% endif %}
+  </h3>
 {% endblock page_title %}
 
 {% block content %}
-	<div id="below-header">
-		{% if signals %}
-			Showing all proteins observed
-			{% if compartment and timepoint %}
-				in this compartment and timepoint.
-			{% elif compartment %}
-				in this compartment.
-			{% elif timepoint %}
-				at this timepoint.
-			{% endif %}
-		{% else %}
-			No proteins observed
-			{% if compartment and timepoint %}
-				in this compartment and timepoint.
-			{% elif compartment %}
-				in this compartment.
-			{% elif timepoint %}
-				at this timepoint.
-			{% endif %}
-		{% endif %}
-	</div>
+  <div id="below-header">
+    {% if signals %}
+      Showing all proteins observed
+      {% if compartment and timepoint %}
+        in this compartment and timepoint.
+      {% elif compartment %}
+        in this compartment.
+      {% elif timepoint %}
+        at this timepoint.
+      {% endif %}
+    {% else %}
+      No proteins observed
+      {% if compartment and timepoint %}
+        in this compartment and timepoint.
+      {% elif compartment %}
+        in this compartment.
+      {% elif timepoint %}
+        at this timepoint.
+      {% endif %}
+    {% endif %}
+  </div>
 
-	<div id="matrix-key-wrapper">
-		{% if signals %}
-			{% if compartment and timepoint %}
-				<table id="spatiotemporal-results" class="spatiotemporal-both">
-					<thead>
-						<tr>
-							<th class="top-row left-column"><b>Common</b></th>
-							<th class="top-row"><b>Canonical</b></th>
-							<th class="narrow no-background no-right-border"></th>
-						</tr>
-					</thead>
-					{% for signal in signals %}
-						<tr>
-							<th class="left-column y-axis-spatiotemporal-result row-header">
-								<a href="{% url 'website.views.protein_detail' common_name=signal.protein %}">
-									{{ signal.protein|upper }}
-								</a>
-							</th>
-							<th class="y-axis-spatiotemporal-result row-header">
-								{{ signal.protein.sequence }}
-							</th>
-							<td width="50" class="signal strength{{ signal.strength }}"></td>
-						</tr>
-					{% endfor %}
-				</table>
-				<table id="table-thead-fixed" class="spatiotemporal-both"></table>
-			{% else %}
-				<table id="spatiotemporal-results" class="matrix">
-					<thead>
-						{% if compartment %}
-							{% include "matrix_xaxis_timepoints.html" %}
-						{% elif timepoint %}
-							{% include "matrix_xaxis_compartments.html" %}
-						{% endif %}
-					</thead>
+  <div id="matrix-key-wrapper">
+    {% if signals %}
+      {% if compartment and timepoint %}
+        <table id="spatiotemporal-results" class="spatiotemporal-both">
+          <thead>
+            <tr>
+              <th class="top-row left-column"><b>Common</b></th>
+              <th class="top-row"><b>Canonical</b></th>
+              <th class="narrow no-background no-right-border"></th>
+            </tr>
+          </thead>
+          {% for signal in signals %}
+            <tr>
+              <th class="left-column y-axis-spatiotemporal-result row-header">
+                <a href="{% url 'protein_detail_url' common_name=signal.protein %}">
+                  {{ signal.protein|upper }}
+                </a>
+              </th>
+              <th class="y-axis-spatiotemporal-result row-header">
+                {{ signal.protein.sequence }}
+              </th>
+              <td width="50" class="signal strength{{ signal.strength }}"></td>
+            </tr>
+          {% endfor %}
+        </table>
+        <table id="table-thead-fixed" class="spatiotemporal-both"></table>
+      {% else %}
+        <table id="spatiotemporal-results" class="matrix">
+          <thead>
+            {% if compartment %}
+              {% include "matrix_xaxis_timepoints.html" %}
+            {% elif timepoint %}
+              {% include "matrix_xaxis_compartments.html" %}
+            {% endif %}
+          </thead>
 
-					{% regroup signals by protein_id as proteins_signals %}
+          {% regroup signals by protein_id as proteins_signals %}
 
-					{% for protein_signals in proteins_signals %}
-						<tr>
-							{% with protein_signals.list.0.protein as protein %}
-								<th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
-									<a href="{% url 'website.views.protein_detail' common_name=protein %}">
-										{{ protein|upper }}
-									</a>
-								</th>
-								<th class="y-axis-spatiotemporal-result row-header">
-									{{ protein.sequence }}
-								</th>
-							{% endwith %}
+          {% for protein_signals in proteins_signals %}
+            <tr>
+              {% with protein_signals.list.0.protein as protein %}
+                <th class="left-column y-axis-spatiotemporal-result row-header" colspan="2">
+                  <a href="{% url 'protein_detail_url' common_name=protein %}">
+                    {{ protein|upper }}
+                  </a>
+                </th>
+                <th class="y-axis-spatiotemporal-result row-header">
+                  {{ protein.sequence }}
+                </th>
+              {% endwith %}
 
-							{% for signal in protein_signals.list %}
-								<td class="signal
-									strength{{ signal.strength }}
-									{% if compartment %}
-										{% if forloop.counter == 8 or forloop.counter == 14 %}
-											bold-right
-										{% endif %}
-									{% elif timepoint %}
-										{% if forloop.counter == 4 or forloop.counter == 15 %}
-											bold-right
-										{% endif %}
-									{% endif %}
-								"></td>
-							{% endfor %}
-						</tr>
-					{% endfor %}
-				</table>
-				<table id="table-thead-fixed" class="matrix"></table>
-			{% endif %}
+              {% for signal in protein_signals.list %}
+                <td class="signal
+                  strength{{ signal.strength }}
+                  {% if compartment %}
+                    {% if forloop.counter == 8 or forloop.counter == 14 %}
+                      bold-right
+                    {% endif %}
+                  {% elif timepoint %}
+                    {% if forloop.counter == 4 or forloop.counter == 15 %}
+                      bold-right
+                    {% endif %}
+                  {% endif %}
+                "></td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+        <table id="table-thead-fixed" class="matrix"></table>
+      {% endif %}
 
-			<div id="next-to-matrix" class="shaded-box">
-				{% include "matrix_key_normal.html" %}
-			</div>
-		{% endif %}
-	</div>
+      <div id="next-to-matrix" class="shaded-box">
+        {% include "matrix_key_normal.html" %}
+      </div>
+    {% endif %}
+  </div>
 {% endblock content %}

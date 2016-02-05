@@ -5,67 +5,65 @@
 {% endblock %}
 
 {% block content %}
-	<div class="downloads-column">
-		<h4>Use dropdown for protein-specific downloads:</h4>
-		<select name="protein" data-path="{% url 'website.views.downloads' %}">
-			<option>Select a protein</option>
-			{% for p in proteins %}
-				<option value="{{ p }}" {% if p = protein %}selected="selected"{% endif %}>
-					{{ p|upper }}
-				</option>
-			{% endfor %}
-		</select>
+  <div class="downloads-column">
+    <h4>Use dropdown for protein-specific downloads:</h4>
+    <select name="protein" data-path="{% url 'downloads_url' %}">
+      <option value="">Select a protein</option>
+      {% for p in proteins %}
+        <option value="{{ p }}" {% if p = protein %}selected="selected"{% endif %}>
+          {{ p|upper }}
+        </option>
+      {% endfor %}
+    </select>
 
-		{% if protein %}
-			<div class="shaded-box protein-downloads">
-				<h4>{{ protein|upper }}</h4>
-				{% for video in videos %}
-					<ul>
-						<li>movie {{ video.movie_number }}</li>
-						<ul class="inner">
-							<li>
-								<a href="{{ STATIC_URL }}videos/avi/{{ video.filename }}.avi" target="_blank">
-									avi
-								</a>
-							</li>
-							<li>
-								<a href="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" target="_blank">
-									mp4
-								</a>
-							</li>
-							<li>
-								<a href="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" target="_blank">
-									ogv
-								</a>
-							</li>
-							<li>
-								<a href="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" target="_blank">
-									webm
-								</a>
-							</li>
-							<li>
-								<a href="{{ STATIC_URL }}videos/image_sequences_zipped/{{ video.filename }}.zip" target="_blank">
-									image sequence (zip)
-								</a>
-							</li>
-						</ul>
-					</ul>
-				{% endfor %}
-			</div>
-		{% endif %}
-	</div>
+    {% if protein %}
+      <div class="shaded-box protein-downloads">
+        <h4>{{ protein|upper }}</h4>
+        {% for video in videos %}
+          <ul>
+            <li>movie {{ video.movie_number }}</li>
+            <ul class="inner">
+              <li>
+                <a href="{{ STATIC_URL }}videos/avi/{{ video.filename }}.avi" target="_blank">
+                  avi
+                </a>
+              </li>
+              <li>
+                <a href="{{ STATIC_URL }}videos/mp4/{{ video.filename }}.mp4" target="_blank">
+                  mp4
+                </a>
+              </li>
+              <li>
+                <a href="{{ STATIC_URL }}videos/ogv/{{ video.filename }}.ogv" target="_blank">
+                  ogv
+                </a>
+              </li>
+              <li>
+                <a href="{{ STATIC_URL }}videos/webm/{{ video.filename }}.webm" target="_blank">
+                  webm
+                </a>
+              </li>
+              <li>
+                <a href="{{ STATIC_URL }}videos/image_sequences_zipped/{{ video.filename }}.zip" target="_blank">
+                  image sequence (zip)
+                </a>
+              </li>
+            </ul>
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 
-	<div class="downloads-column">
-		<h4>Project-wide downloads:</h4>
-		<ul>
+  <div class="downloads-column">
+    <h4>Project-wide downloads:</h4>
+    <ul>
       <li class="big-download" id="zipped-avi">
-      <a href="{{ STATIC_URL }}project_wide_downloads/localizome_avi_videos.zip">
-          zip archive of all ALL avi videos (782MB)</a>
+        <a>zip archive of all ALL avi videos (782MB)</a>
       </li>
 
       <li class="big-download" id="zipped-png">
-        <a href="{{ STATIC_URL }}project_wide_downloads/localizome_image_sequences.zip">
-          zip archive of ALL image sequences (3.75GB)</a>
+        <a>zip archive of ALL image sequences (3.75GB)</a>
       </li>
 
       <li>
@@ -74,10 +72,10 @@
       </li>
 
       <li>zip archive of consensus matrices*</li>
-			<li>network edge list*</li>
-			<li>network cytoscape file*</li>
-		</ul>
-		<br>*<span style="font-size: 14px">not yet available for download</span>
-	</div>
+      <li>network edge list*</li>
+      <li>network cytoscape file*</li>
+    </ul>
+    <br>*<span style="font-size: 14px">not yet available for download</span>
+  </div>
 
 {% endblock %}
