@@ -16,7 +16,7 @@ are listed in [requirements.txt](requirements.txt).
 HTML is in the
 [Django template language](https://docs.djangoproject.com/en/dev/topics/templates/).
 
-Javascript in [jQuery](http://jquery.com/).
+Javascript uses [jQuery](http://jquery.com/).
 
 
 ## Database
