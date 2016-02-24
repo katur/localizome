@@ -11,14 +11,14 @@
 
 ```
 git clone https://github.com/katur/localizome.git
-vi localizome/localizome/local_settings.py
-# Add local_settings, setting DEBUG=True
+cd localizome/localizome
+# create localsettings.py, setting DEBUG=True
 ```
 
 
 #### Database
 
-Add dev database connection info to `localizome/local_settings.py`.
+Add dev database connection info to `localizome/localsettings.py`.
 This might be a dev database that already exists on another machine,
 or a new database on your own machine.
 You might import an existing dump, or you might generate an empty database
@@ -127,7 +127,7 @@ cd /opt/local/localizome
 git clone https://github.com/katur/localizome.git
 
 cd /opt/local/localizome/localizome/localizome
-# create local_settings.py with database connection info, setting DEBUG=False
+# create localsettings.py with database connection info, setting DEBUG=False
 ```
 
 

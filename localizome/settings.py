@@ -8,17 +8,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+# Local configuration
+
+from localsettings import (
+    DEBUG, SECRET_KEY, LOCKDOWN_PASSWORDS, DATABASES, STATIC_ROOT,
+    GOOGLE_ANALYTICS_ID)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-# Local configuration
-
-from local_settings import (
-    DEBUG, SECRET_KEY, LOCKDOWN_PASSWORDS, DATABASES,
-    GOOGLE_ANALYTICS_ID)
 
 
 # Security
@@ -82,8 +82,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = 'staticfiles'
 
 
 # Templates
