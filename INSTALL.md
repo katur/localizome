@@ -12,7 +12,7 @@
 ```
 git clone https://github.com/katur/localizome.git
 cd localizome/localizome
-# create localsettings.py, setting DEBUG=True
+# add localsettings.py; set DEBUG=True
 ```
 
 
@@ -127,7 +127,7 @@ cd /opt/local/localizome
 git clone https://github.com/katur/localizome.git
 
 cd /opt/local/localizome/localizome/localizome
-# create localsettings.py with database connection info, setting DEBUG=False
+# add localsettings.py; make sure to set DEBUG=False
 ```
 
 
